@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.mapper;
 
+import edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo;
 import edu.dlut.ssdut.abilityfosterplatform.model.Student;
 
 public interface StudentMapper {
@@ -16,4 +17,6 @@ public interface StudentMapper {
     int updateByPrimaryKeyWithBLOBs(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    Student selectByAccountAndPassword(LoginInfo loginInfo);
 }

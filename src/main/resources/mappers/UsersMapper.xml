@@ -35,7 +35,7 @@
     VersionNumber
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -50,19 +50,19 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Users (Password, Status, UserName, 
-      LoginAccount, LastLoginTime, Token, 
-      TokenDeadLine, MToken, MTokenDeadLine, 
-      IsCustomerService, IsDeleted, CompanyId, 
-      BranchId, Mobile, Remark, 
-      CreatedBy, CreatedOn, ModifiedBy, 
+    insert into Users (Password, Status, UserName,
+      LoginAccount, LastLoginTime, Token,
+      TokenDeadLine, MToken, MTokenDeadLine,
+      IsCustomerService, IsDeleted, CompanyId,
+      BranchId, Mobile, Remark,
+      CreatedBy, CreatedOn, ModifiedBy,
       ModifiedOn, VersionNumber)
-    values (#{password,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, #{username,jdbcType=NVARCHAR}, 
-      #{loginaccount,jdbcType=NVARCHAR}, #{lastlogintime,jdbcType=TIMESTAMP}, #{token,jdbcType=NVARCHAR}, 
-      #{tokendeadline,jdbcType=TIMESTAMP}, #{mtoken,jdbcType=NVARCHAR}, #{mtokendeadline,jdbcType=TIMESTAMP}, 
-      #{iscustomerservice,jdbcType=BIT}, #{isdeleted,jdbcType=BIT}, #{companyid,jdbcType=INTEGER}, 
-      #{branchid,jdbcType=INTEGER}, #{mobile,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR}, 
-      #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, 
+    values (#{password,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, #{username,jdbcType=NVARCHAR},
+      #{loginaccount,jdbcType=NVARCHAR}, #{lastlogintime,jdbcType=TIMESTAMP}, #{token,jdbcType=NVARCHAR},
+      #{tokendeadline,jdbcType=TIMESTAMP}, #{mtoken,jdbcType=NVARCHAR}, #{mtokendeadline,jdbcType=TIMESTAMP},
+      #{iscustomerservice,jdbcType=BIT}, #{isdeleted,jdbcType=BIT}, #{companyid,jdbcType=INTEGER},
+      #{branchid,jdbcType=INTEGER}, #{mobile,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR},
+      #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER},
       #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
@@ -308,4 +308,7 @@
       ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByAccountAndPassword" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo" resultType="edu.dlut.ssdut.abilityfosterplatform.model.Users">
+    select * from users where loginaccount = #{number,jdbcType=NVARCHAR} and password = #{password,jdbcType=NVARCHAR}
+  </select>
 </mapper>
