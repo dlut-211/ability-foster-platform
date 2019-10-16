@@ -38,27 +38,26 @@
     where Id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Chapter" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Chapter (Id, ChapterLevel, CourseId, 
-      Name, ParentId, Sort, 
-      Number, Describe, CreatedBy, 
-      CreatedOn, ModifiedBy, ModifiedOn, 
-      VersionNumber)
-    values (#{id,jdbcType=INTEGER}, #{chapterlevel,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, 
-      #{name,jdbcType=NVARCHAR}, #{parentid,jdbcType=INTEGER}, #{sort,jdbcType=NVARCHAR}, 
-      #{number,jdbcType=INTEGER}, #{describe,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, 
-      #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, 
-      #{versionnumber,jdbcType=BINARY})
+    insert into Chapter (ChapterLevel, CourseId, Name, 
+      ParentId, Sort, Number, 
+      Describe, CreatedBy, CreatedOn, 
+      ModifiedBy, ModifiedOn, VersionNumber
+      )
+    values (#{chapterlevel,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, 
+      #{parentid,jdbcType=INTEGER}, #{sort,jdbcType=NVARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{describe,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Chapter" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into Chapter
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      Id,
       <if test="chapterlevel != null" >
         ChapterLevel,
       </if>
@@ -97,7 +96,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="chapterlevel != null" >
         #{chapterlevel,jdbcType=INTEGER},
       </if>

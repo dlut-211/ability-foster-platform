@@ -35,25 +35,24 @@
     where Id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Operations" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Operations (Id, OperationName, OperationCode, 
-      MenuId, IsDeleted, CreatedBy, 
-      CreatedOn, ModifiedBy, ModifiedOn, 
-      VersionNumber)
-    values (#{id,jdbcType=INTEGER}, #{operationname,jdbcType=NVARCHAR}, #{operationcode,jdbcType=NVARCHAR}, 
-      #{menuid,jdbcType=INTEGER}, #{isdeleted,jdbcType=BIT}, #{createdby,jdbcType=INTEGER}, 
-      #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, 
-      #{versionnumber,jdbcType=BINARY})
+    insert into Operations (OperationName, OperationCode, MenuId, 
+      IsDeleted, CreatedBy, CreatedOn, 
+      ModifiedBy, ModifiedOn, VersionNumber
+      )
+    values (#{operationname,jdbcType=NVARCHAR}, #{operationcode,jdbcType=NVARCHAR}, #{menuid,jdbcType=INTEGER}, 
+      #{isdeleted,jdbcType=BIT}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Operations" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into Operations
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      Id,
       <if test="operationname != null" >
         OperationName,
       </if>
@@ -83,7 +82,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="operationname != null" >
         #{operationname,jdbcType=NVARCHAR},
       </if>

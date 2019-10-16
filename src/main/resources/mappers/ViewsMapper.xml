@@ -2,65 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ViewsMapper">
   <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Views">
-    <result column="TABLE_CATALOG" jdbcType="NVARCHAR" property="tableCatalog" />
-    <result column="TABLE_SCHEMA" jdbcType="NVARCHAR" property="tableSchema" />
-    <result column="TABLE_NAME" jdbcType="NVARCHAR" property="tableName" />
-    <result column="VIEW_DEFINITION" jdbcType="NVARCHAR" property="viewDefinition" />
-    <result column="CHECK_OPTION" jdbcType="VARCHAR" property="checkOption" />
-    <result column="IS_UPDATABLE" jdbcType="VARCHAR" property="isUpdatable" />
-  </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Views">
-    insert into VIEWS (TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, 
-      VIEW_DEFINITION, CHECK_OPTION, IS_UPDATABLE
-      )
-    values (#{tableCatalog,jdbcType=NVARCHAR}, #{tableSchema,jdbcType=NVARCHAR}, #{tableName,jdbcType=NVARCHAR}, 
-      #{viewDefinition,jdbcType=NVARCHAR}, #{checkOption,jdbcType=VARCHAR}, #{isUpdatable,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Views">
-    insert into VIEWS
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="tableCatalog != null">
-        TABLE_CATALOG,
-      </if>
-      <if test="tableSchema != null">
-        TABLE_SCHEMA,
-      </if>
-      <if test="tableName != null">
-        TABLE_NAME,
-      </if>
-      <if test="viewDefinition != null">
-        VIEW_DEFINITION,
-      </if>
-      <if test="checkOption != null">
-        CHECK_OPTION,
-      </if>
-      <if test="isUpdatable != null">
-        IS_UPDATABLE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="tableCatalog != null">
-        #{tableCatalog,jdbcType=NVARCHAR},
-      </if>
-      <if test="tableSchema != null">
-        #{tableSchema,jdbcType=NVARCHAR},
-      </if>
-      <if test="tableName != null">
-        #{tableName,jdbcType=NVARCHAR},
-      </if>
-      <if test="viewDefinition != null">
-        #{viewDefinition,jdbcType=NVARCHAR},
-      </if>
-      <if test="checkOption != null">
-        #{checkOption,jdbcType=VARCHAR},
-      </if>
-      <if test="isUpdatable != null">
-        #{isUpdatable,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Views">
     <result column="name" jdbcType="NVARCHAR" property="name" />
     <result column="object_id" jdbcType="INTEGER" property="objectId" />
     <result column="principal_id" jdbcType="INTEGER" property="principalId" />
@@ -215,6 +156,282 @@
       </if>
       <if test="isTrackedByCdc != null">
         #{isTrackedByCdc,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Views">
+    <result column="TABLE_CATALOG" jdbcType="NVARCHAR" property="tableCatalog" />
+    <result column="TABLE_SCHEMA" jdbcType="NVARCHAR" property="tableSchema" />
+    <result column="TABLE_NAME" jdbcType="NVARCHAR" property="tableName" />
+    <result column="VIEW_DEFINITION" jdbcType="NVARCHAR" property="viewDefinition" />
+    <result column="CHECK_OPTION" jdbcType="VARCHAR" property="checkOption" />
+    <result column="IS_UPDATABLE" jdbcType="VARCHAR" property="isUpdatable" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Views">
+    insert into VIEWS (TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, 
+      VIEW_DEFINITION, CHECK_OPTION, IS_UPDATABLE
+      )
+    values (#{tableCatalog,jdbcType=NVARCHAR}, #{tableSchema,jdbcType=NVARCHAR}, #{tableName,jdbcType=NVARCHAR}, 
+      #{viewDefinition,jdbcType=NVARCHAR}, #{checkOption,jdbcType=VARCHAR}, #{isUpdatable,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Views">
+    insert into VIEWS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableCatalog != null">
+        TABLE_CATALOG,
+      </if>
+      <if test="tableSchema != null">
+        TABLE_SCHEMA,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="viewDefinition != null">
+        VIEW_DEFINITION,
+      </if>
+      <if test="checkOption != null">
+        CHECK_OPTION,
+      </if>
+      <if test="isUpdatable != null">
+        IS_UPDATABLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableCatalog != null">
+        #{tableCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=NVARCHAR},
+      </if>
+      <if test="viewDefinition != null">
+        #{viewDefinition,jdbcType=NVARCHAR},
+      </if>
+      <if test="checkOption != null">
+        #{checkOption,jdbcType=VARCHAR},
+      </if>
+      <if test="isUpdatable != null">
+        #{isUpdatable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.Views">
+    <result column="name" jdbcType="NVARCHAR" property="name" />
+    <result column="object_id" jdbcType="INTEGER" property="objectId" />
+    <result column="principal_id" jdbcType="INTEGER" property="principalId" />
+    <result column="schema_id" jdbcType="INTEGER" property="schemaId" />
+    <result column="parent_object_id" jdbcType="INTEGER" property="parentObjectId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="type_desc" jdbcType="NVARCHAR" property="typeDesc" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="is_ms_shipped" jdbcType="BIT" property="isMsShipped" />
+    <result column="is_published" jdbcType="BIT" property="isPublished" />
+    <result column="is_schema_published" jdbcType="BIT" property="isSchemaPublished" />
+    <result column="is_replicated" jdbcType="BIT" property="isReplicated" />
+    <result column="has_replication_filter" jdbcType="BIT" property="hasReplicationFilter" />
+    <result column="has_opaque_metadata" jdbcType="BIT" property="hasOpaqueMetadata" />
+    <result column="has_unchecked_assembly_data" jdbcType="BIT" property="hasUncheckedAssemblyData" />
+    <result column="with_check_option" jdbcType="BIT" property="withCheckOption" />
+    <result column="is_date_correlation_view" jdbcType="BIT" property="isDateCorrelationView" />
+    <result column="is_tracked_by_cdc" jdbcType="BIT" property="isTrackedByCdc" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.Views">
+    insert into views (name, object_id, principal_id, 
+      schema_id, parent_object_id, type, 
+      type_desc, create_date, modify_date, 
+      is_ms_shipped, is_published, is_schema_published, 
+      is_replicated, has_replication_filter, has_opaque_metadata, 
+      has_unchecked_assembly_data, with_check_option, is_date_correlation_view, 
+      is_tracked_by_cdc)
+    values (#{name,jdbcType=NVARCHAR}, #{objectId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{schemaId,jdbcType=INTEGER}, #{parentObjectId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{isMsShipped,jdbcType=BIT}, #{isPublished,jdbcType=BIT}, #{isSchemaPublished,jdbcType=BIT}, 
+      #{isReplicated,jdbcType=BIT}, #{hasReplicationFilter,jdbcType=BIT}, #{hasOpaqueMetadata,jdbcType=BIT}, 
+      #{hasUncheckedAssemblyData,jdbcType=BIT}, #{withCheckOption,jdbcType=BIT}, #{isDateCorrelationView,jdbcType=BIT}, 
+      #{isTrackedByCdc,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.Views">
+    insert into views
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="principalId != null">
+        principal_id,
+      </if>
+      <if test="schemaId != null">
+        schema_id,
+      </if>
+      <if test="parentObjectId != null">
+        parent_object_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typeDesc != null">
+        type_desc,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="isMsShipped != null">
+        is_ms_shipped,
+      </if>
+      <if test="isPublished != null">
+        is_published,
+      </if>
+      <if test="isSchemaPublished != null">
+        is_schema_published,
+      </if>
+      <if test="isReplicated != null">
+        is_replicated,
+      </if>
+      <if test="hasReplicationFilter != null">
+        has_replication_filter,
+      </if>
+      <if test="hasOpaqueMetadata != null">
+        has_opaque_metadata,
+      </if>
+      <if test="hasUncheckedAssemblyData != null">
+        has_unchecked_assembly_data,
+      </if>
+      <if test="withCheckOption != null">
+        with_check_option,
+      </if>
+      <if test="isDateCorrelationView != null">
+        is_date_correlation_view,
+      </if>
+      <if test="isTrackedByCdc != null">
+        is_tracked_by_cdc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null">
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="schemaId != null">
+        #{schemaId,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjectId != null">
+        #{parentObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null">
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMsShipped != null">
+        #{isMsShipped,jdbcType=BIT},
+      </if>
+      <if test="isPublished != null">
+        #{isPublished,jdbcType=BIT},
+      </if>
+      <if test="isSchemaPublished != null">
+        #{isSchemaPublished,jdbcType=BIT},
+      </if>
+      <if test="isReplicated != null">
+        #{isReplicated,jdbcType=BIT},
+      </if>
+      <if test="hasReplicationFilter != null">
+        #{hasReplicationFilter,jdbcType=BIT},
+      </if>
+      <if test="hasOpaqueMetadata != null">
+        #{hasOpaqueMetadata,jdbcType=BIT},
+      </if>
+      <if test="hasUncheckedAssemblyData != null">
+        #{hasUncheckedAssemblyData,jdbcType=BIT},
+      </if>
+      <if test="withCheckOption != null">
+        #{withCheckOption,jdbcType=BIT},
+      </if>
+      <if test="isDateCorrelationView != null">
+        #{isDateCorrelationView,jdbcType=BIT},
+      </if>
+      <if test="isTrackedByCdc != null">
+        #{isTrackedByCdc,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.Views">
+    <result column="TABLE_CATALOG" jdbcType="NVARCHAR" property="tableCatalog" />
+    <result column="TABLE_SCHEMA" jdbcType="NVARCHAR" property="tableSchema" />
+    <result column="TABLE_NAME" jdbcType="NVARCHAR" property="tableName" />
+    <result column="VIEW_DEFINITION" jdbcType="NVARCHAR" property="viewDefinition" />
+    <result column="CHECK_OPTION" jdbcType="VARCHAR" property="checkOption" />
+    <result column="IS_UPDATABLE" jdbcType="VARCHAR" property="isUpdatable" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.Views">
+    insert into VIEWS (TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, 
+      VIEW_DEFINITION, CHECK_OPTION, IS_UPDATABLE
+      )
+    values (#{tableCatalog,jdbcType=NVARCHAR}, #{tableSchema,jdbcType=NVARCHAR}, #{tableName,jdbcType=NVARCHAR}, 
+      #{viewDefinition,jdbcType=NVARCHAR}, #{checkOption,jdbcType=VARCHAR}, #{isUpdatable,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.Views">
+    insert into VIEWS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableCatalog != null">
+        TABLE_CATALOG,
+      </if>
+      <if test="tableSchema != null">
+        TABLE_SCHEMA,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="viewDefinition != null">
+        VIEW_DEFINITION,
+      </if>
+      <if test="checkOption != null">
+        CHECK_OPTION,
+      </if>
+      <if test="isUpdatable != null">
+        IS_UPDATABLE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableCatalog != null">
+        #{tableCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=NVARCHAR},
+      </if>
+      <if test="viewDefinition != null">
+        #{viewDefinition,jdbcType=NVARCHAR},
+      </if>
+      <if test="checkOption != null">
+        #{checkOption,jdbcType=VARCHAR},
+      </if>
+      <if test="isUpdatable != null">
+        #{isUpdatable,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

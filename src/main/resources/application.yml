@@ -4,8 +4,11 @@ server:
 
 spring:
   datasource:
+    # 驱动
+    # 数据库连接已过时，com.mysql.jdbc.Driver被建议替换为com.mysql.cj.jdbc.Driver
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://114.115.184.18:1433; DatabaseName=Ces_Dev
+    # 注意修改数据库连接信息
     username: dev
     password: 123456
 

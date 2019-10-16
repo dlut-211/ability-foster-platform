@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentclassroompassabilityMapper" >
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroompassability" >
-    <result column="StudentId" property="studentid" jdbcType="INTEGER" />
-    <result column="ClassRoomId" property="classroomid" jdbcType="INTEGER" />
-    <result column="ClassRoomName" property="classroomname" jdbcType="NVARCHAR" />
-    <result column="AbilityId" property="abilityid" jdbcType="INTEGER" />
-    <result column="AbilityName" property="abilityname" jdbcType="NVARCHAR" />
-    <result column="IsPass" property="ispass" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentclassroompassabilityMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroompassability">
+    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
+    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
+    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
+    <result column="AbilityId" jdbcType="INTEGER" property="abilityid" />
+    <result column="AbilityName" jdbcType="NVARCHAR" property="abilityname" />
+    <result column="IsPass" jdbcType="INTEGER" property="ispass" />
   </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroompassability" >
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroompassability">
     insert into V_StudentClassRoomPassAbility (StudentId, ClassRoomId, ClassRoomName, 
       AbilityId, AbilityName, IsPass
       )
@@ -17,45 +17,104 @@
       #{abilityid,jdbcType=INTEGER}, #{abilityname,jdbcType=NVARCHAR}, #{ispass,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroompassability" >
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroompassability">
     insert into V_StudentClassRoomPassAbility
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="studentid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentid != null">
         StudentId,
       </if>
-      <if test="classroomid != null" >
+      <if test="classroomid != null">
         ClassRoomId,
       </if>
-      <if test="classroomname != null" >
+      <if test="classroomname != null">
         ClassRoomName,
       </if>
-      <if test="abilityid != null" >
+      <if test="abilityid != null">
         AbilityId,
       </if>
-      <if test="abilityname != null" >
+      <if test="abilityname != null">
         AbilityName,
       </if>
-      <if test="ispass != null" >
+      <if test="ispass != null">
         IsPass,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="studentid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentid != null">
         #{studentid,jdbcType=INTEGER},
       </if>
-      <if test="classroomid != null" >
+      <if test="classroomid != null">
         #{classroomid,jdbcType=INTEGER},
       </if>
-      <if test="classroomname != null" >
+      <if test="classroomname != null">
         #{classroomname,jdbcType=NVARCHAR},
       </if>
-      <if test="abilityid != null" >
+      <if test="abilityid != null">
         #{abilityid,jdbcType=INTEGER},
       </if>
-      <if test="abilityname != null" >
+      <if test="abilityname != null">
         #{abilityname,jdbcType=NVARCHAR},
       </if>
-      <if test="ispass != null" >
+      <if test="ispass != null">
+        #{ispass,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.VStudentclassroompassability">
+    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
+    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
+    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
+    <result column="AbilityId" jdbcType="INTEGER" property="abilityid" />
+    <result column="AbilityName" jdbcType="NVARCHAR" property="abilityname" />
+    <result column="IsPass" jdbcType="INTEGER" property="ispass" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentclassroompassability">
+    insert into V_StudentClassRoomPassAbility (StudentId, ClassRoomId, ClassRoomName, 
+      AbilityId, AbilityName, IsPass
+      )
+    values (#{studentid,jdbcType=INTEGER}, #{classroomid,jdbcType=INTEGER}, #{classroomname,jdbcType=NVARCHAR}, 
+      #{abilityid,jdbcType=INTEGER}, #{abilityname,jdbcType=NVARCHAR}, #{ispass,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentclassroompassability">
+    insert into V_StudentClassRoomPassAbility
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentid != null">
+        StudentId,
+      </if>
+      <if test="classroomid != null">
+        ClassRoomId,
+      </if>
+      <if test="classroomname != null">
+        ClassRoomName,
+      </if>
+      <if test="abilityid != null">
+        AbilityId,
+      </if>
+      <if test="abilityname != null">
+        AbilityName,
+      </if>
+      <if test="ispass != null">
+        IsPass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentid != null">
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="classroomid != null">
+        #{classroomid,jdbcType=INTEGER},
+      </if>
+      <if test="classroomname != null">
+        #{classroomname,jdbcType=NVARCHAR},
+      </if>
+      <if test="abilityid != null">
+        #{abilityid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityname != null">
+        #{abilityname,jdbcType=NVARCHAR},
+      </if>
+      <if test="ispass != null">
         #{ispass,jdbcType=INTEGER},
       </if>
     </trim>

@@ -47,33 +47,30 @@
     where Id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Users (Id, Password, Status, 
-      UserName, LoginAccount, LastLoginTime, 
-      Token, TokenDeadLine, MToken, 
-      MTokenDeadLine, IsCustomerService, IsDeleted, 
-      CompanyId, BranchId, Mobile, 
-      Remark, CreatedBy, CreatedOn, 
-      ModifiedBy, ModifiedOn, VersionNumber
-      )
-    values (#{id,jdbcType=INTEGER}, #{password,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{username,jdbcType=NVARCHAR}, #{loginaccount,jdbcType=NVARCHAR}, #{lastlogintime,jdbcType=TIMESTAMP}, 
-      #{token,jdbcType=NVARCHAR}, #{tokendeadline,jdbcType=TIMESTAMP}, #{mtoken,jdbcType=NVARCHAR}, 
-      #{mtokendeadline,jdbcType=TIMESTAMP}, #{iscustomerservice,jdbcType=BIT}, #{isdeleted,jdbcType=BIT}, 
-      #{companyid,jdbcType=INTEGER}, #{branchid,jdbcType=INTEGER}, #{mobile,jdbcType=NVARCHAR}, 
-      #{remark,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
-      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY}
-      )
+    insert into Users (Password, Status, UserName, 
+      LoginAccount, LastLoginTime, Token, 
+      TokenDeadLine, MToken, MTokenDeadLine, 
+      IsCustomerService, IsDeleted, CompanyId, 
+      BranchId, Mobile, Remark, 
+      CreatedBy, CreatedOn, ModifiedBy, 
+      ModifiedOn, VersionNumber)
+    values (#{password,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, #{username,jdbcType=NVARCHAR}, 
+      #{loginaccount,jdbcType=NVARCHAR}, #{lastlogintime,jdbcType=TIMESTAMP}, #{token,jdbcType=NVARCHAR}, 
+      #{tokendeadline,jdbcType=TIMESTAMP}, #{mtoken,jdbcType=NVARCHAR}, #{mtokendeadline,jdbcType=TIMESTAMP}, 
+      #{iscustomerservice,jdbcType=BIT}, #{isdeleted,jdbcType=BIT}, #{companyid,jdbcType=INTEGER}, 
+      #{branchid,jdbcType=INTEGER}, #{mobile,jdbcType=NVARCHAR}, #{remark,jdbcType=NVARCHAR}, 
+      #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into Users
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      Id,
       <if test="password != null" >
         Password,
       </if>
@@ -136,7 +133,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="password != null" >
         #{password,jdbcType=NVARCHAR},
       </if>

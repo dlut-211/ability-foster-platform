@@ -41,29 +41,28 @@
     where Id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Menus (Id, MenuName, MenuCode, 
-      MenuType, Icon, Route, 
-      ShowOrder, ParentMenuId, MenuStatus, 
-      IsDeleted, CreatedBy, CreatedOn, 
-      ModifiedBy, ModifiedOn, Menu_Id, 
-      VersionNumber)
-    values (#{id,jdbcType=INTEGER}, #{menuname,jdbcType=NVARCHAR}, #{menucode,jdbcType=NVARCHAR}, 
-      #{menutype,jdbcType=INTEGER}, #{icon,jdbcType=NVARCHAR}, #{route,jdbcType=NVARCHAR}, 
-      #{showorder,jdbcType=INTEGER}, #{parentmenuid,jdbcType=INTEGER}, #{menustatus,jdbcType=INTEGER}, 
-      #{isdeleted,jdbcType=BIT}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
-      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{menuId,jdbcType=INTEGER}, 
-      #{versionnumber,jdbcType=BINARY})
+    insert into Menus (MenuName, MenuCode, MenuType, 
+      Icon, Route, ShowOrder, 
+      ParentMenuId, MenuStatus, IsDeleted, 
+      CreatedBy, CreatedOn, ModifiedBy, 
+      ModifiedOn, Menu_Id, VersionNumber
+      )
+    values (#{menuname,jdbcType=NVARCHAR}, #{menucode,jdbcType=NVARCHAR}, #{menutype,jdbcType=INTEGER}, 
+      #{icon,jdbcType=NVARCHAR}, #{route,jdbcType=NVARCHAR}, #{showorder,jdbcType=INTEGER}, 
+      #{parentmenuid,jdbcType=INTEGER}, #{menustatus,jdbcType=INTEGER}, #{isdeleted,jdbcType=BIT}, 
+      #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{menuId,jdbcType=INTEGER}, #{versionnumber,jdbcType=BINARY}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into Menus
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      Id,
       <if test="menuname != null" >
         MenuName,
       </if>
@@ -111,7 +110,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="menuname != null" >
         #{menuname,jdbcType=NVARCHAR},
       </if>

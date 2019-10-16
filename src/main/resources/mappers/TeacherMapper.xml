@@ -37,27 +37,24 @@
     where Id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Teacher (Id, Email, Name, 
-      Number, Password, CreatedBy, 
-      CreatedOn, ModifiedBy, ModifiedOn, 
-      Token, Status, VersionNumber
-      )
-    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
-      #{number,jdbcType=NVARCHAR}, #{password,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, 
-      #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, 
-      #{token,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, #{versionnumber,jdbcType=BINARY}
-      )
+    insert into Teacher (Email, Name, Number, 
+      Password, CreatedBy, CreatedOn, 
+      ModifiedBy, ModifiedOn, Token, 
+      Status, VersionNumber)
+    values (#{email,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{number,jdbcType=NVARCHAR}, 
+      #{password,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{token,jdbcType=NVARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{versionnumber,jdbcType=BINARY})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into Teacher
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      Id,
       <if test="email != null" >
         Email,
       </if>
@@ -93,7 +90,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="email != null" >
         #{email,jdbcType=NVARCHAR},
       </if>

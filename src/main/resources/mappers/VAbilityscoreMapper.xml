@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VAbilityscoreMapper" >
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VAbilityscore" >
-    <result column="CourseId" property="courseid" jdbcType="INTEGER" />
-    <result column="ClassRoomId" property="classroomid" jdbcType="INTEGER" />
-    <result column="AbilityId" property="abilityid" jdbcType="INTEGER" />
-    <result column="AbilityName" property="abilityname" jdbcType="NVARCHAR" />
-    <result column="StudentId" property="studentid" jdbcType="INTEGER" />
-    <result column="Score" property="score" jdbcType="INTEGER" />
-    <result column="AvgScore" property="avgscore" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VAbilityscoreMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VAbilityscore">
+    <result column="CourseId" jdbcType="INTEGER" property="courseid" />
+    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
+    <result column="AbilityId" jdbcType="INTEGER" property="abilityid" />
+    <result column="AbilityName" jdbcType="NVARCHAR" property="abilityname" />
+    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
+    <result column="Score" jdbcType="INTEGER" property="score" />
+    <result column="AvgScore" jdbcType="INTEGER" property="avgscore" />
   </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAbilityscore" >
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAbilityscore">
     insert into V_AbilityScore (CourseId, ClassRoomId, AbilityId, 
       AbilityName, StudentId, Score, 
       AvgScore)
@@ -18,51 +18,117 @@
       #{abilityname,jdbcType=NVARCHAR}, #{studentid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
       #{avgscore,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAbilityscore" >
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAbilityscore">
     insert into V_AbilityScore
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="courseid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
         CourseId,
       </if>
-      <if test="classroomid != null" >
+      <if test="classroomid != null">
         ClassRoomId,
       </if>
-      <if test="abilityid != null" >
+      <if test="abilityid != null">
         AbilityId,
       </if>
-      <if test="abilityname != null" >
+      <if test="abilityname != null">
         AbilityName,
       </if>
-      <if test="studentid != null" >
+      <if test="studentid != null">
         StudentId,
       </if>
-      <if test="score != null" >
+      <if test="score != null">
         Score,
       </if>
-      <if test="avgscore != null" >
+      <if test="avgscore != null">
         AvgScore,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="courseid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
         #{courseid,jdbcType=INTEGER},
       </if>
-      <if test="classroomid != null" >
+      <if test="classroomid != null">
         #{classroomid,jdbcType=INTEGER},
       </if>
-      <if test="abilityid != null" >
+      <if test="abilityid != null">
         #{abilityid,jdbcType=INTEGER},
       </if>
-      <if test="abilityname != null" >
+      <if test="abilityname != null">
         #{abilityname,jdbcType=NVARCHAR},
       </if>
-      <if test="studentid != null" >
+      <if test="studentid != null">
         #{studentid,jdbcType=INTEGER},
       </if>
-      <if test="score != null" >
+      <if test="score != null">
         #{score,jdbcType=INTEGER},
       </if>
-      <if test="avgscore != null" >
+      <if test="avgscore != null">
+        #{avgscore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.VAbilityscore">
+    <result column="CourseId" jdbcType="INTEGER" property="courseid" />
+    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
+    <result column="AbilityId" jdbcType="INTEGER" property="abilityid" />
+    <result column="AbilityName" jdbcType="NVARCHAR" property="abilityname" />
+    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
+    <result column="Score" jdbcType="INTEGER" property="score" />
+    <result column="AvgScore" jdbcType="INTEGER" property="avgscore" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VAbilityscore">
+    insert into V_AbilityScore (CourseId, ClassRoomId, AbilityId, 
+      AbilityName, StudentId, Score, 
+      AvgScore)
+    values (#{courseid,jdbcType=INTEGER}, #{classroomid,jdbcType=INTEGER}, #{abilityid,jdbcType=INTEGER}, 
+      #{abilityname,jdbcType=NVARCHAR}, #{studentid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{avgscore,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VAbilityscore">
+    insert into V_AbilityScore
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        CourseId,
+      </if>
+      <if test="classroomid != null">
+        ClassRoomId,
+      </if>
+      <if test="abilityid != null">
+        AbilityId,
+      </if>
+      <if test="abilityname != null">
+        AbilityName,
+      </if>
+      <if test="studentid != null">
+        StudentId,
+      </if>
+      <if test="score != null">
+        Score,
+      </if>
+      <if test="avgscore != null">
+        AvgScore,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="classroomid != null">
+        #{classroomid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityid != null">
+        #{abilityid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityname != null">
+        #{abilityname,jdbcType=NVARCHAR},
+      </if>
+      <if test="studentid != null">
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="avgscore != null">
         #{avgscore,jdbcType=INTEGER},
       </if>
     </trim>

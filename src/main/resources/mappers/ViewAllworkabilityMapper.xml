@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ViewAllworkabilityMapper" >
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ViewAllworkability" >
-    <result column="ClassRoomId" property="classroomid" jdbcType="INTEGER" />
-    <result column="ClassRoomName" property="classroomname" jdbcType="NVARCHAR" />
-    <result column="dailyPerformanceWeight" property="dailyperformanceweight" jdbcType="DECIMAL" />
-    <result column="TestPerformaceWeight" property="testperformaceweight" jdbcType="DECIMAL" />
-    <result column="StudentId" property="studentid" jdbcType="INTEGER" />
-    <result column="StudentNumber" property="studentnumber" jdbcType="NVARCHAR" />
-    <result column="StudentName" property="studentname" jdbcType="NVARCHAR" />
-    <result column="Score" property="score" jdbcType="INTEGER" />
-    <result column="WorkMessage" property="workmessage" jdbcType="NVARCHAR" />
-    <result column="ClassRoomWorkId" property="classroomworkid" jdbcType="INTEGER" />
-    <result column="LayoutTime" property="layouttime" jdbcType="TIMESTAMP" />
-    <result column="ClassRoomWorkStatus" property="classroomworkstatus" jdbcType="INTEGER" />
-    <result column="WorkName" property="workname" jdbcType="NVARCHAR" />
-    <result column="WorkDescribe" property="workdescribe" jdbcType="NVARCHAR" />
-    <result column="count1" property="count1" jdbcType="INTEGER" />
-    <result column="WorkScore" property="workscore" jdbcType="NUMERIC" />
-    <result column="WorkScoreSum" property="workscoresum" jdbcType="NUMERIC" />
-    <result column="WorkId" property="workid" jdbcType="INTEGER" />
-    <result column="CourseId" property="courseid" jdbcType="INTEGER" />
-    <result column="SubjectId" property="subjectid" jdbcType="INTEGER" />
-    <result column="KnowledgeId" property="knowledgeid" jdbcType="INTEGER" />
-    <result column="AbilityId" property="abilityid" jdbcType="INTEGER" />
-    <result column="Name" property="name" jdbcType="NVARCHAR" />
-    <result column="AbilityName" property="abilityname" jdbcType="NVARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ViewAllworkabilityMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ViewAllworkability">
+    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
+    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
+    <result column="dailyPerformanceWeight" jdbcType="DECIMAL" property="dailyperformanceweight" />
+    <result column="TestPerformaceWeight" jdbcType="DECIMAL" property="testperformaceweight" />
+    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
+    <result column="StudentNumber" jdbcType="NVARCHAR" property="studentnumber" />
+    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
+    <result column="Score" jdbcType="INTEGER" property="score" />
+    <result column="WorkMessage" jdbcType="NVARCHAR" property="workmessage" />
+    <result column="ClassRoomWorkId" jdbcType="INTEGER" property="classroomworkid" />
+    <result column="LayoutTime" jdbcType="TIMESTAMP" property="layouttime" />
+    <result column="ClassRoomWorkStatus" jdbcType="INTEGER" property="classroomworkstatus" />
+    <result column="WorkName" jdbcType="NVARCHAR" property="workname" />
+    <result column="WorkDescribe" jdbcType="NVARCHAR" property="workdescribe" />
+    <result column="count1" jdbcType="INTEGER" property="count1" />
+    <result column="WorkScore" jdbcType="NUMERIC" property="workscore" />
+    <result column="WorkScoreSum" jdbcType="NUMERIC" property="workscoresum" />
+    <result column="WorkId" jdbcType="INTEGER" property="workid" />
+    <result column="CourseId" jdbcType="INTEGER" property="courseid" />
+    <result column="SubjectId" jdbcType="INTEGER" property="subjectid" />
+    <result column="KnowledgeId" jdbcType="INTEGER" property="knowledgeid" />
+    <result column="AbilityId" jdbcType="INTEGER" property="abilityid" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="AbilityName" jdbcType="NVARCHAR" property="abilityname" />
   </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ViewAllworkability" >
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ViewAllworkability">
     insert into View_AllWorkAbility (ClassRoomId, ClassRoomName, dailyPerformanceWeight, 
       TestPerformaceWeight, StudentId, StudentNumber, 
       StudentName, Score, WorkMessage, 
@@ -47,153 +47,350 @@
       #{abilityid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{abilityname,jdbcType=NVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ViewAllworkability" >
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ViewAllworkability">
     insert into View_AllWorkAbility
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="classroomid != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classroomid != null">
         ClassRoomId,
       </if>
-      <if test="classroomname != null" >
+      <if test="classroomname != null">
         ClassRoomName,
       </if>
-      <if test="dailyperformanceweight != null" >
+      <if test="dailyperformanceweight != null">
         dailyPerformanceWeight,
       </if>
-      <if test="testperformaceweight != null" >
+      <if test="testperformaceweight != null">
         TestPerformaceWeight,
       </if>
-      <if test="studentid != null" >
+      <if test="studentid != null">
         StudentId,
       </if>
-      <if test="studentnumber != null" >
+      <if test="studentnumber != null">
         StudentNumber,
       </if>
-      <if test="studentname != null" >
+      <if test="studentname != null">
         StudentName,
       </if>
-      <if test="score != null" >
+      <if test="score != null">
         Score,
       </if>
-      <if test="workmessage != null" >
+      <if test="workmessage != null">
         WorkMessage,
       </if>
-      <if test="classroomworkid != null" >
+      <if test="classroomworkid != null">
         ClassRoomWorkId,
       </if>
-      <if test="layouttime != null" >
+      <if test="layouttime != null">
         LayoutTime,
       </if>
-      <if test="classroomworkstatus != null" >
+      <if test="classroomworkstatus != null">
         ClassRoomWorkStatus,
       </if>
-      <if test="workname != null" >
+      <if test="workname != null">
         WorkName,
       </if>
-      <if test="workdescribe != null" >
+      <if test="workdescribe != null">
         WorkDescribe,
       </if>
-      <if test="count1 != null" >
+      <if test="count1 != null">
         count1,
       </if>
-      <if test="workscore != null" >
+      <if test="workscore != null">
         WorkScore,
       </if>
-      <if test="workscoresum != null" >
+      <if test="workscoresum != null">
         WorkScoreSum,
       </if>
-      <if test="workid != null" >
+      <if test="workid != null">
         WorkId,
       </if>
-      <if test="courseid != null" >
+      <if test="courseid != null">
         CourseId,
       </if>
-      <if test="subjectid != null" >
+      <if test="subjectid != null">
         SubjectId,
       </if>
-      <if test="knowledgeid != null" >
+      <if test="knowledgeid != null">
         KnowledgeId,
       </if>
-      <if test="abilityid != null" >
+      <if test="abilityid != null">
         AbilityId,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         Name,
       </if>
-      <if test="abilityname != null" >
+      <if test="abilityname != null">
         AbilityName,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="classroomid != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classroomid != null">
         #{classroomid,jdbcType=INTEGER},
       </if>
-      <if test="classroomname != null" >
+      <if test="classroomname != null">
         #{classroomname,jdbcType=NVARCHAR},
       </if>
-      <if test="dailyperformanceweight != null" >
+      <if test="dailyperformanceweight != null">
         #{dailyperformanceweight,jdbcType=DECIMAL},
       </if>
-      <if test="testperformaceweight != null" >
+      <if test="testperformaceweight != null">
         #{testperformaceweight,jdbcType=DECIMAL},
       </if>
-      <if test="studentid != null" >
+      <if test="studentid != null">
         #{studentid,jdbcType=INTEGER},
       </if>
-      <if test="studentnumber != null" >
+      <if test="studentnumber != null">
         #{studentnumber,jdbcType=NVARCHAR},
       </if>
-      <if test="studentname != null" >
+      <if test="studentname != null">
         #{studentname,jdbcType=NVARCHAR},
       </if>
-      <if test="score != null" >
+      <if test="score != null">
         #{score,jdbcType=INTEGER},
       </if>
-      <if test="workmessage != null" >
+      <if test="workmessage != null">
         #{workmessage,jdbcType=NVARCHAR},
       </if>
-      <if test="classroomworkid != null" >
+      <if test="classroomworkid != null">
         #{classroomworkid,jdbcType=INTEGER},
       </if>
-      <if test="layouttime != null" >
+      <if test="layouttime != null">
         #{layouttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="classroomworkstatus != null" >
+      <if test="classroomworkstatus != null">
         #{classroomworkstatus,jdbcType=INTEGER},
       </if>
-      <if test="workname != null" >
+      <if test="workname != null">
         #{workname,jdbcType=NVARCHAR},
       </if>
-      <if test="workdescribe != null" >
+      <if test="workdescribe != null">
         #{workdescribe,jdbcType=NVARCHAR},
       </if>
-      <if test="count1 != null" >
+      <if test="count1 != null">
         #{count1,jdbcType=INTEGER},
       </if>
-      <if test="workscore != null" >
+      <if test="workscore != null">
         #{workscore,jdbcType=NUMERIC},
       </if>
-      <if test="workscoresum != null" >
+      <if test="workscoresum != null">
         #{workscoresum,jdbcType=NUMERIC},
       </if>
-      <if test="workid != null" >
+      <if test="workid != null">
         #{workid,jdbcType=INTEGER},
       </if>
-      <if test="courseid != null" >
+      <if test="courseid != null">
         #{courseid,jdbcType=INTEGER},
       </if>
-      <if test="subjectid != null" >
+      <if test="subjectid != null">
         #{subjectid,jdbcType=INTEGER},
       </if>
-      <if test="knowledgeid != null" >
+      <if test="knowledgeid != null">
         #{knowledgeid,jdbcType=INTEGER},
       </if>
-      <if test="abilityid != null" >
+      <if test="abilityid != null">
         #{abilityid,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=NVARCHAR},
       </if>
-      <if test="abilityname != null" >
+      <if test="abilityname != null">
+        #{abilityname,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.ViewAllworkability">
+    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
+    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
+    <result column="dailyPerformanceWeight" jdbcType="DECIMAL" property="dailyperformanceweight" />
+    <result column="TestPerformaceWeight" jdbcType="DECIMAL" property="testperformaceweight" />
+    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
+    <result column="StudentNumber" jdbcType="NVARCHAR" property="studentnumber" />
+    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
+    <result column="Score" jdbcType="INTEGER" property="score" />
+    <result column="WorkMessage" jdbcType="NVARCHAR" property="workmessage" />
+    <result column="ClassRoomWorkId" jdbcType="INTEGER" property="classroomworkid" />
+    <result column="LayoutTime" jdbcType="TIMESTAMP" property="layouttime" />
+    <result column="ClassRoomWorkStatus" jdbcType="INTEGER" property="classroomworkstatus" />
+    <result column="WorkName" jdbcType="NVARCHAR" property="workname" />
+    <result column="WorkDescribe" jdbcType="NVARCHAR" property="workdescribe" />
+    <result column="count1" jdbcType="INTEGER" property="count1" />
+    <result column="WorkScore" jdbcType="NUMERIC" property="workscore" />
+    <result column="WorkScoreSum" jdbcType="NUMERIC" property="workscoresum" />
+    <result column="WorkId" jdbcType="INTEGER" property="workid" />
+    <result column="CourseId" jdbcType="INTEGER" property="courseid" />
+    <result column="SubjectId" jdbcType="INTEGER" property="subjectid" />
+    <result column="KnowledgeId" jdbcType="INTEGER" property="knowledgeid" />
+    <result column="AbilityId" jdbcType="INTEGER" property="abilityid" />
+    <result column="Name" jdbcType="NVARCHAR" property="name" />
+    <result column="AbilityName" jdbcType="NVARCHAR" property="abilityname" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.ViewAllworkability">
+    insert into View_AllWorkAbility (ClassRoomId, ClassRoomName, dailyPerformanceWeight, 
+      TestPerformaceWeight, StudentId, StudentNumber, 
+      StudentName, Score, WorkMessage, 
+      ClassRoomWorkId, LayoutTime, ClassRoomWorkStatus, 
+      WorkName, WorkDescribe, count1, 
+      WorkScore, WorkScoreSum, WorkId, 
+      CourseId, SubjectId, KnowledgeId, 
+      AbilityId, Name, AbilityName
+      )
+    values (#{classroomid,jdbcType=INTEGER}, #{classroomname,jdbcType=NVARCHAR}, #{dailyperformanceweight,jdbcType=DECIMAL}, 
+      #{testperformaceweight,jdbcType=DECIMAL}, #{studentid,jdbcType=INTEGER}, #{studentnumber,jdbcType=NVARCHAR}, 
+      #{studentname,jdbcType=NVARCHAR}, #{score,jdbcType=INTEGER}, #{workmessage,jdbcType=NVARCHAR}, 
+      #{classroomworkid,jdbcType=INTEGER}, #{layouttime,jdbcType=TIMESTAMP}, #{classroomworkstatus,jdbcType=INTEGER}, 
+      #{workname,jdbcType=NVARCHAR}, #{workdescribe,jdbcType=NVARCHAR}, #{count1,jdbcType=INTEGER}, 
+      #{workscore,jdbcType=NUMERIC}, #{workscoresum,jdbcType=NUMERIC}, #{workid,jdbcType=INTEGER}, 
+      #{courseid,jdbcType=INTEGER}, #{subjectid,jdbcType=INTEGER}, #{knowledgeid,jdbcType=INTEGER}, 
+      #{abilityid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{abilityname,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.ViewAllworkability">
+    insert into View_AllWorkAbility
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classroomid != null">
+        ClassRoomId,
+      </if>
+      <if test="classroomname != null">
+        ClassRoomName,
+      </if>
+      <if test="dailyperformanceweight != null">
+        dailyPerformanceWeight,
+      </if>
+      <if test="testperformaceweight != null">
+        TestPerformaceWeight,
+      </if>
+      <if test="studentid != null">
+        StudentId,
+      </if>
+      <if test="studentnumber != null">
+        StudentNumber,
+      </if>
+      <if test="studentname != null">
+        StudentName,
+      </if>
+      <if test="score != null">
+        Score,
+      </if>
+      <if test="workmessage != null">
+        WorkMessage,
+      </if>
+      <if test="classroomworkid != null">
+        ClassRoomWorkId,
+      </if>
+      <if test="layouttime != null">
+        LayoutTime,
+      </if>
+      <if test="classroomworkstatus != null">
+        ClassRoomWorkStatus,
+      </if>
+      <if test="workname != null">
+        WorkName,
+      </if>
+      <if test="workdescribe != null">
+        WorkDescribe,
+      </if>
+      <if test="count1 != null">
+        count1,
+      </if>
+      <if test="workscore != null">
+        WorkScore,
+      </if>
+      <if test="workscoresum != null">
+        WorkScoreSum,
+      </if>
+      <if test="workid != null">
+        WorkId,
+      </if>
+      <if test="courseid != null">
+        CourseId,
+      </if>
+      <if test="subjectid != null">
+        SubjectId,
+      </if>
+      <if test="knowledgeid != null">
+        KnowledgeId,
+      </if>
+      <if test="abilityid != null">
+        AbilityId,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="abilityname != null">
+        AbilityName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classroomid != null">
+        #{classroomid,jdbcType=INTEGER},
+      </if>
+      <if test="classroomname != null">
+        #{classroomname,jdbcType=NVARCHAR},
+      </if>
+      <if test="dailyperformanceweight != null">
+        #{dailyperformanceweight,jdbcType=DECIMAL},
+      </if>
+      <if test="testperformaceweight != null">
+        #{testperformaceweight,jdbcType=DECIMAL},
+      </if>
+      <if test="studentid != null">
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="studentnumber != null">
+        #{studentnumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="studentname != null">
+        #{studentname,jdbcType=NVARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="workmessage != null">
+        #{workmessage,jdbcType=NVARCHAR},
+      </if>
+      <if test="classroomworkid != null">
+        #{classroomworkid,jdbcType=INTEGER},
+      </if>
+      <if test="layouttime != null">
+        #{layouttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="classroomworkstatus != null">
+        #{classroomworkstatus,jdbcType=INTEGER},
+      </if>
+      <if test="workname != null">
+        #{workname,jdbcType=NVARCHAR},
+      </if>
+      <if test="workdescribe != null">
+        #{workdescribe,jdbcType=NVARCHAR},
+      </if>
+      <if test="count1 != null">
+        #{count1,jdbcType=INTEGER},
+      </if>
+      <if test="workscore != null">
+        #{workscore,jdbcType=NUMERIC},
+      </if>
+      <if test="workscoresum != null">
+        #{workscoresum,jdbcType=NUMERIC},
+      </if>
+      <if test="workid != null">
+        #{workid,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null">
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="subjectid != null">
+        #{subjectid,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeid != null">
+        #{knowledgeid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityid != null">
+        #{abilityid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="abilityname != null">
         #{abilityname,jdbcType=NVARCHAR},
       </if>
     </trim>

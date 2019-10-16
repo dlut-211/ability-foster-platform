@@ -33,25 +33,22 @@
     where Id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Work" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into Work (Id, Describe, ChapterId, 
-      Name, CreatedBy, CreatedOn, 
-      ModifiedBy, ModifiedOn, VersionNumber
-      )
-    values (#{id,jdbcType=INTEGER}, #{describe,jdbcType=NVARCHAR}, #{chapterid,jdbcType=INTEGER}, 
-      #{name,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
-      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY}
-      )
+    insert into Work (Describe, ChapterId, Name, 
+      CreatedBy, CreatedOn, ModifiedBy, 
+      ModifiedOn, VersionNumber)
+    values (#{describe,jdbcType=NVARCHAR}, #{chapterid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, 
+      #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Work" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into Work
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      Id,
       <if test="describe != null" >
         Describe,
       </if>
@@ -78,7 +75,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=INTEGER},
       <if test="describe != null" >
         #{describe,jdbcType=NVARCHAR},
       </if>
