@@ -1,6 +1,16 @@
 
 # 大学生能力培养体系平台
 
+## 0 注意 在dev分支上进行开发
+```
+# Clone 代码时
+git clone -b dev 仓库地址
+
+# 或者 --- 先clone master分支，然后切换到dev分支
+git clone 仓库地址
+git checkout dev
+```
+
 ## 1 前端部分
 ### 1.1 安装node_modules依赖
 ```
