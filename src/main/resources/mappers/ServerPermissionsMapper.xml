@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServerPermissionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServerPermissions" >
+    <result column="class" property="class" jdbcType="TINYINT" />
+    <result column="class_desc" property="classDesc" jdbcType="NVARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="INTEGER" />
+    <result column="minor_id" property="minorId" jdbcType="INTEGER" />
+    <result column="grantee_principal_id" property="granteePrincipalId" jdbcType="INTEGER" />
+    <result column="grantor_principal_id" property="grantorPrincipalId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="permission_name" property="permissionName" jdbcType="NVARCHAR" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerPermissions" >
+    insert into server_permissions (class, class_desc, major_id, 
+      minor_id, grantee_principal_id, grantor_principal_id, 
+      type, permission_name, state, 
+      state_desc)
+    values (#{class,jdbcType=TINYINT}, #{classDesc,jdbcType=NVARCHAR}, #{majorId,jdbcType=INTEGER}, 
+      #{minorId,jdbcType=INTEGER}, #{granteePrincipalId,jdbcType=INTEGER}, #{grantorPrincipalId,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{permissionName,jdbcType=NVARCHAR}, #{state,jdbcType=CHAR}, 
+      #{stateDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerPermissions" >
+    insert into server_permissions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        class,
+      </if>
+      <if test="classDesc != null" >
+        class_desc,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="minorId != null" >
+        minor_id,
+      </if>
+      <if test="granteePrincipalId != null" >
+        grantee_principal_id,
+      </if>
+      <if test="grantorPrincipalId != null" >
+        grantor_principal_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="permissionName != null" >
+        permission_name,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        #{class,jdbcType=TINYINT},
+      </if>
+      <if test="classDesc != null" >
+        #{classDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=INTEGER},
+      </if>
+      <if test="minorId != null" >
+        #{minorId,jdbcType=INTEGER},
+      </if>
+      <if test="granteePrincipalId != null" >
+        #{granteePrincipalId,jdbcType=INTEGER},
+      </if>
+      <if test="grantorPrincipalId != null" >
+        #{grantorPrincipalId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="permissionName != null" >
+        #{permissionName,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysscalartypesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysscalartypes" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="schid" property="schid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="xtype" property="xtype" jdbcType="TINYINT" />
+    <result column="length" property="length" jdbcType="SMALLINT" />
+    <result column="prec" property="prec" jdbcType="TINYINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="collationid" property="collationid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="dflt" property="dflt" jdbcType="INTEGER" />
+    <result column="chk" property="chk" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysscalartypes" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysscalartypes (id, schid, name, 
+      xtype, length, prec, 
+      scale, collationid, status, 
+      created, modified, dflt, 
+      chk)
+    values (#{id,jdbcType=INTEGER}, #{schid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, 
+      #{xtype,jdbcType=TINYINT}, #{length,jdbcType=SMALLINT}, #{prec,jdbcType=TINYINT}, 
+      #{scale,jdbcType=TINYINT}, #{collationid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, #{dflt,jdbcType=INTEGER}, 
+      #{chk,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysscalartypes" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysscalartypes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="schid != null" >
+        schid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="xtype != null" >
+        xtype,
+      </if>
+      <if test="length != null" >
+        length,
+      </if>
+      <if test="prec != null" >
+        prec,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+      <if test="collationid != null" >
+        collationid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+      <if test="dflt != null" >
+        dflt,
+      </if>
+      <if test="chk != null" >
+        chk,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="schid != null" >
+        #{schid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="xtype != null" >
+        #{xtype,jdbcType=TINYINT},
+      </if>
+      <if test="length != null" >
+        #{length,jdbcType=SMALLINT},
+      </if>
+      <if test="prec != null" >
+        #{prec,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="collationid != null" >
+        #{collationid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dflt != null" >
+        #{dflt,jdbcType=INTEGER},
+      </if>
+      <if test="chk != null" >
+        #{chk,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

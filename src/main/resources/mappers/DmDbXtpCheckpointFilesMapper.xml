@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbXtpCheckpointFilesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpCheckpointFiles" >
+    <result column="container_id" property="containerId" jdbcType="INTEGER" />
+    <result column="container_guid" property="containerGuid" jdbcType="CHAR" />
+    <result column="checkpoint_file_id" property="checkpointFileId" jdbcType="CHAR" />
+    <result column="relative_file_path" property="relativeFilePath" jdbcType="NVARCHAR" />
+    <result column="file_type" property="fileType" jdbcType="SMALLINT" />
+    <result column="file_type_desc" property="fileTypeDesc" jdbcType="NVARCHAR" />
+    <result column="internal_storage_slot" property="internalStorageSlot" jdbcType="INTEGER" />
+    <result column="checkpoint_pair_file_id" property="checkpointPairFileId" jdbcType="CHAR" />
+    <result column="file_size_in_bytes" property="fileSizeInBytes" jdbcType="BIGINT" />
+    <result column="file_size_used_in_bytes" property="fileSizeUsedInBytes" jdbcType="BIGINT" />
+    <result column="inserted_row_count" property="insertedRowCount" jdbcType="BIGINT" />
+    <result column="deleted_row_count" property="deletedRowCount" jdbcType="BIGINT" />
+    <result column="drop_table_deleted_row_count" property="dropTableDeletedRowCount" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+    <result column="lower_bound_tsn" property="lowerBoundTsn" jdbcType="BIGINT" />
+    <result column="upper_bound_tsn" property="upperBoundTsn" jdbcType="BIGINT" />
+    <result column="last_backup_page_count" property="lastBackupPageCount" jdbcType="INTEGER" />
+    <result column="delta_watermark_tsn" property="deltaWatermarkTsn" jdbcType="BIGINT" />
+    <result column="last_checkpoint_recovery_lsn" property="lastCheckpointRecoveryLsn" jdbcType="NUMERIC" />
+    <result column="tombstone_operation_lsn" property="tombstoneOperationLsn" jdbcType="NUMERIC" />
+    <result column="logical_deletion_log_block_id" property="logicalDeletionLogBlockId" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpCheckpointFiles" >
+    insert into dm_db_xtp_checkpoint_files (container_id, container_guid, checkpoint_file_id, 
+      relative_file_path, file_type, file_type_desc, 
+      internal_storage_slot, checkpoint_pair_file_id, 
+      file_size_in_bytes, file_size_used_in_bytes, inserted_row_count, 
+      deleted_row_count, drop_table_deleted_row_count, 
+      state, state_desc, lower_bound_tsn, 
+      upper_bound_tsn, last_backup_page_count, delta_watermark_tsn, 
+      last_checkpoint_recovery_lsn, tombstone_operation_lsn, 
+      logical_deletion_log_block_id)
+    values (#{containerId,jdbcType=INTEGER}, #{containerGuid,jdbcType=CHAR}, #{checkpointFileId,jdbcType=CHAR}, 
+      #{relativeFilePath,jdbcType=NVARCHAR}, #{fileType,jdbcType=SMALLINT}, #{fileTypeDesc,jdbcType=NVARCHAR}, 
+      #{internalStorageSlot,jdbcType=INTEGER}, #{checkpointPairFileId,jdbcType=CHAR}, 
+      #{fileSizeInBytes,jdbcType=BIGINT}, #{fileSizeUsedInBytes,jdbcType=BIGINT}, #{insertedRowCount,jdbcType=BIGINT}, 
+      #{deletedRowCount,jdbcType=BIGINT}, #{dropTableDeletedRowCount,jdbcType=BIGINT}, 
+      #{state,jdbcType=SMALLINT}, #{stateDesc,jdbcType=NVARCHAR}, #{lowerBoundTsn,jdbcType=BIGINT}, 
+      #{upperBoundTsn,jdbcType=BIGINT}, #{lastBackupPageCount,jdbcType=INTEGER}, #{deltaWatermarkTsn,jdbcType=BIGINT}, 
+      #{lastCheckpointRecoveryLsn,jdbcType=NUMERIC}, #{tombstoneOperationLsn,jdbcType=NUMERIC}, 
+      #{logicalDeletionLogBlockId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpCheckpointFiles" >
+    insert into dm_db_xtp_checkpoint_files
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="containerId != null" >
+        container_id,
+      </if>
+      <if test="containerGuid != null" >
+        container_guid,
+      </if>
+      <if test="checkpointFileId != null" >
+        checkpoint_file_id,
+      </if>
+      <if test="relativeFilePath != null" >
+        relative_file_path,
+      </if>
+      <if test="fileType != null" >
+        file_type,
+      </if>
+      <if test="fileTypeDesc != null" >
+        file_type_desc,
+      </if>
+      <if test="internalStorageSlot != null" >
+        internal_storage_slot,
+      </if>
+      <if test="checkpointPairFileId != null" >
+        checkpoint_pair_file_id,
+      </if>
+      <if test="fileSizeInBytes != null" >
+        file_size_in_bytes,
+      </if>
+      <if test="fileSizeUsedInBytes != null" >
+        file_size_used_in_bytes,
+      </if>
+      <if test="insertedRowCount != null" >
+        inserted_row_count,
+      </if>
+      <if test="deletedRowCount != null" >
+        deleted_row_count,
+      </if>
+      <if test="dropTableDeletedRowCount != null" >
+        drop_table_deleted_row_count,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+      <if test="lowerBoundTsn != null" >
+        lower_bound_tsn,
+      </if>
+      <if test="upperBoundTsn != null" >
+        upper_bound_tsn,
+      </if>
+      <if test="lastBackupPageCount != null" >
+        last_backup_page_count,
+      </if>
+      <if test="deltaWatermarkTsn != null" >
+        delta_watermark_tsn,
+      </if>
+      <if test="lastCheckpointRecoveryLsn != null" >
+        last_checkpoint_recovery_lsn,
+      </if>
+      <if test="tombstoneOperationLsn != null" >
+        tombstone_operation_lsn,
+      </if>
+      <if test="logicalDeletionLogBlockId != null" >
+        logical_deletion_log_block_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="containerId != null" >
+        #{containerId,jdbcType=INTEGER},
+      </if>
+      <if test="containerGuid != null" >
+        #{containerGuid,jdbcType=CHAR},
+      </if>
+      <if test="checkpointFileId != null" >
+        #{checkpointFileId,jdbcType=CHAR},
+      </if>
+      <if test="relativeFilePath != null" >
+        #{relativeFilePath,jdbcType=NVARCHAR},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=SMALLINT},
+      </if>
+      <if test="fileTypeDesc != null" >
+        #{fileTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="internalStorageSlot != null" >
+        #{internalStorageSlot,jdbcType=INTEGER},
+      </if>
+      <if test="checkpointPairFileId != null" >
+        #{checkpointPairFileId,jdbcType=CHAR},
+      </if>
+      <if test="fileSizeInBytes != null" >
+        #{fileSizeInBytes,jdbcType=BIGINT},
+      </if>
+      <if test="fileSizeUsedInBytes != null" >
+        #{fileSizeUsedInBytes,jdbcType=BIGINT},
+      </if>
+      <if test="insertedRowCount != null" >
+        #{insertedRowCount,jdbcType=BIGINT},
+      </if>
+      <if test="deletedRowCount != null" >
+        #{deletedRowCount,jdbcType=BIGINT},
+      </if>
+      <if test="dropTableDeletedRowCount != null" >
+        #{dropTableDeletedRowCount,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="lowerBoundTsn != null" >
+        #{lowerBoundTsn,jdbcType=BIGINT},
+      </if>
+      <if test="upperBoundTsn != null" >
+        #{upperBoundTsn,jdbcType=BIGINT},
+      </if>
+      <if test="lastBackupPageCount != null" >
+        #{lastBackupPageCount,jdbcType=INTEGER},
+      </if>
+      <if test="deltaWatermarkTsn != null" >
+        #{deltaWatermarkTsn,jdbcType=BIGINT},
+      </if>
+      <if test="lastCheckpointRecoveryLsn != null" >
+        #{lastCheckpointRecoveryLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="tombstoneOperationLsn != null" >
+        #{tombstoneOperationLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="logicalDeletionLogBlockId != null" >
+        #{logicalDeletionLogBlockId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

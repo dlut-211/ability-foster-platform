@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbMissingIndexDetailsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbMissingIndexDetails" >
+    <result column="index_handle" property="indexHandle" jdbcType="INTEGER" />
+    <result column="database_id" property="databaseId" jdbcType="SMALLINT" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="equality_columns" property="equalityColumns" jdbcType="NVARCHAR" />
+    <result column="inequality_columns" property="inequalityColumns" jdbcType="NVARCHAR" />
+    <result column="included_columns" property="includedColumns" jdbcType="NVARCHAR" />
+    <result column="statement" property="statement" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbMissingIndexDetails" >
+    insert into dm_db_missing_index_details (index_handle, database_id, object_id, 
+      equality_columns, inequality_columns, included_columns, 
+      statement)
+    values (#{indexHandle,jdbcType=INTEGER}, #{databaseId,jdbcType=SMALLINT}, #{objectId,jdbcType=INTEGER}, 
+      #{equalityColumns,jdbcType=NVARCHAR}, #{inequalityColumns,jdbcType=NVARCHAR}, #{includedColumns,jdbcType=NVARCHAR}, 
+      #{statement,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbMissingIndexDetails" >
+    insert into dm_db_missing_index_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="indexHandle != null" >
+        index_handle,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="equalityColumns != null" >
+        equality_columns,
+      </if>
+      <if test="inequalityColumns != null" >
+        inequality_columns,
+      </if>
+      <if test="includedColumns != null" >
+        included_columns,
+      </if>
+      <if test="statement != null" >
+        statement,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="indexHandle != null" >
+        #{indexHandle,jdbcType=INTEGER},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=SMALLINT},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="equalityColumns != null" >
+        #{equalityColumns,jdbcType=NVARCHAR},
+      </if>
+      <if test="inequalityColumns != null" >
+        #{inequalityColumns,jdbcType=NVARCHAR},
+      </if>
+      <if test="includedColumns != null" >
+        #{includedColumns,jdbcType=NVARCHAR},
+      </if>
+      <if test="statement != null" >
+        #{statement,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

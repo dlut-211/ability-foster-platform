@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.InternalTablesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.InternalTables" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="schema_id" property="schemaId" jdbcType="INTEGER" />
+    <result column="parent_object_id" property="parentObjectId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="is_ms_shipped" property="isMsShipped" jdbcType="BIT" />
+    <result column="is_published" property="isPublished" jdbcType="BIT" />
+    <result column="is_schema_published" property="isSchemaPublished" jdbcType="BIT" />
+    <result column="internal_type" property="internalType" jdbcType="TINYINT" />
+    <result column="internal_type_desc" property="internalTypeDesc" jdbcType="NVARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="parent_minor_id" property="parentMinorId" jdbcType="INTEGER" />
+    <result column="lob_data_space_id" property="lobDataSpaceId" jdbcType="INTEGER" />
+    <result column="filestream_data_space_id" property="filestreamDataSpaceId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.InternalTables" >
+    insert into internal_tables (name, object_id, principal_id, 
+      schema_id, parent_object_id, type, 
+      type_desc, create_date, modify_date, 
+      is_ms_shipped, is_published, is_schema_published, 
+      internal_type, internal_type_desc, parent_id, 
+      parent_minor_id, lob_data_space_id, filestream_data_space_id
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{objectId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{schemaId,jdbcType=INTEGER}, #{parentObjectId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{isMsShipped,jdbcType=BIT}, #{isPublished,jdbcType=BIT}, #{isSchemaPublished,jdbcType=BIT}, 
+      #{internalType,jdbcType=TINYINT}, #{internalTypeDesc,jdbcType=NVARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{parentMinorId,jdbcType=INTEGER}, #{lobDataSpaceId,jdbcType=INTEGER}, #{filestreamDataSpaceId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.InternalTables" >
+    insert into internal_tables
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="schemaId != null" >
+        schema_id,
+      </if>
+      <if test="parentObjectId != null" >
+        parent_object_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="isMsShipped != null" >
+        is_ms_shipped,
+      </if>
+      <if test="isPublished != null" >
+        is_published,
+      </if>
+      <if test="isSchemaPublished != null" >
+        is_schema_published,
+      </if>
+      <if test="internalType != null" >
+        internal_type,
+      </if>
+      <if test="internalTypeDesc != null" >
+        internal_type_desc,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="parentMinorId != null" >
+        parent_minor_id,
+      </if>
+      <if test="lobDataSpaceId != null" >
+        lob_data_space_id,
+      </if>
+      <if test="filestreamDataSpaceId != null" >
+        filestream_data_space_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="schemaId != null" >
+        #{schemaId,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjectId != null" >
+        #{parentObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMsShipped != null" >
+        #{isMsShipped,jdbcType=BIT},
+      </if>
+      <if test="isPublished != null" >
+        #{isPublished,jdbcType=BIT},
+      </if>
+      <if test="isSchemaPublished != null" >
+        #{isSchemaPublished,jdbcType=BIT},
+      </if>
+      <if test="internalType != null" >
+        #{internalType,jdbcType=TINYINT},
+      </if>
+      <if test="internalTypeDesc != null" >
+        #{internalTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="parentMinorId != null" >
+        #{parentMinorId,jdbcType=INTEGER},
+      </if>
+      <if test="lobDataSpaceId != null" >
+        #{lobDataSpaceId,jdbcType=INTEGER},
+      </if>
+      <if test="filestreamDataSpaceId != null" >
+        #{filestreamDataSpaceId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

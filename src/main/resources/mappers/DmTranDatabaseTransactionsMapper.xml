@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmTranDatabaseTransactionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmTranDatabaseTransactions" >
+    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="database_transaction_begin_time" property="databaseTransactionBeginTime" jdbcType="TIMESTAMP" />
+    <result column="database_transaction_type" property="databaseTransactionType" jdbcType="INTEGER" />
+    <result column="database_transaction_state" property="databaseTransactionState" jdbcType="INTEGER" />
+    <result column="database_transaction_status" property="databaseTransactionStatus" jdbcType="INTEGER" />
+    <result column="database_transaction_status2" property="databaseTransactionStatus2" jdbcType="INTEGER" />
+    <result column="database_transaction_log_record_count" property="databaseTransactionLogRecordCount" jdbcType="BIGINT" />
+    <result column="database_transaction_replicate_record_count" property="databaseTransactionReplicateRecordCount" jdbcType="INTEGER" />
+    <result column="database_transaction_log_bytes_used" property="databaseTransactionLogBytesUsed" jdbcType="BIGINT" />
+    <result column="database_transaction_log_bytes_reserved" property="databaseTransactionLogBytesReserved" jdbcType="BIGINT" />
+    <result column="database_transaction_log_bytes_used_system" property="databaseTransactionLogBytesUsedSystem" jdbcType="INTEGER" />
+    <result column="database_transaction_log_bytes_reserved_system" property="databaseTransactionLogBytesReservedSystem" jdbcType="INTEGER" />
+    <result column="database_transaction_begin_lsn" property="databaseTransactionBeginLsn" jdbcType="NUMERIC" />
+    <result column="database_transaction_last_lsn" property="databaseTransactionLastLsn" jdbcType="NUMERIC" />
+    <result column="database_transaction_most_recent_savepoint_lsn" property="databaseTransactionMostRecentSavepointLsn" jdbcType="NUMERIC" />
+    <result column="database_transaction_commit_lsn" property="databaseTransactionCommitLsn" jdbcType="NUMERIC" />
+    <result column="database_transaction_last_rollback_lsn" property="databaseTransactionLastRollbackLsn" jdbcType="NUMERIC" />
+    <result column="database_transaction_next_undo_lsn" property="databaseTransactionNextUndoLsn" jdbcType="NUMERIC" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranDatabaseTransactions" >
+    insert into dm_tran_database_transactions (transaction_id, database_id, database_transaction_begin_time, 
+      database_transaction_type, database_transaction_state, 
+      database_transaction_status, database_transaction_status2, 
+      database_transaction_log_record_count, database_transaction_replicate_record_count, 
+      database_transaction_log_bytes_used, database_transaction_log_bytes_reserved, 
+      database_transaction_log_bytes_used_system, database_transaction_log_bytes_reserved_system, 
+      database_transaction_begin_lsn, database_transaction_last_lsn, 
+      database_transaction_most_recent_savepoint_lsn, database_transaction_commit_lsn, 
+      database_transaction_last_rollback_lsn, database_transaction_next_undo_lsn
+      )
+    values (#{transactionId,jdbcType=BIGINT}, #{databaseId,jdbcType=INTEGER}, #{databaseTransactionBeginTime,jdbcType=TIMESTAMP}, 
+      #{databaseTransactionType,jdbcType=INTEGER}, #{databaseTransactionState,jdbcType=INTEGER}, 
+      #{databaseTransactionStatus,jdbcType=INTEGER}, #{databaseTransactionStatus2,jdbcType=INTEGER}, 
+      #{databaseTransactionLogRecordCount,jdbcType=BIGINT}, #{databaseTransactionReplicateRecordCount,jdbcType=INTEGER}, 
+      #{databaseTransactionLogBytesUsed,jdbcType=BIGINT}, #{databaseTransactionLogBytesReserved,jdbcType=BIGINT}, 
+      #{databaseTransactionLogBytesUsedSystem,jdbcType=INTEGER}, #{databaseTransactionLogBytesReservedSystem,jdbcType=INTEGER}, 
+      #{databaseTransactionBeginLsn,jdbcType=NUMERIC}, #{databaseTransactionLastLsn,jdbcType=NUMERIC}, 
+      #{databaseTransactionMostRecentSavepointLsn,jdbcType=NUMERIC}, #{databaseTransactionCommitLsn,jdbcType=NUMERIC}, 
+      #{databaseTransactionLastRollbackLsn,jdbcType=NUMERIC}, #{databaseTransactionNextUndoLsn,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranDatabaseTransactions" >
+    insert into dm_tran_database_transactions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="databaseTransactionBeginTime != null" >
+        database_transaction_begin_time,
+      </if>
+      <if test="databaseTransactionType != null" >
+        database_transaction_type,
+      </if>
+      <if test="databaseTransactionState != null" >
+        database_transaction_state,
+      </if>
+      <if test="databaseTransactionStatus != null" >
+        database_transaction_status,
+      </if>
+      <if test="databaseTransactionStatus2 != null" >
+        database_transaction_status2,
+      </if>
+      <if test="databaseTransactionLogRecordCount != null" >
+        database_transaction_log_record_count,
+      </if>
+      <if test="databaseTransactionReplicateRecordCount != null" >
+        database_transaction_replicate_record_count,
+      </if>
+      <if test="databaseTransactionLogBytesUsed != null" >
+        database_transaction_log_bytes_used,
+      </if>
+      <if test="databaseTransactionLogBytesReserved != null" >
+        database_transaction_log_bytes_reserved,
+      </if>
+      <if test="databaseTransactionLogBytesUsedSystem != null" >
+        database_transaction_log_bytes_used_system,
+      </if>
+      <if test="databaseTransactionLogBytesReservedSystem != null" >
+        database_transaction_log_bytes_reserved_system,
+      </if>
+      <if test="databaseTransactionBeginLsn != null" >
+        database_transaction_begin_lsn,
+      </if>
+      <if test="databaseTransactionLastLsn != null" >
+        database_transaction_last_lsn,
+      </if>
+      <if test="databaseTransactionMostRecentSavepointLsn != null" >
+        database_transaction_most_recent_savepoint_lsn,
+      </if>
+      <if test="databaseTransactionCommitLsn != null" >
+        database_transaction_commit_lsn,
+      </if>
+      <if test="databaseTransactionLastRollbackLsn != null" >
+        database_transaction_last_rollback_lsn,
+      </if>
+      <if test="databaseTransactionNextUndoLsn != null" >
+        database_transaction_next_undo_lsn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionBeginTime != null" >
+        #{databaseTransactionBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="databaseTransactionType != null" >
+        #{databaseTransactionType,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionState != null" >
+        #{databaseTransactionState,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionStatus != null" >
+        #{databaseTransactionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionStatus2 != null" >
+        #{databaseTransactionStatus2,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionLogRecordCount != null" >
+        #{databaseTransactionLogRecordCount,jdbcType=BIGINT},
+      </if>
+      <if test="databaseTransactionReplicateRecordCount != null" >
+        #{databaseTransactionReplicateRecordCount,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionLogBytesUsed != null" >
+        #{databaseTransactionLogBytesUsed,jdbcType=BIGINT},
+      </if>
+      <if test="databaseTransactionLogBytesReserved != null" >
+        #{databaseTransactionLogBytesReserved,jdbcType=BIGINT},
+      </if>
+      <if test="databaseTransactionLogBytesUsedSystem != null" >
+        #{databaseTransactionLogBytesUsedSystem,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionLogBytesReservedSystem != null" >
+        #{databaseTransactionLogBytesReservedSystem,jdbcType=INTEGER},
+      </if>
+      <if test="databaseTransactionBeginLsn != null" >
+        #{databaseTransactionBeginLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="databaseTransactionLastLsn != null" >
+        #{databaseTransactionLastLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="databaseTransactionMostRecentSavepointLsn != null" >
+        #{databaseTransactionMostRecentSavepointLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="databaseTransactionCommitLsn != null" >
+        #{databaseTransactionCommitLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="databaseTransactionLastRollbackLsn != null" >
+        #{databaseTransactionLastRollbackLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="databaseTransactionNextUndoLsn != null" >
+        #{databaseTransactionNextUndoLsn,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+</mapper>

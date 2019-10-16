@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmHadrAvailabilityReplicaClusterStatesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaClusterStates" >
+    <result column="replica_id" property="replicaId" jdbcType="CHAR" />
+    <result column="replica_server_name" property="replicaServerName" jdbcType="NVARCHAR" />
+    <result column="group_id" property="groupId" jdbcType="CHAR" />
+    <result column="join_state" property="joinState" jdbcType="TINYINT" />
+    <result column="join_state_desc" property="joinStateDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaClusterStates" >
+    insert into dm_hadr_availability_replica_cluster_states (replica_id, replica_server_name, group_id, 
+      join_state, join_state_desc)
+    values (#{replicaId,jdbcType=CHAR}, #{replicaServerName,jdbcType=NVARCHAR}, #{groupId,jdbcType=CHAR}, 
+      #{joinState,jdbcType=TINYINT}, #{joinStateDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaClusterStates" >
+    insert into dm_hadr_availability_replica_cluster_states
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        replica_id,
+      </if>
+      <if test="replicaServerName != null" >
+        replica_server_name,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="joinState != null" >
+        join_state,
+      </if>
+      <if test="joinStateDesc != null" >
+        join_state_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        #{replicaId,jdbcType=CHAR},
+      </if>
+      <if test="replicaServerName != null" >
+        #{replicaServerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=CHAR},
+      </if>
+      <if test="joinState != null" >
+        #{joinState,jdbcType=TINYINT},
+      </if>
+      <if test="joinStateDesc != null" >
+        #{joinStateDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

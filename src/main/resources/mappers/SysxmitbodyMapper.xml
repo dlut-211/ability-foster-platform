@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysxmitbodyMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitbody" >
+    <result column="msgref" property="msgref" jdbcType="BIGINT" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitbody" extends="BaseResultMap" >
+    <result column="msgbody" property="msgbody" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    msgbody
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitbody" >
+    insert into sysxmitbody (msgref, count, msgbody
+      )
+    values (#{msgref,jdbcType=BIGINT}, #{count,jdbcType=INTEGER}, #{msgbody,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitbody" >
+    insert into sysxmitbody
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="msgref != null" >
+        msgref,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="msgbody != null" >
+        msgbody,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="msgref != null" >
+        #{msgref,jdbcType=BIGINT},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="msgbody != null" >
+        #{msgbody,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

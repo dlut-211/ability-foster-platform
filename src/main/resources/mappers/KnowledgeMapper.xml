@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Knowledge" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="NVARCHAR" />
+    <result column="CourseId" property="courseid" jdbcType="INTEGER" />
+    <result column="AbilityId" property="abilityid" jdbcType="INTEGER" />
+    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
+    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Knowledge" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Name, CourseId, AbilityId, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+  </sql>
+  <sql id="Blob_Column_List" >
+    VersionNumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Knowledge
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Knowledge
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Knowledge" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Knowledge (Id, Name, CourseId, 
+      AbilityId, CreatedBy, CreatedOn, 
+      ModifiedBy, ModifiedOn, VersionNumber
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{courseid,jdbcType=INTEGER}, 
+      #{abilityid,jdbcType=INTEGER}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Knowledge" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Knowledge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="courseid != null" >
+        CourseId,
+      </if>
+      <if test="abilityid != null" >
+        AbilityId,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy,
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn,
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="courseid != null" >
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityid != null" >
+        #{abilityid,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        #{versionnumber,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Knowledge" >
+    update Knowledge
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="courseid != null" >
+        CourseId = #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityid != null" >
+        AbilityId = #{abilityid,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Knowledge" >
+    update Knowledge
+    set Name = #{name,jdbcType=NVARCHAR},
+      CourseId = #{courseid,jdbcType=INTEGER},
+      AbilityId = #{abilityid,jdbcType=INTEGER},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      VersionNumber = #{versionnumber,jdbcType=BINARY}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Knowledge" >
+    update Knowledge
+    set Name = #{name,jdbcType=NVARCHAR},
+      CourseId = #{courseid,jdbcType=INTEGER},
+      AbilityId = #{abilityid,jdbcType=INTEGER},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

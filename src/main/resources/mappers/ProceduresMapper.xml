@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ProceduresMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Procedures" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="schema_id" property="schemaId" jdbcType="INTEGER" />
+    <result column="parent_object_id" property="parentObjectId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="is_ms_shipped" property="isMsShipped" jdbcType="BIT" />
+    <result column="is_published" property="isPublished" jdbcType="BIT" />
+    <result column="is_schema_published" property="isSchemaPublished" jdbcType="BIT" />
+    <result column="is_auto_executed" property="isAutoExecuted" jdbcType="BIT" />
+    <result column="is_execution_replicated" property="isExecutionReplicated" jdbcType="BIT" />
+    <result column="is_repl_serializable_only" property="isReplSerializableOnly" jdbcType="BIT" />
+    <result column="skips_repl_constraints" property="skipsReplConstraints" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Procedures" >
+    insert into procedures (name, object_id, principal_id, 
+      schema_id, parent_object_id, type, 
+      type_desc, create_date, modify_date, 
+      is_ms_shipped, is_published, is_schema_published, 
+      is_auto_executed, is_execution_replicated, is_repl_serializable_only, 
+      skips_repl_constraints)
+    values (#{name,jdbcType=NVARCHAR}, #{objectId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{schemaId,jdbcType=INTEGER}, #{parentObjectId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{isMsShipped,jdbcType=BIT}, #{isPublished,jdbcType=BIT}, #{isSchemaPublished,jdbcType=BIT}, 
+      #{isAutoExecuted,jdbcType=BIT}, #{isExecutionReplicated,jdbcType=BIT}, #{isReplSerializableOnly,jdbcType=BIT}, 
+      #{skipsReplConstraints,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Procedures" >
+    insert into procedures
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="schemaId != null" >
+        schema_id,
+      </if>
+      <if test="parentObjectId != null" >
+        parent_object_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="isMsShipped != null" >
+        is_ms_shipped,
+      </if>
+      <if test="isPublished != null" >
+        is_published,
+      </if>
+      <if test="isSchemaPublished != null" >
+        is_schema_published,
+      </if>
+      <if test="isAutoExecuted != null" >
+        is_auto_executed,
+      </if>
+      <if test="isExecutionReplicated != null" >
+        is_execution_replicated,
+      </if>
+      <if test="isReplSerializableOnly != null" >
+        is_repl_serializable_only,
+      </if>
+      <if test="skipsReplConstraints != null" >
+        skips_repl_constraints,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="schemaId != null" >
+        #{schemaId,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjectId != null" >
+        #{parentObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMsShipped != null" >
+        #{isMsShipped,jdbcType=BIT},
+      </if>
+      <if test="isPublished != null" >
+        #{isPublished,jdbcType=BIT},
+      </if>
+      <if test="isSchemaPublished != null" >
+        #{isSchemaPublished,jdbcType=BIT},
+      </if>
+      <if test="isAutoExecuted != null" >
+        #{isAutoExecuted,jdbcType=BIT},
+      </if>
+      <if test="isExecutionReplicated != null" >
+        #{isExecutionReplicated,jdbcType=BIT},
+      </if>
+      <if test="isReplSerializableOnly != null" >
+        #{isReplSerializableOnly,jdbcType=BIT},
+      </if>
+      <if test="skipsReplConstraints != null" >
+        #{skipsReplConstraints,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

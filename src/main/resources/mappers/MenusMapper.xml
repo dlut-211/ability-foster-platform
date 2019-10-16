@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.MenusMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="MenuName" property="menuname" jdbcType="NVARCHAR" />
+    <result column="MenuCode" property="menucode" jdbcType="NVARCHAR" />
+    <result column="MenuType" property="menutype" jdbcType="INTEGER" />
+    <result column="Icon" property="icon" jdbcType="NVARCHAR" />
+    <result column="Route" property="route" jdbcType="NVARCHAR" />
+    <result column="ShowOrder" property="showorder" jdbcType="INTEGER" />
+    <result column="ParentMenuId" property="parentmenuid" jdbcType="INTEGER" />
+    <result column="MenuStatus" property="menustatus" jdbcType="INTEGER" />
+    <result column="IsDeleted" property="isdeleted" jdbcType="BIT" />
+    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
+    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="Menu_Id" property="menuId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Menus" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, MenuName, MenuCode, MenuType, Icon, Route, ShowOrder, ParentMenuId, MenuStatus, 
+    IsDeleted, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Menu_Id
+  </sql>
+  <sql id="Blob_Column_List" >
+    VersionNumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Menus
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Menus
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Menus (Id, MenuName, MenuCode, 
+      MenuType, Icon, Route, 
+      ShowOrder, ParentMenuId, MenuStatus, 
+      IsDeleted, CreatedBy, CreatedOn, 
+      ModifiedBy, ModifiedOn, Menu_Id, 
+      VersionNumber)
+    values (#{id,jdbcType=INTEGER}, #{menuname,jdbcType=NVARCHAR}, #{menucode,jdbcType=NVARCHAR}, 
+      #{menutype,jdbcType=INTEGER}, #{icon,jdbcType=NVARCHAR}, #{route,jdbcType=NVARCHAR}, 
+      #{showorder,jdbcType=INTEGER}, #{parentmenuid,jdbcType=INTEGER}, #{menustatus,jdbcType=INTEGER}, 
+      #{isdeleted,jdbcType=BIT}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{menuId,jdbcType=INTEGER}, 
+      #{versionnumber,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Menus
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="menuname != null" >
+        MenuName,
+      </if>
+      <if test="menucode != null" >
+        MenuCode,
+      </if>
+      <if test="menutype != null" >
+        MenuType,
+      </if>
+      <if test="icon != null" >
+        Icon,
+      </if>
+      <if test="route != null" >
+        Route,
+      </if>
+      <if test="showorder != null" >
+        ShowOrder,
+      </if>
+      <if test="parentmenuid != null" >
+        ParentMenuId,
+      </if>
+      <if test="menustatus != null" >
+        MenuStatus,
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy,
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn,
+      </if>
+      <if test="menuId != null" >
+        Menu_Id,
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="menuname != null" >
+        #{menuname,jdbcType=NVARCHAR},
+      </if>
+      <if test="menucode != null" >
+        #{menucode,jdbcType=NVARCHAR},
+      </if>
+      <if test="menutype != null" >
+        #{menutype,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=NVARCHAR},
+      </if>
+      <if test="route != null" >
+        #{route,jdbcType=NVARCHAR},
+      </if>
+      <if test="showorder != null" >
+        #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="parentmenuid != null" >
+        #{parentmenuid,jdbcType=INTEGER},
+      </if>
+      <if test="menustatus != null" >
+        #{menustatus,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="versionnumber != null" >
+        #{versionnumber,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
+    update Menus
+    <set >
+      <if test="menuname != null" >
+        MenuName = #{menuname,jdbcType=NVARCHAR},
+      </if>
+      <if test="menucode != null" >
+        MenuCode = #{menucode,jdbcType=NVARCHAR},
+      </if>
+      <if test="menutype != null" >
+        MenuType = #{menutype,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        Icon = #{icon,jdbcType=NVARCHAR},
+      </if>
+      <if test="route != null" >
+        Route = #{route,jdbcType=NVARCHAR},
+      </if>
+      <if test="showorder != null" >
+        ShowOrder = #{showorder,jdbcType=INTEGER},
+      </if>
+      <if test="parentmenuid != null" >
+        ParentMenuId = #{parentmenuid,jdbcType=INTEGER},
+      </if>
+      <if test="menustatus != null" >
+        MenuStatus = #{menustatus,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuId != null" >
+        Menu_Id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
+    update Menus
+    set MenuName = #{menuname,jdbcType=NVARCHAR},
+      MenuCode = #{menucode,jdbcType=NVARCHAR},
+      MenuType = #{menutype,jdbcType=INTEGER},
+      Icon = #{icon,jdbcType=NVARCHAR},
+      Route = #{route,jdbcType=NVARCHAR},
+      ShowOrder = #{showorder,jdbcType=INTEGER},
+      ParentMenuId = #{parentmenuid,jdbcType=INTEGER},
+      MenuStatus = #{menustatus,jdbcType=INTEGER},
+      IsDeleted = #{isdeleted,jdbcType=BIT},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      Menu_Id = #{menuId,jdbcType=INTEGER},
+      VersionNumber = #{versionnumber,jdbcType=BINARY}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Menus" >
+    update Menus
+    set MenuName = #{menuname,jdbcType=NVARCHAR},
+      MenuCode = #{menucode,jdbcType=NVARCHAR},
+      MenuType = #{menutype,jdbcType=INTEGER},
+      Icon = #{icon,jdbcType=NVARCHAR},
+      Route = #{route,jdbcType=NVARCHAR},
+      ShowOrder = #{showorder,jdbcType=INTEGER},
+      ParentMenuId = #{parentmenuid,jdbcType=INTEGER},
+      MenuStatus = #{menustatus,jdbcType=INTEGER},
+      IsDeleted = #{isdeleted,jdbcType=BIT},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      Menu_Id = #{menuId,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SelectiveXmlIndexNamespacesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SelectiveXmlIndexNamespaces" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="is_default_uri" property="isDefaultUri" jdbcType="BIT" />
+    <result column="uri" property="uri" jdbcType="NVARCHAR" />
+    <result column="prefix" property="prefix" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SelectiveXmlIndexNamespaces" >
+    insert into selective_xml_index_namespaces (object_id, index_id, is_default_uri, 
+      uri, prefix)
+    values (#{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, #{isDefaultUri,jdbcType=BIT}, 
+      #{uri,jdbcType=NVARCHAR}, #{prefix,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SelectiveXmlIndexNamespaces" >
+    insert into selective_xml_index_namespaces
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="isDefaultUri != null" >
+        is_default_uri,
+      </if>
+      <if test="uri != null" >
+        uri,
+      </if>
+      <if test="prefix != null" >
+        prefix,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="isDefaultUri != null" >
+        #{isDefaultUri,jdbcType=BIT},
+      </if>
+      <if test="uri != null" >
+        #{uri,jdbcType=NVARCHAR},
+      </if>
+      <if test="prefix != null" >
+        #{prefix,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FnValidatePlanGuideMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FnValidatePlanGuide" >
+    <result column="msgnum" property="msgnum" jdbcType="INTEGER" />
+    <result column="severity" property="severity" jdbcType="TINYINT" />
+    <result column="state" property="state" jdbcType="SMALLINT" />
+    <result column="message" property="message" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnValidatePlanGuide" >
+    insert into fn_validate_plan_guide (msgnum, severity, state, 
+      message)
+    values (#{msgnum,jdbcType=INTEGER}, #{severity,jdbcType=TINYINT}, #{state,jdbcType=SMALLINT}, 
+      #{message,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnValidatePlanGuide" >
+    insert into fn_validate_plan_guide
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="msgnum != null" >
+        msgnum,
+      </if>
+      <if test="severity != null" >
+        severity,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="msgnum != null" >
+        #{msgnum,jdbcType=INTEGER},
+      </if>
+      <if test="severity != null" >
+        #{severity,jdbcType=TINYINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=SMALLINT},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

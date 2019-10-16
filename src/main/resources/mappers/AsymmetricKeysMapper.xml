@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.AsymmetricKeysMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.AsymmetricKeys" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="asymmetric_key_id" property="asymmetricKeyId" jdbcType="INTEGER" />
+    <result column="pvt_key_encryption_type" property="pvtKeyEncryptionType" jdbcType="CHAR" />
+    <result column="pvt_key_encryption_type_desc" property="pvtKeyEncryptionTypeDesc" jdbcType="NVARCHAR" />
+    <result column="algorithm" property="algorithm" jdbcType="CHAR" />
+    <result column="algorithm_desc" property="algorithmDesc" jdbcType="NVARCHAR" />
+    <result column="key_length" property="keyLength" jdbcType="INTEGER" />
+    <result column="string_sid" property="stringSid" jdbcType="NVARCHAR" />
+    <result column="attested_by" property="attestedBy" jdbcType="NVARCHAR" />
+    <result column="provider_type" property="providerType" jdbcType="NVARCHAR" />
+    <result column="cryptographic_provider_guid" property="cryptographicProviderGuid" jdbcType="CHAR" />
+    <result column="cryptographic_provider_algid" property="cryptographicProviderAlgid" jdbcType="OTHER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.AsymmetricKeysWithBLOBs" extends="BaseResultMap" >
+    <result column="thumbprint" property="thumbprint" jdbcType="VARBINARY" />
+    <result column="sid" property="sid" jdbcType="VARBINARY" />
+    <result column="public_key" property="publicKey" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    thumbprint, sid, public_key
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AsymmetricKeysWithBLOBs" >
+    insert into asymmetric_keys (name, principal_id, asymmetric_key_id, 
+      pvt_key_encryption_type, pvt_key_encryption_type_desc, 
+      algorithm, algorithm_desc, key_length, 
+      string_sid, attested_by, provider_type, 
+      cryptographic_provider_guid, cryptographic_provider_algid, 
+      thumbprint, sid, public_key
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{principalId,jdbcType=INTEGER}, #{asymmetricKeyId,jdbcType=INTEGER}, 
+      #{pvtKeyEncryptionType,jdbcType=CHAR}, #{pvtKeyEncryptionTypeDesc,jdbcType=NVARCHAR}, 
+      #{algorithm,jdbcType=CHAR}, #{algorithmDesc,jdbcType=NVARCHAR}, #{keyLength,jdbcType=INTEGER}, 
+      #{stringSid,jdbcType=NVARCHAR}, #{attestedBy,jdbcType=NVARCHAR}, #{providerType,jdbcType=NVARCHAR}, 
+      #{cryptographicProviderGuid,jdbcType=CHAR}, #{cryptographicProviderAlgid,jdbcType=OTHER}, 
+      #{thumbprint,jdbcType=VARBINARY}, #{sid,jdbcType=VARBINARY}, #{publicKey,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AsymmetricKeysWithBLOBs" >
+    insert into asymmetric_keys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="asymmetricKeyId != null" >
+        asymmetric_key_id,
+      </if>
+      <if test="pvtKeyEncryptionType != null" >
+        pvt_key_encryption_type,
+      </if>
+      <if test="pvtKeyEncryptionTypeDesc != null" >
+        pvt_key_encryption_type_desc,
+      </if>
+      <if test="algorithm != null" >
+        algorithm,
+      </if>
+      <if test="algorithmDesc != null" >
+        algorithm_desc,
+      </if>
+      <if test="keyLength != null" >
+        key_length,
+      </if>
+      <if test="stringSid != null" >
+        string_sid,
+      </if>
+      <if test="attestedBy != null" >
+        attested_by,
+      </if>
+      <if test="providerType != null" >
+        provider_type,
+      </if>
+      <if test="cryptographicProviderGuid != null" >
+        cryptographic_provider_guid,
+      </if>
+      <if test="cryptographicProviderAlgid != null" >
+        cryptographic_provider_algid,
+      </if>
+      <if test="thumbprint != null" >
+        thumbprint,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="publicKey != null" >
+        public_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="asymmetricKeyId != null" >
+        #{asymmetricKeyId,jdbcType=INTEGER},
+      </if>
+      <if test="pvtKeyEncryptionType != null" >
+        #{pvtKeyEncryptionType,jdbcType=CHAR},
+      </if>
+      <if test="pvtKeyEncryptionTypeDesc != null" >
+        #{pvtKeyEncryptionTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="algorithm != null" >
+        #{algorithm,jdbcType=CHAR},
+      </if>
+      <if test="algorithmDesc != null" >
+        #{algorithmDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="keyLength != null" >
+        #{keyLength,jdbcType=INTEGER},
+      </if>
+      <if test="stringSid != null" >
+        #{stringSid,jdbcType=NVARCHAR},
+      </if>
+      <if test="attestedBy != null" >
+        #{attestedBy,jdbcType=NVARCHAR},
+      </if>
+      <if test="providerType != null" >
+        #{providerType,jdbcType=NVARCHAR},
+      </if>
+      <if test="cryptographicProviderGuid != null" >
+        #{cryptographicProviderGuid,jdbcType=CHAR},
+      </if>
+      <if test="cryptographicProviderAlgid != null" >
+        #{cryptographicProviderAlgid,jdbcType=OTHER},
+      </if>
+      <if test="thumbprint != null" >
+        #{thumbprint,jdbcType=VARBINARY},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARBINARY},
+      </if>
+      <if test="publicKey != null" >
+        #{publicKey,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

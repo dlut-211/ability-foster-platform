@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecPlanAttributesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecPlanAttributes" >
+    <result column="attribute" property="attribute" jdbcType="NVARCHAR" />
+    <result column="value" property="value" jdbcType="OTHER" />
+    <result column="is_cache_key" property="isCacheKey" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecPlanAttributes" >
+    insert into dm_exec_plan_attributes (attribute, value, is_cache_key
+      )
+    values (#{attribute,jdbcType=NVARCHAR}, #{value,jdbcType=OTHER}, #{isCacheKey,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecPlanAttributes" >
+    insert into dm_exec_plan_attributes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attribute != null" >
+        attribute,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="isCacheKey != null" >
+        is_cache_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attribute != null" >
+        #{attribute,jdbcType=NVARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=OTHER},
+      </if>
+      <if test="isCacheKey != null" >
+        #{isCacheKey,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

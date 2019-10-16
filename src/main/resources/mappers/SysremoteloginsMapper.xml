@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysremoteloginsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysremotelogins" >
+    <result column="remoteserverid" property="remoteserverid" jdbcType="SMALLINT" />
+    <result column="remoteusername" property="remoteusername" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="changedate" property="changedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysremotelogins" extends="BaseResultMap" >
+    <result column="sid" property="sid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sid
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysremotelogins" >
+    insert into sysremotelogins (remoteserverid, remoteusername, 
+      status, changedate, sid
+      )
+    values (#{remoteserverid,jdbcType=SMALLINT}, #{remoteusername,jdbcType=NVARCHAR}, 
+      #{status,jdbcType=SMALLINT}, #{changedate,jdbcType=TIMESTAMP}, #{sid,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysremotelogins" >
+    insert into sysremotelogins
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="remoteserverid != null" >
+        remoteserverid,
+      </if>
+      <if test="remoteusername != null" >
+        remoteusername,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="changedate != null" >
+        changedate,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="remoteserverid != null" >
+        #{remoteserverid,jdbcType=SMALLINT},
+      </if>
+      <if test="remoteusername != null" >
+        #{remoteusername,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="changedate != null" >
+        #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

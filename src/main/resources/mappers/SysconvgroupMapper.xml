@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysconvgroupMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysconvgroup" >
+    <result column="id" property="id" jdbcType="CHAR" />
+    <result column="service_id" property="serviceId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="refcount" property="refcount" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysconvgroup" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysconvgroup (id, service_id, status, 
+      refcount)
+    values (#{id,jdbcType=CHAR}, #{serviceId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{refcount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysconvgroup" >
+    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysconvgroup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="refcount != null" >
+        refcount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=CHAR},
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="refcount != null" >
+        #{refcount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

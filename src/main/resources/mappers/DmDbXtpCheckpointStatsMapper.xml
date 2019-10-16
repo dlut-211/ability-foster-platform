@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbXtpCheckpointStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpCheckpointStats" >
+    <result column="log_to_process_in_bytes" property="logToProcessInBytes" jdbcType="BIGINT" />
+    <result column="total_log_blocks_processed" property="totalLogBlocksProcessed" jdbcType="BIGINT" />
+    <result column="total_log_records_processed" property="totalLogRecordsProcessed" jdbcType="BIGINT" />
+    <result column="xtp_log_records_processed" property="xtpLogRecordsProcessed" jdbcType="BIGINT" />
+    <result column="total_wait_time_in_ms" property="totalWaitTimeInMs" jdbcType="BIGINT" />
+    <result column="waits_for_io" property="waitsForIo" jdbcType="BIGINT" />
+    <result column="io_wait_time_in_ms" property="ioWaitTimeInMs" jdbcType="BIGINT" />
+    <result column="waits_for_new_log" property="waitsForNewLog" jdbcType="BIGINT" />
+    <result column="new_log_wait_time_in_ms" property="newLogWaitTimeInMs" jdbcType="BIGINT" />
+    <result column="log_generated_since_last_checkpoint_in_bytes" property="logGeneratedSinceLastCheckpointInBytes" jdbcType="BIGINT" />
+    <result column="time_since_last_checkpoint_in_ms" property="timeSinceLastCheckpointInMs" jdbcType="BIGINT" />
+    <result column="checkpoint_lsn" property="checkpointLsn" jdbcType="NUMERIC" />
+    <result column="current_lsn" property="currentLsn" jdbcType="NUMERIC" />
+    <result column="end_of_log_lsn" property="endOfLogLsn" jdbcType="NUMERIC" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpCheckpointStats" extends="BaseResultMap" >
+    <result column="task_address" property="taskAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    task_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpCheckpointStats" >
+    insert into dm_db_xtp_checkpoint_stats (log_to_process_in_bytes, total_log_blocks_processed, 
+      total_log_records_processed, xtp_log_records_processed, 
+      total_wait_time_in_ms, waits_for_io, io_wait_time_in_ms, 
+      waits_for_new_log, new_log_wait_time_in_ms, log_generated_since_last_checkpoint_in_bytes, 
+      time_since_last_checkpoint_in_ms, checkpoint_lsn, 
+      current_lsn, end_of_log_lsn, task_address
+      )
+    values (#{logToProcessInBytes,jdbcType=BIGINT}, #{totalLogBlocksProcessed,jdbcType=BIGINT}, 
+      #{totalLogRecordsProcessed,jdbcType=BIGINT}, #{xtpLogRecordsProcessed,jdbcType=BIGINT}, 
+      #{totalWaitTimeInMs,jdbcType=BIGINT}, #{waitsForIo,jdbcType=BIGINT}, #{ioWaitTimeInMs,jdbcType=BIGINT}, 
+      #{waitsForNewLog,jdbcType=BIGINT}, #{newLogWaitTimeInMs,jdbcType=BIGINT}, #{logGeneratedSinceLastCheckpointInBytes,jdbcType=BIGINT}, 
+      #{timeSinceLastCheckpointInMs,jdbcType=BIGINT}, #{checkpointLsn,jdbcType=NUMERIC}, 
+      #{currentLsn,jdbcType=NUMERIC}, #{endOfLogLsn,jdbcType=NUMERIC}, #{taskAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpCheckpointStats" >
+    insert into dm_db_xtp_checkpoint_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logToProcessInBytes != null" >
+        log_to_process_in_bytes,
+      </if>
+      <if test="totalLogBlocksProcessed != null" >
+        total_log_blocks_processed,
+      </if>
+      <if test="totalLogRecordsProcessed != null" >
+        total_log_records_processed,
+      </if>
+      <if test="xtpLogRecordsProcessed != null" >
+        xtp_log_records_processed,
+      </if>
+      <if test="totalWaitTimeInMs != null" >
+        total_wait_time_in_ms,
+      </if>
+      <if test="waitsForIo != null" >
+        waits_for_io,
+      </if>
+      <if test="ioWaitTimeInMs != null" >
+        io_wait_time_in_ms,
+      </if>
+      <if test="waitsForNewLog != null" >
+        waits_for_new_log,
+      </if>
+      <if test="newLogWaitTimeInMs != null" >
+        new_log_wait_time_in_ms,
+      </if>
+      <if test="logGeneratedSinceLastCheckpointInBytes != null" >
+        log_generated_since_last_checkpoint_in_bytes,
+      </if>
+      <if test="timeSinceLastCheckpointInMs != null" >
+        time_since_last_checkpoint_in_ms,
+      </if>
+      <if test="checkpointLsn != null" >
+        checkpoint_lsn,
+      </if>
+      <if test="currentLsn != null" >
+        current_lsn,
+      </if>
+      <if test="endOfLogLsn != null" >
+        end_of_log_lsn,
+      </if>
+      <if test="taskAddress != null" >
+        task_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logToProcessInBytes != null" >
+        #{logToProcessInBytes,jdbcType=BIGINT},
+      </if>
+      <if test="totalLogBlocksProcessed != null" >
+        #{totalLogBlocksProcessed,jdbcType=BIGINT},
+      </if>
+      <if test="totalLogRecordsProcessed != null" >
+        #{totalLogRecordsProcessed,jdbcType=BIGINT},
+      </if>
+      <if test="xtpLogRecordsProcessed != null" >
+        #{xtpLogRecordsProcessed,jdbcType=BIGINT},
+      </if>
+      <if test="totalWaitTimeInMs != null" >
+        #{totalWaitTimeInMs,jdbcType=BIGINT},
+      </if>
+      <if test="waitsForIo != null" >
+        #{waitsForIo,jdbcType=BIGINT},
+      </if>
+      <if test="ioWaitTimeInMs != null" >
+        #{ioWaitTimeInMs,jdbcType=BIGINT},
+      </if>
+      <if test="waitsForNewLog != null" >
+        #{waitsForNewLog,jdbcType=BIGINT},
+      </if>
+      <if test="newLogWaitTimeInMs != null" >
+        #{newLogWaitTimeInMs,jdbcType=BIGINT},
+      </if>
+      <if test="logGeneratedSinceLastCheckpointInBytes != null" >
+        #{logGeneratedSinceLastCheckpointInBytes,jdbcType=BIGINT},
+      </if>
+      <if test="timeSinceLastCheckpointInMs != null" >
+        #{timeSinceLastCheckpointInMs,jdbcType=BIGINT},
+      </if>
+      <if test="checkpointLsn != null" >
+        #{checkpointLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="currentLsn != null" >
+        #{currentLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="endOfLogLsn != null" >
+        #{endOfLogLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="taskAddress != null" >
+        #{taskAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

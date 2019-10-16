@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmFtsIndexKeywordsByPropertyMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsIndexKeywordsByProperty" >
+    <result column="display_term" property="displayTerm" jdbcType="NVARCHAR" />
+    <result column="column_id" property="columnId" jdbcType="INTEGER" />
+    <result column="document_id" property="documentId" jdbcType="BIGINT" />
+    <result column="property_id" property="propertyId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsIndexKeywordsByProperty" extends="BaseResultMap" >
+    <result column="keyword" property="keyword" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    keyword
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsIndexKeywordsByProperty" >
+    insert into dm_fts_index_keywords_by_property (display_term, column_id, document_id, 
+      property_id, keyword)
+    values (#{displayTerm,jdbcType=NVARCHAR}, #{columnId,jdbcType=INTEGER}, #{documentId,jdbcType=BIGINT}, 
+      #{propertyId,jdbcType=INTEGER}, #{keyword,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsIndexKeywordsByProperty" >
+    insert into dm_fts_index_keywords_by_property
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="displayTerm != null" >
+        display_term,
+      </if>
+      <if test="columnId != null" >
+        column_id,
+      </if>
+      <if test="documentId != null" >
+        document_id,
+      </if>
+      <if test="propertyId != null" >
+        property_id,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="displayTerm != null" >
+        #{displayTerm,jdbcType=NVARCHAR},
+      </if>
+      <if test="columnId != null" >
+        #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="documentId != null" >
+        #{documentId,jdbcType=BIGINT},
+      </if>
+      <if test="propertyId != null" >
+        #{propertyId,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

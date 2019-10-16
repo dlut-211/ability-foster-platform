@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.AssembliesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Assemblies" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="assembly_id" property="assemblyId" jdbcType="INTEGER" />
+    <result column="clr_name" property="clrName" jdbcType="NVARCHAR" />
+    <result column="permission_set" property="permissionSet" jdbcType="TINYINT" />
+    <result column="permission_set_desc" property="permissionSetDesc" jdbcType="NVARCHAR" />
+    <result column="is_visible" property="isVisible" jdbcType="BIT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="is_user_defined" property="isUserDefined" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Assemblies" >
+    insert into assemblies (name, principal_id, assembly_id, 
+      clr_name, permission_set, permission_set_desc, 
+      is_visible, create_date, modify_date, 
+      is_user_defined)
+    values (#{name,jdbcType=NVARCHAR}, #{principalId,jdbcType=INTEGER}, #{assemblyId,jdbcType=INTEGER}, 
+      #{clrName,jdbcType=NVARCHAR}, #{permissionSet,jdbcType=TINYINT}, #{permissionSetDesc,jdbcType=NVARCHAR}, 
+      #{isVisible,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{isUserDefined,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Assemblies" >
+    insert into assemblies
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="assemblyId != null" >
+        assembly_id,
+      </if>
+      <if test="clrName != null" >
+        clr_name,
+      </if>
+      <if test="permissionSet != null" >
+        permission_set,
+      </if>
+      <if test="permissionSetDesc != null" >
+        permission_set_desc,
+      </if>
+      <if test="isVisible != null" >
+        is_visible,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="isUserDefined != null" >
+        is_user_defined,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="assemblyId != null" >
+        #{assemblyId,jdbcType=INTEGER},
+      </if>
+      <if test="clrName != null" >
+        #{clrName,jdbcType=NVARCHAR},
+      </if>
+      <if test="permissionSet != null" >
+        #{permissionSet,jdbcType=TINYINT},
+      </if>
+      <if test="permissionSetDesc != null" >
+        #{permissionSetDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isVisible != null" >
+        #{isVisible,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUserDefined != null" >
+        #{isUserDefined,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

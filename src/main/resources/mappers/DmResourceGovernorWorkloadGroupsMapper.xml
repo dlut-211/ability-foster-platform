@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmResourceGovernorWorkloadGroupsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmResourceGovernorWorkloadGroups" >
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="statistics_start_time" property="statisticsStartTime" jdbcType="TIMESTAMP" />
+    <result column="total_request_count" property="totalRequestCount" jdbcType="BIGINT" />
+    <result column="total_queued_request_count" property="totalQueuedRequestCount" jdbcType="BIGINT" />
+    <result column="active_request_count" property="activeRequestCount" jdbcType="INTEGER" />
+    <result column="queued_request_count" property="queuedRequestCount" jdbcType="INTEGER" />
+    <result column="total_cpu_limit_violation_count" property="totalCpuLimitViolationCount" jdbcType="BIGINT" />
+    <result column="total_cpu_usage_ms" property="totalCpuUsageMs" jdbcType="BIGINT" />
+    <result column="max_request_cpu_time_ms" property="maxRequestCpuTimeMs" jdbcType="BIGINT" />
+    <result column="blocked_task_count" property="blockedTaskCount" jdbcType="INTEGER" />
+    <result column="total_lock_wait_count" property="totalLockWaitCount" jdbcType="BIGINT" />
+    <result column="total_lock_wait_time_ms" property="totalLockWaitTimeMs" jdbcType="BIGINT" />
+    <result column="total_query_optimization_count" property="totalQueryOptimizationCount" jdbcType="BIGINT" />
+    <result column="total_suboptimal_plan_generation_count" property="totalSuboptimalPlanGenerationCount" jdbcType="BIGINT" />
+    <result column="total_reduced_memgrant_count" property="totalReducedMemgrantCount" jdbcType="BIGINT" />
+    <result column="max_request_grant_memory_kb" property="maxRequestGrantMemoryKb" jdbcType="BIGINT" />
+    <result column="active_parallel_thread_count" property="activeParallelThreadCount" jdbcType="BIGINT" />
+    <result column="importance" property="importance" jdbcType="NVARCHAR" />
+    <result column="request_max_memory_grant_percent" property="requestMaxMemoryGrantPercent" jdbcType="INTEGER" />
+    <result column="request_max_cpu_time_sec" property="requestMaxCpuTimeSec" jdbcType="INTEGER" />
+    <result column="request_memory_grant_timeout_sec" property="requestMemoryGrantTimeoutSec" jdbcType="INTEGER" />
+    <result column="group_max_requests" property="groupMaxRequests" jdbcType="INTEGER" />
+    <result column="max_dop" property="maxDop" jdbcType="INTEGER" />
+    <result column="effective_max_dop" property="effectiveMaxDop" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmResourceGovernorWorkloadGroups" >
+    insert into dm_resource_governor_workload_groups (group_id, name, pool_id, 
+      statistics_start_time, total_request_count, 
+      total_queued_request_count, active_request_count, 
+      queued_request_count, total_cpu_limit_violation_count, 
+      total_cpu_usage_ms, max_request_cpu_time_ms, blocked_task_count, 
+      total_lock_wait_count, total_lock_wait_time_ms, 
+      total_query_optimization_count, total_suboptimal_plan_generation_count, 
+      total_reduced_memgrant_count, max_request_grant_memory_kb, 
+      active_parallel_thread_count, importance, 
+      request_max_memory_grant_percent, request_max_cpu_time_sec, 
+      request_memory_grant_timeout_sec, group_max_requests, 
+      max_dop, effective_max_dop)
+    values (#{groupId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{poolId,jdbcType=INTEGER}, 
+      #{statisticsStartTime,jdbcType=TIMESTAMP}, #{totalRequestCount,jdbcType=BIGINT}, 
+      #{totalQueuedRequestCount,jdbcType=BIGINT}, #{activeRequestCount,jdbcType=INTEGER}, 
+      #{queuedRequestCount,jdbcType=INTEGER}, #{totalCpuLimitViolationCount,jdbcType=BIGINT}, 
+      #{totalCpuUsageMs,jdbcType=BIGINT}, #{maxRequestCpuTimeMs,jdbcType=BIGINT}, #{blockedTaskCount,jdbcType=INTEGER}, 
+      #{totalLockWaitCount,jdbcType=BIGINT}, #{totalLockWaitTimeMs,jdbcType=BIGINT}, 
+      #{totalQueryOptimizationCount,jdbcType=BIGINT}, #{totalSuboptimalPlanGenerationCount,jdbcType=BIGINT}, 
+      #{totalReducedMemgrantCount,jdbcType=BIGINT}, #{maxRequestGrantMemoryKb,jdbcType=BIGINT}, 
+      #{activeParallelThreadCount,jdbcType=BIGINT}, #{importance,jdbcType=NVARCHAR}, 
+      #{requestMaxMemoryGrantPercent,jdbcType=INTEGER}, #{requestMaxCpuTimeSec,jdbcType=INTEGER}, 
+      #{requestMemoryGrantTimeoutSec,jdbcType=INTEGER}, #{groupMaxRequests,jdbcType=INTEGER}, 
+      #{maxDop,jdbcType=INTEGER}, #{effectiveMaxDop,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmResourceGovernorWorkloadGroups" >
+    insert into dm_resource_governor_workload_groups
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="statisticsStartTime != null" >
+        statistics_start_time,
+      </if>
+      <if test="totalRequestCount != null" >
+        total_request_count,
+      </if>
+      <if test="totalQueuedRequestCount != null" >
+        total_queued_request_count,
+      </if>
+      <if test="activeRequestCount != null" >
+        active_request_count,
+      </if>
+      <if test="queuedRequestCount != null" >
+        queued_request_count,
+      </if>
+      <if test="totalCpuLimitViolationCount != null" >
+        total_cpu_limit_violation_count,
+      </if>
+      <if test="totalCpuUsageMs != null" >
+        total_cpu_usage_ms,
+      </if>
+      <if test="maxRequestCpuTimeMs != null" >
+        max_request_cpu_time_ms,
+      </if>
+      <if test="blockedTaskCount != null" >
+        blocked_task_count,
+      </if>
+      <if test="totalLockWaitCount != null" >
+        total_lock_wait_count,
+      </if>
+      <if test="totalLockWaitTimeMs != null" >
+        total_lock_wait_time_ms,
+      </if>
+      <if test="totalQueryOptimizationCount != null" >
+        total_query_optimization_count,
+      </if>
+      <if test="totalSuboptimalPlanGenerationCount != null" >
+        total_suboptimal_plan_generation_count,
+      </if>
+      <if test="totalReducedMemgrantCount != null" >
+        total_reduced_memgrant_count,
+      </if>
+      <if test="maxRequestGrantMemoryKb != null" >
+        max_request_grant_memory_kb,
+      </if>
+      <if test="activeParallelThreadCount != null" >
+        active_parallel_thread_count,
+      </if>
+      <if test="importance != null" >
+        importance,
+      </if>
+      <if test="requestMaxMemoryGrantPercent != null" >
+        request_max_memory_grant_percent,
+      </if>
+      <if test="requestMaxCpuTimeSec != null" >
+        request_max_cpu_time_sec,
+      </if>
+      <if test="requestMemoryGrantTimeoutSec != null" >
+        request_memory_grant_timeout_sec,
+      </if>
+      <if test="groupMaxRequests != null" >
+        group_max_requests,
+      </if>
+      <if test="maxDop != null" >
+        max_dop,
+      </if>
+      <if test="effectiveMaxDop != null" >
+        effective_max_dop,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsStartTime != null" >
+        #{statisticsStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalRequestCount != null" >
+        #{totalRequestCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalQueuedRequestCount != null" >
+        #{totalQueuedRequestCount,jdbcType=BIGINT},
+      </if>
+      <if test="activeRequestCount != null" >
+        #{activeRequestCount,jdbcType=INTEGER},
+      </if>
+      <if test="queuedRequestCount != null" >
+        #{queuedRequestCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalCpuLimitViolationCount != null" >
+        #{totalCpuLimitViolationCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalCpuUsageMs != null" >
+        #{totalCpuUsageMs,jdbcType=BIGINT},
+      </if>
+      <if test="maxRequestCpuTimeMs != null" >
+        #{maxRequestCpuTimeMs,jdbcType=BIGINT},
+      </if>
+      <if test="blockedTaskCount != null" >
+        #{blockedTaskCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalLockWaitCount != null" >
+        #{totalLockWaitCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalLockWaitTimeMs != null" >
+        #{totalLockWaitTimeMs,jdbcType=BIGINT},
+      </if>
+      <if test="totalQueryOptimizationCount != null" >
+        #{totalQueryOptimizationCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalSuboptimalPlanGenerationCount != null" >
+        #{totalSuboptimalPlanGenerationCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalReducedMemgrantCount != null" >
+        #{totalReducedMemgrantCount,jdbcType=BIGINT},
+      </if>
+      <if test="maxRequestGrantMemoryKb != null" >
+        #{maxRequestGrantMemoryKb,jdbcType=BIGINT},
+      </if>
+      <if test="activeParallelThreadCount != null" >
+        #{activeParallelThreadCount,jdbcType=BIGINT},
+      </if>
+      <if test="importance != null" >
+        #{importance,jdbcType=NVARCHAR},
+      </if>
+      <if test="requestMaxMemoryGrantPercent != null" >
+        #{requestMaxMemoryGrantPercent,jdbcType=INTEGER},
+      </if>
+      <if test="requestMaxCpuTimeSec != null" >
+        #{requestMaxCpuTimeSec,jdbcType=INTEGER},
+      </if>
+      <if test="requestMemoryGrantTimeoutSec != null" >
+        #{requestMemoryGrantTimeoutSec,jdbcType=INTEGER},
+      </if>
+      <if test="groupMaxRequests != null" >
+        #{groupMaxRequests,jdbcType=INTEGER},
+      </if>
+      <if test="maxDop != null" >
+        #{maxDop,jdbcType=INTEGER},
+      </if>
+      <if test="effectiveMaxDop != null" >
+        #{effectiveMaxDop,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

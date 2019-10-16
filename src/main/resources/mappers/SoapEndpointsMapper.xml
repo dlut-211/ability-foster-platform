@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SoapEndpointsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SoapEndpoints" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="endpoint_id" property="endpointId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="protocol" property="protocol" jdbcType="TINYINT" />
+    <result column="protocol_desc" property="protocolDesc" jdbcType="NVARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+    <result column="is_admin_endpoint" property="isAdminEndpoint" jdbcType="BIT" />
+    <result column="is_sql_language_enabled" property="isSqlLanguageEnabled" jdbcType="BIT" />
+    <result column="wsdl_generator_procedure" property="wsdlGeneratorProcedure" jdbcType="NVARCHAR" />
+    <result column="default_database" property="defaultDatabase" jdbcType="NVARCHAR" />
+    <result column="default_namespace" property="defaultNamespace" jdbcType="NVARCHAR" />
+    <result column="default_result_schema" property="defaultResultSchema" jdbcType="TINYINT" />
+    <result column="default_result_schema_desc" property="defaultResultSchemaDesc" jdbcType="NVARCHAR" />
+    <result column="is_xml_charset_enforced" property="isXmlCharsetEnforced" jdbcType="BIT" />
+    <result column="is_session_enabled" property="isSessionEnabled" jdbcType="BIT" />
+    <result column="session_timeout" property="sessionTimeout" jdbcType="INTEGER" />
+    <result column="login_type" property="loginType" jdbcType="NVARCHAR" />
+    <result column="header_limit" property="headerLimit" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SoapEndpoints" >
+    insert into soap_endpoints (name, endpoint_id, principal_id, 
+      protocol, protocol_desc, type, 
+      type_desc, state, state_desc, 
+      is_admin_endpoint, is_sql_language_enabled, wsdl_generator_procedure, 
+      default_database, default_namespace, default_result_schema, 
+      default_result_schema_desc, is_xml_charset_enforced, 
+      is_session_enabled, session_timeout, login_type, 
+      header_limit)
+    values (#{name,jdbcType=NVARCHAR}, #{endpointId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{protocol,jdbcType=TINYINT}, #{protocolDesc,jdbcType=NVARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{state,jdbcType=TINYINT}, #{stateDesc,jdbcType=NVARCHAR}, 
+      #{isAdminEndpoint,jdbcType=BIT}, #{isSqlLanguageEnabled,jdbcType=BIT}, #{wsdlGeneratorProcedure,jdbcType=NVARCHAR}, 
+      #{defaultDatabase,jdbcType=NVARCHAR}, #{defaultNamespace,jdbcType=NVARCHAR}, #{defaultResultSchema,jdbcType=TINYINT}, 
+      #{defaultResultSchemaDesc,jdbcType=NVARCHAR}, #{isXmlCharsetEnforced,jdbcType=BIT}, 
+      #{isSessionEnabled,jdbcType=BIT}, #{sessionTimeout,jdbcType=INTEGER}, #{loginType,jdbcType=NVARCHAR}, 
+      #{headerLimit,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SoapEndpoints" >
+    insert into soap_endpoints
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="endpointId != null" >
+        endpoint_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="protocol != null" >
+        protocol,
+      </if>
+      <if test="protocolDesc != null" >
+        protocol_desc,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+      <if test="isAdminEndpoint != null" >
+        is_admin_endpoint,
+      </if>
+      <if test="isSqlLanguageEnabled != null" >
+        is_sql_language_enabled,
+      </if>
+      <if test="wsdlGeneratorProcedure != null" >
+        wsdl_generator_procedure,
+      </if>
+      <if test="defaultDatabase != null" >
+        default_database,
+      </if>
+      <if test="defaultNamespace != null" >
+        default_namespace,
+      </if>
+      <if test="defaultResultSchema != null" >
+        default_result_schema,
+      </if>
+      <if test="defaultResultSchemaDesc != null" >
+        default_result_schema_desc,
+      </if>
+      <if test="isXmlCharsetEnforced != null" >
+        is_xml_charset_enforced,
+      </if>
+      <if test="isSessionEnabled != null" >
+        is_session_enabled,
+      </if>
+      <if test="sessionTimeout != null" >
+        session_timeout,
+      </if>
+      <if test="loginType != null" >
+        login_type,
+      </if>
+      <if test="headerLimit != null" >
+        header_limit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="endpointId != null" >
+        #{endpointId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="protocol != null" >
+        #{protocol,jdbcType=TINYINT},
+      </if>
+      <if test="protocolDesc != null" >
+        #{protocolDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isAdminEndpoint != null" >
+        #{isAdminEndpoint,jdbcType=BIT},
+      </if>
+      <if test="isSqlLanguageEnabled != null" >
+        #{isSqlLanguageEnabled,jdbcType=BIT},
+      </if>
+      <if test="wsdlGeneratorProcedure != null" >
+        #{wsdlGeneratorProcedure,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultDatabase != null" >
+        #{defaultDatabase,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultNamespace != null" >
+        #{defaultNamespace,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultResultSchema != null" >
+        #{defaultResultSchema,jdbcType=TINYINT},
+      </if>
+      <if test="defaultResultSchemaDesc != null" >
+        #{defaultResultSchemaDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isXmlCharsetEnforced != null" >
+        #{isXmlCharsetEnforced,jdbcType=BIT},
+      </if>
+      <if test="isSessionEnabled != null" >
+        #{isSessionEnabled,jdbcType=BIT},
+      </if>
+      <if test="sessionTimeout != null" >
+        #{sessionTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="loginType != null" >
+        #{loginType,jdbcType=NVARCHAR},
+      </if>
+      <if test="headerLimit != null" >
+        #{headerLimit,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

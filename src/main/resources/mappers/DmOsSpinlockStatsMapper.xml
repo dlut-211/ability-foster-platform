@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsSpinlockStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsSpinlockStats" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="collisions" property="collisions" jdbcType="BIGINT" />
+    <result column="spins" property="spins" jdbcType="BIGINT" />
+    <result column="spins_per_collision" property="spinsPerCollision" jdbcType="REAL" />
+    <result column="sleep_time" property="sleepTime" jdbcType="BIGINT" />
+    <result column="backoffs" property="backoffs" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsSpinlockStats" >
+    insert into dm_os_spinlock_stats (name, collisions, spins, 
+      spins_per_collision, sleep_time, backoffs
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{collisions,jdbcType=BIGINT}, #{spins,jdbcType=BIGINT}, 
+      #{spinsPerCollision,jdbcType=REAL}, #{sleepTime,jdbcType=BIGINT}, #{backoffs,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsSpinlockStats" >
+    insert into dm_os_spinlock_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="collisions != null" >
+        collisions,
+      </if>
+      <if test="spins != null" >
+        spins,
+      </if>
+      <if test="spinsPerCollision != null" >
+        spins_per_collision,
+      </if>
+      <if test="sleepTime != null" >
+        sleep_time,
+      </if>
+      <if test="backoffs != null" >
+        backoffs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="collisions != null" >
+        #{collisions,jdbcType=BIGINT},
+      </if>
+      <if test="spins != null" >
+        #{spins,jdbcType=BIGINT},
+      </if>
+      <if test="spinsPerCollision != null" >
+        #{spinsPerCollision,jdbcType=REAL},
+      </if>
+      <if test="sleepTime != null" >
+        #{sleepTime,jdbcType=BIGINT},
+      </if>
+      <if test="backoffs != null" >
+        #{backoffs,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

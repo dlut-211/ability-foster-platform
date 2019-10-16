@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.AssemblyReferencesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.AssemblyReferences" >
+    <result column="assembly_id" property="assemblyId" jdbcType="INTEGER" />
+    <result column="referenced_assembly_id" property="referencedAssemblyId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AssemblyReferences" >
+    insert into assembly_references (assembly_id, referenced_assembly_id)
+    values (#{assemblyId,jdbcType=INTEGER}, #{referencedAssemblyId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AssemblyReferences" >
+    insert into assembly_references
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assemblyId != null" >
+        assembly_id,
+      </if>
+      <if test="referencedAssemblyId != null" >
+        referenced_assembly_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assemblyId != null" >
+        #{assemblyId,jdbcType=INTEGER},
+      </if>
+      <if test="referencedAssemblyId != null" >
+        #{referencedAssemblyId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

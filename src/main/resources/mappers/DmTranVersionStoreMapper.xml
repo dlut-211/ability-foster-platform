@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmTranVersionStoreMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmTranVersionStore" >
+    <result column="transaction_sequence_num" property="transactionSequenceNum" jdbcType="BIGINT" />
+    <result column="version_sequence_num" property="versionSequenceNum" jdbcType="BIGINT" />
+    <result column="database_id" property="databaseId" jdbcType="SMALLINT" />
+    <result column="rowset_id" property="rowsetId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="min_length_in_bytes" property="minLengthInBytes" jdbcType="SMALLINT" />
+    <result column="record_length_first_part_in_bytes" property="recordLengthFirstPartInBytes" jdbcType="SMALLINT" />
+    <result column="record_length_second_part_in_bytes" property="recordLengthSecondPartInBytes" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmTranVersionStoreWithBLOBs" extends="BaseResultMap" >
+    <result column="record_image_first_part" property="recordImageFirstPart" jdbcType="VARBINARY" />
+    <result column="record_image_second_part" property="recordImageSecondPart" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    record_image_first_part, record_image_second_part
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranVersionStoreWithBLOBs" >
+    insert into dm_tran_version_store (transaction_sequence_num, version_sequence_num, 
+      database_id, rowset_id, status, 
+      min_length_in_bytes, record_length_first_part_in_bytes, 
+      record_length_second_part_in_bytes, record_image_first_part, 
+      record_image_second_part)
+    values (#{transactionSequenceNum,jdbcType=BIGINT}, #{versionSequenceNum,jdbcType=BIGINT}, 
+      #{databaseId,jdbcType=SMALLINT}, #{rowsetId,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, 
+      #{minLengthInBytes,jdbcType=SMALLINT}, #{recordLengthFirstPartInBytes,jdbcType=SMALLINT}, 
+      #{recordLengthSecondPartInBytes,jdbcType=SMALLINT}, #{recordImageFirstPart,jdbcType=VARBINARY}, 
+      #{recordImageSecondPart,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranVersionStoreWithBLOBs" >
+    insert into dm_tran_version_store
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transactionSequenceNum != null" >
+        transaction_sequence_num,
+      </if>
+      <if test="versionSequenceNum != null" >
+        version_sequence_num,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="rowsetId != null" >
+        rowset_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="minLengthInBytes != null" >
+        min_length_in_bytes,
+      </if>
+      <if test="recordLengthFirstPartInBytes != null" >
+        record_length_first_part_in_bytes,
+      </if>
+      <if test="recordLengthSecondPartInBytes != null" >
+        record_length_second_part_in_bytes,
+      </if>
+      <if test="recordImageFirstPart != null" >
+        record_image_first_part,
+      </if>
+      <if test="recordImageSecondPart != null" >
+        record_image_second_part,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transactionSequenceNum != null" >
+        #{transactionSequenceNum,jdbcType=BIGINT},
+      </if>
+      <if test="versionSequenceNum != null" >
+        #{versionSequenceNum,jdbcType=BIGINT},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=SMALLINT},
+      </if>
+      <if test="rowsetId != null" >
+        #{rowsetId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="minLengthInBytes != null" >
+        #{minLengthInBytes,jdbcType=SMALLINT},
+      </if>
+      <if test="recordLengthFirstPartInBytes != null" >
+        #{recordLengthFirstPartInBytes,jdbcType=SMALLINT},
+      </if>
+      <if test="recordLengthSecondPartInBytes != null" >
+        #{recordLengthSecondPartInBytes,jdbcType=SMALLINT},
+      </if>
+      <if test="recordImageFirstPart != null" >
+        #{recordImageFirstPart,jdbcType=VARBINARY},
+      </if>
+      <if test="recordImageSecondPart != null" >
+        #{recordImageSecondPart,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

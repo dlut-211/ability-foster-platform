@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DatabaseMirroringWitnessesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseMirroringWitnesses" >
+    <result column="database_name" property="databaseName" jdbcType="NVARCHAR" />
+    <result column="principal_server_name" property="principalServerName" jdbcType="NVARCHAR" />
+    <result column="mirror_server_name" property="mirrorServerName" jdbcType="NVARCHAR" />
+    <result column="safety_level" property="safetyLevel" jdbcType="TINYINT" />
+    <result column="safety_level_desc" property="safetyLevelDesc" jdbcType="NVARCHAR" />
+    <result column="safety_sequence_number" property="safetySequenceNumber" jdbcType="INTEGER" />
+    <result column="role_sequence_number" property="roleSequenceNumber" jdbcType="INTEGER" />
+    <result column="mirroring_guid" property="mirroringGuid" jdbcType="CHAR" />
+    <result column="family_guid" property="familyGuid" jdbcType="CHAR" />
+    <result column="is_suspended" property="isSuspended" jdbcType="BIT" />
+    <result column="is_suspended_sequence_number" property="isSuspendedSequenceNumber" jdbcType="INTEGER" />
+    <result column="partner_sync_state" property="partnerSyncState" jdbcType="TINYINT" />
+    <result column="partner_sync_state_desc" property="partnerSyncStateDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseMirroringWitnesses" >
+    insert into database_mirroring_witnesses (database_name, principal_server_name, 
+      mirror_server_name, safety_level, safety_level_desc, 
+      safety_sequence_number, role_sequence_number, 
+      mirroring_guid, family_guid, is_suspended, 
+      is_suspended_sequence_number, partner_sync_state, 
+      partner_sync_state_desc)
+    values (#{databaseName,jdbcType=NVARCHAR}, #{principalServerName,jdbcType=NVARCHAR}, 
+      #{mirrorServerName,jdbcType=NVARCHAR}, #{safetyLevel,jdbcType=TINYINT}, #{safetyLevelDesc,jdbcType=NVARCHAR}, 
+      #{safetySequenceNumber,jdbcType=INTEGER}, #{roleSequenceNumber,jdbcType=INTEGER}, 
+      #{mirroringGuid,jdbcType=CHAR}, #{familyGuid,jdbcType=CHAR}, #{isSuspended,jdbcType=BIT}, 
+      #{isSuspendedSequenceNumber,jdbcType=INTEGER}, #{partnerSyncState,jdbcType=TINYINT}, 
+      #{partnerSyncStateDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseMirroringWitnesses" >
+    insert into database_mirroring_witnesses
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseName != null" >
+        database_name,
+      </if>
+      <if test="principalServerName != null" >
+        principal_server_name,
+      </if>
+      <if test="mirrorServerName != null" >
+        mirror_server_name,
+      </if>
+      <if test="safetyLevel != null" >
+        safety_level,
+      </if>
+      <if test="safetyLevelDesc != null" >
+        safety_level_desc,
+      </if>
+      <if test="safetySequenceNumber != null" >
+        safety_sequence_number,
+      </if>
+      <if test="roleSequenceNumber != null" >
+        role_sequence_number,
+      </if>
+      <if test="mirroringGuid != null" >
+        mirroring_guid,
+      </if>
+      <if test="familyGuid != null" >
+        family_guid,
+      </if>
+      <if test="isSuspended != null" >
+        is_suspended,
+      </if>
+      <if test="isSuspendedSequenceNumber != null" >
+        is_suspended_sequence_number,
+      </if>
+      <if test="partnerSyncState != null" >
+        partner_sync_state,
+      </if>
+      <if test="partnerSyncStateDesc != null" >
+        partner_sync_state_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseName != null" >
+        #{databaseName,jdbcType=NVARCHAR},
+      </if>
+      <if test="principalServerName != null" >
+        #{principalServerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirrorServerName != null" >
+        #{mirrorServerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="safetyLevel != null" >
+        #{safetyLevel,jdbcType=TINYINT},
+      </if>
+      <if test="safetyLevelDesc != null" >
+        #{safetyLevelDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="safetySequenceNumber != null" >
+        #{safetySequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="roleSequenceNumber != null" >
+        #{roleSequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="mirroringGuid != null" >
+        #{mirroringGuid,jdbcType=CHAR},
+      </if>
+      <if test="familyGuid != null" >
+        #{familyGuid,jdbcType=CHAR},
+      </if>
+      <if test="isSuspended != null" >
+        #{isSuspended,jdbcType=BIT},
+      </if>
+      <if test="isSuspendedSequenceNumber != null" >
+        #{isSuspendedSequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="partnerSyncState != null" >
+        #{partnerSyncState,jdbcType=TINYINT},
+      </if>
+      <if test="partnerSyncStateDesc != null" >
+        #{partnerSyncStateDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

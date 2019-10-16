@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SchemataMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Schemata" >
+    <result column="CATALOG_NAME" property="catalogName" jdbcType="NVARCHAR" />
+    <result column="SCHEMA_NAME" property="schemaName" jdbcType="NVARCHAR" />
+    <result column="SCHEMA_OWNER" property="schemaOwner" jdbcType="NVARCHAR" />
+    <result column="DEFAULT_CHARACTER_SET_CATALOG" property="defaultCharacterSetCatalog" jdbcType="NVARCHAR" />
+    <result column="DEFAULT_CHARACTER_SET_SCHEMA" property="defaultCharacterSetSchema" jdbcType="NVARCHAR" />
+    <result column="DEFAULT_CHARACTER_SET_NAME" property="defaultCharacterSetName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Schemata" >
+    insert into SCHEMATA (CATALOG_NAME, SCHEMA_NAME, SCHEMA_OWNER, 
+      DEFAULT_CHARACTER_SET_CATALOG, DEFAULT_CHARACTER_SET_SCHEMA, 
+      DEFAULT_CHARACTER_SET_NAME)
+    values (#{catalogName,jdbcType=NVARCHAR}, #{schemaName,jdbcType=NVARCHAR}, #{schemaOwner,jdbcType=NVARCHAR}, 
+      #{defaultCharacterSetCatalog,jdbcType=NVARCHAR}, #{defaultCharacterSetSchema,jdbcType=NVARCHAR}, 
+      #{defaultCharacterSetName,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Schemata" >
+    insert into SCHEMATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catalogName != null" >
+        CATALOG_NAME,
+      </if>
+      <if test="schemaName != null" >
+        SCHEMA_NAME,
+      </if>
+      <if test="schemaOwner != null" >
+        SCHEMA_OWNER,
+      </if>
+      <if test="defaultCharacterSetCatalog != null" >
+        DEFAULT_CHARACTER_SET_CATALOG,
+      </if>
+      <if test="defaultCharacterSetSchema != null" >
+        DEFAULT_CHARACTER_SET_SCHEMA,
+      </if>
+      <if test="defaultCharacterSetName != null" >
+        DEFAULT_CHARACTER_SET_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catalogName != null" >
+        #{catalogName,jdbcType=NVARCHAR},
+      </if>
+      <if test="schemaName != null" >
+        #{schemaName,jdbcType=NVARCHAR},
+      </if>
+      <if test="schemaOwner != null" >
+        #{schemaOwner,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultCharacterSetCatalog != null" >
+        #{defaultCharacterSetCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultCharacterSetSchema != null" >
+        #{defaultCharacterSetSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultCharacterSetName != null" >
+        #{defaultCharacterSetName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

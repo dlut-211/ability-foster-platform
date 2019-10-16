@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServerEventSessionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServerEventSessions" >
+    <result column="event_session_id" property="eventSessionId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="event_retention_mode" property="eventRetentionMode" jdbcType="CHAR" />
+    <result column="event_retention_mode_desc" property="eventRetentionModeDesc" jdbcType="NVARCHAR" />
+    <result column="max_dispatch_latency" property="maxDispatchLatency" jdbcType="INTEGER" />
+    <result column="max_memory" property="maxMemory" jdbcType="INTEGER" />
+    <result column="max_event_size" property="maxEventSize" jdbcType="INTEGER" />
+    <result column="memory_partition_mode" property="memoryPartitionMode" jdbcType="CHAR" />
+    <result column="memory_partition_mode_desc" property="memoryPartitionModeDesc" jdbcType="NVARCHAR" />
+    <result column="track_causality" property="trackCausality" jdbcType="BIT" />
+    <result column="startup_state" property="startupState" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerEventSessions" >
+    insert into server_event_sessions (event_session_id, name, event_retention_mode, 
+      event_retention_mode_desc, max_dispatch_latency, 
+      max_memory, max_event_size, memory_partition_mode, 
+      memory_partition_mode_desc, track_causality, startup_state
+      )
+    values (#{eventSessionId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{eventRetentionMode,jdbcType=CHAR}, 
+      #{eventRetentionModeDesc,jdbcType=NVARCHAR}, #{maxDispatchLatency,jdbcType=INTEGER}, 
+      #{maxMemory,jdbcType=INTEGER}, #{maxEventSize,jdbcType=INTEGER}, #{memoryPartitionMode,jdbcType=CHAR}, 
+      #{memoryPartitionModeDesc,jdbcType=NVARCHAR}, #{trackCausality,jdbcType=BIT}, #{startupState,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerEventSessions" >
+    insert into server_event_sessions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eventSessionId != null" >
+        event_session_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="eventRetentionMode != null" >
+        event_retention_mode,
+      </if>
+      <if test="eventRetentionModeDesc != null" >
+        event_retention_mode_desc,
+      </if>
+      <if test="maxDispatchLatency != null" >
+        max_dispatch_latency,
+      </if>
+      <if test="maxMemory != null" >
+        max_memory,
+      </if>
+      <if test="maxEventSize != null" >
+        max_event_size,
+      </if>
+      <if test="memoryPartitionMode != null" >
+        memory_partition_mode,
+      </if>
+      <if test="memoryPartitionModeDesc != null" >
+        memory_partition_mode_desc,
+      </if>
+      <if test="trackCausality != null" >
+        track_causality,
+      </if>
+      <if test="startupState != null" >
+        startup_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eventSessionId != null" >
+        #{eventSessionId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="eventRetentionMode != null" >
+        #{eventRetentionMode,jdbcType=CHAR},
+      </if>
+      <if test="eventRetentionModeDesc != null" >
+        #{eventRetentionModeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="maxDispatchLatency != null" >
+        #{maxDispatchLatency,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemory != null" >
+        #{maxMemory,jdbcType=INTEGER},
+      </if>
+      <if test="maxEventSize != null" >
+        #{maxEventSize,jdbcType=INTEGER},
+      </if>
+      <if test="memoryPartitionMode != null" >
+        #{memoryPartitionMode,jdbcType=CHAR},
+      </if>
+      <if test="memoryPartitionModeDesc != null" >
+        #{memoryPartitionModeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="trackCausality != null" >
+        #{trackCausality,jdbcType=BIT},
+      </if>
+      <if test="startupState != null" >
+        #{startupState,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

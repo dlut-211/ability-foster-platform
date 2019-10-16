@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecCachedPlanDependentObjectsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlanDependentObjects" >
+    <result column="usecounts" property="usecounts" jdbcType="INTEGER" />
+    <result column="cacheobjtype" property="cacheobjtype" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlanDependentObjects" extends="BaseResultMap" >
+    <result column="memory_object_address" property="memoryObjectAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    memory_object_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlanDependentObjects" >
+    insert into dm_exec_cached_plan_dependent_objects (usecounts, cacheobjtype, memory_object_address
+      )
+    values (#{usecounts,jdbcType=INTEGER}, #{cacheobjtype,jdbcType=NVARCHAR}, #{memoryObjectAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlanDependentObjects" >
+    insert into dm_exec_cached_plan_dependent_objects
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usecounts != null" >
+        usecounts,
+      </if>
+      <if test="cacheobjtype != null" >
+        cacheobjtype,
+      </if>
+      <if test="memoryObjectAddress != null" >
+        memory_object_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usecounts != null" >
+        #{usecounts,jdbcType=INTEGER},
+      </if>
+      <if test="cacheobjtype != null" >
+        #{cacheobjtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="memoryObjectAddress != null" >
+        #{memoryObjectAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

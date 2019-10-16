@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmResourceGovernorResourcePoolsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmResourceGovernorResourcePools" >
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="statistics_start_time" property="statisticsStartTime" jdbcType="TIMESTAMP" />
+    <result column="total_cpu_usage_ms" property="totalCpuUsageMs" jdbcType="BIGINT" />
+    <result column="cache_memory_kb" property="cacheMemoryKb" jdbcType="BIGINT" />
+    <result column="compile_memory_kb" property="compileMemoryKb" jdbcType="BIGINT" />
+    <result column="used_memgrant_kb" property="usedMemgrantKb" jdbcType="BIGINT" />
+    <result column="total_memgrant_count" property="totalMemgrantCount" jdbcType="BIGINT" />
+    <result column="total_memgrant_timeout_count" property="totalMemgrantTimeoutCount" jdbcType="BIGINT" />
+    <result column="active_memgrant_count" property="activeMemgrantCount" jdbcType="INTEGER" />
+    <result column="active_memgrant_kb" property="activeMemgrantKb" jdbcType="BIGINT" />
+    <result column="memgrant_waiter_count" property="memgrantWaiterCount" jdbcType="INTEGER" />
+    <result column="max_memory_kb" property="maxMemoryKb" jdbcType="BIGINT" />
+    <result column="used_memory_kb" property="usedMemoryKb" jdbcType="BIGINT" />
+    <result column="target_memory_kb" property="targetMemoryKb" jdbcType="BIGINT" />
+    <result column="out_of_memory_count" property="outOfMemoryCount" jdbcType="BIGINT" />
+    <result column="min_cpu_percent" property="minCpuPercent" jdbcType="INTEGER" />
+    <result column="max_cpu_percent" property="maxCpuPercent" jdbcType="INTEGER" />
+    <result column="min_memory_percent" property="minMemoryPercent" jdbcType="INTEGER" />
+    <result column="max_memory_percent" property="maxMemoryPercent" jdbcType="INTEGER" />
+    <result column="cap_cpu_percent" property="capCpuPercent" jdbcType="INTEGER" />
+    <result column="min_iops_per_volume" property="minIopsPerVolume" jdbcType="INTEGER" />
+    <result column="max_iops_per_volume" property="maxIopsPerVolume" jdbcType="INTEGER" />
+    <result column="read_io_queued_total" property="readIoQueuedTotal" jdbcType="INTEGER" />
+    <result column="read_io_issued_total" property="readIoIssuedTotal" jdbcType="INTEGER" />
+    <result column="read_io_completed_total" property="readIoCompletedTotal" jdbcType="INTEGER" />
+    <result column="read_io_throttled_total" property="readIoThrottledTotal" jdbcType="INTEGER" />
+    <result column="read_bytes_total" property="readBytesTotal" jdbcType="BIGINT" />
+    <result column="read_io_stall_total_ms" property="readIoStallTotalMs" jdbcType="BIGINT" />
+    <result column="read_io_stall_queued_ms" property="readIoStallQueuedMs" jdbcType="BIGINT" />
+    <result column="write_io_queued_total" property="writeIoQueuedTotal" jdbcType="INTEGER" />
+    <result column="write_io_issued_total" property="writeIoIssuedTotal" jdbcType="INTEGER" />
+    <result column="write_io_completed_total" property="writeIoCompletedTotal" jdbcType="INTEGER" />
+    <result column="write_io_throttled_total" property="writeIoThrottledTotal" jdbcType="INTEGER" />
+    <result column="write_bytes_total" property="writeBytesTotal" jdbcType="BIGINT" />
+    <result column="write_io_stall_total_ms" property="writeIoStallTotalMs" jdbcType="BIGINT" />
+    <result column="write_io_stall_queued_ms" property="writeIoStallQueuedMs" jdbcType="BIGINT" />
+    <result column="io_issue_violations_total" property="ioIssueViolationsTotal" jdbcType="INTEGER" />
+    <result column="io_issue_delay_total_ms" property="ioIssueDelayTotalMs" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmResourceGovernorResourcePools" >
+    insert into dm_resource_governor_resource_pools (pool_id, name, statistics_start_time, 
+      total_cpu_usage_ms, cache_memory_kb, compile_memory_kb, 
+      used_memgrant_kb, total_memgrant_count, total_memgrant_timeout_count, 
+      active_memgrant_count, active_memgrant_kb, memgrant_waiter_count, 
+      max_memory_kb, used_memory_kb, target_memory_kb, 
+      out_of_memory_count, min_cpu_percent, max_cpu_percent, 
+      min_memory_percent, max_memory_percent, cap_cpu_percent, 
+      min_iops_per_volume, max_iops_per_volume, read_io_queued_total, 
+      read_io_issued_total, read_io_completed_total, 
+      read_io_throttled_total, read_bytes_total, read_io_stall_total_ms, 
+      read_io_stall_queued_ms, write_io_queued_total, 
+      write_io_issued_total, write_io_completed_total, 
+      write_io_throttled_total, write_bytes_total, 
+      write_io_stall_total_ms, write_io_stall_queued_ms, 
+      io_issue_violations_total, io_issue_delay_total_ms
+      )
+    values (#{poolId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{statisticsStartTime,jdbcType=TIMESTAMP}, 
+      #{totalCpuUsageMs,jdbcType=BIGINT}, #{cacheMemoryKb,jdbcType=BIGINT}, #{compileMemoryKb,jdbcType=BIGINT}, 
+      #{usedMemgrantKb,jdbcType=BIGINT}, #{totalMemgrantCount,jdbcType=BIGINT}, #{totalMemgrantTimeoutCount,jdbcType=BIGINT}, 
+      #{activeMemgrantCount,jdbcType=INTEGER}, #{activeMemgrantKb,jdbcType=BIGINT}, #{memgrantWaiterCount,jdbcType=INTEGER}, 
+      #{maxMemoryKb,jdbcType=BIGINT}, #{usedMemoryKb,jdbcType=BIGINT}, #{targetMemoryKb,jdbcType=BIGINT}, 
+      #{outOfMemoryCount,jdbcType=BIGINT}, #{minCpuPercent,jdbcType=INTEGER}, #{maxCpuPercent,jdbcType=INTEGER}, 
+      #{minMemoryPercent,jdbcType=INTEGER}, #{maxMemoryPercent,jdbcType=INTEGER}, #{capCpuPercent,jdbcType=INTEGER}, 
+      #{minIopsPerVolume,jdbcType=INTEGER}, #{maxIopsPerVolume,jdbcType=INTEGER}, #{readIoQueuedTotal,jdbcType=INTEGER}, 
+      #{readIoIssuedTotal,jdbcType=INTEGER}, #{readIoCompletedTotal,jdbcType=INTEGER}, 
+      #{readIoThrottledTotal,jdbcType=INTEGER}, #{readBytesTotal,jdbcType=BIGINT}, #{readIoStallTotalMs,jdbcType=BIGINT}, 
+      #{readIoStallQueuedMs,jdbcType=BIGINT}, #{writeIoQueuedTotal,jdbcType=INTEGER}, 
+      #{writeIoIssuedTotal,jdbcType=INTEGER}, #{writeIoCompletedTotal,jdbcType=INTEGER}, 
+      #{writeIoThrottledTotal,jdbcType=INTEGER}, #{writeBytesTotal,jdbcType=BIGINT}, 
+      #{writeIoStallTotalMs,jdbcType=BIGINT}, #{writeIoStallQueuedMs,jdbcType=BIGINT}, 
+      #{ioIssueViolationsTotal,jdbcType=INTEGER}, #{ioIssueDelayTotalMs,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmResourceGovernorResourcePools" >
+    insert into dm_resource_governor_resource_pools
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="statisticsStartTime != null" >
+        statistics_start_time,
+      </if>
+      <if test="totalCpuUsageMs != null" >
+        total_cpu_usage_ms,
+      </if>
+      <if test="cacheMemoryKb != null" >
+        cache_memory_kb,
+      </if>
+      <if test="compileMemoryKb != null" >
+        compile_memory_kb,
+      </if>
+      <if test="usedMemgrantKb != null" >
+        used_memgrant_kb,
+      </if>
+      <if test="totalMemgrantCount != null" >
+        total_memgrant_count,
+      </if>
+      <if test="totalMemgrantTimeoutCount != null" >
+        total_memgrant_timeout_count,
+      </if>
+      <if test="activeMemgrantCount != null" >
+        active_memgrant_count,
+      </if>
+      <if test="activeMemgrantKb != null" >
+        active_memgrant_kb,
+      </if>
+      <if test="memgrantWaiterCount != null" >
+        memgrant_waiter_count,
+      </if>
+      <if test="maxMemoryKb != null" >
+        max_memory_kb,
+      </if>
+      <if test="usedMemoryKb != null" >
+        used_memory_kb,
+      </if>
+      <if test="targetMemoryKb != null" >
+        target_memory_kb,
+      </if>
+      <if test="outOfMemoryCount != null" >
+        out_of_memory_count,
+      </if>
+      <if test="minCpuPercent != null" >
+        min_cpu_percent,
+      </if>
+      <if test="maxCpuPercent != null" >
+        max_cpu_percent,
+      </if>
+      <if test="minMemoryPercent != null" >
+        min_memory_percent,
+      </if>
+      <if test="maxMemoryPercent != null" >
+        max_memory_percent,
+      </if>
+      <if test="capCpuPercent != null" >
+        cap_cpu_percent,
+      </if>
+      <if test="minIopsPerVolume != null" >
+        min_iops_per_volume,
+      </if>
+      <if test="maxIopsPerVolume != null" >
+        max_iops_per_volume,
+      </if>
+      <if test="readIoQueuedTotal != null" >
+        read_io_queued_total,
+      </if>
+      <if test="readIoIssuedTotal != null" >
+        read_io_issued_total,
+      </if>
+      <if test="readIoCompletedTotal != null" >
+        read_io_completed_total,
+      </if>
+      <if test="readIoThrottledTotal != null" >
+        read_io_throttled_total,
+      </if>
+      <if test="readBytesTotal != null" >
+        read_bytes_total,
+      </if>
+      <if test="readIoStallTotalMs != null" >
+        read_io_stall_total_ms,
+      </if>
+      <if test="readIoStallQueuedMs != null" >
+        read_io_stall_queued_ms,
+      </if>
+      <if test="writeIoQueuedTotal != null" >
+        write_io_queued_total,
+      </if>
+      <if test="writeIoIssuedTotal != null" >
+        write_io_issued_total,
+      </if>
+      <if test="writeIoCompletedTotal != null" >
+        write_io_completed_total,
+      </if>
+      <if test="writeIoThrottledTotal != null" >
+        write_io_throttled_total,
+      </if>
+      <if test="writeBytesTotal != null" >
+        write_bytes_total,
+      </if>
+      <if test="writeIoStallTotalMs != null" >
+        write_io_stall_total_ms,
+      </if>
+      <if test="writeIoStallQueuedMs != null" >
+        write_io_stall_queued_ms,
+      </if>
+      <if test="ioIssueViolationsTotal != null" >
+        io_issue_violations_total,
+      </if>
+      <if test="ioIssueDelayTotalMs != null" >
+        io_issue_delay_total_ms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="statisticsStartTime != null" >
+        #{statisticsStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalCpuUsageMs != null" >
+        #{totalCpuUsageMs,jdbcType=BIGINT},
+      </if>
+      <if test="cacheMemoryKb != null" >
+        #{cacheMemoryKb,jdbcType=BIGINT},
+      </if>
+      <if test="compileMemoryKb != null" >
+        #{compileMemoryKb,jdbcType=BIGINT},
+      </if>
+      <if test="usedMemgrantKb != null" >
+        #{usedMemgrantKb,jdbcType=BIGINT},
+      </if>
+      <if test="totalMemgrantCount != null" >
+        #{totalMemgrantCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalMemgrantTimeoutCount != null" >
+        #{totalMemgrantTimeoutCount,jdbcType=BIGINT},
+      </if>
+      <if test="activeMemgrantCount != null" >
+        #{activeMemgrantCount,jdbcType=INTEGER},
+      </if>
+      <if test="activeMemgrantKb != null" >
+        #{activeMemgrantKb,jdbcType=BIGINT},
+      </if>
+      <if test="memgrantWaiterCount != null" >
+        #{memgrantWaiterCount,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemoryKb != null" >
+        #{maxMemoryKb,jdbcType=BIGINT},
+      </if>
+      <if test="usedMemoryKb != null" >
+        #{usedMemoryKb,jdbcType=BIGINT},
+      </if>
+      <if test="targetMemoryKb != null" >
+        #{targetMemoryKb,jdbcType=BIGINT},
+      </if>
+      <if test="outOfMemoryCount != null" >
+        #{outOfMemoryCount,jdbcType=BIGINT},
+      </if>
+      <if test="minCpuPercent != null" >
+        #{minCpuPercent,jdbcType=INTEGER},
+      </if>
+      <if test="maxCpuPercent != null" >
+        #{maxCpuPercent,jdbcType=INTEGER},
+      </if>
+      <if test="minMemoryPercent != null" >
+        #{minMemoryPercent,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemoryPercent != null" >
+        #{maxMemoryPercent,jdbcType=INTEGER},
+      </if>
+      <if test="capCpuPercent != null" >
+        #{capCpuPercent,jdbcType=INTEGER},
+      </if>
+      <if test="minIopsPerVolume != null" >
+        #{minIopsPerVolume,jdbcType=INTEGER},
+      </if>
+      <if test="maxIopsPerVolume != null" >
+        #{maxIopsPerVolume,jdbcType=INTEGER},
+      </if>
+      <if test="readIoQueuedTotal != null" >
+        #{readIoQueuedTotal,jdbcType=INTEGER},
+      </if>
+      <if test="readIoIssuedTotal != null" >
+        #{readIoIssuedTotal,jdbcType=INTEGER},
+      </if>
+      <if test="readIoCompletedTotal != null" >
+        #{readIoCompletedTotal,jdbcType=INTEGER},
+      </if>
+      <if test="readIoThrottledTotal != null" >
+        #{readIoThrottledTotal,jdbcType=INTEGER},
+      </if>
+      <if test="readBytesTotal != null" >
+        #{readBytesTotal,jdbcType=BIGINT},
+      </if>
+      <if test="readIoStallTotalMs != null" >
+        #{readIoStallTotalMs,jdbcType=BIGINT},
+      </if>
+      <if test="readIoStallQueuedMs != null" >
+        #{readIoStallQueuedMs,jdbcType=BIGINT},
+      </if>
+      <if test="writeIoQueuedTotal != null" >
+        #{writeIoQueuedTotal,jdbcType=INTEGER},
+      </if>
+      <if test="writeIoIssuedTotal != null" >
+        #{writeIoIssuedTotal,jdbcType=INTEGER},
+      </if>
+      <if test="writeIoCompletedTotal != null" >
+        #{writeIoCompletedTotal,jdbcType=INTEGER},
+      </if>
+      <if test="writeIoThrottledTotal != null" >
+        #{writeIoThrottledTotal,jdbcType=INTEGER},
+      </if>
+      <if test="writeBytesTotal != null" >
+        #{writeBytesTotal,jdbcType=BIGINT},
+      </if>
+      <if test="writeIoStallTotalMs != null" >
+        #{writeIoStallTotalMs,jdbcType=BIGINT},
+      </if>
+      <if test="writeIoStallQueuedMs != null" >
+        #{writeIoStallQueuedMs,jdbcType=BIGINT},
+      </if>
+      <if test="ioIssueViolationsTotal != null" >
+        #{ioIssueViolationsTotal,jdbcType=INTEGER},
+      </if>
+      <if test="ioIssueDelayTotalMs != null" >
+        #{ioIssueDelayTotalMs,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

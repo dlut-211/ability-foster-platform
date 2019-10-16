@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmLogpoolHashentriesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolHashentries" >
+    <result column="bucket_no" property="bucketNo" jdbcType="INTEGER" />
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="recovery_unit_id" property="recoveryUnitId" jdbcType="INTEGER" />
+    <result column="log_block_id" property="logBlockId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolHashentries" extends="BaseResultMap" >
+    <result column="cache_buffer" property="cacheBuffer" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    cache_buffer
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolHashentries" >
+    insert into dm_logpool_hashentries (bucket_no, database_id, recovery_unit_id, 
+      log_block_id, cache_buffer)
+    values (#{bucketNo,jdbcType=INTEGER}, #{databaseId,jdbcType=INTEGER}, #{recoveryUnitId,jdbcType=INTEGER}, 
+      #{logBlockId,jdbcType=BIGINT}, #{cacheBuffer,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolHashentries" >
+    insert into dm_logpool_hashentries
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bucketNo != null" >
+        bucket_no,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="recoveryUnitId != null" >
+        recovery_unit_id,
+      </if>
+      <if test="logBlockId != null" >
+        log_block_id,
+      </if>
+      <if test="cacheBuffer != null" >
+        cache_buffer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bucketNo != null" >
+        #{bucketNo,jdbcType=INTEGER},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="recoveryUnitId != null" >
+        #{recoveryUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="logBlockId != null" >
+        #{logBlockId,jdbcType=BIGINT},
+      </if>
+      <if test="cacheBuffer != null" >
+        #{cacheBuffer,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

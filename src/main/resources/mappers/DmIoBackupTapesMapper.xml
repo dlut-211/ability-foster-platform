@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmIoBackupTapesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmIoBackupTapes" >
+    <result column="physical_device_name" property="physicalDeviceName" jdbcType="NVARCHAR" />
+    <result column="logical_device_name" property="logicalDeviceName" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_desc" property="statusDesc" jdbcType="NVARCHAR" />
+    <result column="mount_request_time" property="mountRequestTime" jdbcType="TIMESTAMP" />
+    <result column="mount_expiration_time" property="mountExpirationTime" jdbcType="TIMESTAMP" />
+    <result column="database_name" property="databaseName" jdbcType="NVARCHAR" />
+    <result column="spid" property="spid" jdbcType="INTEGER" />
+    <result column="command" property="command" jdbcType="INTEGER" />
+    <result column="command_desc" property="commandDesc" jdbcType="NVARCHAR" />
+    <result column="media_family_id" property="mediaFamilyId" jdbcType="INTEGER" />
+    <result column="media_set_name" property="mediaSetName" jdbcType="NVARCHAR" />
+    <result column="media_set_guid" property="mediaSetGuid" jdbcType="CHAR" />
+    <result column="media_sequence_number" property="mediaSequenceNumber" jdbcType="INTEGER" />
+    <result column="tape_operation" property="tapeOperation" jdbcType="INTEGER" />
+    <result column="tape_operation_desc" property="tapeOperationDesc" jdbcType="NVARCHAR" />
+    <result column="mount_request_type" property="mountRequestType" jdbcType="INTEGER" />
+    <result column="mount_request_type_desc" property="mountRequestTypeDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmIoBackupTapes" >
+    insert into dm_io_backup_tapes (physical_device_name, logical_device_name, 
+      status, status_desc, mount_request_time, 
+      mount_expiration_time, database_name, spid, 
+      command, command_desc, media_family_id, 
+      media_set_name, media_set_guid, media_sequence_number, 
+      tape_operation, tape_operation_desc, mount_request_type, 
+      mount_request_type_desc)
+    values (#{physicalDeviceName,jdbcType=NVARCHAR}, #{logicalDeviceName,jdbcType=NVARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{statusDesc,jdbcType=NVARCHAR}, #{mountRequestTime,jdbcType=TIMESTAMP}, 
+      #{mountExpirationTime,jdbcType=TIMESTAMP}, #{databaseName,jdbcType=NVARCHAR}, #{spid,jdbcType=INTEGER}, 
+      #{command,jdbcType=INTEGER}, #{commandDesc,jdbcType=NVARCHAR}, #{mediaFamilyId,jdbcType=INTEGER}, 
+      #{mediaSetName,jdbcType=NVARCHAR}, #{mediaSetGuid,jdbcType=CHAR}, #{mediaSequenceNumber,jdbcType=INTEGER}, 
+      #{tapeOperation,jdbcType=INTEGER}, #{tapeOperationDesc,jdbcType=NVARCHAR}, #{mountRequestType,jdbcType=INTEGER}, 
+      #{mountRequestTypeDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmIoBackupTapes" >
+    insert into dm_io_backup_tapes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="physicalDeviceName != null" >
+        physical_device_name,
+      </if>
+      <if test="logicalDeviceName != null" >
+        logical_device_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusDesc != null" >
+        status_desc,
+      </if>
+      <if test="mountRequestTime != null" >
+        mount_request_time,
+      </if>
+      <if test="mountExpirationTime != null" >
+        mount_expiration_time,
+      </if>
+      <if test="databaseName != null" >
+        database_name,
+      </if>
+      <if test="spid != null" >
+        spid,
+      </if>
+      <if test="command != null" >
+        command,
+      </if>
+      <if test="commandDesc != null" >
+        command_desc,
+      </if>
+      <if test="mediaFamilyId != null" >
+        media_family_id,
+      </if>
+      <if test="mediaSetName != null" >
+        media_set_name,
+      </if>
+      <if test="mediaSetGuid != null" >
+        media_set_guid,
+      </if>
+      <if test="mediaSequenceNumber != null" >
+        media_sequence_number,
+      </if>
+      <if test="tapeOperation != null" >
+        tape_operation,
+      </if>
+      <if test="tapeOperationDesc != null" >
+        tape_operation_desc,
+      </if>
+      <if test="mountRequestType != null" >
+        mount_request_type,
+      </if>
+      <if test="mountRequestTypeDesc != null" >
+        mount_request_type_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="physicalDeviceName != null" >
+        #{physicalDeviceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="logicalDeviceName != null" >
+        #{logicalDeviceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusDesc != null" >
+        #{statusDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="mountRequestTime != null" >
+        #{mountRequestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mountExpirationTime != null" >
+        #{mountExpirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="databaseName != null" >
+        #{databaseName,jdbcType=NVARCHAR},
+      </if>
+      <if test="spid != null" >
+        #{spid,jdbcType=INTEGER},
+      </if>
+      <if test="command != null" >
+        #{command,jdbcType=INTEGER},
+      </if>
+      <if test="commandDesc != null" >
+        #{commandDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="mediaFamilyId != null" >
+        #{mediaFamilyId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaSetName != null" >
+        #{mediaSetName,jdbcType=NVARCHAR},
+      </if>
+      <if test="mediaSetGuid != null" >
+        #{mediaSetGuid,jdbcType=CHAR},
+      </if>
+      <if test="mediaSequenceNumber != null" >
+        #{mediaSequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="tapeOperation != null" >
+        #{tapeOperation,jdbcType=INTEGER},
+      </if>
+      <if test="tapeOperationDesc != null" >
+        #{tapeOperationDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="mountRequestType != null" >
+        #{mountRequestType,jdbcType=INTEGER},
+      </if>
+      <if test="mountRequestTypeDesc != null" >
+        #{mountRequestTypeDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

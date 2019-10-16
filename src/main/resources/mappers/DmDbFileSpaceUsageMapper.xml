@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbFileSpaceUsageMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbFileSpaceUsage" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="file_id" property="fileId" jdbcType="SMALLINT" />
+    <result column="filegroup_id" property="filegroupId" jdbcType="SMALLINT" />
+    <result column="total_page_count" property="totalPageCount" jdbcType="BIGINT" />
+    <result column="allocated_extent_page_count" property="allocatedExtentPageCount" jdbcType="BIGINT" />
+    <result column="unallocated_extent_page_count" property="unallocatedExtentPageCount" jdbcType="BIGINT" />
+    <result column="version_store_reserved_page_count" property="versionStoreReservedPageCount" jdbcType="BIGINT" />
+    <result column="user_object_reserved_page_count" property="userObjectReservedPageCount" jdbcType="BIGINT" />
+    <result column="internal_object_reserved_page_count" property="internalObjectReservedPageCount" jdbcType="BIGINT" />
+    <result column="mixed_extent_page_count" property="mixedExtentPageCount" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbFileSpaceUsage" >
+    insert into dm_db_file_space_usage (database_id, file_id, filegroup_id, 
+      total_page_count, allocated_extent_page_count, 
+      unallocated_extent_page_count, version_store_reserved_page_count, 
+      user_object_reserved_page_count, internal_object_reserved_page_count, 
+      mixed_extent_page_count)
+    values (#{databaseId,jdbcType=INTEGER}, #{fileId,jdbcType=SMALLINT}, #{filegroupId,jdbcType=SMALLINT}, 
+      #{totalPageCount,jdbcType=BIGINT}, #{allocatedExtentPageCount,jdbcType=BIGINT}, 
+      #{unallocatedExtentPageCount,jdbcType=BIGINT}, #{versionStoreReservedPageCount,jdbcType=BIGINT}, 
+      #{userObjectReservedPageCount,jdbcType=BIGINT}, #{internalObjectReservedPageCount,jdbcType=BIGINT}, 
+      #{mixedExtentPageCount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbFileSpaceUsage" >
+    insert into dm_db_file_space_usage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="filegroupId != null" >
+        filegroup_id,
+      </if>
+      <if test="totalPageCount != null" >
+        total_page_count,
+      </if>
+      <if test="allocatedExtentPageCount != null" >
+        allocated_extent_page_count,
+      </if>
+      <if test="unallocatedExtentPageCount != null" >
+        unallocated_extent_page_count,
+      </if>
+      <if test="versionStoreReservedPageCount != null" >
+        version_store_reserved_page_count,
+      </if>
+      <if test="userObjectReservedPageCount != null" >
+        user_object_reserved_page_count,
+      </if>
+      <if test="internalObjectReservedPageCount != null" >
+        internal_object_reserved_page_count,
+      </if>
+      <if test="mixedExtentPageCount != null" >
+        mixed_extent_page_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="fileId != null" >
+        #{fileId,jdbcType=SMALLINT},
+      </if>
+      <if test="filegroupId != null" >
+        #{filegroupId,jdbcType=SMALLINT},
+      </if>
+      <if test="totalPageCount != null" >
+        #{totalPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="allocatedExtentPageCount != null" >
+        #{allocatedExtentPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="unallocatedExtentPageCount != null" >
+        #{unallocatedExtentPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="versionStoreReservedPageCount != null" >
+        #{versionStoreReservedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="userObjectReservedPageCount != null" >
+        #{userObjectReservedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="internalObjectReservedPageCount != null" >
+        #{internalObjectReservedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="mixedExtentPageCount != null" >
+        #{mixedExtentPageCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

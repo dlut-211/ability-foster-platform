@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VTestpaperdetailMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VTestpaperdetail" >
+    <result column="Id" property="id" jdbcType="INTEGER" />
+    <result column="DetailNumber" property="detailnumber" jdbcType="INTEGER" />
+    <result column="Score" property="score" jdbcType="INTEGER" />
+    <result column="TestPaperId" property="testpaperid" jdbcType="INTEGER" />
+    <result column="Title" property="title" jdbcType="NVARCHAR" />
+    <result column="DetailType" property="detailtype" jdbcType="INTEGER" />
+    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
+    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="KnowledgeName" property="knowledgename" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.VTestpaperdetail" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    VersionNumber
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VTestpaperdetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into V_TestPaperDetail (Id, DetailNumber, Score, 
+      TestPaperId, Title, DetailType, 
+      CreatedBy, CreatedOn, ModifiedBy, 
+      ModifiedOn, KnowledgeName, VersionNumber
+      )
+    values (#{id,jdbcType=INTEGER}, #{detailnumber,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{testpaperid,jdbcType=INTEGER}, #{title,jdbcType=NVARCHAR}, #{detailtype,jdbcType=INTEGER}, 
+      #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, 
+      #{modifiedon,jdbcType=TIMESTAMP}, #{knowledgename,jdbcType=NVARCHAR}, #{versionnumber,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VTestpaperdetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into V_TestPaperDetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="detailnumber != null" >
+        DetailNumber,
+      </if>
+      <if test="score != null" >
+        Score,
+      </if>
+      <if test="testpaperid != null" >
+        TestPaperId,
+      </if>
+      <if test="title != null" >
+        Title,
+      </if>
+      <if test="detailtype != null" >
+        DetailType,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy,
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn,
+      </if>
+      <if test="knowledgename != null" >
+        KnowledgeName,
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="detailnumber != null" >
+        #{detailnumber,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="testpaperid != null" >
+        #{testpaperid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=NVARCHAR},
+      </if>
+      <if test="detailtype != null" >
+        #{detailtype,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="knowledgename != null" >
+        #{knowledgename,jdbcType=NVARCHAR},
+      </if>
+      <if test="versionnumber != null" >
+        #{versionnumber,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

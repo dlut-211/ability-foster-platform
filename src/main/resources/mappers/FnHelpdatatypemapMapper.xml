@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FnHelpdatatypemapMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FnHelpdatatypemap" >
+    <result column="mapping_id" property="mappingId" jdbcType="INTEGER" />
+    <result column="source_dbms" property="sourceDbms" jdbcType="NVARCHAR" />
+    <result column="source_version" property="sourceVersion" jdbcType="NVARCHAR" />
+    <result column="source_type" property="sourceType" jdbcType="NVARCHAR" />
+    <result column="source_length_min" property="sourceLengthMin" jdbcType="BIGINT" />
+    <result column="source_length_max" property="sourceLengthMax" jdbcType="BIGINT" />
+    <result column="source_precision_min" property="sourcePrecisionMin" jdbcType="BIGINT" />
+    <result column="source_precision_max" property="sourcePrecisionMax" jdbcType="BIGINT" />
+    <result column="source_scale_min" property="sourceScaleMin" jdbcType="INTEGER" />
+    <result column="source_scale_max" property="sourceScaleMax" jdbcType="INTEGER" />
+    <result column="source_nullable" property="sourceNullable" jdbcType="BIT" />
+    <result column="source_createparams" property="sourceCreateparams" jdbcType="INTEGER" />
+    <result column="destination_dbms" property="destinationDbms" jdbcType="NVARCHAR" />
+    <result column="destination_version" property="destinationVersion" jdbcType="NVARCHAR" />
+    <result column="destination_type" property="destinationType" jdbcType="NVARCHAR" />
+    <result column="destination_length" property="destinationLength" jdbcType="BIGINT" />
+    <result column="destination_precision" property="destinationPrecision" jdbcType="BIGINT" />
+    <result column="destination_scale" property="destinationScale" jdbcType="INTEGER" />
+    <result column="destination_nullable" property="destinationNullable" jdbcType="BIT" />
+    <result column="destination_createparams" property="destinationCreateparams" jdbcType="INTEGER" />
+    <result column="dataloss" property="dataloss" jdbcType="BIT" />
+    <result column="is_default" property="isDefault" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnHelpdatatypemap" >
+    insert into fn_helpdatatypemap (mapping_id, source_dbms, source_version, 
+      source_type, source_length_min, source_length_max, 
+      source_precision_min, source_precision_max, source_scale_min, 
+      source_scale_max, source_nullable, source_createparams, 
+      destination_dbms, destination_version, 
+      destination_type, destination_length, destination_precision, 
+      destination_scale, destination_nullable, destination_createparams, 
+      dataloss, is_default)
+    values (#{mappingId,jdbcType=INTEGER}, #{sourceDbms,jdbcType=NVARCHAR}, #{sourceVersion,jdbcType=NVARCHAR}, 
+      #{sourceType,jdbcType=NVARCHAR}, #{sourceLengthMin,jdbcType=BIGINT}, #{sourceLengthMax,jdbcType=BIGINT}, 
+      #{sourcePrecisionMin,jdbcType=BIGINT}, #{sourcePrecisionMax,jdbcType=BIGINT}, #{sourceScaleMin,jdbcType=INTEGER}, 
+      #{sourceScaleMax,jdbcType=INTEGER}, #{sourceNullable,jdbcType=BIT}, #{sourceCreateparams,jdbcType=INTEGER}, 
+      #{destinationDbms,jdbcType=NVARCHAR}, #{destinationVersion,jdbcType=NVARCHAR}, 
+      #{destinationType,jdbcType=NVARCHAR}, #{destinationLength,jdbcType=BIGINT}, #{destinationPrecision,jdbcType=BIGINT}, 
+      #{destinationScale,jdbcType=INTEGER}, #{destinationNullable,jdbcType=BIT}, #{destinationCreateparams,jdbcType=INTEGER}, 
+      #{dataloss,jdbcType=BIT}, #{isDefault,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnHelpdatatypemap" >
+    insert into fn_helpdatatypemap
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mappingId != null" >
+        mapping_id,
+      </if>
+      <if test="sourceDbms != null" >
+        source_dbms,
+      </if>
+      <if test="sourceVersion != null" >
+        source_version,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="sourceLengthMin != null" >
+        source_length_min,
+      </if>
+      <if test="sourceLengthMax != null" >
+        source_length_max,
+      </if>
+      <if test="sourcePrecisionMin != null" >
+        source_precision_min,
+      </if>
+      <if test="sourcePrecisionMax != null" >
+        source_precision_max,
+      </if>
+      <if test="sourceScaleMin != null" >
+        source_scale_min,
+      </if>
+      <if test="sourceScaleMax != null" >
+        source_scale_max,
+      </if>
+      <if test="sourceNullable != null" >
+        source_nullable,
+      </if>
+      <if test="sourceCreateparams != null" >
+        source_createparams,
+      </if>
+      <if test="destinationDbms != null" >
+        destination_dbms,
+      </if>
+      <if test="destinationVersion != null" >
+        destination_version,
+      </if>
+      <if test="destinationType != null" >
+        destination_type,
+      </if>
+      <if test="destinationLength != null" >
+        destination_length,
+      </if>
+      <if test="destinationPrecision != null" >
+        destination_precision,
+      </if>
+      <if test="destinationScale != null" >
+        destination_scale,
+      </if>
+      <if test="destinationNullable != null" >
+        destination_nullable,
+      </if>
+      <if test="destinationCreateparams != null" >
+        destination_createparams,
+      </if>
+      <if test="dataloss != null" >
+        dataloss,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mappingId != null" >
+        #{mappingId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceDbms != null" >
+        #{sourceDbms,jdbcType=NVARCHAR},
+      </if>
+      <if test="sourceVersion != null" >
+        #{sourceVersion,jdbcType=NVARCHAR},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=NVARCHAR},
+      </if>
+      <if test="sourceLengthMin != null" >
+        #{sourceLengthMin,jdbcType=BIGINT},
+      </if>
+      <if test="sourceLengthMax != null" >
+        #{sourceLengthMax,jdbcType=BIGINT},
+      </if>
+      <if test="sourcePrecisionMin != null" >
+        #{sourcePrecisionMin,jdbcType=BIGINT},
+      </if>
+      <if test="sourcePrecisionMax != null" >
+        #{sourcePrecisionMax,jdbcType=BIGINT},
+      </if>
+      <if test="sourceScaleMin != null" >
+        #{sourceScaleMin,jdbcType=INTEGER},
+      </if>
+      <if test="sourceScaleMax != null" >
+        #{sourceScaleMax,jdbcType=INTEGER},
+      </if>
+      <if test="sourceNullable != null" >
+        #{sourceNullable,jdbcType=BIT},
+      </if>
+      <if test="sourceCreateparams != null" >
+        #{sourceCreateparams,jdbcType=INTEGER},
+      </if>
+      <if test="destinationDbms != null" >
+        #{destinationDbms,jdbcType=NVARCHAR},
+      </if>
+      <if test="destinationVersion != null" >
+        #{destinationVersion,jdbcType=NVARCHAR},
+      </if>
+      <if test="destinationType != null" >
+        #{destinationType,jdbcType=NVARCHAR},
+      </if>
+      <if test="destinationLength != null" >
+        #{destinationLength,jdbcType=BIGINT},
+      </if>
+      <if test="destinationPrecision != null" >
+        #{destinationPrecision,jdbcType=BIGINT},
+      </if>
+      <if test="destinationScale != null" >
+        #{destinationScale,jdbcType=INTEGER},
+      </if>
+      <if test="destinationNullable != null" >
+        #{destinationNullable,jdbcType=BIT},
+      </if>
+      <if test="destinationCreateparams != null" >
+        #{destinationCreateparams,jdbcType=INTEGER},
+      </if>
+      <if test="dataloss != null" >
+        #{dataloss,jdbcType=BIT},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

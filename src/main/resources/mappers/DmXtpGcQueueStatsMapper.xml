@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmXtpGcQueueStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpGcQueueStats" >
+    <result column="queue_id" property="queueId" jdbcType="INTEGER" />
+    <result column="total_enqueues" property="totalEnqueues" jdbcType="BIGINT" />
+    <result column="total_dequeues" property="totalDequeues" jdbcType="BIGINT" />
+    <result column="current_queue_depth" property="currentQueueDepth" jdbcType="BIGINT" />
+    <result column="maximum_queue_depth" property="maximumQueueDepth" jdbcType="BIGINT" />
+    <result column="last_service_ticks" property="lastServiceTicks" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpGcQueueStats" >
+    insert into dm_xtp_gc_queue_stats (queue_id, total_enqueues, total_dequeues, 
+      current_queue_depth, maximum_queue_depth, last_service_ticks
+      )
+    values (#{queueId,jdbcType=INTEGER}, #{totalEnqueues,jdbcType=BIGINT}, #{totalDequeues,jdbcType=BIGINT}, 
+      #{currentQueueDepth,jdbcType=BIGINT}, #{maximumQueueDepth,jdbcType=BIGINT}, #{lastServiceTicks,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpGcQueueStats" >
+    insert into dm_xtp_gc_queue_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="queueId != null" >
+        queue_id,
+      </if>
+      <if test="totalEnqueues != null" >
+        total_enqueues,
+      </if>
+      <if test="totalDequeues != null" >
+        total_dequeues,
+      </if>
+      <if test="currentQueueDepth != null" >
+        current_queue_depth,
+      </if>
+      <if test="maximumQueueDepth != null" >
+        maximum_queue_depth,
+      </if>
+      <if test="lastServiceTicks != null" >
+        last_service_ticks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="queueId != null" >
+        #{queueId,jdbcType=INTEGER},
+      </if>
+      <if test="totalEnqueues != null" >
+        #{totalEnqueues,jdbcType=BIGINT},
+      </if>
+      <if test="totalDequeues != null" >
+        #{totalDequeues,jdbcType=BIGINT},
+      </if>
+      <if test="currentQueueDepth != null" >
+        #{currentQueueDepth,jdbcType=BIGINT},
+      </if>
+      <if test="maximumQueueDepth != null" >
+        #{maximumQueueDepth,jdbcType=BIGINT},
+      </if>
+      <if test="lastServiceTicks != null" >
+        #{lastServiceTicks,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

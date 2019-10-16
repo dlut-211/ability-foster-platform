@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysloginsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syslogins" >
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updatedate" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="accdate" property="accdate" jdbcType="TIMESTAMP" />
+    <result column="totcpu" property="totcpu" jdbcType="INTEGER" />
+    <result column="totio" property="totio" jdbcType="INTEGER" />
+    <result column="spacelimit" property="spacelimit" jdbcType="INTEGER" />
+    <result column="timelimit" property="timelimit" jdbcType="INTEGER" />
+    <result column="resultlimit" property="resultlimit" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="dbname" property="dbname" jdbcType="NVARCHAR" />
+    <result column="password" property="password" jdbcType="NVARCHAR" />
+    <result column="language" property="language" jdbcType="NVARCHAR" />
+    <result column="denylogin" property="denylogin" jdbcType="INTEGER" />
+    <result column="hasaccess" property="hasaccess" jdbcType="INTEGER" />
+    <result column="isntname" property="isntname" jdbcType="INTEGER" />
+    <result column="isntgroup" property="isntgroup" jdbcType="INTEGER" />
+    <result column="isntuser" property="isntuser" jdbcType="INTEGER" />
+    <result column="sysadmin" property="sysadmin" jdbcType="INTEGER" />
+    <result column="securityadmin" property="securityadmin" jdbcType="INTEGER" />
+    <result column="serveradmin" property="serveradmin" jdbcType="INTEGER" />
+    <result column="setupadmin" property="setupadmin" jdbcType="INTEGER" />
+    <result column="processadmin" property="processadmin" jdbcType="INTEGER" />
+    <result column="diskadmin" property="diskadmin" jdbcType="INTEGER" />
+    <result column="dbcreator" property="dbcreator" jdbcType="INTEGER" />
+    <result column="bulkadmin" property="bulkadmin" jdbcType="INTEGER" />
+    <result column="loginname" property="loginname" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Syslogins" extends="BaseResultMap" >
+    <result column="sid" property="sid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sid
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syslogins" >
+    insert into syslogins (status, createdate, updatedate, 
+      accdate, totcpu, totio, 
+      spacelimit, timelimit, resultlimit, 
+      name, dbname, password, 
+      language, denylogin, hasaccess, 
+      isntname, isntgroup, isntuser, 
+      sysadmin, securityadmin, serveradmin, 
+      setupadmin, processadmin, diskadmin, 
+      dbcreator, bulkadmin, loginname, 
+      sid)
+    values (#{status,jdbcType=SMALLINT}, #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, 
+      #{accdate,jdbcType=TIMESTAMP}, #{totcpu,jdbcType=INTEGER}, #{totio,jdbcType=INTEGER}, 
+      #{spacelimit,jdbcType=INTEGER}, #{timelimit,jdbcType=INTEGER}, #{resultlimit,jdbcType=INTEGER}, 
+      #{name,jdbcType=NVARCHAR}, #{dbname,jdbcType=NVARCHAR}, #{password,jdbcType=NVARCHAR}, 
+      #{language,jdbcType=NVARCHAR}, #{denylogin,jdbcType=INTEGER}, #{hasaccess,jdbcType=INTEGER}, 
+      #{isntname,jdbcType=INTEGER}, #{isntgroup,jdbcType=INTEGER}, #{isntuser,jdbcType=INTEGER}, 
+      #{sysadmin,jdbcType=INTEGER}, #{securityadmin,jdbcType=INTEGER}, #{serveradmin,jdbcType=INTEGER}, 
+      #{setupadmin,jdbcType=INTEGER}, #{processadmin,jdbcType=INTEGER}, #{diskadmin,jdbcType=INTEGER}, 
+      #{dbcreator,jdbcType=INTEGER}, #{bulkadmin,jdbcType=INTEGER}, #{loginname,jdbcType=NVARCHAR}, 
+      #{sid,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syslogins" >
+    insert into syslogins
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+      <if test="updatedate != null" >
+        updatedate,
+      </if>
+      <if test="accdate != null" >
+        accdate,
+      </if>
+      <if test="totcpu != null" >
+        totcpu,
+      </if>
+      <if test="totio != null" >
+        totio,
+      </if>
+      <if test="spacelimit != null" >
+        spacelimit,
+      </if>
+      <if test="timelimit != null" >
+        timelimit,
+      </if>
+      <if test="resultlimit != null" >
+        resultlimit,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="dbname != null" >
+        dbname,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="language != null" >
+        language,
+      </if>
+      <if test="denylogin != null" >
+        denylogin,
+      </if>
+      <if test="hasaccess != null" >
+        hasaccess,
+      </if>
+      <if test="isntname != null" >
+        isntname,
+      </if>
+      <if test="isntgroup != null" >
+        isntgroup,
+      </if>
+      <if test="isntuser != null" >
+        isntuser,
+      </if>
+      <if test="sysadmin != null" >
+        sysadmin,
+      </if>
+      <if test="securityadmin != null" >
+        securityadmin,
+      </if>
+      <if test="serveradmin != null" >
+        serveradmin,
+      </if>
+      <if test="setupadmin != null" >
+        setupadmin,
+      </if>
+      <if test="processadmin != null" >
+        processadmin,
+      </if>
+      <if test="diskadmin != null" >
+        diskadmin,
+      </if>
+      <if test="dbcreator != null" >
+        dbcreator,
+      </if>
+      <if test="bulkadmin != null" >
+        bulkadmin,
+      </if>
+      <if test="loginname != null" >
+        loginname,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accdate != null" >
+        #{accdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totcpu != null" >
+        #{totcpu,jdbcType=INTEGER},
+      </if>
+      <if test="totio != null" >
+        #{totio,jdbcType=INTEGER},
+      </if>
+      <if test="spacelimit != null" >
+        #{spacelimit,jdbcType=INTEGER},
+      </if>
+      <if test="timelimit != null" >
+        #{timelimit,jdbcType=INTEGER},
+      </if>
+      <if test="resultlimit != null" >
+        #{resultlimit,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="dbname != null" >
+        #{dbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=NVARCHAR},
+      </if>
+      <if test="denylogin != null" >
+        #{denylogin,jdbcType=INTEGER},
+      </if>
+      <if test="hasaccess != null" >
+        #{hasaccess,jdbcType=INTEGER},
+      </if>
+      <if test="isntname != null" >
+        #{isntname,jdbcType=INTEGER},
+      </if>
+      <if test="isntgroup != null" >
+        #{isntgroup,jdbcType=INTEGER},
+      </if>
+      <if test="isntuser != null" >
+        #{isntuser,jdbcType=INTEGER},
+      </if>
+      <if test="sysadmin != null" >
+        #{sysadmin,jdbcType=INTEGER},
+      </if>
+      <if test="securityadmin != null" >
+        #{securityadmin,jdbcType=INTEGER},
+      </if>
+      <if test="serveradmin != null" >
+        #{serveradmin,jdbcType=INTEGER},
+      </if>
+      <if test="setupadmin != null" >
+        #{setupadmin,jdbcType=INTEGER},
+      </if>
+      <if test="processadmin != null" >
+        #{processadmin,jdbcType=INTEGER},
+      </if>
+      <if test="diskadmin != null" >
+        #{diskadmin,jdbcType=INTEGER},
+      </if>
+      <if test="dbcreator != null" >
+        #{dbcreator,jdbcType=INTEGER},
+      </if>
+      <if test="bulkadmin != null" >
+        #{bulkadmin,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=NVARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

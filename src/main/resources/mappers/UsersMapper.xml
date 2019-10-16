@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Password" property="password" jdbcType="NVARCHAR" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="UserName" property="username" jdbcType="NVARCHAR" />
+    <result column="LoginAccount" property="loginaccount" jdbcType="NVARCHAR" />
+    <result column="LastLoginTime" property="lastlogintime" jdbcType="TIMESTAMP" />
+    <result column="Token" property="token" jdbcType="NVARCHAR" />
+    <result column="TokenDeadLine" property="tokendeadline" jdbcType="TIMESTAMP" />
+    <result column="MToken" property="mtoken" jdbcType="NVARCHAR" />
+    <result column="MTokenDeadLine" property="mtokendeadline" jdbcType="TIMESTAMP" />
+    <result column="IsCustomerService" property="iscustomerservice" jdbcType="BIT" />
+    <result column="IsDeleted" property="isdeleted" jdbcType="BIT" />
+    <result column="CompanyId" property="companyid" jdbcType="INTEGER" />
+    <result column="BranchId" property="branchid" jdbcType="INTEGER" />
+    <result column="Mobile" property="mobile" jdbcType="NVARCHAR" />
+    <result column="Remark" property="remark" jdbcType="NVARCHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
+    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Users" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Password, Status, UserName, LoginAccount, LastLoginTime, Token, TokenDeadLine, 
+    MToken, MTokenDeadLine, IsCustomerService, IsDeleted, CompanyId, BranchId, Mobile, 
+    Remark, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+  </sql>
+  <sql id="Blob_Column_List" >
+    VersionNumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Users
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Users
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Users (Id, Password, Status, 
+      UserName, LoginAccount, LastLoginTime, 
+      Token, TokenDeadLine, MToken, 
+      MTokenDeadLine, IsCustomerService, IsDeleted, 
+      CompanyId, BranchId, Mobile, 
+      Remark, CreatedBy, CreatedOn, 
+      ModifiedBy, ModifiedOn, VersionNumber
+      )
+    values (#{id,jdbcType=INTEGER}, #{password,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{username,jdbcType=NVARCHAR}, #{loginaccount,jdbcType=NVARCHAR}, #{lastlogintime,jdbcType=TIMESTAMP}, 
+      #{token,jdbcType=NVARCHAR}, #{tokendeadline,jdbcType=TIMESTAMP}, #{mtoken,jdbcType=NVARCHAR}, 
+      #{mtokendeadline,jdbcType=TIMESTAMP}, #{iscustomerservice,jdbcType=BIT}, #{isdeleted,jdbcType=BIT}, 
+      #{companyid,jdbcType=INTEGER}, #{branchid,jdbcType=INTEGER}, #{mobile,jdbcType=NVARCHAR}, 
+      #{remark,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="username != null" >
+        UserName,
+      </if>
+      <if test="loginaccount != null" >
+        LoginAccount,
+      </if>
+      <if test="lastlogintime != null" >
+        LastLoginTime,
+      </if>
+      <if test="token != null" >
+        Token,
+      </if>
+      <if test="tokendeadline != null" >
+        TokenDeadLine,
+      </if>
+      <if test="mtoken != null" >
+        MToken,
+      </if>
+      <if test="mtokendeadline != null" >
+        MTokenDeadLine,
+      </if>
+      <if test="iscustomerservice != null" >
+        IsCustomerService,
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted,
+      </if>
+      <if test="companyid != null" >
+        CompanyId,
+      </if>
+      <if test="branchid != null" >
+        BranchId,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy,
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn,
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="password != null" >
+        #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="loginaccount != null" >
+        #{loginaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastlogintime != null" >
+        #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=NVARCHAR},
+      </if>
+      <if test="tokendeadline != null" >
+        #{tokendeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtoken != null" >
+        #{mtoken,jdbcType=NVARCHAR},
+      </if>
+      <if test="mtokendeadline != null" >
+        #{mtokendeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iscustomerservice != null" >
+        #{iscustomerservice,jdbcType=BIT},
+      </if>
+      <if test="isdeleted != null" >
+        #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        #{versionnumber,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
+    update Users
+    <set >
+      <if test="password != null" >
+        Password = #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        UserName = #{username,jdbcType=NVARCHAR},
+      </if>
+      <if test="loginaccount != null" >
+        LoginAccount = #{loginaccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastlogintime != null" >
+        LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="token != null" >
+        Token = #{token,jdbcType=NVARCHAR},
+      </if>
+      <if test="tokendeadline != null" >
+        TokenDeadLine = #{tokendeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mtoken != null" >
+        MToken = #{mtoken,jdbcType=NVARCHAR},
+      </if>
+      <if test="mtokendeadline != null" >
+        MTokenDeadLine = #{mtokendeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iscustomerservice != null" >
+        IsCustomerService = #{iscustomerservice,jdbcType=BIT},
+      </if>
+      <if test="isdeleted != null" >
+        IsDeleted = #{isdeleted,jdbcType=BIT},
+      </if>
+      <if test="companyid != null" >
+        CompanyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="branchid != null" >
+        BranchId = #{branchid,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        Mobile = #{mobile,jdbcType=NVARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=NVARCHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
+    update Users
+    set Password = #{password,jdbcType=NVARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=NVARCHAR},
+      LoginAccount = #{loginaccount,jdbcType=NVARCHAR},
+      LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      Token = #{token,jdbcType=NVARCHAR},
+      TokenDeadLine = #{tokendeadline,jdbcType=TIMESTAMP},
+      MToken = #{mtoken,jdbcType=NVARCHAR},
+      MTokenDeadLine = #{mtokendeadline,jdbcType=TIMESTAMP},
+      IsCustomerService = #{iscustomerservice,jdbcType=BIT},
+      IsDeleted = #{isdeleted,jdbcType=BIT},
+      CompanyId = #{companyid,jdbcType=INTEGER},
+      BranchId = #{branchid,jdbcType=INTEGER},
+      Mobile = #{mobile,jdbcType=NVARCHAR},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      VersionNumber = #{versionnumber,jdbcType=BINARY}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Users" >
+    update Users
+    set Password = #{password,jdbcType=NVARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=NVARCHAR},
+      LoginAccount = #{loginaccount,jdbcType=NVARCHAR},
+      LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      Token = #{token,jdbcType=NVARCHAR},
+      TokenDeadLine = #{tokendeadline,jdbcType=TIMESTAMP},
+      MToken = #{mtoken,jdbcType=NVARCHAR},
+      MTokenDeadLine = #{mtokendeadline,jdbcType=TIMESTAMP},
+      IsCustomerService = #{iscustomerservice,jdbcType=BIT},
+      IsDeleted = #{isdeleted,jdbcType=BIT},
+      CompanyId = #{companyid,jdbcType=INTEGER},
+      BranchId = #{branchid,jdbcType=INTEGER},
+      Mobile = #{mobile,jdbcType=NVARCHAR},
+      Remark = #{remark,jdbcType=NVARCHAR},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

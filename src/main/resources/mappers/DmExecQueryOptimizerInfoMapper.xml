@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecQueryOptimizerInfoMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecQueryOptimizerInfo" >
+    <result column="counter" property="counter" jdbcType="NVARCHAR" />
+    <result column="occurrence" property="occurrence" jdbcType="BIGINT" />
+    <result column="value" property="value" jdbcType="DOUBLE" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecQueryOptimizerInfo" >
+    insert into dm_exec_query_optimizer_info (counter, occurrence, value
+      )
+    values (#{counter,jdbcType=NVARCHAR}, #{occurrence,jdbcType=BIGINT}, #{value,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecQueryOptimizerInfo" >
+    insert into dm_exec_query_optimizer_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="counter != null" >
+        counter,
+      </if>
+      <if test="occurrence != null" >
+        occurrence,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="counter != null" >
+        #{counter,jdbcType=NVARCHAR},
+      </if>
+      <if test="occurrence != null" >
+        #{occurrence,jdbcType=BIGINT},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsMemoryBrokersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryBrokers" >
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="memory_broker_type" property="memoryBrokerType" jdbcType="NVARCHAR" />
+    <result column="allocations_kb" property="allocationsKb" jdbcType="BIGINT" />
+    <result column="allocations_kb_per_sec" property="allocationsKbPerSec" jdbcType="BIGINT" />
+    <result column="predicted_allocations_kb" property="predictedAllocationsKb" jdbcType="BIGINT" />
+    <result column="target_allocations_kb" property="targetAllocationsKb" jdbcType="BIGINT" />
+    <result column="future_allocations_kb" property="futureAllocationsKb" jdbcType="BIGINT" />
+    <result column="overall_limit_kb" property="overallLimitKb" jdbcType="BIGINT" />
+    <result column="last_notification" property="lastNotification" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryBrokers" >
+    insert into dm_os_memory_brokers (pool_id, memory_broker_type, allocations_kb, 
+      allocations_kb_per_sec, predicted_allocations_kb, 
+      target_allocations_kb, future_allocations_kb, 
+      overall_limit_kb, last_notification)
+    values (#{poolId,jdbcType=INTEGER}, #{memoryBrokerType,jdbcType=NVARCHAR}, #{allocationsKb,jdbcType=BIGINT}, 
+      #{allocationsKbPerSec,jdbcType=BIGINT}, #{predictedAllocationsKb,jdbcType=BIGINT}, 
+      #{targetAllocationsKb,jdbcType=BIGINT}, #{futureAllocationsKb,jdbcType=BIGINT}, 
+      #{overallLimitKb,jdbcType=BIGINT}, #{lastNotification,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryBrokers" >
+    insert into dm_os_memory_brokers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="memoryBrokerType != null" >
+        memory_broker_type,
+      </if>
+      <if test="allocationsKb != null" >
+        allocations_kb,
+      </if>
+      <if test="allocationsKbPerSec != null" >
+        allocations_kb_per_sec,
+      </if>
+      <if test="predictedAllocationsKb != null" >
+        predicted_allocations_kb,
+      </if>
+      <if test="targetAllocationsKb != null" >
+        target_allocations_kb,
+      </if>
+      <if test="futureAllocationsKb != null" >
+        future_allocations_kb,
+      </if>
+      <if test="overallLimitKb != null" >
+        overall_limit_kb,
+      </if>
+      <if test="lastNotification != null" >
+        last_notification,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="memoryBrokerType != null" >
+        #{memoryBrokerType,jdbcType=NVARCHAR},
+      </if>
+      <if test="allocationsKb != null" >
+        #{allocationsKb,jdbcType=BIGINT},
+      </if>
+      <if test="allocationsKbPerSec != null" >
+        #{allocationsKbPerSec,jdbcType=BIGINT},
+      </if>
+      <if test="predictedAllocationsKb != null" >
+        #{predictedAllocationsKb,jdbcType=BIGINT},
+      </if>
+      <if test="targetAllocationsKb != null" >
+        #{targetAllocationsKb,jdbcType=BIGINT},
+      </if>
+      <if test="futureAllocationsKb != null" >
+        #{futureAllocationsKb,jdbcType=BIGINT},
+      </if>
+      <if test="overallLimitKb != null" >
+        #{overallLimitKb,jdbcType=BIGINT},
+      </if>
+      <if test="lastNotification != null" >
+        #{lastNotification,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

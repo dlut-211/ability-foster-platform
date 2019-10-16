@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FnServershareddrivesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FnServershareddrives" >
+    <result column="DriveName" property="drivename" jdbcType="NCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnServershareddrives" >
+    insert into fn_servershareddrives (DriveName)
+    values (#{drivename,jdbcType=NCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnServershareddrives" >
+    insert into fn_servershareddrives
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="drivename != null" >
+        DriveName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="drivename != null" >
+        #{drivename,jdbcType=NCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

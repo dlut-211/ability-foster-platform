@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.HashIndexesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.HashIndexes" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="is_unique" property="isUnique" jdbcType="BIT" />
+    <result column="data_space_id" property="dataSpaceId" jdbcType="INTEGER" />
+    <result column="ignore_dup_key" property="ignoreDupKey" jdbcType="BIT" />
+    <result column="is_primary_key" property="isPrimaryKey" jdbcType="BIT" />
+    <result column="is_unique_constraint" property="isUniqueConstraint" jdbcType="BIT" />
+    <result column="fill_factor" property="fillFactor" jdbcType="TINYINT" />
+    <result column="is_padded" property="isPadded" jdbcType="BIT" />
+    <result column="is_disabled" property="isDisabled" jdbcType="BIT" />
+    <result column="is_hypothetical" property="isHypothetical" jdbcType="BIT" />
+    <result column="allow_row_locks" property="allowRowLocks" jdbcType="BIT" />
+    <result column="allow_page_locks" property="allowPageLocks" jdbcType="BIT" />
+    <result column="has_filter" property="hasFilter" jdbcType="BIT" />
+    <result column="filter_definition" property="filterDefinition" jdbcType="NVARCHAR" />
+    <result column="bucket_count" property="bucketCount" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.HashIndexes" >
+    insert into hash_indexes (object_id, name, index_id, 
+      type, type_desc, is_unique, 
+      data_space_id, ignore_dup_key, is_primary_key, 
+      is_unique_constraint, fill_factor, is_padded, 
+      is_disabled, is_hypothetical, allow_row_locks, 
+      allow_page_locks, has_filter, filter_definition, 
+      bucket_count)
+    values (#{objectId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{indexId,jdbcType=INTEGER}, 
+      #{type,jdbcType=TINYINT}, #{typeDesc,jdbcType=NVARCHAR}, #{isUnique,jdbcType=BIT}, 
+      #{dataSpaceId,jdbcType=INTEGER}, #{ignoreDupKey,jdbcType=BIT}, #{isPrimaryKey,jdbcType=BIT}, 
+      #{isUniqueConstraint,jdbcType=BIT}, #{fillFactor,jdbcType=TINYINT}, #{isPadded,jdbcType=BIT}, 
+      #{isDisabled,jdbcType=BIT}, #{isHypothetical,jdbcType=BIT}, #{allowRowLocks,jdbcType=BIT}, 
+      #{allowPageLocks,jdbcType=BIT}, #{hasFilter,jdbcType=BIT}, #{filterDefinition,jdbcType=NVARCHAR}, 
+      #{bucketCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.HashIndexes" >
+    insert into hash_indexes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="isUnique != null" >
+        is_unique,
+      </if>
+      <if test="dataSpaceId != null" >
+        data_space_id,
+      </if>
+      <if test="ignoreDupKey != null" >
+        ignore_dup_key,
+      </if>
+      <if test="isPrimaryKey != null" >
+        is_primary_key,
+      </if>
+      <if test="isUniqueConstraint != null" >
+        is_unique_constraint,
+      </if>
+      <if test="fillFactor != null" >
+        fill_factor,
+      </if>
+      <if test="isPadded != null" >
+        is_padded,
+      </if>
+      <if test="isDisabled != null" >
+        is_disabled,
+      </if>
+      <if test="isHypothetical != null" >
+        is_hypothetical,
+      </if>
+      <if test="allowRowLocks != null" >
+        allow_row_locks,
+      </if>
+      <if test="allowPageLocks != null" >
+        allow_page_locks,
+      </if>
+      <if test="hasFilter != null" >
+        has_filter,
+      </if>
+      <if test="filterDefinition != null" >
+        filter_definition,
+      </if>
+      <if test="bucketCount != null" >
+        bucket_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isUnique != null" >
+        #{isUnique,jdbcType=BIT},
+      </if>
+      <if test="dataSpaceId != null" >
+        #{dataSpaceId,jdbcType=INTEGER},
+      </if>
+      <if test="ignoreDupKey != null" >
+        #{ignoreDupKey,jdbcType=BIT},
+      </if>
+      <if test="isPrimaryKey != null" >
+        #{isPrimaryKey,jdbcType=BIT},
+      </if>
+      <if test="isUniqueConstraint != null" >
+        #{isUniqueConstraint,jdbcType=BIT},
+      </if>
+      <if test="fillFactor != null" >
+        #{fillFactor,jdbcType=TINYINT},
+      </if>
+      <if test="isPadded != null" >
+        #{isPadded,jdbcType=BIT},
+      </if>
+      <if test="isDisabled != null" >
+        #{isDisabled,jdbcType=BIT},
+      </if>
+      <if test="isHypothetical != null" >
+        #{isHypothetical,jdbcType=BIT},
+      </if>
+      <if test="allowRowLocks != null" >
+        #{allowRowLocks,jdbcType=BIT},
+      </if>
+      <if test="allowPageLocks != null" >
+        #{allowPageLocks,jdbcType=BIT},
+      </if>
+      <if test="hasFilter != null" >
+        #{hasFilter,jdbcType=BIT},
+      </if>
+      <if test="filterDefinition != null" >
+        #{filterDefinition,jdbcType=NVARCHAR},
+      </if>
+      <if test="bucketCount != null" >
+        #{bucketCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

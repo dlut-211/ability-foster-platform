@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Email" property="email" jdbcType="NVARCHAR" />
+    <result column="Name" property="name" jdbcType="NVARCHAR" />
+    <result column="Number" property="number" jdbcType="NVARCHAR" />
+    <result column="Password" property="password" jdbcType="NVARCHAR" />
+    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
+    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
+    <result column="Token" property="token" jdbcType="NVARCHAR" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, Email, Name, Number, Password, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, 
+    Token, Status
+  </sql>
+  <sql id="Blob_Column_List" >
+    VersionNumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Teacher
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from Teacher
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Teacher (Id, Email, Name, 
+      Number, Password, CreatedBy, 
+      CreatedOn, ModifiedBy, ModifiedOn, 
+      Token, Status, VersionNumber
+      )
+    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{number,jdbcType=NVARCHAR}, #{password,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, 
+      #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, 
+      #{token,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, #{versionnumber,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into Teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="email != null" >
+        Email,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="number != null" >
+        Number,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy,
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn,
+      </if>
+      <if test="token != null" >
+        Token,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="email != null" >
+        #{email,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="versionnumber != null" >
+        #{versionnumber,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
+    update Teacher
+    <set >
+      <if test="email != null" >
+        Email = #{email,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="number != null" >
+        Number = #{number,jdbcType=NVARCHAR},
+      </if>
+      <if test="password != null" >
+        Password = #{password,jdbcType=NVARCHAR},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="token != null" >
+        Token = #{token,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
+    update Teacher
+    set Email = #{email,jdbcType=NVARCHAR},
+      Name = #{name,jdbcType=NVARCHAR},
+      Number = #{number,jdbcType=NVARCHAR},
+      Password = #{password,jdbcType=NVARCHAR},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      Token = #{token,jdbcType=NVARCHAR},
+      Status = #{status,jdbcType=INTEGER},
+      VersionNumber = #{versionnumber,jdbcType=BINARY}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher" >
+    update Teacher
+    set Email = #{email,jdbcType=NVARCHAR},
+      Name = #{name,jdbcType=NVARCHAR},
+      Number = #{number,jdbcType=NVARCHAR},
+      Password = #{password,jdbcType=NVARCHAR},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      Token = #{token,jdbcType=NVARCHAR},
+      Status = #{status,jdbcType=INTEGER}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

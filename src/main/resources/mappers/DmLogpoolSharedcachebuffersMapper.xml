@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmLogpoolSharedcachebuffersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolSharedcachebuffers" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="recovery_unit_id" property="recoveryUnitId" jdbcType="INTEGER" />
+    <result column="log_block_id" property="logBlockId" jdbcType="BIGINT" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="ref_counter" property="refCounter" jdbcType="INTEGER" />
+    <result column="future_interest" property="futureInterest" jdbcType="INTEGER" />
+    <result column="is_pushed" property="isPushed" jdbcType="TINYINT" />
+    <result column="disk_read_consumer_id" property="diskReadConsumerId" jdbcType="BIGINT" />
+    <result column="is_log_read_ahead" property="isLogReadAhead" jdbcType="TINYINT" />
+    <result column="is_tran_consumed" property="isTranConsumed" jdbcType="TINYINT" />
+    <result column="is_hadron_consumed" property="isHadronConsumed" jdbcType="TINYINT" />
+    <result column="is_replay_consumed" property="isReplayConsumed" jdbcType="TINYINT" />
+    <result column="is_repl_consumed" property="isReplConsumed" jdbcType="TINYINT" />
+    <result column="persistence_status" property="persistenceStatus" jdbcType="INTEGER" />
+    <result column="entry_scan_direction" property="entryScanDirection" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolSharedcachebuffers" extends="BaseResultMap" >
+    <result column="cache_buffer" property="cacheBuffer" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    cache_buffer
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolSharedcachebuffers" >
+    insert into dm_logpool_sharedcachebuffers (database_id, recovery_unit_id, log_block_id, 
+      size, ref_counter, future_interest, 
+      is_pushed, disk_read_consumer_id, is_log_read_ahead, 
+      is_tran_consumed, is_hadron_consumed, is_replay_consumed, 
+      is_repl_consumed, persistence_status, entry_scan_direction, 
+      weight, cache_buffer)
+    values (#{databaseId,jdbcType=INTEGER}, #{recoveryUnitId,jdbcType=INTEGER}, #{logBlockId,jdbcType=BIGINT}, 
+      #{size,jdbcType=INTEGER}, #{refCounter,jdbcType=INTEGER}, #{futureInterest,jdbcType=INTEGER}, 
+      #{isPushed,jdbcType=TINYINT}, #{diskReadConsumerId,jdbcType=BIGINT}, #{isLogReadAhead,jdbcType=TINYINT}, 
+      #{isTranConsumed,jdbcType=TINYINT}, #{isHadronConsumed,jdbcType=TINYINT}, #{isReplayConsumed,jdbcType=TINYINT}, 
+      #{isReplConsumed,jdbcType=TINYINT}, #{persistenceStatus,jdbcType=INTEGER}, #{entryScanDirection,jdbcType=INTEGER}, 
+      #{weight,jdbcType=INTEGER}, #{cacheBuffer,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolSharedcachebuffers" >
+    insert into dm_logpool_sharedcachebuffers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="recoveryUnitId != null" >
+        recovery_unit_id,
+      </if>
+      <if test="logBlockId != null" >
+        log_block_id,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="refCounter != null" >
+        ref_counter,
+      </if>
+      <if test="futureInterest != null" >
+        future_interest,
+      </if>
+      <if test="isPushed != null" >
+        is_pushed,
+      </if>
+      <if test="diskReadConsumerId != null" >
+        disk_read_consumer_id,
+      </if>
+      <if test="isLogReadAhead != null" >
+        is_log_read_ahead,
+      </if>
+      <if test="isTranConsumed != null" >
+        is_tran_consumed,
+      </if>
+      <if test="isHadronConsumed != null" >
+        is_hadron_consumed,
+      </if>
+      <if test="isReplayConsumed != null" >
+        is_replay_consumed,
+      </if>
+      <if test="isReplConsumed != null" >
+        is_repl_consumed,
+      </if>
+      <if test="persistenceStatus != null" >
+        persistence_status,
+      </if>
+      <if test="entryScanDirection != null" >
+        entry_scan_direction,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="cacheBuffer != null" >
+        cache_buffer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="recoveryUnitId != null" >
+        #{recoveryUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="logBlockId != null" >
+        #{logBlockId,jdbcType=BIGINT},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="refCounter != null" >
+        #{refCounter,jdbcType=INTEGER},
+      </if>
+      <if test="futureInterest != null" >
+        #{futureInterest,jdbcType=INTEGER},
+      </if>
+      <if test="isPushed != null" >
+        #{isPushed,jdbcType=TINYINT},
+      </if>
+      <if test="diskReadConsumerId != null" >
+        #{diskReadConsumerId,jdbcType=BIGINT},
+      </if>
+      <if test="isLogReadAhead != null" >
+        #{isLogReadAhead,jdbcType=TINYINT},
+      </if>
+      <if test="isTranConsumed != null" >
+        #{isTranConsumed,jdbcType=TINYINT},
+      </if>
+      <if test="isHadronConsumed != null" >
+        #{isHadronConsumed,jdbcType=TINYINT},
+      </if>
+      <if test="isReplayConsumed != null" >
+        #{isReplayConsumed,jdbcType=TINYINT},
+      </if>
+      <if test="isReplConsumed != null" >
+        #{isReplConsumed,jdbcType=TINYINT},
+      </if>
+      <if test="persistenceStatus != null" >
+        #{persistenceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="entryScanDirection != null" >
+        #{entryScanDirection,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="cacheBuffer != null" >
+        #{cacheBuffer,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

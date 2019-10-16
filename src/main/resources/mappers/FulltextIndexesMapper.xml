@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FulltextIndexesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FulltextIndexes" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="unique_index_id" property="uniqueIndexId" jdbcType="INTEGER" />
+    <result column="fulltext_catalog_id" property="fulltextCatalogId" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="change_tracking_state" property="changeTrackingState" jdbcType="CHAR" />
+    <result column="change_tracking_state_desc" property="changeTrackingStateDesc" jdbcType="NVARCHAR" />
+    <result column="has_crawl_completed" property="hasCrawlCompleted" jdbcType="BIT" />
+    <result column="crawl_type" property="crawlType" jdbcType="CHAR" />
+    <result column="crawl_type_desc" property="crawlTypeDesc" jdbcType="NVARCHAR" />
+    <result column="crawl_start_date" property="crawlStartDate" jdbcType="TIMESTAMP" />
+    <result column="crawl_end_date" property="crawlEndDate" jdbcType="TIMESTAMP" />
+    <result column="stoplist_id" property="stoplistId" jdbcType="INTEGER" />
+    <result column="property_list_id" property="propertyListId" jdbcType="INTEGER" />
+    <result column="data_space_id" property="dataSpaceId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.FulltextIndexes" extends="BaseResultMap" >
+    <result column="incremental_timestamp" property="incrementalTimestamp" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    incremental_timestamp
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FulltextIndexes" >
+    insert into fulltext_indexes (object_id, unique_index_id, fulltext_catalog_id, 
+      is_enabled, change_tracking_state, change_tracking_state_desc, 
+      has_crawl_completed, crawl_type, crawl_type_desc, 
+      crawl_start_date, crawl_end_date, stoplist_id, 
+      property_list_id, data_space_id, incremental_timestamp
+      )
+    values (#{objectId,jdbcType=INTEGER}, #{uniqueIndexId,jdbcType=INTEGER}, #{fulltextCatalogId,jdbcType=INTEGER}, 
+      #{isEnabled,jdbcType=BIT}, #{changeTrackingState,jdbcType=CHAR}, #{changeTrackingStateDesc,jdbcType=NVARCHAR}, 
+      #{hasCrawlCompleted,jdbcType=BIT}, #{crawlType,jdbcType=CHAR}, #{crawlTypeDesc,jdbcType=NVARCHAR}, 
+      #{crawlStartDate,jdbcType=TIMESTAMP}, #{crawlEndDate,jdbcType=TIMESTAMP}, #{stoplistId,jdbcType=INTEGER}, 
+      #{propertyListId,jdbcType=INTEGER}, #{dataSpaceId,jdbcType=INTEGER}, #{incrementalTimestamp,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FulltextIndexes" >
+    insert into fulltext_indexes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="uniqueIndexId != null" >
+        unique_index_id,
+      </if>
+      <if test="fulltextCatalogId != null" >
+        fulltext_catalog_id,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="changeTrackingState != null" >
+        change_tracking_state,
+      </if>
+      <if test="changeTrackingStateDesc != null" >
+        change_tracking_state_desc,
+      </if>
+      <if test="hasCrawlCompleted != null" >
+        has_crawl_completed,
+      </if>
+      <if test="crawlType != null" >
+        crawl_type,
+      </if>
+      <if test="crawlTypeDesc != null" >
+        crawl_type_desc,
+      </if>
+      <if test="crawlStartDate != null" >
+        crawl_start_date,
+      </if>
+      <if test="crawlEndDate != null" >
+        crawl_end_date,
+      </if>
+      <if test="stoplistId != null" >
+        stoplist_id,
+      </if>
+      <if test="propertyListId != null" >
+        property_list_id,
+      </if>
+      <if test="dataSpaceId != null" >
+        data_space_id,
+      </if>
+      <if test="incrementalTimestamp != null" >
+        incremental_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="uniqueIndexId != null" >
+        #{uniqueIndexId,jdbcType=INTEGER},
+      </if>
+      <if test="fulltextCatalogId != null" >
+        #{fulltextCatalogId,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="changeTrackingState != null" >
+        #{changeTrackingState,jdbcType=CHAR},
+      </if>
+      <if test="changeTrackingStateDesc != null" >
+        #{changeTrackingStateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="hasCrawlCompleted != null" >
+        #{hasCrawlCompleted,jdbcType=BIT},
+      </if>
+      <if test="crawlType != null" >
+        #{crawlType,jdbcType=CHAR},
+      </if>
+      <if test="crawlTypeDesc != null" >
+        #{crawlTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="crawlStartDate != null" >
+        #{crawlStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crawlEndDate != null" >
+        #{crawlEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stoplistId != null" >
+        #{stoplistId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyListId != null" >
+        #{propertyListId,jdbcType=INTEGER},
+      </if>
+      <if test="dataSpaceId != null" >
+        #{dataSpaceId,jdbcType=INTEGER},
+      </if>
+      <if test="incrementalTimestamp != null" >
+        #{incrementalTimestamp,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

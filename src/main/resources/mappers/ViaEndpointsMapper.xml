@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ViaEndpointsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ViaEndpoints" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="endpoint_id" property="endpointId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="protocol" property="protocol" jdbcType="TINYINT" />
+    <result column="protocol_desc" property="protocolDesc" jdbcType="NVARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+    <result column="is_admin_endpoint" property="isAdminEndpoint" jdbcType="BIT" />
+    <result column="discriminator" property="discriminator" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ViaEndpoints" >
+    insert into via_endpoints (name, endpoint_id, principal_id, 
+      protocol, protocol_desc, type, 
+      type_desc, state, state_desc, 
+      is_admin_endpoint, discriminator)
+    values (#{name,jdbcType=NVARCHAR}, #{endpointId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{protocol,jdbcType=TINYINT}, #{protocolDesc,jdbcType=NVARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{state,jdbcType=TINYINT}, #{stateDesc,jdbcType=NVARCHAR}, 
+      #{isAdminEndpoint,jdbcType=BIT}, #{discriminator,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ViaEndpoints" >
+    insert into via_endpoints
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="endpointId != null" >
+        endpoint_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="protocol != null" >
+        protocol,
+      </if>
+      <if test="protocolDesc != null" >
+        protocol_desc,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+      <if test="isAdminEndpoint != null" >
+        is_admin_endpoint,
+      </if>
+      <if test="discriminator != null" >
+        discriminator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="endpointId != null" >
+        #{endpointId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="protocol != null" >
+        #{protocol,jdbcType=TINYINT},
+      </if>
+      <if test="protocolDesc != null" >
+        #{protocolDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isAdminEndpoint != null" >
+        #{isAdminEndpoint,jdbcType=BIT},
+      </if>
+      <if test="discriminator != null" >
+        #{discriminator,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

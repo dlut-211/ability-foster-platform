@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TransmissionQueueMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.TransmissionQueue" >
+    <result column="conversation_handle" property="conversationHandle" jdbcType="CHAR" />
+    <result column="to_service_name" property="toServiceName" jdbcType="NVARCHAR" />
+    <result column="to_broker_instance" property="toBrokerInstance" jdbcType="NVARCHAR" />
+    <result column="from_service_name" property="fromServiceName" jdbcType="NVARCHAR" />
+    <result column="service_contract_name" property="serviceContractName" jdbcType="NVARCHAR" />
+    <result column="enqueue_time" property="enqueueTime" jdbcType="TIMESTAMP" />
+    <result column="message_sequence_number" property="messageSequenceNumber" jdbcType="BIGINT" />
+    <result column="message_type_name" property="messageTypeName" jdbcType="NVARCHAR" />
+    <result column="is_conversation_error" property="isConversationError" jdbcType="BIT" />
+    <result column="is_end_of_dialog" property="isEndOfDialog" jdbcType="BIT" />
+    <result column="transmission_status" property="transmissionStatus" jdbcType="NVARCHAR" />
+    <result column="priority" property="priority" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.TransmissionQueue" extends="BaseResultMap" >
+    <result column="message_body" property="messageBody" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    message_body
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TransmissionQueue" >
+    insert into transmission_queue (conversation_handle, to_service_name, 
+      to_broker_instance, from_service_name, service_contract_name, 
+      enqueue_time, message_sequence_number, message_type_name, 
+      is_conversation_error, is_end_of_dialog, transmission_status, 
+      priority, message_body)
+    values (#{conversationHandle,jdbcType=CHAR}, #{toServiceName,jdbcType=NVARCHAR}, 
+      #{toBrokerInstance,jdbcType=NVARCHAR}, #{fromServiceName,jdbcType=NVARCHAR}, #{serviceContractName,jdbcType=NVARCHAR}, 
+      #{enqueueTime,jdbcType=TIMESTAMP}, #{messageSequenceNumber,jdbcType=BIGINT}, #{messageTypeName,jdbcType=NVARCHAR}, 
+      #{isConversationError,jdbcType=BIT}, #{isEndOfDialog,jdbcType=BIT}, #{transmissionStatus,jdbcType=NVARCHAR}, 
+      #{priority,jdbcType=TINYINT}, #{messageBody,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TransmissionQueue" >
+    insert into transmission_queue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="conversationHandle != null" >
+        conversation_handle,
+      </if>
+      <if test="toServiceName != null" >
+        to_service_name,
+      </if>
+      <if test="toBrokerInstance != null" >
+        to_broker_instance,
+      </if>
+      <if test="fromServiceName != null" >
+        from_service_name,
+      </if>
+      <if test="serviceContractName != null" >
+        service_contract_name,
+      </if>
+      <if test="enqueueTime != null" >
+        enqueue_time,
+      </if>
+      <if test="messageSequenceNumber != null" >
+        message_sequence_number,
+      </if>
+      <if test="messageTypeName != null" >
+        message_type_name,
+      </if>
+      <if test="isConversationError != null" >
+        is_conversation_error,
+      </if>
+      <if test="isEndOfDialog != null" >
+        is_end_of_dialog,
+      </if>
+      <if test="transmissionStatus != null" >
+        transmission_status,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="messageBody != null" >
+        message_body,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="conversationHandle != null" >
+        #{conversationHandle,jdbcType=CHAR},
+      </if>
+      <if test="toServiceName != null" >
+        #{toServiceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="toBrokerInstance != null" >
+        #{toBrokerInstance,jdbcType=NVARCHAR},
+      </if>
+      <if test="fromServiceName != null" >
+        #{fromServiceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="serviceContractName != null" >
+        #{serviceContractName,jdbcType=NVARCHAR},
+      </if>
+      <if test="enqueueTime != null" >
+        #{enqueueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageSequenceNumber != null" >
+        #{messageSequenceNumber,jdbcType=BIGINT},
+      </if>
+      <if test="messageTypeName != null" >
+        #{messageTypeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="isConversationError != null" >
+        #{isConversationError,jdbcType=BIT},
+      </if>
+      <if test="isEndOfDialog != null" >
+        #{isEndOfDialog,jdbcType=BIT},
+      </if>
+      <if test="transmissionStatus != null" >
+        #{transmissionStatus,jdbcType=NVARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="messageBody != null" >
+        #{messageBody,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

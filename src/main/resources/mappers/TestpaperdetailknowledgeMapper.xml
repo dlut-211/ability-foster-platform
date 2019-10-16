@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TestpaperdetailknowledgeMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Testpaperdetailknowledge" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="TestPaperDetailId" property="testpaperdetailid" jdbcType="INTEGER" />
+    <result column="KnowledgeId" property="knowledgeid" jdbcType="INTEGER" />
+    <result column="Weight" property="weight" jdbcType="DECIMAL" />
+    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
+    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Testpaperdetailknowledge" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, TestPaperDetailId, KnowledgeId, Weight, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+  </sql>
+  <sql id="Blob_Column_List" >
+    VersionNumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TestPaperDetailKnowledge
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TestPaperDetailKnowledge
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Testpaperdetailknowledge" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into TestPaperDetailKnowledge (Id, TestPaperDetailId, KnowledgeId, 
+      Weight, CreatedBy, CreatedOn, 
+      ModifiedBy, ModifiedOn, VersionNumber
+      )
+    values (#{id,jdbcType=INTEGER}, #{testpaperdetailid,jdbcType=INTEGER}, #{knowledgeid,jdbcType=INTEGER}, 
+      #{weight,jdbcType=DECIMAL}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
+      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{versionnumber,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Testpaperdetailknowledge" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into TestPaperDetailKnowledge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="testpaperdetailid != null" >
+        TestPaperDetailId,
+      </if>
+      <if test="knowledgeid != null" >
+        KnowledgeId,
+      </if>
+      <if test="weight != null" >
+        Weight,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy,
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn,
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="testpaperdetailid != null" >
+        #{testpaperdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeid != null" >
+        #{knowledgeid,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        #{versionnumber,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Testpaperdetailknowledge" >
+    update TestPaperDetailKnowledge
+    <set >
+      <if test="testpaperdetailid != null" >
+        TestPaperDetailId = #{testpaperdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeid != null" >
+        KnowledgeId = #{knowledgeid,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        Weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Testpaperdetailknowledge" >
+    update TestPaperDetailKnowledge
+    set TestPaperDetailId = #{testpaperdetailid,jdbcType=INTEGER},
+      KnowledgeId = #{knowledgeid,jdbcType=INTEGER},
+      Weight = #{weight,jdbcType=DECIMAL},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      VersionNumber = #{versionnumber,jdbcType=BINARY}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Testpaperdetailknowledge" >
+    update TestPaperDetailKnowledge
+    set TestPaperDetailId = #{testpaperdetailid,jdbcType=INTEGER},
+      KnowledgeId = #{knowledgeid,jdbcType=INTEGER},
+      Weight = #{weight,jdbcType=DECIMAL},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

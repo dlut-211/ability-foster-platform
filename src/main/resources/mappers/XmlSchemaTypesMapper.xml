@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.XmlSchemaTypesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaTypes" >
+    <result column="xml_component_id" property="xmlComponentId" jdbcType="INTEGER" />
+    <result column="xml_collection_id" property="xmlCollectionId" jdbcType="INTEGER" />
+    <result column="xml_namespace_id" property="xmlNamespaceId" jdbcType="INTEGER" />
+    <result column="is_qualified" property="isQualified" jdbcType="BIT" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="symbol_space" property="symbolSpace" jdbcType="CHAR" />
+    <result column="symbol_space_desc" property="symbolSpaceDesc" jdbcType="NVARCHAR" />
+    <result column="kind" property="kind" jdbcType="CHAR" />
+    <result column="kind_desc" property="kindDesc" jdbcType="NVARCHAR" />
+    <result column="derivation" property="derivation" jdbcType="CHAR" />
+    <result column="derivation_desc" property="derivationDesc" jdbcType="NVARCHAR" />
+    <result column="base_xml_component_id" property="baseXmlComponentId" jdbcType="INTEGER" />
+    <result column="scoping_xml_component_id" property="scopingXmlComponentId" jdbcType="INTEGER" />
+    <result column="is_abstract" property="isAbstract" jdbcType="BIT" />
+    <result column="allows_mixed_content" property="allowsMixedContent" jdbcType="BIT" />
+    <result column="is_extension_blocked" property="isExtensionBlocked" jdbcType="BIT" />
+    <result column="is_restriction_blocked" property="isRestrictionBlocked" jdbcType="BIT" />
+    <result column="is_final_extension" property="isFinalExtension" jdbcType="BIT" />
+    <result column="is_final_restriction" property="isFinalRestriction" jdbcType="BIT" />
+    <result column="is_final_list_member" property="isFinalListMember" jdbcType="BIT" />
+    <result column="is_final_union_member" property="isFinalUnionMember" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaTypes" >
+    insert into xml_schema_types (xml_component_id, xml_collection_id, 
+      xml_namespace_id, is_qualified, name, 
+      symbol_space, symbol_space_desc, kind, 
+      kind_desc, derivation, derivation_desc, 
+      base_xml_component_id, scoping_xml_component_id, 
+      is_abstract, allows_mixed_content, is_extension_blocked, 
+      is_restriction_blocked, is_final_extension, is_final_restriction, 
+      is_final_list_member, is_final_union_member)
+    values (#{xmlComponentId,jdbcType=INTEGER}, #{xmlCollectionId,jdbcType=INTEGER}, 
+      #{xmlNamespaceId,jdbcType=INTEGER}, #{isQualified,jdbcType=BIT}, #{name,jdbcType=NVARCHAR}, 
+      #{symbolSpace,jdbcType=CHAR}, #{symbolSpaceDesc,jdbcType=NVARCHAR}, #{kind,jdbcType=CHAR}, 
+      #{kindDesc,jdbcType=NVARCHAR}, #{derivation,jdbcType=CHAR}, #{derivationDesc,jdbcType=NVARCHAR}, 
+      #{baseXmlComponentId,jdbcType=INTEGER}, #{scopingXmlComponentId,jdbcType=INTEGER}, 
+      #{isAbstract,jdbcType=BIT}, #{allowsMixedContent,jdbcType=BIT}, #{isExtensionBlocked,jdbcType=BIT}, 
+      #{isRestrictionBlocked,jdbcType=BIT}, #{isFinalExtension,jdbcType=BIT}, #{isFinalRestriction,jdbcType=BIT}, 
+      #{isFinalListMember,jdbcType=BIT}, #{isFinalUnionMember,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaTypes" >
+    insert into xml_schema_types
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xmlComponentId != null" >
+        xml_component_id,
+      </if>
+      <if test="xmlCollectionId != null" >
+        xml_collection_id,
+      </if>
+      <if test="xmlNamespaceId != null" >
+        xml_namespace_id,
+      </if>
+      <if test="isQualified != null" >
+        is_qualified,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="symbolSpace != null" >
+        symbol_space,
+      </if>
+      <if test="symbolSpaceDesc != null" >
+        symbol_space_desc,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="kindDesc != null" >
+        kind_desc,
+      </if>
+      <if test="derivation != null" >
+        derivation,
+      </if>
+      <if test="derivationDesc != null" >
+        derivation_desc,
+      </if>
+      <if test="baseXmlComponentId != null" >
+        base_xml_component_id,
+      </if>
+      <if test="scopingXmlComponentId != null" >
+        scoping_xml_component_id,
+      </if>
+      <if test="isAbstract != null" >
+        is_abstract,
+      </if>
+      <if test="allowsMixedContent != null" >
+        allows_mixed_content,
+      </if>
+      <if test="isExtensionBlocked != null" >
+        is_extension_blocked,
+      </if>
+      <if test="isRestrictionBlocked != null" >
+        is_restriction_blocked,
+      </if>
+      <if test="isFinalExtension != null" >
+        is_final_extension,
+      </if>
+      <if test="isFinalRestriction != null" >
+        is_final_restriction,
+      </if>
+      <if test="isFinalListMember != null" >
+        is_final_list_member,
+      </if>
+      <if test="isFinalUnionMember != null" >
+        is_final_union_member,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xmlComponentId != null" >
+        #{xmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="xmlCollectionId != null" >
+        #{xmlCollectionId,jdbcType=INTEGER},
+      </if>
+      <if test="xmlNamespaceId != null" >
+        #{xmlNamespaceId,jdbcType=INTEGER},
+      </if>
+      <if test="isQualified != null" >
+        #{isQualified,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="symbolSpace != null" >
+        #{symbolSpace,jdbcType=CHAR},
+      </if>
+      <if test="symbolSpaceDesc != null" >
+        #{symbolSpaceDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=CHAR},
+      </if>
+      <if test="kindDesc != null" >
+        #{kindDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="derivation != null" >
+        #{derivation,jdbcType=CHAR},
+      </if>
+      <if test="derivationDesc != null" >
+        #{derivationDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="baseXmlComponentId != null" >
+        #{baseXmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="scopingXmlComponentId != null" >
+        #{scopingXmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="isAbstract != null" >
+        #{isAbstract,jdbcType=BIT},
+      </if>
+      <if test="allowsMixedContent != null" >
+        #{allowsMixedContent,jdbcType=BIT},
+      </if>
+      <if test="isExtensionBlocked != null" >
+        #{isExtensionBlocked,jdbcType=BIT},
+      </if>
+      <if test="isRestrictionBlocked != null" >
+        #{isRestrictionBlocked,jdbcType=BIT},
+      </if>
+      <if test="isFinalExtension != null" >
+        #{isFinalExtension,jdbcType=BIT},
+      </if>
+      <if test="isFinalRestriction != null" >
+        #{isFinalRestriction,jdbcType=BIT},
+      </if>
+      <if test="isFinalListMember != null" >
+        #{isFinalListMember,jdbcType=BIT},
+      </if>
+      <if test="isFinalUnionMember != null" >
+        #{isFinalUnionMember,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.KeyEncryptionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.KeyEncryptions" >
+    <result column="key_id" property="keyId" jdbcType="INTEGER" />
+    <result column="crypt_type" property="cryptType" jdbcType="CHAR" />
+    <result column="crypt_type_desc" property="cryptTypeDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.KeyEncryptionsWithBLOBs" extends="BaseResultMap" >
+    <result column="thumbprint" property="thumbprint" jdbcType="VARBINARY" />
+    <result column="crypt_property" property="cryptProperty" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    thumbprint, crypt_property
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.KeyEncryptionsWithBLOBs" >
+    insert into key_encryptions (key_id, crypt_type, crypt_type_desc, 
+      thumbprint, crypt_property)
+    values (#{keyId,jdbcType=INTEGER}, #{cryptType,jdbcType=CHAR}, #{cryptTypeDesc,jdbcType=NVARCHAR}, 
+      #{thumbprint,jdbcType=VARBINARY}, #{cryptProperty,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.KeyEncryptionsWithBLOBs" >
+    insert into key_encryptions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keyId != null" >
+        key_id,
+      </if>
+      <if test="cryptType != null" >
+        crypt_type,
+      </if>
+      <if test="cryptTypeDesc != null" >
+        crypt_type_desc,
+      </if>
+      <if test="thumbprint != null" >
+        thumbprint,
+      </if>
+      <if test="cryptProperty != null" >
+        crypt_property,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keyId != null" >
+        #{keyId,jdbcType=INTEGER},
+      </if>
+      <if test="cryptType != null" >
+        #{cryptType,jdbcType=CHAR},
+      </if>
+      <if test="cryptTypeDesc != null" >
+        #{cryptTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="thumbprint != null" >
+        #{thumbprint,jdbcType=VARBINARY},
+      </if>
+      <if test="cryptProperty != null" >
+        #{cryptProperty,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

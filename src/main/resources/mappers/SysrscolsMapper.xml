@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysrscolsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysrscols" >
+    <result column="rsid" property="rsid" jdbcType="BIGINT" />
+    <result column="rscolid" property="rscolid" jdbcType="INTEGER" />
+    <result column="hbcolid" property="hbcolid" jdbcType="INTEGER" />
+    <result column="rcmodified" property="rcmodified" jdbcType="BIGINT" />
+    <result column="ti" property="ti" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="ordkey" property="ordkey" jdbcType="SMALLINT" />
+    <result column="maxinrowlen" property="maxinrowlen" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="offset" property="offset" jdbcType="INTEGER" />
+    <result column="nullbit" property="nullbit" jdbcType="INTEGER" />
+    <result column="bitpos" property="bitpos" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysrscols" extends="BaseResultMap" >
+    <result column="colguid" property="colguid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    colguid
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysrscols" >
+    insert into sysrscols (rsid, rscolid, hbcolid, 
+      rcmodified, ti, cid, 
+      ordkey, maxinrowlen, status, 
+      offset, nullbit, bitpos, 
+      colguid)
+    values (#{rsid,jdbcType=BIGINT}, #{rscolid,jdbcType=INTEGER}, #{hbcolid,jdbcType=INTEGER}, 
+      #{rcmodified,jdbcType=BIGINT}, #{ti,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, 
+      #{ordkey,jdbcType=SMALLINT}, #{maxinrowlen,jdbcType=SMALLINT}, #{status,jdbcType=INTEGER}, 
+      #{offset,jdbcType=INTEGER}, #{nullbit,jdbcType=INTEGER}, #{bitpos,jdbcType=SMALLINT}, 
+      #{colguid,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysrscols" >
+    insert into sysrscols
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rsid != null" >
+        rsid,
+      </if>
+      <if test="rscolid != null" >
+        rscolid,
+      </if>
+      <if test="hbcolid != null" >
+        hbcolid,
+      </if>
+      <if test="rcmodified != null" >
+        rcmodified,
+      </if>
+      <if test="ti != null" >
+        ti,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="ordkey != null" >
+        ordkey,
+      </if>
+      <if test="maxinrowlen != null" >
+        maxinrowlen,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="offset != null" >
+        offset,
+      </if>
+      <if test="nullbit != null" >
+        nullbit,
+      </if>
+      <if test="bitpos != null" >
+        bitpos,
+      </if>
+      <if test="colguid != null" >
+        colguid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rsid != null" >
+        #{rsid,jdbcType=BIGINT},
+      </if>
+      <if test="rscolid != null" >
+        #{rscolid,jdbcType=INTEGER},
+      </if>
+      <if test="hbcolid != null" >
+        #{hbcolid,jdbcType=INTEGER},
+      </if>
+      <if test="rcmodified != null" >
+        #{rcmodified,jdbcType=BIGINT},
+      </if>
+      <if test="ti != null" >
+        #{ti,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="ordkey != null" >
+        #{ordkey,jdbcType=SMALLINT},
+      </if>
+      <if test="maxinrowlen != null" >
+        #{maxinrowlen,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="offset != null" >
+        #{offset,jdbcType=INTEGER},
+      </if>
+      <if test="nullbit != null" >
+        #{nullbit,jdbcType=INTEGER},
+      </if>
+      <if test="bitpos != null" >
+        #{bitpos,jdbcType=SMALLINT},
+      </if>
+      <if test="colguid != null" >
+        #{colguid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

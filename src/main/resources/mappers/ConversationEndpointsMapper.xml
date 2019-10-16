@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ConversationEndpointsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ConversationEndpoints" >
+    <result column="conversation_handle" property="conversationHandle" jdbcType="CHAR" />
+    <result column="conversation_id" property="conversationId" jdbcType="CHAR" />
+    <result column="is_initiator" property="isInitiator" jdbcType="BIT" />
+    <result column="service_contract_id" property="serviceContractId" jdbcType="INTEGER" />
+    <result column="conversation_group_id" property="conversationGroupId" jdbcType="CHAR" />
+    <result column="service_id" property="serviceId" jdbcType="INTEGER" />
+    <result column="lifetime" property="lifetime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+    <result column="far_service" property="farService" jdbcType="NVARCHAR" />
+    <result column="far_broker_instance" property="farBrokerInstance" jdbcType="NVARCHAR" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="far_principal_id" property="farPrincipalId" jdbcType="INTEGER" />
+    <result column="outbound_session_key_identifier" property="outboundSessionKeyIdentifier" jdbcType="CHAR" />
+    <result column="inbound_session_key_identifier" property="inboundSessionKeyIdentifier" jdbcType="CHAR" />
+    <result column="security_timestamp" property="securityTimestamp" jdbcType="TIMESTAMP" />
+    <result column="dialog_timer" property="dialogTimer" jdbcType="TIMESTAMP" />
+    <result column="send_sequence" property="sendSequence" jdbcType="BIGINT" />
+    <result column="end_dialog_sequence" property="endDialogSequence" jdbcType="BIGINT" />
+    <result column="receive_sequence" property="receiveSequence" jdbcType="BIGINT" />
+    <result column="receive_sequence_frag" property="receiveSequenceFrag" jdbcType="INTEGER" />
+    <result column="system_sequence" property="systemSequence" jdbcType="BIGINT" />
+    <result column="first_out_of_order_sequence" property="firstOutOfOrderSequence" jdbcType="BIGINT" />
+    <result column="last_out_of_order_sequence" property="lastOutOfOrderSequence" jdbcType="BIGINT" />
+    <result column="last_out_of_order_frag" property="lastOutOfOrderFrag" jdbcType="INTEGER" />
+    <result column="is_system" property="isSystem" jdbcType="BIT" />
+    <result column="priority" property="priority" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.ConversationEndpoints" extends="BaseResultMap" >
+    <result column="last_send_tran_id" property="lastSendTranId" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    last_send_tran_id
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ConversationEndpoints" >
+    insert into conversation_endpoints (conversation_handle, conversation_id, is_initiator, 
+      service_contract_id, conversation_group_id, service_id, 
+      lifetime, state, state_desc, 
+      far_service, far_broker_instance, principal_id, 
+      far_principal_id, outbound_session_key_identifier, 
+      inbound_session_key_identifier, security_timestamp, 
+      dialog_timer, send_sequence, end_dialog_sequence, 
+      receive_sequence, receive_sequence_frag, system_sequence, 
+      first_out_of_order_sequence, last_out_of_order_sequence, 
+      last_out_of_order_frag, is_system, priority, 
+      last_send_tran_id)
+    values (#{conversationHandle,jdbcType=CHAR}, #{conversationId,jdbcType=CHAR}, #{isInitiator,jdbcType=BIT}, 
+      #{serviceContractId,jdbcType=INTEGER}, #{conversationGroupId,jdbcType=CHAR}, #{serviceId,jdbcType=INTEGER}, 
+      #{lifetime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR}, #{stateDesc,jdbcType=NVARCHAR}, 
+      #{farService,jdbcType=NVARCHAR}, #{farBrokerInstance,jdbcType=NVARCHAR}, #{principalId,jdbcType=INTEGER}, 
+      #{farPrincipalId,jdbcType=INTEGER}, #{outboundSessionKeyIdentifier,jdbcType=CHAR}, 
+      #{inboundSessionKeyIdentifier,jdbcType=CHAR}, #{securityTimestamp,jdbcType=TIMESTAMP}, 
+      #{dialogTimer,jdbcType=TIMESTAMP}, #{sendSequence,jdbcType=BIGINT}, #{endDialogSequence,jdbcType=BIGINT}, 
+      #{receiveSequence,jdbcType=BIGINT}, #{receiveSequenceFrag,jdbcType=INTEGER}, #{systemSequence,jdbcType=BIGINT}, 
+      #{firstOutOfOrderSequence,jdbcType=BIGINT}, #{lastOutOfOrderSequence,jdbcType=BIGINT}, 
+      #{lastOutOfOrderFrag,jdbcType=INTEGER}, #{isSystem,jdbcType=BIT}, #{priority,jdbcType=TINYINT}, 
+      #{lastSendTranId,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ConversationEndpoints" >
+    insert into conversation_endpoints
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="conversationHandle != null" >
+        conversation_handle,
+      </if>
+      <if test="conversationId != null" >
+        conversation_id,
+      </if>
+      <if test="isInitiator != null" >
+        is_initiator,
+      </if>
+      <if test="serviceContractId != null" >
+        service_contract_id,
+      </if>
+      <if test="conversationGroupId != null" >
+        conversation_group_id,
+      </if>
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="lifetime != null" >
+        lifetime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+      <if test="farService != null" >
+        far_service,
+      </if>
+      <if test="farBrokerInstance != null" >
+        far_broker_instance,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="farPrincipalId != null" >
+        far_principal_id,
+      </if>
+      <if test="outboundSessionKeyIdentifier != null" >
+        outbound_session_key_identifier,
+      </if>
+      <if test="inboundSessionKeyIdentifier != null" >
+        inbound_session_key_identifier,
+      </if>
+      <if test="securityTimestamp != null" >
+        security_timestamp,
+      </if>
+      <if test="dialogTimer != null" >
+        dialog_timer,
+      </if>
+      <if test="sendSequence != null" >
+        send_sequence,
+      </if>
+      <if test="endDialogSequence != null" >
+        end_dialog_sequence,
+      </if>
+      <if test="receiveSequence != null" >
+        receive_sequence,
+      </if>
+      <if test="receiveSequenceFrag != null" >
+        receive_sequence_frag,
+      </if>
+      <if test="systemSequence != null" >
+        system_sequence,
+      </if>
+      <if test="firstOutOfOrderSequence != null" >
+        first_out_of_order_sequence,
+      </if>
+      <if test="lastOutOfOrderSequence != null" >
+        last_out_of_order_sequence,
+      </if>
+      <if test="lastOutOfOrderFrag != null" >
+        last_out_of_order_frag,
+      </if>
+      <if test="isSystem != null" >
+        is_system,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="lastSendTranId != null" >
+        last_send_tran_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="conversationHandle != null" >
+        #{conversationHandle,jdbcType=CHAR},
+      </if>
+      <if test="conversationId != null" >
+        #{conversationId,jdbcType=CHAR},
+      </if>
+      <if test="isInitiator != null" >
+        #{isInitiator,jdbcType=BIT},
+      </if>
+      <if test="serviceContractId != null" >
+        #{serviceContractId,jdbcType=INTEGER},
+      </if>
+      <if test="conversationGroupId != null" >
+        #{conversationGroupId,jdbcType=CHAR},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="lifetime != null" >
+        #{lifetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="farService != null" >
+        #{farService,jdbcType=NVARCHAR},
+      </if>
+      <if test="farBrokerInstance != null" >
+        #{farBrokerInstance,jdbcType=NVARCHAR},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="farPrincipalId != null" >
+        #{farPrincipalId,jdbcType=INTEGER},
+      </if>
+      <if test="outboundSessionKeyIdentifier != null" >
+        #{outboundSessionKeyIdentifier,jdbcType=CHAR},
+      </if>
+      <if test="inboundSessionKeyIdentifier != null" >
+        #{inboundSessionKeyIdentifier,jdbcType=CHAR},
+      </if>
+      <if test="securityTimestamp != null" >
+        #{securityTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dialogTimer != null" >
+        #{dialogTimer,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendSequence != null" >
+        #{sendSequence,jdbcType=BIGINT},
+      </if>
+      <if test="endDialogSequence != null" >
+        #{endDialogSequence,jdbcType=BIGINT},
+      </if>
+      <if test="receiveSequence != null" >
+        #{receiveSequence,jdbcType=BIGINT},
+      </if>
+      <if test="receiveSequenceFrag != null" >
+        #{receiveSequenceFrag,jdbcType=INTEGER},
+      </if>
+      <if test="systemSequence != null" >
+        #{systemSequence,jdbcType=BIGINT},
+      </if>
+      <if test="firstOutOfOrderSequence != null" >
+        #{firstOutOfOrderSequence,jdbcType=BIGINT},
+      </if>
+      <if test="lastOutOfOrderSequence != null" >
+        #{lastOutOfOrderSequence,jdbcType=BIGINT},
+      </if>
+      <if test="lastOutOfOrderFrag != null" >
+        #{lastOutOfOrderFrag,jdbcType=INTEGER},
+      </if>
+      <if test="isSystem != null" >
+        #{isSystem,jdbcType=BIT},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=TINYINT},
+      </if>
+      <if test="lastSendTranId != null" >
+        #{lastSendTranId,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

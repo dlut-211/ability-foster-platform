@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DatabaseFilesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseFiles" >
+    <result column="file_id" property="fileId" jdbcType="INTEGER" />
+    <result column="file_guid" property="fileGuid" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="data_space_id" property="dataSpaceId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="physical_name" property="physicalName" jdbcType="NVARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="max_size" property="maxSize" jdbcType="INTEGER" />
+    <result column="growth" property="growth" jdbcType="INTEGER" />
+    <result column="is_media_read_only" property="isMediaReadOnly" jdbcType="BIT" />
+    <result column="is_read_only" property="isReadOnly" jdbcType="BIT" />
+    <result column="is_sparse" property="isSparse" jdbcType="BIT" />
+    <result column="is_percent_growth" property="isPercentGrowth" jdbcType="BIT" />
+    <result column="is_name_reserved" property="isNameReserved" jdbcType="BIT" />
+    <result column="create_lsn" property="createLsn" jdbcType="NUMERIC" />
+    <result column="drop_lsn" property="dropLsn" jdbcType="NUMERIC" />
+    <result column="read_only_lsn" property="readOnlyLsn" jdbcType="NUMERIC" />
+    <result column="read_write_lsn" property="readWriteLsn" jdbcType="NUMERIC" />
+    <result column="differential_base_lsn" property="differentialBaseLsn" jdbcType="NUMERIC" />
+    <result column="differential_base_guid" property="differentialBaseGuid" jdbcType="CHAR" />
+    <result column="differential_base_time" property="differentialBaseTime" jdbcType="TIMESTAMP" />
+    <result column="redo_start_lsn" property="redoStartLsn" jdbcType="NUMERIC" />
+    <result column="redo_start_fork_guid" property="redoStartForkGuid" jdbcType="CHAR" />
+    <result column="redo_target_lsn" property="redoTargetLsn" jdbcType="NUMERIC" />
+    <result column="redo_target_fork_guid" property="redoTargetForkGuid" jdbcType="CHAR" />
+    <result column="backup_lsn" property="backupLsn" jdbcType="NUMERIC" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseFiles" >
+    insert into database_files (file_id, file_guid, type, 
+      type_desc, data_space_id, name, 
+      physical_name, state, state_desc, 
+      size, max_size, growth, 
+      is_media_read_only, is_read_only, is_sparse, 
+      is_percent_growth, is_name_reserved, create_lsn, 
+      drop_lsn, read_only_lsn, read_write_lsn, 
+      differential_base_lsn, differential_base_guid, 
+      differential_base_time, redo_start_lsn, redo_start_fork_guid, 
+      redo_target_lsn, redo_target_fork_guid, backup_lsn
+      )
+    values (#{fileId,jdbcType=INTEGER}, #{fileGuid,jdbcType=CHAR}, #{type,jdbcType=TINYINT}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{dataSpaceId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, 
+      #{physicalName,jdbcType=NVARCHAR}, #{state,jdbcType=TINYINT}, #{stateDesc,jdbcType=NVARCHAR}, 
+      #{size,jdbcType=INTEGER}, #{maxSize,jdbcType=INTEGER}, #{growth,jdbcType=INTEGER}, 
+      #{isMediaReadOnly,jdbcType=BIT}, #{isReadOnly,jdbcType=BIT}, #{isSparse,jdbcType=BIT}, 
+      #{isPercentGrowth,jdbcType=BIT}, #{isNameReserved,jdbcType=BIT}, #{createLsn,jdbcType=NUMERIC}, 
+      #{dropLsn,jdbcType=NUMERIC}, #{readOnlyLsn,jdbcType=NUMERIC}, #{readWriteLsn,jdbcType=NUMERIC}, 
+      #{differentialBaseLsn,jdbcType=NUMERIC}, #{differentialBaseGuid,jdbcType=CHAR}, 
+      #{differentialBaseTime,jdbcType=TIMESTAMP}, #{redoStartLsn,jdbcType=NUMERIC}, #{redoStartForkGuid,jdbcType=CHAR}, 
+      #{redoTargetLsn,jdbcType=NUMERIC}, #{redoTargetForkGuid,jdbcType=CHAR}, #{backupLsn,jdbcType=NUMERIC}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseFiles" >
+    insert into database_files
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="fileGuid != null" >
+        file_guid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="dataSpaceId != null" >
+        data_space_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="physicalName != null" >
+        physical_name,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="maxSize != null" >
+        max_size,
+      </if>
+      <if test="growth != null" >
+        growth,
+      </if>
+      <if test="isMediaReadOnly != null" >
+        is_media_read_only,
+      </if>
+      <if test="isReadOnly != null" >
+        is_read_only,
+      </if>
+      <if test="isSparse != null" >
+        is_sparse,
+      </if>
+      <if test="isPercentGrowth != null" >
+        is_percent_growth,
+      </if>
+      <if test="isNameReserved != null" >
+        is_name_reserved,
+      </if>
+      <if test="createLsn != null" >
+        create_lsn,
+      </if>
+      <if test="dropLsn != null" >
+        drop_lsn,
+      </if>
+      <if test="readOnlyLsn != null" >
+        read_only_lsn,
+      </if>
+      <if test="readWriteLsn != null" >
+        read_write_lsn,
+      </if>
+      <if test="differentialBaseLsn != null" >
+        differential_base_lsn,
+      </if>
+      <if test="differentialBaseGuid != null" >
+        differential_base_guid,
+      </if>
+      <if test="differentialBaseTime != null" >
+        differential_base_time,
+      </if>
+      <if test="redoStartLsn != null" >
+        redo_start_lsn,
+      </if>
+      <if test="redoStartForkGuid != null" >
+        redo_start_fork_guid,
+      </if>
+      <if test="redoTargetLsn != null" >
+        redo_target_lsn,
+      </if>
+      <if test="redoTargetForkGuid != null" >
+        redo_target_fork_guid,
+      </if>
+      <if test="backupLsn != null" >
+        backup_lsn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileId != null" >
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="fileGuid != null" >
+        #{fileGuid,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="dataSpaceId != null" >
+        #{dataSpaceId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="physicalName != null" >
+        #{physicalName,jdbcType=NVARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="maxSize != null" >
+        #{maxSize,jdbcType=INTEGER},
+      </if>
+      <if test="growth != null" >
+        #{growth,jdbcType=INTEGER},
+      </if>
+      <if test="isMediaReadOnly != null" >
+        #{isMediaReadOnly,jdbcType=BIT},
+      </if>
+      <if test="isReadOnly != null" >
+        #{isReadOnly,jdbcType=BIT},
+      </if>
+      <if test="isSparse != null" >
+        #{isSparse,jdbcType=BIT},
+      </if>
+      <if test="isPercentGrowth != null" >
+        #{isPercentGrowth,jdbcType=BIT},
+      </if>
+      <if test="isNameReserved != null" >
+        #{isNameReserved,jdbcType=BIT},
+      </if>
+      <if test="createLsn != null" >
+        #{createLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="dropLsn != null" >
+        #{dropLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="readOnlyLsn != null" >
+        #{readOnlyLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="readWriteLsn != null" >
+        #{readWriteLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="differentialBaseLsn != null" >
+        #{differentialBaseLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="differentialBaseGuid != null" >
+        #{differentialBaseGuid,jdbcType=CHAR},
+      </if>
+      <if test="differentialBaseTime != null" >
+        #{differentialBaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="redoStartLsn != null" >
+        #{redoStartLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="redoStartForkGuid != null" >
+        #{redoStartForkGuid,jdbcType=CHAR},
+      </if>
+      <if test="redoTargetLsn != null" >
+        #{redoTargetLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="redoTargetForkGuid != null" >
+        #{redoTargetForkGuid,jdbcType=CHAR},
+      </if>
+      <if test="backupLsn != null" >
+        #{backupLsn,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+</mapper>

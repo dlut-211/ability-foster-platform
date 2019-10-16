@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SelectiveXmlIndexPathsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SelectiveXmlIndexPaths" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="path_id" property="pathId" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="path_type" property="pathType" jdbcType="TINYINT" />
+    <result column="path_type_desc" property="pathTypeDesc" jdbcType="NVARCHAR" />
+    <result column="xml_component_id" property="xmlComponentId" jdbcType="INTEGER" />
+    <result column="xquery_type_description" property="xqueryTypeDescription" jdbcType="NVARCHAR" />
+    <result column="is_xquery_type_inferred" property="isXqueryTypeInferred" jdbcType="BIT" />
+    <result column="xquery_max_length" property="xqueryMaxLength" jdbcType="INTEGER" />
+    <result column="is_xquery_max_length_inferred" property="isXqueryMaxLengthInferred" jdbcType="BIT" />
+    <result column="is_node" property="isNode" jdbcType="BIT" />
+    <result column="system_type_id" property="systemTypeId" jdbcType="TINYINT" />
+    <result column="user_type_id" property="userTypeId" jdbcType="TINYINT" />
+    <result column="max_length" property="maxLength" jdbcType="SMALLINT" />
+    <result column="precision" property="precision" jdbcType="TINYINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="collation_name" property="collationName" jdbcType="NVARCHAR" />
+    <result column="is_singleton" property="isSingleton" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SelectiveXmlIndexPaths" >
+    insert into selective_xml_index_paths (object_id, index_id, path_id, 
+      path, name, path_type, 
+      path_type_desc, xml_component_id, xquery_type_description, 
+      is_xquery_type_inferred, xquery_max_length, is_xquery_max_length_inferred, 
+      is_node, system_type_id, user_type_id, 
+      max_length, precision, scale, 
+      collation_name, is_singleton)
+    values (#{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, #{pathId,jdbcType=INTEGER}, 
+      #{path,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{pathType,jdbcType=TINYINT}, 
+      #{pathTypeDesc,jdbcType=NVARCHAR}, #{xmlComponentId,jdbcType=INTEGER}, #{xqueryTypeDescription,jdbcType=NVARCHAR}, 
+      #{isXqueryTypeInferred,jdbcType=BIT}, #{xqueryMaxLength,jdbcType=INTEGER}, #{isXqueryMaxLengthInferred,jdbcType=BIT}, 
+      #{isNode,jdbcType=BIT}, #{systemTypeId,jdbcType=TINYINT}, #{userTypeId,jdbcType=TINYINT}, 
+      #{maxLength,jdbcType=SMALLINT}, #{precision,jdbcType=TINYINT}, #{scale,jdbcType=TINYINT}, 
+      #{collationName,jdbcType=NVARCHAR}, #{isSingleton,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SelectiveXmlIndexPaths" >
+    insert into selective_xml_index_paths
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="pathId != null" >
+        path_id,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pathType != null" >
+        path_type,
+      </if>
+      <if test="pathTypeDesc != null" >
+        path_type_desc,
+      </if>
+      <if test="xmlComponentId != null" >
+        xml_component_id,
+      </if>
+      <if test="xqueryTypeDescription != null" >
+        xquery_type_description,
+      </if>
+      <if test="isXqueryTypeInferred != null" >
+        is_xquery_type_inferred,
+      </if>
+      <if test="xqueryMaxLength != null" >
+        xquery_max_length,
+      </if>
+      <if test="isXqueryMaxLengthInferred != null" >
+        is_xquery_max_length_inferred,
+      </if>
+      <if test="isNode != null" >
+        is_node,
+      </if>
+      <if test="systemTypeId != null" >
+        system_type_id,
+      </if>
+      <if test="userTypeId != null" >
+        user_type_id,
+      </if>
+      <if test="maxLength != null" >
+        max_length,
+      </if>
+      <if test="precision != null" >
+        precision,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+      <if test="collationName != null" >
+        collation_name,
+      </if>
+      <if test="isSingleton != null" >
+        is_singleton,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="pathId != null" >
+        #{pathId,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="pathType != null" >
+        #{pathType,jdbcType=TINYINT},
+      </if>
+      <if test="pathTypeDesc != null" >
+        #{pathTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="xmlComponentId != null" >
+        #{xmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="xqueryTypeDescription != null" >
+        #{xqueryTypeDescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="isXqueryTypeInferred != null" >
+        #{isXqueryTypeInferred,jdbcType=BIT},
+      </if>
+      <if test="xqueryMaxLength != null" >
+        #{xqueryMaxLength,jdbcType=INTEGER},
+      </if>
+      <if test="isXqueryMaxLengthInferred != null" >
+        #{isXqueryMaxLengthInferred,jdbcType=BIT},
+      </if>
+      <if test="isNode != null" >
+        #{isNode,jdbcType=BIT},
+      </if>
+      <if test="systemTypeId != null" >
+        #{systemTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="userTypeId != null" >
+        #{userTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="maxLength != null" >
+        #{maxLength,jdbcType=SMALLINT},
+      </if>
+      <if test="precision != null" >
+        #{precision,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="collationName != null" >
+        #{collationName,jdbcType=NVARCHAR},
+      </if>
+      <if test="isSingleton != null" >
+        #{isSingleton,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

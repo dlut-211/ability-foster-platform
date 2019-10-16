@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.AvailabilityReplicasMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.AvailabilityReplicas" >
+    <result column="replica_id" property="replicaId" jdbcType="CHAR" />
+    <result column="group_id" property="groupId" jdbcType="CHAR" />
+    <result column="replica_metadata_id" property="replicaMetadataId" jdbcType="INTEGER" />
+    <result column="replica_server_name" property="replicaServerName" jdbcType="NVARCHAR" />
+    <result column="endpoint_url" property="endpointUrl" jdbcType="NVARCHAR" />
+    <result column="availability_mode" property="availabilityMode" jdbcType="TINYINT" />
+    <result column="availability_mode_desc" property="availabilityModeDesc" jdbcType="NVARCHAR" />
+    <result column="failover_mode" property="failoverMode" jdbcType="TINYINT" />
+    <result column="failover_mode_desc" property="failoverModeDesc" jdbcType="NVARCHAR" />
+    <result column="session_timeout" property="sessionTimeout" jdbcType="INTEGER" />
+    <result column="primary_role_allow_connections" property="primaryRoleAllowConnections" jdbcType="TINYINT" />
+    <result column="primary_role_allow_connections_desc" property="primaryRoleAllowConnectionsDesc" jdbcType="NVARCHAR" />
+    <result column="secondary_role_allow_connections" property="secondaryRoleAllowConnections" jdbcType="TINYINT" />
+    <result column="secondary_role_allow_connections_desc" property="secondaryRoleAllowConnectionsDesc" jdbcType="NVARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="backup_priority" property="backupPriority" jdbcType="INTEGER" />
+    <result column="read_only_routing_url" property="readOnlyRoutingUrl" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.AvailabilityReplicas" extends="BaseResultMap" >
+    <result column="owner_sid" property="ownerSid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    owner_sid
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AvailabilityReplicas" >
+    insert into availability_replicas (replica_id, group_id, replica_metadata_id, 
+      replica_server_name, endpoint_url, availability_mode, 
+      availability_mode_desc, failover_mode, failover_mode_desc, 
+      session_timeout, primary_role_allow_connections, 
+      primary_role_allow_connections_desc, secondary_role_allow_connections, 
+      secondary_role_allow_connections_desc, create_date, 
+      modify_date, backup_priority, read_only_routing_url, 
+      owner_sid)
+    values (#{replicaId,jdbcType=CHAR}, #{groupId,jdbcType=CHAR}, #{replicaMetadataId,jdbcType=INTEGER}, 
+      #{replicaServerName,jdbcType=NVARCHAR}, #{endpointUrl,jdbcType=NVARCHAR}, #{availabilityMode,jdbcType=TINYINT}, 
+      #{availabilityModeDesc,jdbcType=NVARCHAR}, #{failoverMode,jdbcType=TINYINT}, #{failoverModeDesc,jdbcType=NVARCHAR}, 
+      #{sessionTimeout,jdbcType=INTEGER}, #{primaryRoleAllowConnections,jdbcType=TINYINT}, 
+      #{primaryRoleAllowConnectionsDesc,jdbcType=NVARCHAR}, #{secondaryRoleAllowConnections,jdbcType=TINYINT}, 
+      #{secondaryRoleAllowConnectionsDesc,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{backupPriority,jdbcType=INTEGER}, #{readOnlyRoutingUrl,jdbcType=NVARCHAR}, 
+      #{ownerSid,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AvailabilityReplicas" >
+    insert into availability_replicas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        replica_id,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="replicaMetadataId != null" >
+        replica_metadata_id,
+      </if>
+      <if test="replicaServerName != null" >
+        replica_server_name,
+      </if>
+      <if test="endpointUrl != null" >
+        endpoint_url,
+      </if>
+      <if test="availabilityMode != null" >
+        availability_mode,
+      </if>
+      <if test="availabilityModeDesc != null" >
+        availability_mode_desc,
+      </if>
+      <if test="failoverMode != null" >
+        failover_mode,
+      </if>
+      <if test="failoverModeDesc != null" >
+        failover_mode_desc,
+      </if>
+      <if test="sessionTimeout != null" >
+        session_timeout,
+      </if>
+      <if test="primaryRoleAllowConnections != null" >
+        primary_role_allow_connections,
+      </if>
+      <if test="primaryRoleAllowConnectionsDesc != null" >
+        primary_role_allow_connections_desc,
+      </if>
+      <if test="secondaryRoleAllowConnections != null" >
+        secondary_role_allow_connections,
+      </if>
+      <if test="secondaryRoleAllowConnectionsDesc != null" >
+        secondary_role_allow_connections_desc,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="backupPriority != null" >
+        backup_priority,
+      </if>
+      <if test="readOnlyRoutingUrl != null" >
+        read_only_routing_url,
+      </if>
+      <if test="ownerSid != null" >
+        owner_sid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        #{replicaId,jdbcType=CHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=CHAR},
+      </if>
+      <if test="replicaMetadataId != null" >
+        #{replicaMetadataId,jdbcType=INTEGER},
+      </if>
+      <if test="replicaServerName != null" >
+        #{replicaServerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="endpointUrl != null" >
+        #{endpointUrl,jdbcType=NVARCHAR},
+      </if>
+      <if test="availabilityMode != null" >
+        #{availabilityMode,jdbcType=TINYINT},
+      </if>
+      <if test="availabilityModeDesc != null" >
+        #{availabilityModeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="failoverMode != null" >
+        #{failoverMode,jdbcType=TINYINT},
+      </if>
+      <if test="failoverModeDesc != null" >
+        #{failoverModeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="sessionTimeout != null" >
+        #{sessionTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="primaryRoleAllowConnections != null" >
+        #{primaryRoleAllowConnections,jdbcType=TINYINT},
+      </if>
+      <if test="primaryRoleAllowConnectionsDesc != null" >
+        #{primaryRoleAllowConnectionsDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="secondaryRoleAllowConnections != null" >
+        #{secondaryRoleAllowConnections,jdbcType=TINYINT},
+      </if>
+      <if test="secondaryRoleAllowConnectionsDesc != null" >
+        #{secondaryRoleAllowConnectionsDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backupPriority != null" >
+        #{backupPriority,jdbcType=INTEGER},
+      </if>
+      <if test="readOnlyRoutingUrl != null" >
+        #{readOnlyRoutingUrl,jdbcType=NVARCHAR},
+      </if>
+      <if test="ownerSid != null" >
+        #{ownerSid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

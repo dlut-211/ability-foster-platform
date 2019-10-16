@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmXtpThreadsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpThreads" >
+    <result column="thread_type" property="threadType" jdbcType="INTEGER" />
+    <result column="thread_type_desc" property="threadTypeDesc" jdbcType="NVARCHAR" />
+    <result column="retired_row_count" property="retiredRowCount" jdbcType="INTEGER" />
+    <result column="retired_transaction_count" property="retiredTransactionCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpThreads" extends="BaseResultMap" >
+    <result column="thread_address" property="threadAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    thread_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpThreads" >
+    insert into dm_xtp_threads (thread_type, thread_type_desc, retired_row_count, 
+      retired_transaction_count, thread_address
+      )
+    values (#{threadType,jdbcType=INTEGER}, #{threadTypeDesc,jdbcType=NVARCHAR}, #{retiredRowCount,jdbcType=INTEGER}, 
+      #{retiredTransactionCount,jdbcType=INTEGER}, #{threadAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpThreads" >
+    insert into dm_xtp_threads
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="threadType != null" >
+        thread_type,
+      </if>
+      <if test="threadTypeDesc != null" >
+        thread_type_desc,
+      </if>
+      <if test="retiredRowCount != null" >
+        retired_row_count,
+      </if>
+      <if test="retiredTransactionCount != null" >
+        retired_transaction_count,
+      </if>
+      <if test="threadAddress != null" >
+        thread_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="threadType != null" >
+        #{threadType,jdbcType=INTEGER},
+      </if>
+      <if test="threadTypeDesc != null" >
+        #{threadTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="retiredRowCount != null" >
+        #{retiredRowCount,jdbcType=INTEGER},
+      </if>
+      <if test="retiredTransactionCount != null" >
+        #{retiredTransactionCount,jdbcType=INTEGER},
+      </if>
+      <if test="threadAddress != null" >
+        #{threadAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

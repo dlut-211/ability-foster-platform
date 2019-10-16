@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StudentworkdetailMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Studentworkdetail" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="SubmitTime" property="submittime" jdbcType="TIMESTAMP" />
+    <result column="UseTime" property="usetime" jdbcType="INTEGER" />
+    <result column="WorkPath" property="workpath" jdbcType="NVARCHAR" />
+    <result column="CasePassCount" property="casepasscount" jdbcType="INTEGER" />
+    <result column="Complexity" property="complexity" jdbcType="DECIMAL" />
+    <result column="CodeRowNumber" property="coderownumber" jdbcType="INTEGER" />
+    <result column="StudentWorkId" property="studentworkid" jdbcType="INTEGER" />
+    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
+    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
+    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Studentworkdetail" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, SubmitTime, UseTime, WorkPath, CasePassCount, Complexity, CodeRowNumber, StudentWorkId, 
+    CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+  </sql>
+  <sql id="Blob_Column_List" >
+    VersionNumber
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from StudentWorkDetail
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from StudentWorkDetail
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Studentworkdetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into StudentWorkDetail (Id, SubmitTime, UseTime, 
+      WorkPath, CasePassCount, Complexity, 
+      CodeRowNumber, StudentWorkId, CreatedBy, 
+      CreatedOn, ModifiedBy, ModifiedOn, 
+      VersionNumber)
+    values (#{id,jdbcType=INTEGER}, #{submittime,jdbcType=TIMESTAMP}, #{usetime,jdbcType=INTEGER}, 
+      #{workpath,jdbcType=NVARCHAR}, #{casepasscount,jdbcType=INTEGER}, #{complexity,jdbcType=DECIMAL}, 
+      #{coderownumber,jdbcType=INTEGER}, #{studentworkid,jdbcType=INTEGER}, #{createdby,jdbcType=INTEGER}, 
+      #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, 
+      #{versionnumber,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Studentworkdetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into StudentWorkDetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="submittime != null" >
+        SubmitTime,
+      </if>
+      <if test="usetime != null" >
+        UseTime,
+      </if>
+      <if test="workpath != null" >
+        WorkPath,
+      </if>
+      <if test="casepasscount != null" >
+        CasePassCount,
+      </if>
+      <if test="complexity != null" >
+        Complexity,
+      </if>
+      <if test="coderownumber != null" >
+        CodeRowNumber,
+      </if>
+      <if test="studentworkid != null" >
+        StudentWorkId,
+      </if>
+      <if test="createdby != null" >
+        CreatedBy,
+      </if>
+      <if test="createdon != null" >
+        CreatedOn,
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy,
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn,
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="submittime != null" >
+        #{submittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usetime != null" >
+        #{usetime,jdbcType=INTEGER},
+      </if>
+      <if test="workpath != null" >
+        #{workpath,jdbcType=NVARCHAR},
+      </if>
+      <if test="casepasscount != null" >
+        #{casepasscount,jdbcType=INTEGER},
+      </if>
+      <if test="complexity != null" >
+        #{complexity,jdbcType=DECIMAL},
+      </if>
+      <if test="coderownumber != null" >
+        #{coderownumber,jdbcType=INTEGER},
+      </if>
+      <if test="studentworkid != null" >
+        #{studentworkid,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        #{versionnumber,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Studentworkdetail" >
+    update StudentWorkDetail
+    <set >
+      <if test="submittime != null" >
+        SubmitTime = #{submittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usetime != null" >
+        UseTime = #{usetime,jdbcType=INTEGER},
+      </if>
+      <if test="workpath != null" >
+        WorkPath = #{workpath,jdbcType=NVARCHAR},
+      </if>
+      <if test="casepasscount != null" >
+        CasePassCount = #{casepasscount,jdbcType=INTEGER},
+      </if>
+      <if test="complexity != null" >
+        Complexity = #{complexity,jdbcType=DECIMAL},
+      </if>
+      <if test="coderownumber != null" >
+        CodeRowNumber = #{coderownumber,jdbcType=INTEGER},
+      </if>
+      <if test="studentworkid != null" >
+        StudentWorkId = #{studentworkid,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        CreatedBy = #{createdby,jdbcType=INTEGER},
+      </if>
+      <if test="createdon != null" >
+        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedby != null" >
+        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedon != null" >
+        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="versionnumber != null" >
+        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Studentworkdetail" >
+    update StudentWorkDetail
+    set SubmitTime = #{submittime,jdbcType=TIMESTAMP},
+      UseTime = #{usetime,jdbcType=INTEGER},
+      WorkPath = #{workpath,jdbcType=NVARCHAR},
+      CasePassCount = #{casepasscount,jdbcType=INTEGER},
+      Complexity = #{complexity,jdbcType=DECIMAL},
+      CodeRowNumber = #{coderownumber,jdbcType=INTEGER},
+      StudentWorkId = #{studentworkid,jdbcType=INTEGER},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      VersionNumber = #{versionnumber,jdbcType=BINARY}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Studentworkdetail" >
+    update StudentWorkDetail
+    set SubmitTime = #{submittime,jdbcType=TIMESTAMP},
+      UseTime = #{usetime,jdbcType=INTEGER},
+      WorkPath = #{workpath,jdbcType=NVARCHAR},
+      CasePassCount = #{casepasscount,jdbcType=INTEGER},
+      Complexity = #{complexity,jdbcType=DECIMAL},
+      CodeRowNumber = #{coderownumber,jdbcType=INTEGER},
+      StudentWorkId = #{studentworkid,jdbcType=INTEGER},
+      CreatedBy = #{createdby,jdbcType=INTEGER},
+      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

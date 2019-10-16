@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysrmtlgnsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysrmtlgns" >
+    <result column="srvid" property="srvid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="lgnid" property="lgnid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="modate" property="modate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysrmtlgns" >
+    insert into sysrmtlgns (srvid, name, lgnid, 
+      status, modate)
+    values (#{srvid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{lgnid,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{modate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysrmtlgns" >
+    insert into sysrmtlgns
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="srvid != null" >
+        srvid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="lgnid != null" >
+        lgnid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="modate != null" >
+        modate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="srvid != null" >
+        #{srvid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="lgnid != null" >
+        #{lgnid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="modate != null" >
+        #{modate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

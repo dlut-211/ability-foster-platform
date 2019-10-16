@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmServerServicesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmServerServices" >
+    <result column="servicename" property="servicename" jdbcType="NVARCHAR" />
+    <result column="startup_type" property="startupType" jdbcType="INTEGER" />
+    <result column="startup_type_desc" property="startupTypeDesc" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_desc" property="statusDesc" jdbcType="NVARCHAR" />
+    <result column="process_id" property="processId" jdbcType="INTEGER" />
+    <result column="last_startup_time" property="lastStartupTime" jdbcType="OTHER" />
+    <result column="service_account" property="serviceAccount" jdbcType="NVARCHAR" />
+    <result column="filename" property="filename" jdbcType="NVARCHAR" />
+    <result column="is_clustered" property="isClustered" jdbcType="NVARCHAR" />
+    <result column="cluster_nodename" property="clusterNodename" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmServerServices" >
+    insert into dm_server_services (servicename, startup_type, startup_type_desc, 
+      status, status_desc, process_id, 
+      last_startup_time, service_account, filename, 
+      is_clustered, cluster_nodename)
+    values (#{servicename,jdbcType=NVARCHAR}, #{startupType,jdbcType=INTEGER}, #{startupTypeDesc,jdbcType=NVARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{statusDesc,jdbcType=NVARCHAR}, #{processId,jdbcType=INTEGER}, 
+      #{lastStartupTime,jdbcType=OTHER}, #{serviceAccount,jdbcType=NVARCHAR}, #{filename,jdbcType=NVARCHAR}, 
+      #{isClustered,jdbcType=NVARCHAR}, #{clusterNodename,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmServerServices" >
+    insert into dm_server_services
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="servicename != null" >
+        servicename,
+      </if>
+      <if test="startupType != null" >
+        startup_type,
+      </if>
+      <if test="startupTypeDesc != null" >
+        startup_type_desc,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusDesc != null" >
+        status_desc,
+      </if>
+      <if test="processId != null" >
+        process_id,
+      </if>
+      <if test="lastStartupTime != null" >
+        last_startup_time,
+      </if>
+      <if test="serviceAccount != null" >
+        service_account,
+      </if>
+      <if test="filename != null" >
+        filename,
+      </if>
+      <if test="isClustered != null" >
+        is_clustered,
+      </if>
+      <if test="clusterNodename != null" >
+        cluster_nodename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="servicename != null" >
+        #{servicename,jdbcType=NVARCHAR},
+      </if>
+      <if test="startupType != null" >
+        #{startupType,jdbcType=INTEGER},
+      </if>
+      <if test="startupTypeDesc != null" >
+        #{startupTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusDesc != null" >
+        #{statusDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="processId != null" >
+        #{processId,jdbcType=INTEGER},
+      </if>
+      <if test="lastStartupTime != null" >
+        #{lastStartupTime,jdbcType=OTHER},
+      </if>
+      <if test="serviceAccount != null" >
+        #{serviceAccount,jdbcType=NVARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=NVARCHAR},
+      </if>
+      <if test="isClustered != null" >
+        #{isClustered,jdbcType=NVARCHAR},
+      </if>
+      <if test="clusterNodename != null" >
+        #{clusterNodename,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

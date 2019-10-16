@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.CertificatesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Certificates" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="certificate_id" property="certificateId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="pvt_key_encryption_type" property="pvtKeyEncryptionType" jdbcType="CHAR" />
+    <result column="pvt_key_encryption_type_desc" property="pvtKeyEncryptionTypeDesc" jdbcType="NVARCHAR" />
+    <result column="is_active_for_begin_dialog" property="isActiveForBeginDialog" jdbcType="BIT" />
+    <result column="issuer_name" property="issuerName" jdbcType="NVARCHAR" />
+    <result column="cert_serial_number" property="certSerialNumber" jdbcType="NVARCHAR" />
+    <result column="string_sid" property="stringSid" jdbcType="NVARCHAR" />
+    <result column="subject" property="subject" jdbcType="NVARCHAR" />
+    <result column="expiry_date" property="expiryDate" jdbcType="TIMESTAMP" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="attested_by" property="attestedBy" jdbcType="NVARCHAR" />
+    <result column="pvt_key_last_backup_date" property="pvtKeyLastBackupDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.CertificatesWithBLOBs" extends="BaseResultMap" >
+    <result column="sid" property="sid" jdbcType="VARBINARY" />
+    <result column="thumbprint" property="thumbprint" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sid, thumbprint
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.CertificatesWithBLOBs" >
+    insert into certificates (name, certificate_id, principal_id, 
+      pvt_key_encryption_type, pvt_key_encryption_type_desc, 
+      is_active_for_begin_dialog, issuer_name, cert_serial_number, 
+      string_sid, subject, expiry_date, 
+      start_date, attested_by, pvt_key_last_backup_date, 
+      sid, thumbprint)
+    values (#{name,jdbcType=NVARCHAR}, #{certificateId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{pvtKeyEncryptionType,jdbcType=CHAR}, #{pvtKeyEncryptionTypeDesc,jdbcType=NVARCHAR}, 
+      #{isActiveForBeginDialog,jdbcType=BIT}, #{issuerName,jdbcType=NVARCHAR}, #{certSerialNumber,jdbcType=NVARCHAR}, 
+      #{stringSid,jdbcType=NVARCHAR}, #{subject,jdbcType=NVARCHAR}, #{expiryDate,jdbcType=TIMESTAMP}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{attestedBy,jdbcType=NVARCHAR}, #{pvtKeyLastBackupDate,jdbcType=TIMESTAMP}, 
+      #{sid,jdbcType=VARBINARY}, #{thumbprint,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.CertificatesWithBLOBs" >
+    insert into certificates
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="certificateId != null" >
+        certificate_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="pvtKeyEncryptionType != null" >
+        pvt_key_encryption_type,
+      </if>
+      <if test="pvtKeyEncryptionTypeDesc != null" >
+        pvt_key_encryption_type_desc,
+      </if>
+      <if test="isActiveForBeginDialog != null" >
+        is_active_for_begin_dialog,
+      </if>
+      <if test="issuerName != null" >
+        issuer_name,
+      </if>
+      <if test="certSerialNumber != null" >
+        cert_serial_number,
+      </if>
+      <if test="stringSid != null" >
+        string_sid,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="expiryDate != null" >
+        expiry_date,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="attestedBy != null" >
+        attested_by,
+      </if>
+      <if test="pvtKeyLastBackupDate != null" >
+        pvt_key_last_backup_date,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="thumbprint != null" >
+        thumbprint,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="certificateId != null" >
+        #{certificateId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="pvtKeyEncryptionType != null" >
+        #{pvtKeyEncryptionType,jdbcType=CHAR},
+      </if>
+      <if test="pvtKeyEncryptionTypeDesc != null" >
+        #{pvtKeyEncryptionTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isActiveForBeginDialog != null" >
+        #{isActiveForBeginDialog,jdbcType=BIT},
+      </if>
+      <if test="issuerName != null" >
+        #{issuerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="certSerialNumber != null" >
+        #{certSerialNumber,jdbcType=NVARCHAR},
+      </if>
+      <if test="stringSid != null" >
+        #{stringSid,jdbcType=NVARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=NVARCHAR},
+      </if>
+      <if test="expiryDate != null" >
+        #{expiryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attestedBy != null" >
+        #{attestedBy,jdbcType=NVARCHAR},
+      </if>
+      <if test="pvtKeyLastBackupDate != null" >
+        #{pvtKeyLastBackupDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARBINARY},
+      </if>
+      <if test="thumbprint != null" >
+        #{thumbprint,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysperfinfoMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysperfinfo" >
+    <result column="object_name" property="objectName" jdbcType="NCHAR" />
+    <result column="counter_name" property="counterName" jdbcType="NCHAR" />
+    <result column="instance_name" property="instanceName" jdbcType="NCHAR" />
+    <result column="cntr_value" property="cntrValue" jdbcType="BIGINT" />
+    <result column="cntr_type" property="cntrType" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysperfinfo" >
+    insert into sysperfinfo (object_name, counter_name, instance_name, 
+      cntr_value, cntr_type)
+    values (#{objectName,jdbcType=NCHAR}, #{counterName,jdbcType=NCHAR}, #{instanceName,jdbcType=NCHAR}, 
+      #{cntrValue,jdbcType=BIGINT}, #{cntrType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysperfinfo" >
+    insert into sysperfinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectName != null" >
+        object_name,
+      </if>
+      <if test="counterName != null" >
+        counter_name,
+      </if>
+      <if test="instanceName != null" >
+        instance_name,
+      </if>
+      <if test="cntrValue != null" >
+        cntr_value,
+      </if>
+      <if test="cntrType != null" >
+        cntr_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectName != null" >
+        #{objectName,jdbcType=NCHAR},
+      </if>
+      <if test="counterName != null" >
+        #{counterName,jdbcType=NCHAR},
+      </if>
+      <if test="instanceName != null" >
+        #{instanceName,jdbcType=NCHAR},
+      </if>
+      <if test="cntrValue != null" >
+        #{cntrValue,jdbcType=BIGINT},
+      </if>
+      <if test="cntrType != null" >
+        #{cntrType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

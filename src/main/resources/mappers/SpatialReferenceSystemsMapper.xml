@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SpatialReferenceSystemsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SpatialReferenceSystems" >
+    <result column="spatial_reference_id" property="spatialReferenceId" jdbcType="INTEGER" />
+    <result column="authority_name" property="authorityName" jdbcType="NVARCHAR" />
+    <result column="authorized_spatial_reference_id" property="authorizedSpatialReferenceId" jdbcType="INTEGER" />
+    <result column="well_known_text" property="wellKnownText" jdbcType="NVARCHAR" />
+    <result column="unit_of_measure" property="unitOfMeasure" jdbcType="NVARCHAR" />
+    <result column="unit_conversion_factor" property="unitConversionFactor" jdbcType="DOUBLE" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SpatialReferenceSystems" >
+    insert into spatial_reference_systems (spatial_reference_id, authority_name, 
+      authorized_spatial_reference_id, well_known_text, 
+      unit_of_measure, unit_conversion_factor)
+    values (#{spatialReferenceId,jdbcType=INTEGER}, #{authorityName,jdbcType=NVARCHAR}, 
+      #{authorizedSpatialReferenceId,jdbcType=INTEGER}, #{wellKnownText,jdbcType=NVARCHAR}, 
+      #{unitOfMeasure,jdbcType=NVARCHAR}, #{unitConversionFactor,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SpatialReferenceSystems" >
+    insert into spatial_reference_systems
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spatialReferenceId != null" >
+        spatial_reference_id,
+      </if>
+      <if test="authorityName != null" >
+        authority_name,
+      </if>
+      <if test="authorizedSpatialReferenceId != null" >
+        authorized_spatial_reference_id,
+      </if>
+      <if test="wellKnownText != null" >
+        well_known_text,
+      </if>
+      <if test="unitOfMeasure != null" >
+        unit_of_measure,
+      </if>
+      <if test="unitConversionFactor != null" >
+        unit_conversion_factor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spatialReferenceId != null" >
+        #{spatialReferenceId,jdbcType=INTEGER},
+      </if>
+      <if test="authorityName != null" >
+        #{authorityName,jdbcType=NVARCHAR},
+      </if>
+      <if test="authorizedSpatialReferenceId != null" >
+        #{authorizedSpatialReferenceId,jdbcType=INTEGER},
+      </if>
+      <if test="wellKnownText != null" >
+        #{wellKnownText,jdbcType=NVARCHAR},
+      </if>
+      <if test="unitOfMeasure != null" >
+        #{unitOfMeasure,jdbcType=NVARCHAR},
+      </if>
+      <if test="unitConversionFactor != null" >
+        #{unitConversionFactor,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

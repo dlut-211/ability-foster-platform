@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsWaitingTasksMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWaitingTasks" >
+    <result column="session_id" property="sessionId" jdbcType="SMALLINT" />
+    <result column="exec_context_id" property="execContextId" jdbcType="INTEGER" />
+    <result column="wait_duration_ms" property="waitDurationMs" jdbcType="BIGINT" />
+    <result column="wait_type" property="waitType" jdbcType="NVARCHAR" />
+    <result column="blocking_session_id" property="blockingSessionId" jdbcType="SMALLINT" />
+    <result column="blocking_exec_context_id" property="blockingExecContextId" jdbcType="INTEGER" />
+    <result column="resource_description" property="resourceDescription" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWaitingTasksWithBLOBs" extends="BaseResultMap" >
+    <result column="waiting_task_address" property="waitingTaskAddress" jdbcType="VARBINARY" />
+    <result column="resource_address" property="resourceAddress" jdbcType="VARBINARY" />
+    <result column="blocking_task_address" property="blockingTaskAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    waiting_task_address, resource_address, blocking_task_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWaitingTasksWithBLOBs" >
+    insert into dm_os_waiting_tasks (session_id, exec_context_id, wait_duration_ms, 
+      wait_type, blocking_session_id, blocking_exec_context_id, 
+      resource_description, waiting_task_address, 
+      resource_address, blocking_task_address
+      )
+    values (#{sessionId,jdbcType=SMALLINT}, #{execContextId,jdbcType=INTEGER}, #{waitDurationMs,jdbcType=BIGINT}, 
+      #{waitType,jdbcType=NVARCHAR}, #{blockingSessionId,jdbcType=SMALLINT}, #{blockingExecContextId,jdbcType=INTEGER}, 
+      #{resourceDescription,jdbcType=NVARCHAR}, #{waitingTaskAddress,jdbcType=VARBINARY}, 
+      #{resourceAddress,jdbcType=VARBINARY}, #{blockingTaskAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWaitingTasksWithBLOBs" >
+    insert into dm_os_waiting_tasks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="execContextId != null" >
+        exec_context_id,
+      </if>
+      <if test="waitDurationMs != null" >
+        wait_duration_ms,
+      </if>
+      <if test="waitType != null" >
+        wait_type,
+      </if>
+      <if test="blockingSessionId != null" >
+        blocking_session_id,
+      </if>
+      <if test="blockingExecContextId != null" >
+        blocking_exec_context_id,
+      </if>
+      <if test="resourceDescription != null" >
+        resource_description,
+      </if>
+      <if test="waitingTaskAddress != null" >
+        waiting_task_address,
+      </if>
+      <if test="resourceAddress != null" >
+        resource_address,
+      </if>
+      <if test="blockingTaskAddress != null" >
+        blocking_task_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=SMALLINT},
+      </if>
+      <if test="execContextId != null" >
+        #{execContextId,jdbcType=INTEGER},
+      </if>
+      <if test="waitDurationMs != null" >
+        #{waitDurationMs,jdbcType=BIGINT},
+      </if>
+      <if test="waitType != null" >
+        #{waitType,jdbcType=NVARCHAR},
+      </if>
+      <if test="blockingSessionId != null" >
+        #{blockingSessionId,jdbcType=SMALLINT},
+      </if>
+      <if test="blockingExecContextId != null" >
+        #{blockingExecContextId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceDescription != null" >
+        #{resourceDescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="waitingTaskAddress != null" >
+        #{waitingTaskAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="resourceAddress != null" >
+        #{resourceAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="blockingTaskAddress != null" >
+        #{blockingTaskAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

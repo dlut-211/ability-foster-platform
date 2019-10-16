@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysxmitqueueMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitqueue" >
+    <result column="dlgid" property="dlgid" jdbcType="CHAR" />
+    <result column="finitiator" property="finitiator" jdbcType="BIT" />
+    <result column="tosvc" property="tosvc" jdbcType="NVARCHAR" />
+    <result column="tobrkrinst" property="tobrkrinst" jdbcType="NVARCHAR" />
+    <result column="fromsvc" property="fromsvc" jdbcType="NVARCHAR" />
+    <result column="frombrkrinst" property="frombrkrinst" jdbcType="NVARCHAR" />
+    <result column="svccontr" property="svccontr" jdbcType="NVARCHAR" />
+    <result column="msgseqnum" property="msgseqnum" jdbcType="BIGINT" />
+    <result column="msgtype" property="msgtype" jdbcType="NVARCHAR" />
+    <result column="unackmfn" property="unackmfn" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="enqtime" property="enqtime" jdbcType="TIMESTAMP" />
+    <result column="rsndtime" property="rsndtime" jdbcType="TIMESTAMP" />
+    <result column="dlgerr" property="dlgerr" jdbcType="INTEGER" />
+    <result column="msgid" property="msgid" jdbcType="CHAR" />
+    <result column="hdrpartlen" property="hdrpartlen" jdbcType="SMALLINT" />
+    <result column="hdrseclen" property="hdrseclen" jdbcType="SMALLINT" />
+    <result column="msgenc" property="msgenc" jdbcType="TINYINT" />
+    <result column="msgbodylen" property="msgbodylen" jdbcType="INTEGER" />
+    <result column="msgref" property="msgref" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitqueue" extends="BaseResultMap" >
+    <result column="msgbody" property="msgbody" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    msgbody
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitqueue" >
+    insert into sysxmitqueue (dlgid, finitiator, tosvc, 
+      tobrkrinst, fromsvc, frombrkrinst, 
+      svccontr, msgseqnum, msgtype, 
+      unackmfn, status, enqtime, 
+      rsndtime, dlgerr, msgid, 
+      hdrpartlen, hdrseclen, msgenc, 
+      msgbodylen, msgref, msgbody
+      )
+    values (#{dlgid,jdbcType=CHAR}, #{finitiator,jdbcType=BIT}, #{tosvc,jdbcType=NVARCHAR}, 
+      #{tobrkrinst,jdbcType=NVARCHAR}, #{fromsvc,jdbcType=NVARCHAR}, #{frombrkrinst,jdbcType=NVARCHAR}, 
+      #{svccontr,jdbcType=NVARCHAR}, #{msgseqnum,jdbcType=BIGINT}, #{msgtype,jdbcType=NVARCHAR}, 
+      #{unackmfn,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{enqtime,jdbcType=TIMESTAMP}, 
+      #{rsndtime,jdbcType=TIMESTAMP}, #{dlgerr,jdbcType=INTEGER}, #{msgid,jdbcType=CHAR}, 
+      #{hdrpartlen,jdbcType=SMALLINT}, #{hdrseclen,jdbcType=SMALLINT}, #{msgenc,jdbcType=TINYINT}, 
+      #{msgbodylen,jdbcType=INTEGER}, #{msgref,jdbcType=BIGINT}, #{msgbody,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmitqueue" >
+    insert into sysxmitqueue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dlgid != null" >
+        dlgid,
+      </if>
+      <if test="finitiator != null" >
+        finitiator,
+      </if>
+      <if test="tosvc != null" >
+        tosvc,
+      </if>
+      <if test="tobrkrinst != null" >
+        tobrkrinst,
+      </if>
+      <if test="fromsvc != null" >
+        fromsvc,
+      </if>
+      <if test="frombrkrinst != null" >
+        frombrkrinst,
+      </if>
+      <if test="svccontr != null" >
+        svccontr,
+      </if>
+      <if test="msgseqnum != null" >
+        msgseqnum,
+      </if>
+      <if test="msgtype != null" >
+        msgtype,
+      </if>
+      <if test="unackmfn != null" >
+        unackmfn,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="enqtime != null" >
+        enqtime,
+      </if>
+      <if test="rsndtime != null" >
+        rsndtime,
+      </if>
+      <if test="dlgerr != null" >
+        dlgerr,
+      </if>
+      <if test="msgid != null" >
+        msgid,
+      </if>
+      <if test="hdrpartlen != null" >
+        hdrpartlen,
+      </if>
+      <if test="hdrseclen != null" >
+        hdrseclen,
+      </if>
+      <if test="msgenc != null" >
+        msgenc,
+      </if>
+      <if test="msgbodylen != null" >
+        msgbodylen,
+      </if>
+      <if test="msgref != null" >
+        msgref,
+      </if>
+      <if test="msgbody != null" >
+        msgbody,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dlgid != null" >
+        #{dlgid,jdbcType=CHAR},
+      </if>
+      <if test="finitiator != null" >
+        #{finitiator,jdbcType=BIT},
+      </if>
+      <if test="tosvc != null" >
+        #{tosvc,jdbcType=NVARCHAR},
+      </if>
+      <if test="tobrkrinst != null" >
+        #{tobrkrinst,jdbcType=NVARCHAR},
+      </if>
+      <if test="fromsvc != null" >
+        #{fromsvc,jdbcType=NVARCHAR},
+      </if>
+      <if test="frombrkrinst != null" >
+        #{frombrkrinst,jdbcType=NVARCHAR},
+      </if>
+      <if test="svccontr != null" >
+        #{svccontr,jdbcType=NVARCHAR},
+      </if>
+      <if test="msgseqnum != null" >
+        #{msgseqnum,jdbcType=BIGINT},
+      </if>
+      <if test="msgtype != null" >
+        #{msgtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="unackmfn != null" >
+        #{unackmfn,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="enqtime != null" >
+        #{enqtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rsndtime != null" >
+        #{rsndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dlgerr != null" >
+        #{dlgerr,jdbcType=INTEGER},
+      </if>
+      <if test="msgid != null" >
+        #{msgid,jdbcType=CHAR},
+      </if>
+      <if test="hdrpartlen != null" >
+        #{hdrpartlen,jdbcType=SMALLINT},
+      </if>
+      <if test="hdrseclen != null" >
+        #{hdrseclen,jdbcType=SMALLINT},
+      </if>
+      <if test="msgenc != null" >
+        #{msgenc,jdbcType=TINYINT},
+      </if>
+      <if test="msgbodylen != null" >
+        #{msgbodylen,jdbcType=INTEGER},
+      </if>
+      <if test="msgref != null" >
+        #{msgref,jdbcType=BIGINT},
+      </if>
+      <if test="msgbody != null" >
+        #{msgbody,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

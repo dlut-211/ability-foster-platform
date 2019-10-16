@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DatabaseRecoveryStatusMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseRecoveryStatus" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="database_guid" property="databaseGuid" jdbcType="CHAR" />
+    <result column="family_guid" property="familyGuid" jdbcType="CHAR" />
+    <result column="last_log_backup_lsn" property="lastLogBackupLsn" jdbcType="NUMERIC" />
+    <result column="recovery_fork_guid" property="recoveryForkGuid" jdbcType="CHAR" />
+    <result column="first_recovery_fork_guid" property="firstRecoveryForkGuid" jdbcType="CHAR" />
+    <result column="fork_point_lsn" property="forkPointLsn" jdbcType="NUMERIC" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseRecoveryStatus" >
+    insert into database_recovery_status (database_id, database_guid, family_guid, 
+      last_log_backup_lsn, recovery_fork_guid, first_recovery_fork_guid, 
+      fork_point_lsn)
+    values (#{databaseId,jdbcType=INTEGER}, #{databaseGuid,jdbcType=CHAR}, #{familyGuid,jdbcType=CHAR}, 
+      #{lastLogBackupLsn,jdbcType=NUMERIC}, #{recoveryForkGuid,jdbcType=CHAR}, #{firstRecoveryForkGuid,jdbcType=CHAR}, 
+      #{forkPointLsn,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseRecoveryStatus" >
+    insert into database_recovery_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="databaseGuid != null" >
+        database_guid,
+      </if>
+      <if test="familyGuid != null" >
+        family_guid,
+      </if>
+      <if test="lastLogBackupLsn != null" >
+        last_log_backup_lsn,
+      </if>
+      <if test="recoveryForkGuid != null" >
+        recovery_fork_guid,
+      </if>
+      <if test="firstRecoveryForkGuid != null" >
+        first_recovery_fork_guid,
+      </if>
+      <if test="forkPointLsn != null" >
+        fork_point_lsn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="databaseGuid != null" >
+        #{databaseGuid,jdbcType=CHAR},
+      </if>
+      <if test="familyGuid != null" >
+        #{familyGuid,jdbcType=CHAR},
+      </if>
+      <if test="lastLogBackupLsn != null" >
+        #{lastLogBackupLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="recoveryForkGuid != null" >
+        #{recoveryForkGuid,jdbcType=CHAR},
+      </if>
+      <if test="firstRecoveryForkGuid != null" >
+        #{firstRecoveryForkGuid,jdbcType=CHAR},
+      </if>
+      <if test="forkPointLsn != null" >
+        #{forkPointLsn,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+</mapper>

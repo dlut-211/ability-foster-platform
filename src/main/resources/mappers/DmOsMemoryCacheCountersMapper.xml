@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsMemoryCacheCountersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheCounters" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="type" property="type" jdbcType="NVARCHAR" />
+    <result column="pages_kb" property="pagesKb" jdbcType="BIGINT" />
+    <result column="pages_in_use_kb" property="pagesInUseKb" jdbcType="BIGINT" />
+    <result column="entries_count" property="entriesCount" jdbcType="BIGINT" />
+    <result column="entries_in_use_count" property="entriesInUseCount" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheCounters" extends="BaseResultMap" >
+    <result column="cache_address" property="cacheAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    cache_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheCounters" >
+    insert into dm_os_memory_cache_counters (name, type, pages_kb, 
+      pages_in_use_kb, entries_count, entries_in_use_count, 
+      cache_address)
+    values (#{name,jdbcType=NVARCHAR}, #{type,jdbcType=NVARCHAR}, #{pagesKb,jdbcType=BIGINT}, 
+      #{pagesInUseKb,jdbcType=BIGINT}, #{entriesCount,jdbcType=BIGINT}, #{entriesInUseCount,jdbcType=BIGINT}, 
+      #{cacheAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheCounters" >
+    insert into dm_os_memory_cache_counters
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="pagesKb != null" >
+        pages_kb,
+      </if>
+      <if test="pagesInUseKb != null" >
+        pages_in_use_kb,
+      </if>
+      <if test="entriesCount != null" >
+        entries_count,
+      </if>
+      <if test="entriesInUseCount != null" >
+        entries_in_use_count,
+      </if>
+      <if test="cacheAddress != null" >
+        cache_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="pagesKb != null" >
+        #{pagesKb,jdbcType=BIGINT},
+      </if>
+      <if test="pagesInUseKb != null" >
+        #{pagesInUseKb,jdbcType=BIGINT},
+      </if>
+      <if test="entriesCount != null" >
+        #{entriesCount,jdbcType=BIGINT},
+      </if>
+      <if test="entriesInUseCount != null" >
+        #{entriesInUseCount,jdbcType=BIGINT},
+      </if>
+      <if test="cacheAddress != null" >
+        #{cacheAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

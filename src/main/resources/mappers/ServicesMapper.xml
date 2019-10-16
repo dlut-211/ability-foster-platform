@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServicesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Services" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="service_id" property="serviceId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="service_queue_id" property="serviceQueueId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Services" >
+    insert into services (name, service_id, principal_id, 
+      service_queue_id)
+    values (#{name,jdbcType=NVARCHAR}, #{serviceId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{serviceQueueId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Services" >
+    insert into services
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="serviceQueueId != null" >
+        service_queue_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceQueueId != null" >
+        #{serviceQueueId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

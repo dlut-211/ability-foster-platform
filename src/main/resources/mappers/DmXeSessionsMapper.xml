@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmXeSessionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmXeSessions" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="pending_buffers" property="pendingBuffers" jdbcType="INTEGER" />
+    <result column="total_regular_buffers" property="totalRegularBuffers" jdbcType="INTEGER" />
+    <result column="regular_buffer_size" property="regularBufferSize" jdbcType="BIGINT" />
+    <result column="total_large_buffers" property="totalLargeBuffers" jdbcType="INTEGER" />
+    <result column="large_buffer_size" property="largeBufferSize" jdbcType="BIGINT" />
+    <result column="total_buffer_size" property="totalBufferSize" jdbcType="BIGINT" />
+    <result column="buffer_policy_flags" property="bufferPolicyFlags" jdbcType="INTEGER" />
+    <result column="buffer_policy_desc" property="bufferPolicyDesc" jdbcType="NVARCHAR" />
+    <result column="flags" property="flags" jdbcType="INTEGER" />
+    <result column="flag_desc" property="flagDesc" jdbcType="NVARCHAR" />
+    <result column="dropped_event_count" property="droppedEventCount" jdbcType="INTEGER" />
+    <result column="dropped_buffer_count" property="droppedBufferCount" jdbcType="INTEGER" />
+    <result column="blocked_event_fire_time" property="blockedEventFireTime" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="largest_event_dropped_size" property="largestEventDroppedSize" jdbcType="INTEGER" />
+    <result column="session_source" property="sessionSource" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmXeSessions" extends="BaseResultMap" >
+    <result column="address" property="address" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXeSessions" >
+    insert into dm_xe_sessions (name, pending_buffers, total_regular_buffers, 
+      regular_buffer_size, total_large_buffers, large_buffer_size, 
+      total_buffer_size, buffer_policy_flags, buffer_policy_desc, 
+      flags, flag_desc, dropped_event_count, 
+      dropped_buffer_count, blocked_event_fire_time, 
+      create_time, largest_event_dropped_size, 
+      session_source, address)
+    values (#{name,jdbcType=NVARCHAR}, #{pendingBuffers,jdbcType=INTEGER}, #{totalRegularBuffers,jdbcType=INTEGER}, 
+      #{regularBufferSize,jdbcType=BIGINT}, #{totalLargeBuffers,jdbcType=INTEGER}, #{largeBufferSize,jdbcType=BIGINT}, 
+      #{totalBufferSize,jdbcType=BIGINT}, #{bufferPolicyFlags,jdbcType=INTEGER}, #{bufferPolicyDesc,jdbcType=NVARCHAR}, 
+      #{flags,jdbcType=INTEGER}, #{flagDesc,jdbcType=NVARCHAR}, #{droppedEventCount,jdbcType=INTEGER}, 
+      #{droppedBufferCount,jdbcType=INTEGER}, #{blockedEventFireTime,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{largestEventDroppedSize,jdbcType=INTEGER}, 
+      #{sessionSource,jdbcType=NVARCHAR}, #{address,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXeSessions" >
+    insert into dm_xe_sessions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="pendingBuffers != null" >
+        pending_buffers,
+      </if>
+      <if test="totalRegularBuffers != null" >
+        total_regular_buffers,
+      </if>
+      <if test="regularBufferSize != null" >
+        regular_buffer_size,
+      </if>
+      <if test="totalLargeBuffers != null" >
+        total_large_buffers,
+      </if>
+      <if test="largeBufferSize != null" >
+        large_buffer_size,
+      </if>
+      <if test="totalBufferSize != null" >
+        total_buffer_size,
+      </if>
+      <if test="bufferPolicyFlags != null" >
+        buffer_policy_flags,
+      </if>
+      <if test="bufferPolicyDesc != null" >
+        buffer_policy_desc,
+      </if>
+      <if test="flags != null" >
+        flags,
+      </if>
+      <if test="flagDesc != null" >
+        flag_desc,
+      </if>
+      <if test="droppedEventCount != null" >
+        dropped_event_count,
+      </if>
+      <if test="droppedBufferCount != null" >
+        dropped_buffer_count,
+      </if>
+      <if test="blockedEventFireTime != null" >
+        blocked_event_fire_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="largestEventDroppedSize != null" >
+        largest_event_dropped_size,
+      </if>
+      <if test="sessionSource != null" >
+        session_source,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="pendingBuffers != null" >
+        #{pendingBuffers,jdbcType=INTEGER},
+      </if>
+      <if test="totalRegularBuffers != null" >
+        #{totalRegularBuffers,jdbcType=INTEGER},
+      </if>
+      <if test="regularBufferSize != null" >
+        #{regularBufferSize,jdbcType=BIGINT},
+      </if>
+      <if test="totalLargeBuffers != null" >
+        #{totalLargeBuffers,jdbcType=INTEGER},
+      </if>
+      <if test="largeBufferSize != null" >
+        #{largeBufferSize,jdbcType=BIGINT},
+      </if>
+      <if test="totalBufferSize != null" >
+        #{totalBufferSize,jdbcType=BIGINT},
+      </if>
+      <if test="bufferPolicyFlags != null" >
+        #{bufferPolicyFlags,jdbcType=INTEGER},
+      </if>
+      <if test="bufferPolicyDesc != null" >
+        #{bufferPolicyDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="flags != null" >
+        #{flags,jdbcType=INTEGER},
+      </if>
+      <if test="flagDesc != null" >
+        #{flagDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="droppedEventCount != null" >
+        #{droppedEventCount,jdbcType=INTEGER},
+      </if>
+      <if test="droppedBufferCount != null" >
+        #{droppedBufferCount,jdbcType=INTEGER},
+      </if>
+      <if test="blockedEventFireTime != null" >
+        #{blockedEventFireTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="largestEventDroppedSize != null" >
+        #{largestEventDroppedSize,jdbcType=INTEGER},
+      </if>
+      <if test="sessionSource != null" >
+        #{sessionSource,jdbcType=NVARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

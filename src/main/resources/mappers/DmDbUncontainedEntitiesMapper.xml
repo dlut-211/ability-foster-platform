@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbUncontainedEntitiesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbUncontainedEntities" >
+    <result column="class" property="class" jdbcType="INTEGER" />
+    <result column="class_desc" property="classDesc" jdbcType="NVARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="INTEGER" />
+    <result column="statement_line_number" property="statementLineNumber" jdbcType="INTEGER" />
+    <result column="statement_offset_begin" property="statementOffsetBegin" jdbcType="INTEGER" />
+    <result column="statement_offset_end" property="statementOffsetEnd" jdbcType="INTEGER" />
+    <result column="statement_type" property="statementType" jdbcType="NVARCHAR" />
+    <result column="feature_name" property="featureName" jdbcType="NVARCHAR" />
+    <result column="feature_type_name" property="featureTypeName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbUncontainedEntities" >
+    insert into dm_db_uncontained_entities (class, class_desc, major_id, 
+      statement_line_number, statement_offset_begin, 
+      statement_offset_end, statement_type, feature_name, 
+      feature_type_name)
+    values (#{class,jdbcType=INTEGER}, #{classDesc,jdbcType=NVARCHAR}, #{majorId,jdbcType=INTEGER}, 
+      #{statementLineNumber,jdbcType=INTEGER}, #{statementOffsetBegin,jdbcType=INTEGER}, 
+      #{statementOffsetEnd,jdbcType=INTEGER}, #{statementType,jdbcType=NVARCHAR}, #{featureName,jdbcType=NVARCHAR}, 
+      #{featureTypeName,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbUncontainedEntities" >
+    insert into dm_db_uncontained_entities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        class,
+      </if>
+      <if test="classDesc != null" >
+        class_desc,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="statementLineNumber != null" >
+        statement_line_number,
+      </if>
+      <if test="statementOffsetBegin != null" >
+        statement_offset_begin,
+      </if>
+      <if test="statementOffsetEnd != null" >
+        statement_offset_end,
+      </if>
+      <if test="statementType != null" >
+        statement_type,
+      </if>
+      <if test="featureName != null" >
+        feature_name,
+      </if>
+      <if test="featureTypeName != null" >
+        feature_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        #{class,jdbcType=INTEGER},
+      </if>
+      <if test="classDesc != null" >
+        #{classDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=INTEGER},
+      </if>
+      <if test="statementLineNumber != null" >
+        #{statementLineNumber,jdbcType=INTEGER},
+      </if>
+      <if test="statementOffsetBegin != null" >
+        #{statementOffsetBegin,jdbcType=INTEGER},
+      </if>
+      <if test="statementOffsetEnd != null" >
+        #{statementOffsetEnd,jdbcType=INTEGER},
+      </if>
+      <if test="statementType != null" >
+        #{statementType,jdbcType=NVARCHAR},
+      </if>
+      <if test="featureName != null" >
+        #{featureName,jdbcType=NVARCHAR},
+      </if>
+      <if test="featureTypeName != null" >
+        #{featureTypeName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

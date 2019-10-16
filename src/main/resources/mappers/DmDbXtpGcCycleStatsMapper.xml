@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbXtpGcCycleStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpGcCycleStats" >
+    <result column="cycle_id" property="cycleId" jdbcType="BIGINT" />
+    <result column="ticks_at_cycle_start" property="ticksAtCycleStart" jdbcType="BIGINT" />
+    <result column="ticks_at_cycle_end" property="ticksAtCycleEnd" jdbcType="BIGINT" />
+    <result column="base_generation" property="baseGeneration" jdbcType="BIGINT" />
+    <result column="xacts_copied_to_local" property="xactsCopiedToLocal" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_0" property="xactsInGen0" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_1" property="xactsInGen1" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_2" property="xactsInGen2" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_3" property="xactsInGen3" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_4" property="xactsInGen4" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_5" property="xactsInGen5" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_6" property="xactsInGen6" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_7" property="xactsInGen7" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_8" property="xactsInGen8" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_9" property="xactsInGen9" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_10" property="xactsInGen10" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_11" property="xactsInGen11" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_12" property="xactsInGen12" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_13" property="xactsInGen13" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_14" property="xactsInGen14" jdbcType="BIGINT" />
+    <result column="xacts_in_gen_15" property="xactsInGen15" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpGcCycleStats" >
+    insert into dm_db_xtp_gc_cycle_stats (cycle_id, ticks_at_cycle_start, ticks_at_cycle_end, 
+      base_generation, xacts_copied_to_local, xacts_in_gen_0, 
+      xacts_in_gen_1, xacts_in_gen_2, xacts_in_gen_3, 
+      xacts_in_gen_4, xacts_in_gen_5, xacts_in_gen_6, 
+      xacts_in_gen_7, xacts_in_gen_8, xacts_in_gen_9, 
+      xacts_in_gen_10, xacts_in_gen_11, xacts_in_gen_12, 
+      xacts_in_gen_13, xacts_in_gen_14, xacts_in_gen_15
+      )
+    values (#{cycleId,jdbcType=BIGINT}, #{ticksAtCycleStart,jdbcType=BIGINT}, #{ticksAtCycleEnd,jdbcType=BIGINT}, 
+      #{baseGeneration,jdbcType=BIGINT}, #{xactsCopiedToLocal,jdbcType=BIGINT}, #{xactsInGen0,jdbcType=BIGINT}, 
+      #{xactsInGen1,jdbcType=BIGINT}, #{xactsInGen2,jdbcType=BIGINT}, #{xactsInGen3,jdbcType=BIGINT}, 
+      #{xactsInGen4,jdbcType=BIGINT}, #{xactsInGen5,jdbcType=BIGINT}, #{xactsInGen6,jdbcType=BIGINT}, 
+      #{xactsInGen7,jdbcType=BIGINT}, #{xactsInGen8,jdbcType=BIGINT}, #{xactsInGen9,jdbcType=BIGINT}, 
+      #{xactsInGen10,jdbcType=BIGINT}, #{xactsInGen11,jdbcType=BIGINT}, #{xactsInGen12,jdbcType=BIGINT}, 
+      #{xactsInGen13,jdbcType=BIGINT}, #{xactsInGen14,jdbcType=BIGINT}, #{xactsInGen15,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpGcCycleStats" >
+    insert into dm_db_xtp_gc_cycle_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cycleId != null" >
+        cycle_id,
+      </if>
+      <if test="ticksAtCycleStart != null" >
+        ticks_at_cycle_start,
+      </if>
+      <if test="ticksAtCycleEnd != null" >
+        ticks_at_cycle_end,
+      </if>
+      <if test="baseGeneration != null" >
+        base_generation,
+      </if>
+      <if test="xactsCopiedToLocal != null" >
+        xacts_copied_to_local,
+      </if>
+      <if test="xactsInGen0 != null" >
+        xacts_in_gen_0,
+      </if>
+      <if test="xactsInGen1 != null" >
+        xacts_in_gen_1,
+      </if>
+      <if test="xactsInGen2 != null" >
+        xacts_in_gen_2,
+      </if>
+      <if test="xactsInGen3 != null" >
+        xacts_in_gen_3,
+      </if>
+      <if test="xactsInGen4 != null" >
+        xacts_in_gen_4,
+      </if>
+      <if test="xactsInGen5 != null" >
+        xacts_in_gen_5,
+      </if>
+      <if test="xactsInGen6 != null" >
+        xacts_in_gen_6,
+      </if>
+      <if test="xactsInGen7 != null" >
+        xacts_in_gen_7,
+      </if>
+      <if test="xactsInGen8 != null" >
+        xacts_in_gen_8,
+      </if>
+      <if test="xactsInGen9 != null" >
+        xacts_in_gen_9,
+      </if>
+      <if test="xactsInGen10 != null" >
+        xacts_in_gen_10,
+      </if>
+      <if test="xactsInGen11 != null" >
+        xacts_in_gen_11,
+      </if>
+      <if test="xactsInGen12 != null" >
+        xacts_in_gen_12,
+      </if>
+      <if test="xactsInGen13 != null" >
+        xacts_in_gen_13,
+      </if>
+      <if test="xactsInGen14 != null" >
+        xacts_in_gen_14,
+      </if>
+      <if test="xactsInGen15 != null" >
+        xacts_in_gen_15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cycleId != null" >
+        #{cycleId,jdbcType=BIGINT},
+      </if>
+      <if test="ticksAtCycleStart != null" >
+        #{ticksAtCycleStart,jdbcType=BIGINT},
+      </if>
+      <if test="ticksAtCycleEnd != null" >
+        #{ticksAtCycleEnd,jdbcType=BIGINT},
+      </if>
+      <if test="baseGeneration != null" >
+        #{baseGeneration,jdbcType=BIGINT},
+      </if>
+      <if test="xactsCopiedToLocal != null" >
+        #{xactsCopiedToLocal,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen0 != null" >
+        #{xactsInGen0,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen1 != null" >
+        #{xactsInGen1,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen2 != null" >
+        #{xactsInGen2,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen3 != null" >
+        #{xactsInGen3,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen4 != null" >
+        #{xactsInGen4,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen5 != null" >
+        #{xactsInGen5,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen6 != null" >
+        #{xactsInGen6,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen7 != null" >
+        #{xactsInGen7,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen8 != null" >
+        #{xactsInGen8,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen9 != null" >
+        #{xactsInGen9,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen10 != null" >
+        #{xactsInGen10,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen11 != null" >
+        #{xactsInGen11,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen12 != null" >
+        #{xactsInGen12,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen13 != null" >
+        #{xactsInGen13,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen14 != null" >
+        #{xactsInGen14,jdbcType=BIGINT},
+      </if>
+      <if test="xactsInGen15 != null" >
+        #{xactsInGen15,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

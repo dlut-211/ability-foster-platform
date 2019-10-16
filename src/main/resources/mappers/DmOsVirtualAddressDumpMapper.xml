@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsVirtualAddressDumpMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsVirtualAddressDump" >
+    <result column="region_size_in_bytes" property="regionSizeInBytes" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsVirtualAddressDump" extends="BaseResultMap" >
+    <result column="region_base_address" property="regionBaseAddress" jdbcType="VARBINARY" />
+    <result column="region_allocation_base_address" property="regionAllocationBaseAddress" jdbcType="VARBINARY" />
+    <result column="region_allocation_protection" property="regionAllocationProtection" jdbcType="VARBINARY" />
+    <result column="region_state" property="regionState" jdbcType="VARBINARY" />
+    <result column="region_current_protection" property="regionCurrentProtection" jdbcType="VARBINARY" />
+    <result column="region_type" property="regionType" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    region_base_address, region_allocation_base_address, region_allocation_protection, 
+    region_state, region_current_protection, region_type
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsVirtualAddressDump" >
+    insert into dm_os_virtual_address_dump (region_size_in_bytes, region_base_address, 
+      region_allocation_base_address, region_allocation_protection, 
+      region_state, region_current_protection, 
+      region_type)
+    values (#{regionSizeInBytes,jdbcType=BIGINT}, #{regionBaseAddress,jdbcType=VARBINARY}, 
+      #{regionAllocationBaseAddress,jdbcType=VARBINARY}, #{regionAllocationProtection,jdbcType=VARBINARY}, 
+      #{regionState,jdbcType=VARBINARY}, #{regionCurrentProtection,jdbcType=VARBINARY}, 
+      #{regionType,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsVirtualAddressDump" >
+    insert into dm_os_virtual_address_dump
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionSizeInBytes != null" >
+        region_size_in_bytes,
+      </if>
+      <if test="regionBaseAddress != null" >
+        region_base_address,
+      </if>
+      <if test="regionAllocationBaseAddress != null" >
+        region_allocation_base_address,
+      </if>
+      <if test="regionAllocationProtection != null" >
+        region_allocation_protection,
+      </if>
+      <if test="regionState != null" >
+        region_state,
+      </if>
+      <if test="regionCurrentProtection != null" >
+        region_current_protection,
+      </if>
+      <if test="regionType != null" >
+        region_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionSizeInBytes != null" >
+        #{regionSizeInBytes,jdbcType=BIGINT},
+      </if>
+      <if test="regionBaseAddress != null" >
+        #{regionBaseAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="regionAllocationBaseAddress != null" >
+        #{regionAllocationBaseAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="regionAllocationProtection != null" >
+        #{regionAllocationProtection,jdbcType=VARBINARY},
+      </if>
+      <if test="regionState != null" >
+        #{regionState,jdbcType=VARBINARY},
+      </if>
+      <if test="regionCurrentProtection != null" >
+        #{regionCurrentProtection,jdbcType=VARBINARY},
+      </if>
+      <if test="regionType != null" >
+        #{regionType,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

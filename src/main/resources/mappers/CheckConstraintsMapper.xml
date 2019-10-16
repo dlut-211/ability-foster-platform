@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.CheckConstraintsMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.CheckConstraints">
+    <result column="CONSTRAINT_CATALOG" jdbcType="NVARCHAR" property="constraintCatalog" />
+    <result column="CONSTRAINT_SCHEMA" jdbcType="NVARCHAR" property="constraintSchema" />
+    <result column="CONSTRAINT_NAME" jdbcType="NVARCHAR" property="constraintName" />
+    <result column="CHECK_CLAUSE" jdbcType="NVARCHAR" property="checkClause" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.CheckConstraints">
+    insert into CHECK_CONSTRAINTS (CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
+      CONSTRAINT_NAME, CHECK_CLAUSE)
+    values (#{constraintCatalog,jdbcType=NVARCHAR}, #{constraintSchema,jdbcType=NVARCHAR}, 
+      #{constraintName,jdbcType=NVARCHAR}, #{checkClause,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.CheckConstraints">
+    insert into CHECK_CONSTRAINTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        CONSTRAINT_CATALOG,
+      </if>
+      <if test="constraintSchema != null">
+        CONSTRAINT_SCHEMA,
+      </if>
+      <if test="constraintName != null">
+        CONSTRAINT_NAME,
+      </if>
+      <if test="checkClause != null">
+        CHECK_CLAUSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="constraintCatalog != null">
+        #{constraintCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="constraintSchema != null">
+        #{constraintSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="constraintName != null">
+        #{constraintName,jdbcType=NVARCHAR},
+      </if>
+      <if test="checkClause != null">
+        #{checkClause,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.CheckConstraints">
+    <result column="name" jdbcType="NVARCHAR" property="name" />
+    <result column="object_id" jdbcType="INTEGER" property="objectId" />
+    <result column="principal_id" jdbcType="INTEGER" property="principalId" />
+    <result column="schema_id" jdbcType="INTEGER" property="schemaId" />
+    <result column="parent_object_id" jdbcType="INTEGER" property="parentObjectId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="type_desc" jdbcType="NVARCHAR" property="typeDesc" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="is_ms_shipped" jdbcType="BIT" property="isMsShipped" />
+    <result column="is_published" jdbcType="BIT" property="isPublished" />
+    <result column="is_schema_published" jdbcType="BIT" property="isSchemaPublished" />
+    <result column="is_disabled" jdbcType="BIT" property="isDisabled" />
+    <result column="is_not_for_replication" jdbcType="BIT" property="isNotForReplication" />
+    <result column="is_not_trusted" jdbcType="BIT" property="isNotTrusted" />
+    <result column="parent_column_id" jdbcType="INTEGER" property="parentColumnId" />
+    <result column="definition" jdbcType="NVARCHAR" property="definition" />
+    <result column="uses_database_collation" jdbcType="BIT" property="usesDatabaseCollation" />
+    <result column="is_system_named" jdbcType="BIT" property="isSystemNamed" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.CheckConstraints">
+    insert into check_constraints (name, object_id, principal_id, 
+      schema_id, parent_object_id, type, 
+      type_desc, create_date, modify_date, 
+      is_ms_shipped, is_published, is_schema_published, 
+      is_disabled, is_not_for_replication, is_not_trusted, 
+      parent_column_id, definition, uses_database_collation, 
+      is_system_named)
+    values (#{name,jdbcType=NVARCHAR}, #{objectId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{schemaId,jdbcType=INTEGER}, #{parentObjectId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{isMsShipped,jdbcType=BIT}, #{isPublished,jdbcType=BIT}, #{isSchemaPublished,jdbcType=BIT}, 
+      #{isDisabled,jdbcType=BIT}, #{isNotForReplication,jdbcType=BIT}, #{isNotTrusted,jdbcType=BIT}, 
+      #{parentColumnId,jdbcType=INTEGER}, #{definition,jdbcType=NVARCHAR}, #{usesDatabaseCollation,jdbcType=BIT}, 
+      #{isSystemNamed,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.CheckConstraints">
+    insert into check_constraints
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="principalId != null">
+        principal_id,
+      </if>
+      <if test="schemaId != null">
+        schema_id,
+      </if>
+      <if test="parentObjectId != null">
+        parent_object_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typeDesc != null">
+        type_desc,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="isMsShipped != null">
+        is_ms_shipped,
+      </if>
+      <if test="isPublished != null">
+        is_published,
+      </if>
+      <if test="isSchemaPublished != null">
+        is_schema_published,
+      </if>
+      <if test="isDisabled != null">
+        is_disabled,
+      </if>
+      <if test="isNotForReplication != null">
+        is_not_for_replication,
+      </if>
+      <if test="isNotTrusted != null">
+        is_not_trusted,
+      </if>
+      <if test="parentColumnId != null">
+        parent_column_id,
+      </if>
+      <if test="definition != null">
+        definition,
+      </if>
+      <if test="usesDatabaseCollation != null">
+        uses_database_collation,
+      </if>
+      <if test="isSystemNamed != null">
+        is_system_named,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null">
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="schemaId != null">
+        #{schemaId,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjectId != null">
+        #{parentObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null">
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMsShipped != null">
+        #{isMsShipped,jdbcType=BIT},
+      </if>
+      <if test="isPublished != null">
+        #{isPublished,jdbcType=BIT},
+      </if>
+      <if test="isSchemaPublished != null">
+        #{isSchemaPublished,jdbcType=BIT},
+      </if>
+      <if test="isDisabled != null">
+        #{isDisabled,jdbcType=BIT},
+      </if>
+      <if test="isNotForReplication != null">
+        #{isNotForReplication,jdbcType=BIT},
+      </if>
+      <if test="isNotTrusted != null">
+        #{isNotTrusted,jdbcType=BIT},
+      </if>
+      <if test="parentColumnId != null">
+        #{parentColumnId,jdbcType=INTEGER},
+      </if>
+      <if test="definition != null">
+        #{definition,jdbcType=NVARCHAR},
+      </if>
+      <if test="usesDatabaseCollation != null">
+        #{usesDatabaseCollation,jdbcType=BIT},
+      </if>
+      <if test="isSystemNamed != null">
+        #{isSystemNamed,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

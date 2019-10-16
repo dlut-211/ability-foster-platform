@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmLogpoolConsumersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolConsumers" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="recovery_unit_id" property="recoveryUnitId" jdbcType="INTEGER" />
+    <result column="consumer_id" property="consumerId" jdbcType="BIGINT" />
+    <result column="consumer_name" property="consumerName" jdbcType="NVARCHAR" />
+    <result column="resource_pool_id" property="resourcePoolId" jdbcType="INTEGER" />
+    <result column="is_idle" property="isIdle" jdbcType="TINYINT" />
+    <result column="wait_time_before_idle" property="waitTimeBeforeIdle" jdbcType="INTEGER" />
+    <result column="progress_category" property="progressCategory" jdbcType="INTEGER" />
+    <result column="persistent_only" property="persistentOnly" jdbcType="TINYINT" />
+    <result column="full_block_only" property="fullBlockOnly" jdbcType="TINYINT" />
+    <result column="share_intention" property="shareIntention" jdbcType="INTEGER" />
+    <result column="scan_direction" property="scanDirection" jdbcType="INTEGER" />
+    <result column="read_ahead_target" property="readAheadTarget" jdbcType="INTEGER" />
+    <result column="stats_enabled" property="statsEnabled" jdbcType="TINYINT" />
+    <result column="start_lsn" property="startLsn" jdbcType="NUMERIC" />
+    <result column="current_lsn" property="currentLsn" jdbcType="NUMERIC" />
+    <result column="end_log_block_id" property="endLogBlockId" jdbcType="BIGINT" />
+    <result column="reached_end" property="reachedEnd" jdbcType="TINYINT" />
+    <result column="outstanding_read" property="outstandingRead" jdbcType="TINYINT" />
+    <result column="read_ahead_done" property="readAheadDone" jdbcType="TINYINT" />
+    <result column="next_read_ahead_lsn" property="nextReadAheadLsn" jdbcType="NUMERIC" />
+    <result column="read_ahead_distance" property="readAheadDistance" jdbcType="INTEGER" />
+    <result column="private_pool_size" property="privatePoolSize" jdbcType="BIGINT" />
+    <result column="private_pool_pages" property="privatePoolPages" jdbcType="BIGINT" />
+    <result column="private_pool_hits" property="privatePoolHits" jdbcType="BIGINT" />
+    <result column="private_pool_misses" property="privatePoolMisses" jdbcType="BIGINT" />
+    <result column="private_pool_hits_RA" property="privatePoolHitsRa" jdbcType="BIGINT" />
+    <result column="private_pool_misses_RA" property="privatePoolMissesRa" jdbcType="BIGINT" />
+    <result column="private_pool_hit_search_length" property="privatePoolHitSearchLength" jdbcType="BIGINT" />
+    <result column="private_pool_miss_search_length" property="privatePoolMissSearchLength" jdbcType="BIGINT" />
+    <result column="private_pool_hits_search_length_RA" property="privatePoolHitsSearchLengthRa" jdbcType="BIGINT" />
+    <result column="private_pool_miss_search_length_RA" property="privatePoolMissSearchLengthRa" jdbcType="BIGINT" />
+    <result column="reference_count" property="referenceCount" jdbcType="INTEGER" />
+    <result column="free_ref_slot_occupied" property="freeRefSlotOccupied" jdbcType="TINYINT" />
+    <result column="target_private_pool_size" property="targetPrivatePoolSize" jdbcType="BIGINT" />
+    <result column="truncate_point" property="truncatePoint" jdbcType="BIGINT" />
+    <result column="mem_status" property="memStatus" jdbcType="INTEGER" />
+    <result column="scan_status" property="scanStatus" jdbcType="INTEGER" />
+    <result column="consumed_block_count" property="consumedBlockCount" jdbcType="BIGINT" />
+    <result column="cache_misses" property="cacheMisses" jdbcType="BIGINT" />
+    <result column="sigma_blocks_ahead" property="sigmaBlocksAhead" jdbcType="BIGINT" />
+    <result column="blocks_from_LC" property="blocksFromLc" jdbcType="BIGINT" />
+    <result column="blocks_from_LogPool" property="blocksFromLogpool" jdbcType="BIGINT" />
+    <result column="blocks_from_disk" property="blocksFromDisk" jdbcType="BIGINT" />
+    <result column="log_consumer_deleting" property="logConsumerDeleting" jdbcType="TINYINT" />
+    <result column="log_consumer_ref_counter" property="logConsumerRefCounter" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolConsumersWithBLOBs" extends="BaseResultMap" >
+    <result column="current_cache_buffer" property="currentCacheBuffer" jdbcType="VARBINARY" />
+    <result column="incomplete_cache_buffer" property="incompleteCacheBuffer" jdbcType="VARBINARY" />
+    <result column="private_pool_last_access_point" property="privatePoolLastAccessPoint" jdbcType="VARBINARY" />
+    <result column="private_pool_last_RA_access_point" property="privatePoolLastRaAccessPoint" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    current_cache_buffer, incomplete_cache_buffer, private_pool_last_access_point, private_pool_last_RA_access_point
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolConsumersWithBLOBs" >
+    insert into dm_logpool_consumers (database_id, recovery_unit_id, consumer_id, 
+      consumer_name, resource_pool_id, is_idle, 
+      wait_time_before_idle, progress_category, persistent_only, 
+      full_block_only, share_intention, scan_direction, 
+      read_ahead_target, stats_enabled, start_lsn, 
+      current_lsn, end_log_block_id, reached_end, 
+      outstanding_read, read_ahead_done, next_read_ahead_lsn, 
+      read_ahead_distance, private_pool_size, private_pool_pages, 
+      private_pool_hits, private_pool_misses, private_pool_hits_RA, 
+      private_pool_misses_RA, private_pool_hit_search_length, 
+      private_pool_miss_search_length, private_pool_hits_search_length_RA, 
+      private_pool_miss_search_length_RA, reference_count, 
+      free_ref_slot_occupied, target_private_pool_size, 
+      truncate_point, mem_status, scan_status, 
+      consumed_block_count, cache_misses, sigma_blocks_ahead, 
+      blocks_from_LC, blocks_from_LogPool, blocks_from_disk, 
+      log_consumer_deleting, log_consumer_ref_counter, 
+      current_cache_buffer, incomplete_cache_buffer, 
+      private_pool_last_access_point, private_pool_last_RA_access_point
+      )
+    values (#{databaseId,jdbcType=INTEGER}, #{recoveryUnitId,jdbcType=INTEGER}, #{consumerId,jdbcType=BIGINT}, 
+      #{consumerName,jdbcType=NVARCHAR}, #{resourcePoolId,jdbcType=INTEGER}, #{isIdle,jdbcType=TINYINT}, 
+      #{waitTimeBeforeIdle,jdbcType=INTEGER}, #{progressCategory,jdbcType=INTEGER}, #{persistentOnly,jdbcType=TINYINT}, 
+      #{fullBlockOnly,jdbcType=TINYINT}, #{shareIntention,jdbcType=INTEGER}, #{scanDirection,jdbcType=INTEGER}, 
+      #{readAheadTarget,jdbcType=INTEGER}, #{statsEnabled,jdbcType=TINYINT}, #{startLsn,jdbcType=NUMERIC}, 
+      #{currentLsn,jdbcType=NUMERIC}, #{endLogBlockId,jdbcType=BIGINT}, #{reachedEnd,jdbcType=TINYINT}, 
+      #{outstandingRead,jdbcType=TINYINT}, #{readAheadDone,jdbcType=TINYINT}, #{nextReadAheadLsn,jdbcType=NUMERIC}, 
+      #{readAheadDistance,jdbcType=INTEGER}, #{privatePoolSize,jdbcType=BIGINT}, #{privatePoolPages,jdbcType=BIGINT}, 
+      #{privatePoolHits,jdbcType=BIGINT}, #{privatePoolMisses,jdbcType=BIGINT}, #{privatePoolHitsRa,jdbcType=BIGINT}, 
+      #{privatePoolMissesRa,jdbcType=BIGINT}, #{privatePoolHitSearchLength,jdbcType=BIGINT}, 
+      #{privatePoolMissSearchLength,jdbcType=BIGINT}, #{privatePoolHitsSearchLengthRa,jdbcType=BIGINT}, 
+      #{privatePoolMissSearchLengthRa,jdbcType=BIGINT}, #{referenceCount,jdbcType=INTEGER}, 
+      #{freeRefSlotOccupied,jdbcType=TINYINT}, #{targetPrivatePoolSize,jdbcType=BIGINT}, 
+      #{truncatePoint,jdbcType=BIGINT}, #{memStatus,jdbcType=INTEGER}, #{scanStatus,jdbcType=INTEGER}, 
+      #{consumedBlockCount,jdbcType=BIGINT}, #{cacheMisses,jdbcType=BIGINT}, #{sigmaBlocksAhead,jdbcType=BIGINT}, 
+      #{blocksFromLc,jdbcType=BIGINT}, #{blocksFromLogpool,jdbcType=BIGINT}, #{blocksFromDisk,jdbcType=BIGINT}, 
+      #{logConsumerDeleting,jdbcType=TINYINT}, #{logConsumerRefCounter,jdbcType=INTEGER}, 
+      #{currentCacheBuffer,jdbcType=VARBINARY}, #{incompleteCacheBuffer,jdbcType=VARBINARY}, 
+      #{privatePoolLastAccessPoint,jdbcType=VARBINARY}, #{privatePoolLastRaAccessPoint,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolConsumersWithBLOBs" >
+    insert into dm_logpool_consumers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="recoveryUnitId != null" >
+        recovery_unit_id,
+      </if>
+      <if test="consumerId != null" >
+        consumer_id,
+      </if>
+      <if test="consumerName != null" >
+        consumer_name,
+      </if>
+      <if test="resourcePoolId != null" >
+        resource_pool_id,
+      </if>
+      <if test="isIdle != null" >
+        is_idle,
+      </if>
+      <if test="waitTimeBeforeIdle != null" >
+        wait_time_before_idle,
+      </if>
+      <if test="progressCategory != null" >
+        progress_category,
+      </if>
+      <if test="persistentOnly != null" >
+        persistent_only,
+      </if>
+      <if test="fullBlockOnly != null" >
+        full_block_only,
+      </if>
+      <if test="shareIntention != null" >
+        share_intention,
+      </if>
+      <if test="scanDirection != null" >
+        scan_direction,
+      </if>
+      <if test="readAheadTarget != null" >
+        read_ahead_target,
+      </if>
+      <if test="statsEnabled != null" >
+        stats_enabled,
+      </if>
+      <if test="startLsn != null" >
+        start_lsn,
+      </if>
+      <if test="currentLsn != null" >
+        current_lsn,
+      </if>
+      <if test="endLogBlockId != null" >
+        end_log_block_id,
+      </if>
+      <if test="reachedEnd != null" >
+        reached_end,
+      </if>
+      <if test="outstandingRead != null" >
+        outstanding_read,
+      </if>
+      <if test="readAheadDone != null" >
+        read_ahead_done,
+      </if>
+      <if test="nextReadAheadLsn != null" >
+        next_read_ahead_lsn,
+      </if>
+      <if test="readAheadDistance != null" >
+        read_ahead_distance,
+      </if>
+      <if test="privatePoolSize != null" >
+        private_pool_size,
+      </if>
+      <if test="privatePoolPages != null" >
+        private_pool_pages,
+      </if>
+      <if test="privatePoolHits != null" >
+        private_pool_hits,
+      </if>
+      <if test="privatePoolMisses != null" >
+        private_pool_misses,
+      </if>
+      <if test="privatePoolHitsRa != null" >
+        private_pool_hits_RA,
+      </if>
+      <if test="privatePoolMissesRa != null" >
+        private_pool_misses_RA,
+      </if>
+      <if test="privatePoolHitSearchLength != null" >
+        private_pool_hit_search_length,
+      </if>
+      <if test="privatePoolMissSearchLength != null" >
+        private_pool_miss_search_length,
+      </if>
+      <if test="privatePoolHitsSearchLengthRa != null" >
+        private_pool_hits_search_length_RA,
+      </if>
+      <if test="privatePoolMissSearchLengthRa != null" >
+        private_pool_miss_search_length_RA,
+      </if>
+      <if test="referenceCount != null" >
+        reference_count,
+      </if>
+      <if test="freeRefSlotOccupied != null" >
+        free_ref_slot_occupied,
+      </if>
+      <if test="targetPrivatePoolSize != null" >
+        target_private_pool_size,
+      </if>
+      <if test="truncatePoint != null" >
+        truncate_point,
+      </if>
+      <if test="memStatus != null" >
+        mem_status,
+      </if>
+      <if test="scanStatus != null" >
+        scan_status,
+      </if>
+      <if test="consumedBlockCount != null" >
+        consumed_block_count,
+      </if>
+      <if test="cacheMisses != null" >
+        cache_misses,
+      </if>
+      <if test="sigmaBlocksAhead != null" >
+        sigma_blocks_ahead,
+      </if>
+      <if test="blocksFromLc != null" >
+        blocks_from_LC,
+      </if>
+      <if test="blocksFromLogpool != null" >
+        blocks_from_LogPool,
+      </if>
+      <if test="blocksFromDisk != null" >
+        blocks_from_disk,
+      </if>
+      <if test="logConsumerDeleting != null" >
+        log_consumer_deleting,
+      </if>
+      <if test="logConsumerRefCounter != null" >
+        log_consumer_ref_counter,
+      </if>
+      <if test="currentCacheBuffer != null" >
+        current_cache_buffer,
+      </if>
+      <if test="incompleteCacheBuffer != null" >
+        incomplete_cache_buffer,
+      </if>
+      <if test="privatePoolLastAccessPoint != null" >
+        private_pool_last_access_point,
+      </if>
+      <if test="privatePoolLastRaAccessPoint != null" >
+        private_pool_last_RA_access_point,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="recoveryUnitId != null" >
+        #{recoveryUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="consumerId != null" >
+        #{consumerId,jdbcType=BIGINT},
+      </if>
+      <if test="consumerName != null" >
+        #{consumerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="resourcePoolId != null" >
+        #{resourcePoolId,jdbcType=INTEGER},
+      </if>
+      <if test="isIdle != null" >
+        #{isIdle,jdbcType=TINYINT},
+      </if>
+      <if test="waitTimeBeforeIdle != null" >
+        #{waitTimeBeforeIdle,jdbcType=INTEGER},
+      </if>
+      <if test="progressCategory != null" >
+        #{progressCategory,jdbcType=INTEGER},
+      </if>
+      <if test="persistentOnly != null" >
+        #{persistentOnly,jdbcType=TINYINT},
+      </if>
+      <if test="fullBlockOnly != null" >
+        #{fullBlockOnly,jdbcType=TINYINT},
+      </if>
+      <if test="shareIntention != null" >
+        #{shareIntention,jdbcType=INTEGER},
+      </if>
+      <if test="scanDirection != null" >
+        #{scanDirection,jdbcType=INTEGER},
+      </if>
+      <if test="readAheadTarget != null" >
+        #{readAheadTarget,jdbcType=INTEGER},
+      </if>
+      <if test="statsEnabled != null" >
+        #{statsEnabled,jdbcType=TINYINT},
+      </if>
+      <if test="startLsn != null" >
+        #{startLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="currentLsn != null" >
+        #{currentLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="endLogBlockId != null" >
+        #{endLogBlockId,jdbcType=BIGINT},
+      </if>
+      <if test="reachedEnd != null" >
+        #{reachedEnd,jdbcType=TINYINT},
+      </if>
+      <if test="outstandingRead != null" >
+        #{outstandingRead,jdbcType=TINYINT},
+      </if>
+      <if test="readAheadDone != null" >
+        #{readAheadDone,jdbcType=TINYINT},
+      </if>
+      <if test="nextReadAheadLsn != null" >
+        #{nextReadAheadLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="readAheadDistance != null" >
+        #{readAheadDistance,jdbcType=INTEGER},
+      </if>
+      <if test="privatePoolSize != null" >
+        #{privatePoolSize,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolPages != null" >
+        #{privatePoolPages,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolHits != null" >
+        #{privatePoolHits,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolMisses != null" >
+        #{privatePoolMisses,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolHitsRa != null" >
+        #{privatePoolHitsRa,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolMissesRa != null" >
+        #{privatePoolMissesRa,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolHitSearchLength != null" >
+        #{privatePoolHitSearchLength,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolMissSearchLength != null" >
+        #{privatePoolMissSearchLength,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolHitsSearchLengthRa != null" >
+        #{privatePoolHitsSearchLengthRa,jdbcType=BIGINT},
+      </if>
+      <if test="privatePoolMissSearchLengthRa != null" >
+        #{privatePoolMissSearchLengthRa,jdbcType=BIGINT},
+      </if>
+      <if test="referenceCount != null" >
+        #{referenceCount,jdbcType=INTEGER},
+      </if>
+      <if test="freeRefSlotOccupied != null" >
+        #{freeRefSlotOccupied,jdbcType=TINYINT},
+      </if>
+      <if test="targetPrivatePoolSize != null" >
+        #{targetPrivatePoolSize,jdbcType=BIGINT},
+      </if>
+      <if test="truncatePoint != null" >
+        #{truncatePoint,jdbcType=BIGINT},
+      </if>
+      <if test="memStatus != null" >
+        #{memStatus,jdbcType=INTEGER},
+      </if>
+      <if test="scanStatus != null" >
+        #{scanStatus,jdbcType=INTEGER},
+      </if>
+      <if test="consumedBlockCount != null" >
+        #{consumedBlockCount,jdbcType=BIGINT},
+      </if>
+      <if test="cacheMisses != null" >
+        #{cacheMisses,jdbcType=BIGINT},
+      </if>
+      <if test="sigmaBlocksAhead != null" >
+        #{sigmaBlocksAhead,jdbcType=BIGINT},
+      </if>
+      <if test="blocksFromLc != null" >
+        #{blocksFromLc,jdbcType=BIGINT},
+      </if>
+      <if test="blocksFromLogpool != null" >
+        #{blocksFromLogpool,jdbcType=BIGINT},
+      </if>
+      <if test="blocksFromDisk != null" >
+        #{blocksFromDisk,jdbcType=BIGINT},
+      </if>
+      <if test="logConsumerDeleting != null" >
+        #{logConsumerDeleting,jdbcType=TINYINT},
+      </if>
+      <if test="logConsumerRefCounter != null" >
+        #{logConsumerRefCounter,jdbcType=INTEGER},
+      </if>
+      <if test="currentCacheBuffer != null" >
+        #{currentCacheBuffer,jdbcType=VARBINARY},
+      </if>
+      <if test="incompleteCacheBuffer != null" >
+        #{incompleteCacheBuffer,jdbcType=VARBINARY},
+      </if>
+      <if test="privatePoolLastAccessPoint != null" >
+        #{privatePoolLastAccessPoint,jdbcType=VARBINARY},
+      </if>
+      <if test="privatePoolLastRaAccessPoint != null" >
+        #{privatePoolLastRaAccessPoint,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

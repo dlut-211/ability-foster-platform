@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmXtpGcStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpGcStats" >
+    <result column="rows_examined" property="rowsExamined" jdbcType="BIGINT" />
+    <result column="rows_no_sweep_needed" property="rowsNoSweepNeeded" jdbcType="BIGINT" />
+    <result column="rows_first_in_bucket" property="rowsFirstInBucket" jdbcType="BIGINT" />
+    <result column="rows_first_in_bucket_removed" property="rowsFirstInBucketRemoved" jdbcType="BIGINT" />
+    <result column="rows_marked_for_unlink" property="rowsMarkedForUnlink" jdbcType="BIGINT" />
+    <result column="parallel_assist_count" property="parallelAssistCount" jdbcType="BIGINT" />
+    <result column="idle_worker_count" property="idleWorkerCount" jdbcType="BIGINT" />
+    <result column="sweep_scans_started" property="sweepScansStarted" jdbcType="BIGINT" />
+    <result column="sweep_scan_retries" property="sweepScanRetries" jdbcType="BIGINT" />
+    <result column="sweep_rows_touched" property="sweepRowsTouched" jdbcType="BIGINT" />
+    <result column="sweep_rows_expiring" property="sweepRowsExpiring" jdbcType="BIGINT" />
+    <result column="sweep_rows_expired" property="sweepRowsExpired" jdbcType="BIGINT" />
+    <result column="sweep_rows_expired_removed" property="sweepRowsExpiredRemoved" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpGcStats" >
+    insert into dm_xtp_gc_stats (rows_examined, rows_no_sweep_needed, rows_first_in_bucket, 
+      rows_first_in_bucket_removed, rows_marked_for_unlink, 
+      parallel_assist_count, idle_worker_count, sweep_scans_started, 
+      sweep_scan_retries, sweep_rows_touched, sweep_rows_expiring, 
+      sweep_rows_expired, sweep_rows_expired_removed
+      )
+    values (#{rowsExamined,jdbcType=BIGINT}, #{rowsNoSweepNeeded,jdbcType=BIGINT}, #{rowsFirstInBucket,jdbcType=BIGINT}, 
+      #{rowsFirstInBucketRemoved,jdbcType=BIGINT}, #{rowsMarkedForUnlink,jdbcType=BIGINT}, 
+      #{parallelAssistCount,jdbcType=BIGINT}, #{idleWorkerCount,jdbcType=BIGINT}, #{sweepScansStarted,jdbcType=BIGINT}, 
+      #{sweepScanRetries,jdbcType=BIGINT}, #{sweepRowsTouched,jdbcType=BIGINT}, #{sweepRowsExpiring,jdbcType=BIGINT}, 
+      #{sweepRowsExpired,jdbcType=BIGINT}, #{sweepRowsExpiredRemoved,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXtpGcStats" >
+    insert into dm_xtp_gc_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rowsExamined != null" >
+        rows_examined,
+      </if>
+      <if test="rowsNoSweepNeeded != null" >
+        rows_no_sweep_needed,
+      </if>
+      <if test="rowsFirstInBucket != null" >
+        rows_first_in_bucket,
+      </if>
+      <if test="rowsFirstInBucketRemoved != null" >
+        rows_first_in_bucket_removed,
+      </if>
+      <if test="rowsMarkedForUnlink != null" >
+        rows_marked_for_unlink,
+      </if>
+      <if test="parallelAssistCount != null" >
+        parallel_assist_count,
+      </if>
+      <if test="idleWorkerCount != null" >
+        idle_worker_count,
+      </if>
+      <if test="sweepScansStarted != null" >
+        sweep_scans_started,
+      </if>
+      <if test="sweepScanRetries != null" >
+        sweep_scan_retries,
+      </if>
+      <if test="sweepRowsTouched != null" >
+        sweep_rows_touched,
+      </if>
+      <if test="sweepRowsExpiring != null" >
+        sweep_rows_expiring,
+      </if>
+      <if test="sweepRowsExpired != null" >
+        sweep_rows_expired,
+      </if>
+      <if test="sweepRowsExpiredRemoved != null" >
+        sweep_rows_expired_removed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rowsExamined != null" >
+        #{rowsExamined,jdbcType=BIGINT},
+      </if>
+      <if test="rowsNoSweepNeeded != null" >
+        #{rowsNoSweepNeeded,jdbcType=BIGINT},
+      </if>
+      <if test="rowsFirstInBucket != null" >
+        #{rowsFirstInBucket,jdbcType=BIGINT},
+      </if>
+      <if test="rowsFirstInBucketRemoved != null" >
+        #{rowsFirstInBucketRemoved,jdbcType=BIGINT},
+      </if>
+      <if test="rowsMarkedForUnlink != null" >
+        #{rowsMarkedForUnlink,jdbcType=BIGINT},
+      </if>
+      <if test="parallelAssistCount != null" >
+        #{parallelAssistCount,jdbcType=BIGINT},
+      </if>
+      <if test="idleWorkerCount != null" >
+        #{idleWorkerCount,jdbcType=BIGINT},
+      </if>
+      <if test="sweepScansStarted != null" >
+        #{sweepScansStarted,jdbcType=BIGINT},
+      </if>
+      <if test="sweepScanRetries != null" >
+        #{sweepScanRetries,jdbcType=BIGINT},
+      </if>
+      <if test="sweepRowsTouched != null" >
+        #{sweepRowsTouched,jdbcType=BIGINT},
+      </if>
+      <if test="sweepRowsExpiring != null" >
+        #{sweepRowsExpiring,jdbcType=BIGINT},
+      </if>
+      <if test="sweepRowsExpired != null" >
+        #{sweepRowsExpired,jdbcType=BIGINT},
+      </if>
+      <if test="sweepRowsExpiredRemoved != null" >
+        #{sweepRowsExpiredRemoved,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

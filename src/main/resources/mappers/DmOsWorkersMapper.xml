@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsWorkersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWorkers" >
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_preemptive" property="isPreemptive" jdbcType="BIT" />
+    <result column="is_fiber" property="isFiber" jdbcType="BIT" />
+    <result column="is_sick" property="isSick" jdbcType="BIT" />
+    <result column="is_in_cc_exception" property="isInCcException" jdbcType="BIT" />
+    <result column="is_fatal_exception" property="isFatalException" jdbcType="BIT" />
+    <result column="is_inside_catch" property="isInsideCatch" jdbcType="BIT" />
+    <result column="is_in_polling_io_completion_routine" property="isInPollingIoCompletionRoutine" jdbcType="BIT" />
+    <result column="context_switch_count" property="contextSwitchCount" jdbcType="INTEGER" />
+    <result column="pending_io_count" property="pendingIoCount" jdbcType="INTEGER" />
+    <result column="pending_io_byte_count" property="pendingIoByteCount" jdbcType="BIGINT" />
+    <result column="pending_io_byte_average" property="pendingIoByteAverage" jdbcType="INTEGER" />
+    <result column="wait_started_ms_ticks" property="waitStartedMsTicks" jdbcType="BIGINT" />
+    <result column="wait_resumed_ms_ticks" property="waitResumedMsTicks" jdbcType="BIGINT" />
+    <result column="task_bound_ms_ticks" property="taskBoundMsTicks" jdbcType="BIGINT" />
+    <result column="worker_created_ms_ticks" property="workerCreatedMsTicks" jdbcType="BIGINT" />
+    <result column="exception_num" property="exceptionNum" jdbcType="INTEGER" />
+    <result column="exception_severity" property="exceptionSeverity" jdbcType="INTEGER" />
+    <result column="affinity" property="affinity" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="NVARCHAR" />
+    <result column="start_quantum" property="startQuantum" jdbcType="BIGINT" />
+    <result column="end_quantum" property="endQuantum" jdbcType="BIGINT" />
+    <result column="last_wait_type" property="lastWaitType" jdbcType="NVARCHAR" />
+    <result column="return_code" property="returnCode" jdbcType="INTEGER" />
+    <result column="quantum_used" property="quantumUsed" jdbcType="BIGINT" />
+    <result column="max_quantum" property="maxQuantum" jdbcType="BIGINT" />
+    <result column="boost_count" property="boostCount" jdbcType="INTEGER" />
+    <result column="tasks_processed_count" property="tasksProcessedCount" jdbcType="INTEGER" />
+    <result column="processor_group" property="processorGroup" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWorkersWithBLOBs" extends="BaseResultMap" >
+    <result column="worker_address" property="workerAddress" jdbcType="VARBINARY" />
+    <result column="exception_address" property="exceptionAddress" jdbcType="VARBINARY" />
+    <result column="fiber_address" property="fiberAddress" jdbcType="VARBINARY" />
+    <result column="task_address" property="taskAddress" jdbcType="VARBINARY" />
+    <result column="memory_object_address" property="memoryObjectAddress" jdbcType="VARBINARY" />
+    <result column="thread_address" property="threadAddress" jdbcType="VARBINARY" />
+    <result column="signal_worker_address" property="signalWorkerAddress" jdbcType="VARBINARY" />
+    <result column="scheduler_address" property="schedulerAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    worker_address, exception_address, fiber_address, task_address, memory_object_address, 
+    thread_address, signal_worker_address, scheduler_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWorkersWithBLOBs" >
+    insert into dm_os_workers (status, is_preemptive, is_fiber, 
+      is_sick, is_in_cc_exception, is_fatal_exception, 
+      is_inside_catch, is_in_polling_io_completion_routine, 
+      context_switch_count, pending_io_count, pending_io_byte_count, 
+      pending_io_byte_average, wait_started_ms_ticks, 
+      wait_resumed_ms_ticks, task_bound_ms_ticks, worker_created_ms_ticks, 
+      exception_num, exception_severity, affinity, 
+      state, start_quantum, end_quantum, 
+      last_wait_type, return_code, quantum_used, 
+      max_quantum, boost_count, tasks_processed_count, 
+      processor_group, worker_address, exception_address, 
+      fiber_address, task_address, memory_object_address, 
+      thread_address, signal_worker_address, 
+      scheduler_address)
+    values (#{status,jdbcType=INTEGER}, #{isPreemptive,jdbcType=BIT}, #{isFiber,jdbcType=BIT}, 
+      #{isSick,jdbcType=BIT}, #{isInCcException,jdbcType=BIT}, #{isFatalException,jdbcType=BIT}, 
+      #{isInsideCatch,jdbcType=BIT}, #{isInPollingIoCompletionRoutine,jdbcType=BIT}, 
+      #{contextSwitchCount,jdbcType=INTEGER}, #{pendingIoCount,jdbcType=INTEGER}, #{pendingIoByteCount,jdbcType=BIGINT}, 
+      #{pendingIoByteAverage,jdbcType=INTEGER}, #{waitStartedMsTicks,jdbcType=BIGINT}, 
+      #{waitResumedMsTicks,jdbcType=BIGINT}, #{taskBoundMsTicks,jdbcType=BIGINT}, #{workerCreatedMsTicks,jdbcType=BIGINT}, 
+      #{exceptionNum,jdbcType=INTEGER}, #{exceptionSeverity,jdbcType=INTEGER}, #{affinity,jdbcType=BIGINT}, 
+      #{state,jdbcType=NVARCHAR}, #{startQuantum,jdbcType=BIGINT}, #{endQuantum,jdbcType=BIGINT}, 
+      #{lastWaitType,jdbcType=NVARCHAR}, #{returnCode,jdbcType=INTEGER}, #{quantumUsed,jdbcType=BIGINT}, 
+      #{maxQuantum,jdbcType=BIGINT}, #{boostCount,jdbcType=INTEGER}, #{tasksProcessedCount,jdbcType=INTEGER}, 
+      #{processorGroup,jdbcType=SMALLINT}, #{workerAddress,jdbcType=VARBINARY}, #{exceptionAddress,jdbcType=VARBINARY}, 
+      #{fiberAddress,jdbcType=VARBINARY}, #{taskAddress,jdbcType=VARBINARY}, #{memoryObjectAddress,jdbcType=VARBINARY}, 
+      #{threadAddress,jdbcType=VARBINARY}, #{signalWorkerAddress,jdbcType=VARBINARY}, 
+      #{schedulerAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWorkersWithBLOBs" >
+    insert into dm_os_workers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isPreemptive != null" >
+        is_preemptive,
+      </if>
+      <if test="isFiber != null" >
+        is_fiber,
+      </if>
+      <if test="isSick != null" >
+        is_sick,
+      </if>
+      <if test="isInCcException != null" >
+        is_in_cc_exception,
+      </if>
+      <if test="isFatalException != null" >
+        is_fatal_exception,
+      </if>
+      <if test="isInsideCatch != null" >
+        is_inside_catch,
+      </if>
+      <if test="isInPollingIoCompletionRoutine != null" >
+        is_in_polling_io_completion_routine,
+      </if>
+      <if test="contextSwitchCount != null" >
+        context_switch_count,
+      </if>
+      <if test="pendingIoCount != null" >
+        pending_io_count,
+      </if>
+      <if test="pendingIoByteCount != null" >
+        pending_io_byte_count,
+      </if>
+      <if test="pendingIoByteAverage != null" >
+        pending_io_byte_average,
+      </if>
+      <if test="waitStartedMsTicks != null" >
+        wait_started_ms_ticks,
+      </if>
+      <if test="waitResumedMsTicks != null" >
+        wait_resumed_ms_ticks,
+      </if>
+      <if test="taskBoundMsTicks != null" >
+        task_bound_ms_ticks,
+      </if>
+      <if test="workerCreatedMsTicks != null" >
+        worker_created_ms_ticks,
+      </if>
+      <if test="exceptionNum != null" >
+        exception_num,
+      </if>
+      <if test="exceptionSeverity != null" >
+        exception_severity,
+      </if>
+      <if test="affinity != null" >
+        affinity,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="startQuantum != null" >
+        start_quantum,
+      </if>
+      <if test="endQuantum != null" >
+        end_quantum,
+      </if>
+      <if test="lastWaitType != null" >
+        last_wait_type,
+      </if>
+      <if test="returnCode != null" >
+        return_code,
+      </if>
+      <if test="quantumUsed != null" >
+        quantum_used,
+      </if>
+      <if test="maxQuantum != null" >
+        max_quantum,
+      </if>
+      <if test="boostCount != null" >
+        boost_count,
+      </if>
+      <if test="tasksProcessedCount != null" >
+        tasks_processed_count,
+      </if>
+      <if test="processorGroup != null" >
+        processor_group,
+      </if>
+      <if test="workerAddress != null" >
+        worker_address,
+      </if>
+      <if test="exceptionAddress != null" >
+        exception_address,
+      </if>
+      <if test="fiberAddress != null" >
+        fiber_address,
+      </if>
+      <if test="taskAddress != null" >
+        task_address,
+      </if>
+      <if test="memoryObjectAddress != null" >
+        memory_object_address,
+      </if>
+      <if test="threadAddress != null" >
+        thread_address,
+      </if>
+      <if test="signalWorkerAddress != null" >
+        signal_worker_address,
+      </if>
+      <if test="schedulerAddress != null" >
+        scheduler_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isPreemptive != null" >
+        #{isPreemptive,jdbcType=BIT},
+      </if>
+      <if test="isFiber != null" >
+        #{isFiber,jdbcType=BIT},
+      </if>
+      <if test="isSick != null" >
+        #{isSick,jdbcType=BIT},
+      </if>
+      <if test="isInCcException != null" >
+        #{isInCcException,jdbcType=BIT},
+      </if>
+      <if test="isFatalException != null" >
+        #{isFatalException,jdbcType=BIT},
+      </if>
+      <if test="isInsideCatch != null" >
+        #{isInsideCatch,jdbcType=BIT},
+      </if>
+      <if test="isInPollingIoCompletionRoutine != null" >
+        #{isInPollingIoCompletionRoutine,jdbcType=BIT},
+      </if>
+      <if test="contextSwitchCount != null" >
+        #{contextSwitchCount,jdbcType=INTEGER},
+      </if>
+      <if test="pendingIoCount != null" >
+        #{pendingIoCount,jdbcType=INTEGER},
+      </if>
+      <if test="pendingIoByteCount != null" >
+        #{pendingIoByteCount,jdbcType=BIGINT},
+      </if>
+      <if test="pendingIoByteAverage != null" >
+        #{pendingIoByteAverage,jdbcType=INTEGER},
+      </if>
+      <if test="waitStartedMsTicks != null" >
+        #{waitStartedMsTicks,jdbcType=BIGINT},
+      </if>
+      <if test="waitResumedMsTicks != null" >
+        #{waitResumedMsTicks,jdbcType=BIGINT},
+      </if>
+      <if test="taskBoundMsTicks != null" >
+        #{taskBoundMsTicks,jdbcType=BIGINT},
+      </if>
+      <if test="workerCreatedMsTicks != null" >
+        #{workerCreatedMsTicks,jdbcType=BIGINT},
+      </if>
+      <if test="exceptionNum != null" >
+        #{exceptionNum,jdbcType=INTEGER},
+      </if>
+      <if test="exceptionSeverity != null" >
+        #{exceptionSeverity,jdbcType=INTEGER},
+      </if>
+      <if test="affinity != null" >
+        #{affinity,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="startQuantum != null" >
+        #{startQuantum,jdbcType=BIGINT},
+      </if>
+      <if test="endQuantum != null" >
+        #{endQuantum,jdbcType=BIGINT},
+      </if>
+      <if test="lastWaitType != null" >
+        #{lastWaitType,jdbcType=NVARCHAR},
+      </if>
+      <if test="returnCode != null" >
+        #{returnCode,jdbcType=INTEGER},
+      </if>
+      <if test="quantumUsed != null" >
+        #{quantumUsed,jdbcType=BIGINT},
+      </if>
+      <if test="maxQuantum != null" >
+        #{maxQuantum,jdbcType=BIGINT},
+      </if>
+      <if test="boostCount != null" >
+        #{boostCount,jdbcType=INTEGER},
+      </if>
+      <if test="tasksProcessedCount != null" >
+        #{tasksProcessedCount,jdbcType=INTEGER},
+      </if>
+      <if test="processorGroup != null" >
+        #{processorGroup,jdbcType=SMALLINT},
+      </if>
+      <if test="workerAddress != null" >
+        #{workerAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="exceptionAddress != null" >
+        #{exceptionAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="fiberAddress != null" >
+        #{fiberAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="taskAddress != null" >
+        #{taskAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="memoryObjectAddress != null" >
+        #{memoryObjectAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="threadAddress != null" >
+        #{threadAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="signalWorkerAddress != null" >
+        #{signalWorkerAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="schedulerAddress != null" >
+        #{schedulerAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

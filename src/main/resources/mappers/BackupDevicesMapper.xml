@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.BackupDevicesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.BackupDevices" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="physical_name" property="physicalName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.BackupDevices" >
+    insert into backup_devices (name, type, type_desc, 
+      physical_name)
+    values (#{name,jdbcType=NVARCHAR}, #{type,jdbcType=TINYINT}, #{typeDesc,jdbcType=NVARCHAR}, 
+      #{physicalName,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.BackupDevices" >
+    insert into backup_devices
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="physicalName != null" >
+        physical_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="physicalName != null" >
+        #{physicalName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

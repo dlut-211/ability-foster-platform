@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.PlanGuidesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.PlanGuides" >
+    <result column="plan_guide_id" property="planGuideId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="is_disabled" property="isDisabled" jdbcType="BIT" />
+    <result column="query_text" property="queryText" jdbcType="NVARCHAR" />
+    <result column="scope_type" property="scopeType" jdbcType="TINYINT" />
+    <result column="scope_type_desc" property="scopeTypeDesc" jdbcType="NVARCHAR" />
+    <result column="scope_object_id" property="scopeObjectId" jdbcType="INTEGER" />
+    <result column="scope_batch" property="scopeBatch" jdbcType="NVARCHAR" />
+    <result column="parameters" property="parameters" jdbcType="NVARCHAR" />
+    <result column="hints" property="hints" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.PlanGuides" >
+    insert into plan_guides (plan_guide_id, name, create_date, 
+      modify_date, is_disabled, query_text, 
+      scope_type, scope_type_desc, scope_object_id, 
+      scope_batch, parameters, hints
+      )
+    values (#{planGuideId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{isDisabled,jdbcType=BIT}, #{queryText,jdbcType=NVARCHAR}, 
+      #{scopeType,jdbcType=TINYINT}, #{scopeTypeDesc,jdbcType=NVARCHAR}, #{scopeObjectId,jdbcType=INTEGER}, 
+      #{scopeBatch,jdbcType=NVARCHAR}, #{parameters,jdbcType=NVARCHAR}, #{hints,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.PlanGuides" >
+    insert into plan_guides
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planGuideId != null" >
+        plan_guide_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="isDisabled != null" >
+        is_disabled,
+      </if>
+      <if test="queryText != null" >
+        query_text,
+      </if>
+      <if test="scopeType != null" >
+        scope_type,
+      </if>
+      <if test="scopeTypeDesc != null" >
+        scope_type_desc,
+      </if>
+      <if test="scopeObjectId != null" >
+        scope_object_id,
+      </if>
+      <if test="scopeBatch != null" >
+        scope_batch,
+      </if>
+      <if test="parameters != null" >
+        parameters,
+      </if>
+      <if test="hints != null" >
+        hints,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planGuideId != null" >
+        #{planGuideId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDisabled != null" >
+        #{isDisabled,jdbcType=BIT},
+      </if>
+      <if test="queryText != null" >
+        #{queryText,jdbcType=NVARCHAR},
+      </if>
+      <if test="scopeType != null" >
+        #{scopeType,jdbcType=TINYINT},
+      </if>
+      <if test="scopeTypeDesc != null" >
+        #{scopeTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="scopeObjectId != null" >
+        #{scopeObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="scopeBatch != null" >
+        #{scopeBatch,jdbcType=NVARCHAR},
+      </if>
+      <if test="parameters != null" >
+        #{parameters,jdbcType=NVARCHAR},
+      </if>
+      <if test="hints != null" >
+        #{hints,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

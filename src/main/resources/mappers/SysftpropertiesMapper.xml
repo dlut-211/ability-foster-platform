@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysftpropertiesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysftproperties" >
+    <result column="property_list_id" property="propertyListId" jdbcType="INTEGER" />
+    <result column="property_id" property="propertyId" jdbcType="INTEGER" />
+    <result column="property_name" property="propertyName" jdbcType="NVARCHAR" />
+    <result column="guid_identifier" property="guidIdentifier" jdbcType="CHAR" />
+    <result column="int_identifier" property="intIdentifier" jdbcType="INTEGER" />
+    <result column="string_description" property="stringDescription" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysftproperties" >
+    insert into sysftproperties (property_list_id, property_id, property_name, 
+      guid_identifier, int_identifier, string_description
+      )
+    values (#{propertyListId,jdbcType=INTEGER}, #{propertyId,jdbcType=INTEGER}, #{propertyName,jdbcType=NVARCHAR}, 
+      #{guidIdentifier,jdbcType=CHAR}, #{intIdentifier,jdbcType=INTEGER}, #{stringDescription,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysftproperties" >
+    insert into sysftproperties
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="propertyListId != null" >
+        property_list_id,
+      </if>
+      <if test="propertyId != null" >
+        property_id,
+      </if>
+      <if test="propertyName != null" >
+        property_name,
+      </if>
+      <if test="guidIdentifier != null" >
+        guid_identifier,
+      </if>
+      <if test="intIdentifier != null" >
+        int_identifier,
+      </if>
+      <if test="stringDescription != null" >
+        string_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="propertyListId != null" >
+        #{propertyListId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyId != null" >
+        #{propertyId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyName != null" >
+        #{propertyName,jdbcType=NVARCHAR},
+      </if>
+      <if test="guidIdentifier != null" >
+        #{guidIdentifier,jdbcType=CHAR},
+      </if>
+      <if test="intIdentifier != null" >
+        #{intIdentifier,jdbcType=INTEGER},
+      </if>
+      <if test="stringDescription != null" >
+        #{stringDescription,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

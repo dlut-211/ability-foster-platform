@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecXmlHandlesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecXmlHandles" >
+    <result column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="document_id" property="documentId" jdbcType="INTEGER" />
+    <result column="namespace_document_id" property="namespaceDocumentId" jdbcType="INTEGER" />
+    <result column="statement_start_offset" property="statementStartOffset" jdbcType="INTEGER" />
+    <result column="statement_end_offset" property="statementEndOffset" jdbcType="INTEGER" />
+    <result column="creation_time" property="creationTime" jdbcType="TIMESTAMP" />
+    <result column="original_document_size_bytes" property="originalDocumentSizeBytes" jdbcType="BIGINT" />
+    <result column="original_namespace_document_size_bytes" property="originalNamespaceDocumentSizeBytes" jdbcType="BIGINT" />
+    <result column="num_openxml_calls" property="numOpenxmlCalls" jdbcType="BIGINT" />
+    <result column="dormant_duration_ms" property="dormantDurationMs" jdbcType="BIGINT" />
+    <result column="row_count" property="rowCount" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecXmlHandles" extends="BaseResultMap" >
+    <result column="sql_handle" property="sqlHandle" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sql_handle
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecXmlHandles" >
+    insert into dm_exec_xml_handles (session_id, document_id, namespace_document_id, 
+      statement_start_offset, statement_end_offset, 
+      creation_time, original_document_size_bytes, 
+      original_namespace_document_size_bytes, num_openxml_calls, 
+      dormant_duration_ms, row_count, sql_handle
+      )
+    values (#{sessionId,jdbcType=INTEGER}, #{documentId,jdbcType=INTEGER}, #{namespaceDocumentId,jdbcType=INTEGER}, 
+      #{statementStartOffset,jdbcType=INTEGER}, #{statementEndOffset,jdbcType=INTEGER}, 
+      #{creationTime,jdbcType=TIMESTAMP}, #{originalDocumentSizeBytes,jdbcType=BIGINT}, 
+      #{originalNamespaceDocumentSizeBytes,jdbcType=BIGINT}, #{numOpenxmlCalls,jdbcType=BIGINT}, 
+      #{dormantDurationMs,jdbcType=BIGINT}, #{rowCount,jdbcType=BIGINT}, #{sqlHandle,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecXmlHandles" >
+    insert into dm_exec_xml_handles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="documentId != null" >
+        document_id,
+      </if>
+      <if test="namespaceDocumentId != null" >
+        namespace_document_id,
+      </if>
+      <if test="statementStartOffset != null" >
+        statement_start_offset,
+      </if>
+      <if test="statementEndOffset != null" >
+        statement_end_offset,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+      <if test="originalDocumentSizeBytes != null" >
+        original_document_size_bytes,
+      </if>
+      <if test="originalNamespaceDocumentSizeBytes != null" >
+        original_namespace_document_size_bytes,
+      </if>
+      <if test="numOpenxmlCalls != null" >
+        num_openxml_calls,
+      </if>
+      <if test="dormantDurationMs != null" >
+        dormant_duration_ms,
+      </if>
+      <if test="rowCount != null" >
+        row_count,
+      </if>
+      <if test="sqlHandle != null" >
+        sql_handle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=INTEGER},
+      </if>
+      <if test="documentId != null" >
+        #{documentId,jdbcType=INTEGER},
+      </if>
+      <if test="namespaceDocumentId != null" >
+        #{namespaceDocumentId,jdbcType=INTEGER},
+      </if>
+      <if test="statementStartOffset != null" >
+        #{statementStartOffset,jdbcType=INTEGER},
+      </if>
+      <if test="statementEndOffset != null" >
+        #{statementEndOffset,jdbcType=INTEGER},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="originalDocumentSizeBytes != null" >
+        #{originalDocumentSizeBytes,jdbcType=BIGINT},
+      </if>
+      <if test="originalNamespaceDocumentSizeBytes != null" >
+        #{originalNamespaceDocumentSizeBytes,jdbcType=BIGINT},
+      </if>
+      <if test="numOpenxmlCalls != null" >
+        #{numOpenxmlCalls,jdbcType=BIGINT},
+      </if>
+      <if test="dormantDurationMs != null" >
+        #{dormantDurationMs,jdbcType=BIGINT},
+      </if>
+      <if test="rowCount != null" >
+        #{rowCount,jdbcType=BIGINT},
+      </if>
+      <if test="sqlHandle != null" >
+        #{sqlHandle,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServiceMessageTypesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServiceMessageTypes" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="message_type_id" property="messageTypeId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="validation" property="validation" jdbcType="CHAR" />
+    <result column="validation_desc" property="validationDesc" jdbcType="NVARCHAR" />
+    <result column="xml_collection_id" property="xmlCollectionId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServiceMessageTypes" >
+    insert into service_message_types (name, message_type_id, principal_id, 
+      validation, validation_desc, xml_collection_id
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{messageTypeId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{validation,jdbcType=CHAR}, #{validationDesc,jdbcType=NVARCHAR}, #{xmlCollectionId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServiceMessageTypes" >
+    insert into service_message_types
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="messageTypeId != null" >
+        message_type_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="validation != null" >
+        validation,
+      </if>
+      <if test="validationDesc != null" >
+        validation_desc,
+      </if>
+      <if test="xmlCollectionId != null" >
+        xml_collection_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="messageTypeId != null" >
+        #{messageTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="validation != null" >
+        #{validation,jdbcType=CHAR},
+      </if>
+      <if test="validationDesc != null" >
+        #{validationDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="xmlCollectionId != null" >
+        #{xmlCollectionId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

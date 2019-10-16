@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServerAuditsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServerAudits" >
+    <result column="audit_id" property="auditId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="audit_guid" property="auditGuid" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="on_failure" property="onFailure" jdbcType="TINYINT" />
+    <result column="on_failure_desc" property="onFailureDesc" jdbcType="NVARCHAR" />
+    <result column="is_state_enabled" property="isStateEnabled" jdbcType="BIT" />
+    <result column="queue_delay" property="queueDelay" jdbcType="INTEGER" />
+    <result column="predicate" property="predicate" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerAudits" >
+    insert into server_audits (audit_id, name, audit_guid, 
+      create_date, modify_date, principal_id, 
+      type, type_desc, on_failure, 
+      on_failure_desc, is_state_enabled, queue_delay, 
+      predicate)
+    values (#{auditId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{auditGuid,jdbcType=CHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, #{principalId,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{typeDesc,jdbcType=NVARCHAR}, #{onFailure,jdbcType=TINYINT}, 
+      #{onFailureDesc,jdbcType=NVARCHAR}, #{isStateEnabled,jdbcType=BIT}, #{queueDelay,jdbcType=INTEGER}, 
+      #{predicate,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerAudits" >
+    insert into server_audits
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="auditId != null" >
+        audit_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="auditGuid != null" >
+        audit_guid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="onFailure != null" >
+        on_failure,
+      </if>
+      <if test="onFailureDesc != null" >
+        on_failure_desc,
+      </if>
+      <if test="isStateEnabled != null" >
+        is_state_enabled,
+      </if>
+      <if test="queueDelay != null" >
+        queue_delay,
+      </if>
+      <if test="predicate != null" >
+        predicate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="auditId != null" >
+        #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="auditGuid != null" >
+        #{auditGuid,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="onFailure != null" >
+        #{onFailure,jdbcType=TINYINT},
+      </if>
+      <if test="onFailureDesc != null" >
+        #{onFailureDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isStateEnabled != null" >
+        #{isStateEnabled,jdbcType=BIT},
+      </if>
+      <if test="queueDelay != null" >
+        #{queueDelay,jdbcType=INTEGER},
+      </if>
+      <if test="predicate != null" >
+        #{predicate,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

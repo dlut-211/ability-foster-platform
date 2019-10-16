@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DomainsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Domains" >
+    <result column="DOMAIN_CATALOG" property="domainCatalog" jdbcType="NVARCHAR" />
+    <result column="DOMAIN_SCHEMA" property="domainSchema" jdbcType="NVARCHAR" />
+    <result column="DOMAIN_NAME" property="domainName" jdbcType="NVARCHAR" />
+    <result column="DATA_TYPE" property="dataType" jdbcType="NVARCHAR" />
+    <result column="CHARACTER_MAXIMUM_LENGTH" property="characterMaximumLength" jdbcType="INTEGER" />
+    <result column="CHARACTER_OCTET_LENGTH" property="characterOctetLength" jdbcType="INTEGER" />
+    <result column="COLLATION_CATALOG" property="collationCatalog" jdbcType="NVARCHAR" />
+    <result column="COLLATION_SCHEMA" property="collationSchema" jdbcType="NVARCHAR" />
+    <result column="COLLATION_NAME" property="collationName" jdbcType="NVARCHAR" />
+    <result column="CHARACTER_SET_CATALOG" property="characterSetCatalog" jdbcType="NVARCHAR" />
+    <result column="CHARACTER_SET_SCHEMA" property="characterSetSchema" jdbcType="NVARCHAR" />
+    <result column="CHARACTER_SET_NAME" property="characterSetName" jdbcType="NVARCHAR" />
+    <result column="NUMERIC_PRECISION" property="numericPrecision" jdbcType="TINYINT" />
+    <result column="NUMERIC_PRECISION_RADIX" property="numericPrecisionRadix" jdbcType="SMALLINT" />
+    <result column="NUMERIC_SCALE" property="numericScale" jdbcType="INTEGER" />
+    <result column="DATETIME_PRECISION" property="datetimePrecision" jdbcType="SMALLINT" />
+    <result column="DOMAIN_DEFAULT" property="domainDefault" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Domains" >
+    insert into DOMAINS (DOMAIN_CATALOG, DOMAIN_SCHEMA, DOMAIN_NAME, 
+      DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, CHARACTER_OCTET_LENGTH, 
+      COLLATION_CATALOG, COLLATION_SCHEMA, COLLATION_NAME, 
+      CHARACTER_SET_CATALOG, CHARACTER_SET_SCHEMA, 
+      CHARACTER_SET_NAME, NUMERIC_PRECISION, NUMERIC_PRECISION_RADIX, 
+      NUMERIC_SCALE, DATETIME_PRECISION, DOMAIN_DEFAULT
+      )
+    values (#{domainCatalog,jdbcType=NVARCHAR}, #{domainSchema,jdbcType=NVARCHAR}, #{domainName,jdbcType=NVARCHAR}, 
+      #{dataType,jdbcType=NVARCHAR}, #{characterMaximumLength,jdbcType=INTEGER}, #{characterOctetLength,jdbcType=INTEGER}, 
+      #{collationCatalog,jdbcType=NVARCHAR}, #{collationSchema,jdbcType=NVARCHAR}, #{collationName,jdbcType=NVARCHAR}, 
+      #{characterSetCatalog,jdbcType=NVARCHAR}, #{characterSetSchema,jdbcType=NVARCHAR}, 
+      #{characterSetName,jdbcType=NVARCHAR}, #{numericPrecision,jdbcType=TINYINT}, #{numericPrecisionRadix,jdbcType=SMALLINT}, 
+      #{numericScale,jdbcType=INTEGER}, #{datetimePrecision,jdbcType=SMALLINT}, #{domainDefault,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Domains" >
+    insert into DOMAINS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="domainCatalog != null" >
+        DOMAIN_CATALOG,
+      </if>
+      <if test="domainSchema != null" >
+        DOMAIN_SCHEMA,
+      </if>
+      <if test="domainName != null" >
+        DOMAIN_NAME,
+      </if>
+      <if test="dataType != null" >
+        DATA_TYPE,
+      </if>
+      <if test="characterMaximumLength != null" >
+        CHARACTER_MAXIMUM_LENGTH,
+      </if>
+      <if test="characterOctetLength != null" >
+        CHARACTER_OCTET_LENGTH,
+      </if>
+      <if test="collationCatalog != null" >
+        COLLATION_CATALOG,
+      </if>
+      <if test="collationSchema != null" >
+        COLLATION_SCHEMA,
+      </if>
+      <if test="collationName != null" >
+        COLLATION_NAME,
+      </if>
+      <if test="characterSetCatalog != null" >
+        CHARACTER_SET_CATALOG,
+      </if>
+      <if test="characterSetSchema != null" >
+        CHARACTER_SET_SCHEMA,
+      </if>
+      <if test="characterSetName != null" >
+        CHARACTER_SET_NAME,
+      </if>
+      <if test="numericPrecision != null" >
+        NUMERIC_PRECISION,
+      </if>
+      <if test="numericPrecisionRadix != null" >
+        NUMERIC_PRECISION_RADIX,
+      </if>
+      <if test="numericScale != null" >
+        NUMERIC_SCALE,
+      </if>
+      <if test="datetimePrecision != null" >
+        DATETIME_PRECISION,
+      </if>
+      <if test="domainDefault != null" >
+        DOMAIN_DEFAULT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="domainCatalog != null" >
+        #{domainCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="domainSchema != null" >
+        #{domainSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="domainName != null" >
+        #{domainName,jdbcType=NVARCHAR},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterMaximumLength != null" >
+        #{characterMaximumLength,jdbcType=INTEGER},
+      </if>
+      <if test="characterOctetLength != null" >
+        #{characterOctetLength,jdbcType=INTEGER},
+      </if>
+      <if test="collationCatalog != null" >
+        #{collationCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="collationSchema != null" >
+        #{collationSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="collationName != null" >
+        #{collationName,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterSetCatalog != null" >
+        #{characterSetCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterSetSchema != null" >
+        #{characterSetSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterSetName != null" >
+        #{characterSetName,jdbcType=NVARCHAR},
+      </if>
+      <if test="numericPrecision != null" >
+        #{numericPrecision,jdbcType=TINYINT},
+      </if>
+      <if test="numericPrecisionRadix != null" >
+        #{numericPrecisionRadix,jdbcType=SMALLINT},
+      </if>
+      <if test="numericScale != null" >
+        #{numericScale,jdbcType=INTEGER},
+      </if>
+      <if test="datetimePrecision != null" >
+        #{datetimePrecision,jdbcType=SMALLINT},
+      </if>
+      <if test="domainDefault != null" >
+        #{domainDefault,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

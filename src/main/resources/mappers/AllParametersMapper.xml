@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.AllParametersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.AllParameters" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="parameter_id" property="parameterId" jdbcType="INTEGER" />
+    <result column="system_type_id" property="systemTypeId" jdbcType="TINYINT" />
+    <result column="user_type_id" property="userTypeId" jdbcType="INTEGER" />
+    <result column="max_length" property="maxLength" jdbcType="SMALLINT" />
+    <result column="precision" property="precision" jdbcType="TINYINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="is_output" property="isOutput" jdbcType="BIT" />
+    <result column="is_cursor_ref" property="isCursorRef" jdbcType="BIT" />
+    <result column="has_default_value" property="hasDefaultValue" jdbcType="BIT" />
+    <result column="is_xml_document" property="isXmlDocument" jdbcType="BIT" />
+    <result column="default_value" property="defaultValue" jdbcType="OTHER" />
+    <result column="xml_collection_id" property="xmlCollectionId" jdbcType="INTEGER" />
+    <result column="is_readonly" property="isReadonly" jdbcType="BIT" />
+    <result column="is_nullable" property="isNullable" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AllParameters" >
+    insert into all_parameters (object_id, name, parameter_id, 
+      system_type_id, user_type_id, max_length, 
+      precision, scale, is_output, 
+      is_cursor_ref, has_default_value, is_xml_document, 
+      default_value, xml_collection_id, is_readonly, 
+      is_nullable)
+    values (#{objectId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{parameterId,jdbcType=INTEGER}, 
+      #{systemTypeId,jdbcType=TINYINT}, #{userTypeId,jdbcType=INTEGER}, #{maxLength,jdbcType=SMALLINT}, 
+      #{precision,jdbcType=TINYINT}, #{scale,jdbcType=TINYINT}, #{isOutput,jdbcType=BIT}, 
+      #{isCursorRef,jdbcType=BIT}, #{hasDefaultValue,jdbcType=BIT}, #{isXmlDocument,jdbcType=BIT}, 
+      #{defaultValue,jdbcType=OTHER}, #{xmlCollectionId,jdbcType=INTEGER}, #{isReadonly,jdbcType=BIT}, 
+      #{isNullable,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AllParameters" >
+    insert into all_parameters
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parameterId != null" >
+        parameter_id,
+      </if>
+      <if test="systemTypeId != null" >
+        system_type_id,
+      </if>
+      <if test="userTypeId != null" >
+        user_type_id,
+      </if>
+      <if test="maxLength != null" >
+        max_length,
+      </if>
+      <if test="precision != null" >
+        precision,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+      <if test="isOutput != null" >
+        is_output,
+      </if>
+      <if test="isCursorRef != null" >
+        is_cursor_ref,
+      </if>
+      <if test="hasDefaultValue != null" >
+        has_default_value,
+      </if>
+      <if test="isXmlDocument != null" >
+        is_xml_document,
+      </if>
+      <if test="defaultValue != null" >
+        default_value,
+      </if>
+      <if test="xmlCollectionId != null" >
+        xml_collection_id,
+      </if>
+      <if test="isReadonly != null" >
+        is_readonly,
+      </if>
+      <if test="isNullable != null" >
+        is_nullable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="parameterId != null" >
+        #{parameterId,jdbcType=INTEGER},
+      </if>
+      <if test="systemTypeId != null" >
+        #{systemTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="userTypeId != null" >
+        #{userTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="maxLength != null" >
+        #{maxLength,jdbcType=SMALLINT},
+      </if>
+      <if test="precision != null" >
+        #{precision,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="isOutput != null" >
+        #{isOutput,jdbcType=BIT},
+      </if>
+      <if test="isCursorRef != null" >
+        #{isCursorRef,jdbcType=BIT},
+      </if>
+      <if test="hasDefaultValue != null" >
+        #{hasDefaultValue,jdbcType=BIT},
+      </if>
+      <if test="isXmlDocument != null" >
+        #{isXmlDocument,jdbcType=BIT},
+      </if>
+      <if test="defaultValue != null" >
+        #{defaultValue,jdbcType=OTHER},
+      </if>
+      <if test="xmlCollectionId != null" >
+        #{xmlCollectionId,jdbcType=INTEGER},
+      </if>
+      <if test="isReadonly != null" >
+        #{isReadonly,jdbcType=BIT},
+      </if>
+      <if test="isNullable != null" >
+        #{isNullable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

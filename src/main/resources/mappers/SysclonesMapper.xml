@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysclonesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysclones" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="subid" property="subid" jdbcType="INTEGER" />
+    <result column="partid" property="partid" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="segid" property="segid" jdbcType="INTEGER" />
+    <result column="cloneid" property="cloneid" jdbcType="INTEGER" />
+    <result column="rowsetid" property="rowsetid" jdbcType="BIGINT" />
+    <result column="dbfragid" property="dbfragid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysclones" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysclones (id, subid, partid, 
+      version, segid, cloneid, 
+      rowsetid, dbfragid, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{subid,jdbcType=INTEGER}, #{partid,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER}, #{segid,jdbcType=INTEGER}, #{cloneid,jdbcType=INTEGER}, 
+      #{rowsetid,jdbcType=BIGINT}, #{dbfragid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysclones" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysclones
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="subid != null" >
+        subid,
+      </if>
+      <if test="partid != null" >
+        partid,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="segid != null" >
+        segid,
+      </if>
+      <if test="cloneid != null" >
+        cloneid,
+      </if>
+      <if test="rowsetid != null" >
+        rowsetid,
+      </if>
+      <if test="dbfragid != null" >
+        dbfragid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="subid != null" >
+        #{subid,jdbcType=INTEGER},
+      </if>
+      <if test="partid != null" >
+        #{partid,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="segid != null" >
+        #{segid,jdbcType=INTEGER},
+      </if>
+      <if test="cloneid != null" >
+        #{cloneid,jdbcType=INTEGER},
+      </if>
+      <if test="rowsetid != null" >
+        #{rowsetid,jdbcType=BIGINT},
+      </if>
+      <if test="dbfragid != null" >
+        #{dbfragid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmFtsSemanticSimilarityPopulationMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsSemanticSimilarityPopulation" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="catalog_id" property="catalogId" jdbcType="INTEGER" />
+    <result column="table_id" property="tableId" jdbcType="INTEGER" />
+    <result column="document_count" property="documentCount" jdbcType="BIGINT" />
+    <result column="document_processed_count" property="documentProcessedCount" jdbcType="BIGINT" />
+    <result column="completion_type" property="completionType" jdbcType="INTEGER" />
+    <result column="completion_type_description" property="completionTypeDescription" jdbcType="NVARCHAR" />
+    <result column="worker_count" property="workerCount" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_description" property="statusDescription" jdbcType="NVARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsSemanticSimilarityPopulation" extends="BaseResultMap" >
+    <result column="incremental_timestamp" property="incrementalTimestamp" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    incremental_timestamp
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsSemanticSimilarityPopulation" >
+    insert into dm_fts_semantic_similarity_population (database_id, catalog_id, table_id, 
+      document_count, document_processed_count, completion_type, 
+      completion_type_description, worker_count, 
+      status, status_description, start_time, 
+      incremental_timestamp)
+    values (#{databaseId,jdbcType=INTEGER}, #{catalogId,jdbcType=INTEGER}, #{tableId,jdbcType=INTEGER}, 
+      #{documentCount,jdbcType=BIGINT}, #{documentProcessedCount,jdbcType=BIGINT}, #{completionType,jdbcType=INTEGER}, 
+      #{completionTypeDescription,jdbcType=NVARCHAR}, #{workerCount,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{statusDescription,jdbcType=NVARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{incrementalTimestamp,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsSemanticSimilarityPopulation" >
+    insert into dm_fts_semantic_similarity_population
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="catalogId != null" >
+        catalog_id,
+      </if>
+      <if test="tableId != null" >
+        table_id,
+      </if>
+      <if test="documentCount != null" >
+        document_count,
+      </if>
+      <if test="documentProcessedCount != null" >
+        document_processed_count,
+      </if>
+      <if test="completionType != null" >
+        completion_type,
+      </if>
+      <if test="completionTypeDescription != null" >
+        completion_type_description,
+      </if>
+      <if test="workerCount != null" >
+        worker_count,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusDescription != null" >
+        status_description,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="incrementalTimestamp != null" >
+        incremental_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="catalogId != null" >
+        #{catalogId,jdbcType=INTEGER},
+      </if>
+      <if test="tableId != null" >
+        #{tableId,jdbcType=INTEGER},
+      </if>
+      <if test="documentCount != null" >
+        #{documentCount,jdbcType=BIGINT},
+      </if>
+      <if test="documentProcessedCount != null" >
+        #{documentProcessedCount,jdbcType=BIGINT},
+      </if>
+      <if test="completionType != null" >
+        #{completionType,jdbcType=INTEGER},
+      </if>
+      <if test="completionTypeDescription != null" >
+        #{completionTypeDescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="workerCount != null" >
+        #{workerCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusDescription != null" >
+        #{statusDescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="incrementalTimestamp != null" >
+        #{incrementalTimestamp,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

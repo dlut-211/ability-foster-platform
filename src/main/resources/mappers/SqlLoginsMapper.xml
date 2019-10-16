@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SqlLoginsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SqlLogins" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="is_disabled" property="isDisabled" jdbcType="BIT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="default_database_name" property="defaultDatabaseName" jdbcType="NVARCHAR" />
+    <result column="default_language_name" property="defaultLanguageName" jdbcType="NVARCHAR" />
+    <result column="credential_id" property="credentialId" jdbcType="INTEGER" />
+    <result column="is_policy_checked" property="isPolicyChecked" jdbcType="BIT" />
+    <result column="is_expiration_checked" property="isExpirationChecked" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.SqlLoginsWithBLOBs" extends="BaseResultMap" >
+    <result column="sid" property="sid" jdbcType="VARBINARY" />
+    <result column="password_hash" property="passwordHash" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sid, password_hash
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SqlLoginsWithBLOBs" >
+    insert into sql_logins (name, principal_id, type, 
+      type_desc, is_disabled, create_date, 
+      modify_date, default_database_name, default_language_name, 
+      credential_id, is_policy_checked, is_expiration_checked, 
+      sid, password_hash)
+    values (#{name,jdbcType=NVARCHAR}, #{principalId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{isDisabled,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{defaultDatabaseName,jdbcType=NVARCHAR}, #{defaultLanguageName,jdbcType=NVARCHAR}, 
+      #{credentialId,jdbcType=INTEGER}, #{isPolicyChecked,jdbcType=BIT}, #{isExpirationChecked,jdbcType=BIT}, 
+      #{sid,jdbcType=VARBINARY}, #{passwordHash,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SqlLoginsWithBLOBs" >
+    insert into sql_logins
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="isDisabled != null" >
+        is_disabled,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="defaultDatabaseName != null" >
+        default_database_name,
+      </if>
+      <if test="defaultLanguageName != null" >
+        default_language_name,
+      </if>
+      <if test="credentialId != null" >
+        credential_id,
+      </if>
+      <if test="isPolicyChecked != null" >
+        is_policy_checked,
+      </if>
+      <if test="isExpirationChecked != null" >
+        is_expiration_checked,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="passwordHash != null" >
+        password_hash,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isDisabled != null" >
+        #{isDisabled,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="defaultDatabaseName != null" >
+        #{defaultDatabaseName,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultLanguageName != null" >
+        #{defaultLanguageName,jdbcType=NVARCHAR},
+      </if>
+      <if test="credentialId != null" >
+        #{credentialId,jdbcType=INTEGER},
+      </if>
+      <if test="isPolicyChecked != null" >
+        #{isPolicyChecked,jdbcType=BIT},
+      </if>
+      <if test="isExpirationChecked != null" >
+        #{isExpirationChecked,jdbcType=BIT},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARBINARY},
+      </if>
+      <if test="passwordHash != null" >
+        #{passwordHash,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

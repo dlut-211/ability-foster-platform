@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysindexesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysindexes" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="indid" property="indid" jdbcType="SMALLINT" />
+    <result column="minlen" property="minlen" jdbcType="SMALLINT" />
+    <result column="keycnt" property="keycnt" jdbcType="SMALLINT" />
+    <result column="groupid" property="groupid" jdbcType="SMALLINT" />
+    <result column="dpages" property="dpages" jdbcType="INTEGER" />
+    <result column="reserved" property="reserved" jdbcType="INTEGER" />
+    <result column="used" property="used" jdbcType="INTEGER" />
+    <result column="rowcnt" property="rowcnt" jdbcType="BIGINT" />
+    <result column="rowmodctr" property="rowmodctr" jdbcType="INTEGER" />
+    <result column="reserved3" property="reserved3" jdbcType="TINYINT" />
+    <result column="reserved4" property="reserved4" jdbcType="TINYINT" />
+    <result column="xmaxlen" property="xmaxlen" jdbcType="SMALLINT" />
+    <result column="maxirow" property="maxirow" jdbcType="SMALLINT" />
+    <result column="OrigFillFactor" property="origfillfactor" jdbcType="TINYINT" />
+    <result column="StatVersion" property="statversion" jdbcType="TINYINT" />
+    <result column="reserved2" property="reserved2" jdbcType="INTEGER" />
+    <result column="impid" property="impid" jdbcType="SMALLINT" />
+    <result column="lockflags" property="lockflags" jdbcType="SMALLINT" />
+    <result column="pgmodctr" property="pgmodctr" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="maxlen" property="maxlen" jdbcType="INTEGER" />
+    <result column="rows" property="rows" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.SysindexesWithBLOBs" extends="BaseResultMap" >
+    <result column="first" property="first" jdbcType="BINARY" />
+    <result column="root" property="root" jdbcType="BINARY" />
+    <result column="FirstIAM" property="firstiam" jdbcType="BINARY" />
+    <result column="keys" property="keys" jdbcType="VARBINARY" />
+    <result column="statblob" property="statblob" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    first, root, FirstIAM, keys, statblob
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysindexesWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysindexes (id, status, indid, 
+      minlen, keycnt, groupid, 
+      dpages, reserved, used, 
+      rowcnt, rowmodctr, reserved3, 
+      reserved4, xmaxlen, maxirow, 
+      OrigFillFactor, StatVersion, reserved2, 
+      impid, lockflags, pgmodctr, 
+      name, maxlen, rows, 
+      first, root, FirstIAM, 
+      keys, statblob)
+    values (#{id,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{indid,jdbcType=SMALLINT}, 
+      #{minlen,jdbcType=SMALLINT}, #{keycnt,jdbcType=SMALLINT}, #{groupid,jdbcType=SMALLINT}, 
+      #{dpages,jdbcType=INTEGER}, #{reserved,jdbcType=INTEGER}, #{used,jdbcType=INTEGER}, 
+      #{rowcnt,jdbcType=BIGINT}, #{rowmodctr,jdbcType=INTEGER}, #{reserved3,jdbcType=TINYINT}, 
+      #{reserved4,jdbcType=TINYINT}, #{xmaxlen,jdbcType=SMALLINT}, #{maxirow,jdbcType=SMALLINT}, 
+      #{origfillfactor,jdbcType=TINYINT}, #{statversion,jdbcType=TINYINT}, #{reserved2,jdbcType=INTEGER}, 
+      #{impid,jdbcType=SMALLINT}, #{lockflags,jdbcType=SMALLINT}, #{pgmodctr,jdbcType=INTEGER}, 
+      #{name,jdbcType=NVARCHAR}, #{maxlen,jdbcType=INTEGER}, #{rows,jdbcType=INTEGER}, 
+      #{first,jdbcType=BINARY}, #{root,jdbcType=BINARY}, #{firstiam,jdbcType=BINARY}, 
+      #{keys,jdbcType=VARBINARY}, #{statblob,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysindexesWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysindexes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="indid != null" >
+        indid,
+      </if>
+      <if test="minlen != null" >
+        minlen,
+      </if>
+      <if test="keycnt != null" >
+        keycnt,
+      </if>
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="dpages != null" >
+        dpages,
+      </if>
+      <if test="reserved != null" >
+        reserved,
+      </if>
+      <if test="used != null" >
+        used,
+      </if>
+      <if test="rowcnt != null" >
+        rowcnt,
+      </if>
+      <if test="rowmodctr != null" >
+        rowmodctr,
+      </if>
+      <if test="reserved3 != null" >
+        reserved3,
+      </if>
+      <if test="reserved4 != null" >
+        reserved4,
+      </if>
+      <if test="xmaxlen != null" >
+        xmaxlen,
+      </if>
+      <if test="maxirow != null" >
+        maxirow,
+      </if>
+      <if test="origfillfactor != null" >
+        OrigFillFactor,
+      </if>
+      <if test="statversion != null" >
+        StatVersion,
+      </if>
+      <if test="reserved2 != null" >
+        reserved2,
+      </if>
+      <if test="impid != null" >
+        impid,
+      </if>
+      <if test="lockflags != null" >
+        lockflags,
+      </if>
+      <if test="pgmodctr != null" >
+        pgmodctr,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="maxlen != null" >
+        maxlen,
+      </if>
+      <if test="rows != null" >
+        rows,
+      </if>
+      <if test="first != null" >
+        first,
+      </if>
+      <if test="root != null" >
+        root,
+      </if>
+      <if test="firstiam != null" >
+        FirstIAM,
+      </if>
+      <if test="keys != null" >
+        keys,
+      </if>
+      <if test="statblob != null" >
+        statblob,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="indid != null" >
+        #{indid,jdbcType=SMALLINT},
+      </if>
+      <if test="minlen != null" >
+        #{minlen,jdbcType=SMALLINT},
+      </if>
+      <if test="keycnt != null" >
+        #{keycnt,jdbcType=SMALLINT},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=SMALLINT},
+      </if>
+      <if test="dpages != null" >
+        #{dpages,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null" >
+        #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="used != null" >
+        #{used,jdbcType=INTEGER},
+      </if>
+      <if test="rowcnt != null" >
+        #{rowcnt,jdbcType=BIGINT},
+      </if>
+      <if test="rowmodctr != null" >
+        #{rowmodctr,jdbcType=INTEGER},
+      </if>
+      <if test="reserved3 != null" >
+        #{reserved3,jdbcType=TINYINT},
+      </if>
+      <if test="reserved4 != null" >
+        #{reserved4,jdbcType=TINYINT},
+      </if>
+      <if test="xmaxlen != null" >
+        #{xmaxlen,jdbcType=SMALLINT},
+      </if>
+      <if test="maxirow != null" >
+        #{maxirow,jdbcType=SMALLINT},
+      </if>
+      <if test="origfillfactor != null" >
+        #{origfillfactor,jdbcType=TINYINT},
+      </if>
+      <if test="statversion != null" >
+        #{statversion,jdbcType=TINYINT},
+      </if>
+      <if test="reserved2 != null" >
+        #{reserved2,jdbcType=INTEGER},
+      </if>
+      <if test="impid != null" >
+        #{impid,jdbcType=SMALLINT},
+      </if>
+      <if test="lockflags != null" >
+        #{lockflags,jdbcType=SMALLINT},
+      </if>
+      <if test="pgmodctr != null" >
+        #{pgmodctr,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="maxlen != null" >
+        #{maxlen,jdbcType=INTEGER},
+      </if>
+      <if test="rows != null" >
+        #{rows,jdbcType=INTEGER},
+      </if>
+      <if test="first != null" >
+        #{first,jdbcType=BINARY},
+      </if>
+      <if test="root != null" >
+        #{root,jdbcType=BINARY},
+      </if>
+      <if test="firstiam != null" >
+        #{firstiam,jdbcType=BINARY},
+      </if>
+      <if test="keys != null" >
+        #{keys,jdbcType=VARBINARY},
+      </if>
+      <if test="statblob != null" >
+        #{statblob,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

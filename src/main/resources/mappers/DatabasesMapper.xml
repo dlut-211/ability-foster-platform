@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DatabasesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Databases" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="source_database_id" property="sourceDatabaseId" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="compatibility_level" property="compatibilityLevel" jdbcType="TINYINT" />
+    <result column="collation_name" property="collationName" jdbcType="NVARCHAR" />
+    <result column="user_access" property="userAccess" jdbcType="TINYINT" />
+    <result column="user_access_desc" property="userAccessDesc" jdbcType="NVARCHAR" />
+    <result column="is_read_only" property="isReadOnly" jdbcType="BIT" />
+    <result column="is_auto_close_on" property="isAutoCloseOn" jdbcType="BIT" />
+    <result column="is_auto_shrink_on" property="isAutoShrinkOn" jdbcType="BIT" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+    <result column="is_in_standby" property="isInStandby" jdbcType="BIT" />
+    <result column="is_cleanly_shutdown" property="isCleanlyShutdown" jdbcType="BIT" />
+    <result column="is_supplemental_logging_enabled" property="isSupplementalLoggingEnabled" jdbcType="BIT" />
+    <result column="snapshot_isolation_state" property="snapshotIsolationState" jdbcType="TINYINT" />
+    <result column="snapshot_isolation_state_desc" property="snapshotIsolationStateDesc" jdbcType="NVARCHAR" />
+    <result column="is_read_committed_snapshot_on" property="isReadCommittedSnapshotOn" jdbcType="BIT" />
+    <result column="recovery_model" property="recoveryModel" jdbcType="TINYINT" />
+    <result column="recovery_model_desc" property="recoveryModelDesc" jdbcType="NVARCHAR" />
+    <result column="page_verify_option" property="pageVerifyOption" jdbcType="TINYINT" />
+    <result column="page_verify_option_desc" property="pageVerifyOptionDesc" jdbcType="NVARCHAR" />
+    <result column="is_auto_create_stats_on" property="isAutoCreateStatsOn" jdbcType="BIT" />
+    <result column="is_auto_create_stats_incremental_on" property="isAutoCreateStatsIncrementalOn" jdbcType="BIT" />
+    <result column="is_auto_update_stats_on" property="isAutoUpdateStatsOn" jdbcType="BIT" />
+    <result column="is_auto_update_stats_async_on" property="isAutoUpdateStatsAsyncOn" jdbcType="BIT" />
+    <result column="is_ansi_null_default_on" property="isAnsiNullDefaultOn" jdbcType="BIT" />
+    <result column="is_ansi_nulls_on" property="isAnsiNullsOn" jdbcType="BIT" />
+    <result column="is_ansi_padding_on" property="isAnsiPaddingOn" jdbcType="BIT" />
+    <result column="is_ansi_warnings_on" property="isAnsiWarningsOn" jdbcType="BIT" />
+    <result column="is_arithabort_on" property="isArithabortOn" jdbcType="BIT" />
+    <result column="is_concat_null_yields_null_on" property="isConcatNullYieldsNullOn" jdbcType="BIT" />
+    <result column="is_numeric_roundabort_on" property="isNumericRoundabortOn" jdbcType="BIT" />
+    <result column="is_quoted_identifier_on" property="isQuotedIdentifierOn" jdbcType="BIT" />
+    <result column="is_recursive_triggers_on" property="isRecursiveTriggersOn" jdbcType="BIT" />
+    <result column="is_cursor_close_on_commit_on" property="isCursorCloseOnCommitOn" jdbcType="BIT" />
+    <result column="is_local_cursor_default" property="isLocalCursorDefault" jdbcType="BIT" />
+    <result column="is_fulltext_enabled" property="isFulltextEnabled" jdbcType="BIT" />
+    <result column="is_trustworthy_on" property="isTrustworthyOn" jdbcType="BIT" />
+    <result column="is_db_chaining_on" property="isDbChainingOn" jdbcType="BIT" />
+    <result column="is_parameterization_forced" property="isParameterizationForced" jdbcType="BIT" />
+    <result column="is_master_key_encrypted_by_server" property="isMasterKeyEncryptedByServer" jdbcType="BIT" />
+    <result column="is_query_store_on" property="isQueryStoreOn" jdbcType="BIT" />
+    <result column="is_published" property="isPublished" jdbcType="BIT" />
+    <result column="is_subscribed" property="isSubscribed" jdbcType="BIT" />
+    <result column="is_merge_published" property="isMergePublished" jdbcType="BIT" />
+    <result column="is_distributor" property="isDistributor" jdbcType="BIT" />
+    <result column="is_sync_with_backup" property="isSyncWithBackup" jdbcType="BIT" />
+    <result column="service_broker_guid" property="serviceBrokerGuid" jdbcType="CHAR" />
+    <result column="is_broker_enabled" property="isBrokerEnabled" jdbcType="BIT" />
+    <result column="log_reuse_wait" property="logReuseWait" jdbcType="TINYINT" />
+    <result column="log_reuse_wait_desc" property="logReuseWaitDesc" jdbcType="NVARCHAR" />
+    <result column="is_date_correlation_on" property="isDateCorrelationOn" jdbcType="BIT" />
+    <result column="is_cdc_enabled" property="isCdcEnabled" jdbcType="BIT" />
+    <result column="is_encrypted" property="isEncrypted" jdbcType="BIT" />
+    <result column="is_honor_broker_priority_on" property="isHonorBrokerPriorityOn" jdbcType="BIT" />
+    <result column="replica_id" property="replicaId" jdbcType="CHAR" />
+    <result column="group_database_id" property="groupDatabaseId" jdbcType="CHAR" />
+    <result column="resource_pool_id" property="resourcePoolId" jdbcType="INTEGER" />
+    <result column="default_language_lcid" property="defaultLanguageLcid" jdbcType="SMALLINT" />
+    <result column="default_language_name" property="defaultLanguageName" jdbcType="NVARCHAR" />
+    <result column="default_fulltext_language_lcid" property="defaultFulltextLanguageLcid" jdbcType="INTEGER" />
+    <result column="default_fulltext_language_name" property="defaultFulltextLanguageName" jdbcType="NVARCHAR" />
+    <result column="is_nested_triggers_on" property="isNestedTriggersOn" jdbcType="BIT" />
+    <result column="is_transform_noise_words_on" property="isTransformNoiseWordsOn" jdbcType="BIT" />
+    <result column="two_digit_year_cutoff" property="twoDigitYearCutoff" jdbcType="SMALLINT" />
+    <result column="containment" property="containment" jdbcType="TINYINT" />
+    <result column="containment_desc" property="containmentDesc" jdbcType="NVARCHAR" />
+    <result column="target_recovery_time_in_seconds" property="targetRecoveryTimeInSeconds" jdbcType="INTEGER" />
+    <result column="delayed_durability" property="delayedDurability" jdbcType="INTEGER" />
+    <result column="delayed_durability_desc" property="delayedDurabilityDesc" jdbcType="NVARCHAR" />
+    <result column="is_memory_optimized_elevate_to_snapshot_on" property="isMemoryOptimizedElevateToSnapshotOn" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Databases" extends="BaseResultMap" >
+    <result column="owner_sid" property="ownerSid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    owner_sid
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Databases" >
+    insert into databases (name, database_id, source_database_id, 
+      create_date, compatibility_level, collation_name, 
+      user_access, user_access_desc, is_read_only, 
+      is_auto_close_on, is_auto_shrink_on, state, 
+      state_desc, is_in_standby, is_cleanly_shutdown, 
+      is_supplemental_logging_enabled, snapshot_isolation_state, 
+      snapshot_isolation_state_desc, is_read_committed_snapshot_on, 
+      recovery_model, recovery_model_desc, page_verify_option, 
+      page_verify_option_desc, is_auto_create_stats_on, 
+      is_auto_create_stats_incremental_on, is_auto_update_stats_on, 
+      is_auto_update_stats_async_on, is_ansi_null_default_on, 
+      is_ansi_nulls_on, is_ansi_padding_on, is_ansi_warnings_on, 
+      is_arithabort_on, is_concat_null_yields_null_on, is_numeric_roundabort_on, 
+      is_quoted_identifier_on, is_recursive_triggers_on, is_cursor_close_on_commit_on, 
+      is_local_cursor_default, is_fulltext_enabled, is_trustworthy_on, 
+      is_db_chaining_on, is_parameterization_forced, is_master_key_encrypted_by_server, 
+      is_query_store_on, is_published, is_subscribed, 
+      is_merge_published, is_distributor, is_sync_with_backup, 
+      service_broker_guid, is_broker_enabled, log_reuse_wait, 
+      log_reuse_wait_desc, is_date_correlation_on, is_cdc_enabled, 
+      is_encrypted, is_honor_broker_priority_on, replica_id, 
+      group_database_id, resource_pool_id, default_language_lcid, 
+      default_language_name, default_fulltext_language_lcid, 
+      default_fulltext_language_name, is_nested_triggers_on, 
+      is_transform_noise_words_on, two_digit_year_cutoff, 
+      containment, containment_desc, target_recovery_time_in_seconds, 
+      delayed_durability, delayed_durability_desc, 
+      is_memory_optimized_elevate_to_snapshot_on, owner_sid
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{databaseId,jdbcType=INTEGER}, #{sourceDatabaseId,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{compatibilityLevel,jdbcType=TINYINT}, #{collationName,jdbcType=NVARCHAR}, 
+      #{userAccess,jdbcType=TINYINT}, #{userAccessDesc,jdbcType=NVARCHAR}, #{isReadOnly,jdbcType=BIT}, 
+      #{isAutoCloseOn,jdbcType=BIT}, #{isAutoShrinkOn,jdbcType=BIT}, #{state,jdbcType=TINYINT}, 
+      #{stateDesc,jdbcType=NVARCHAR}, #{isInStandby,jdbcType=BIT}, #{isCleanlyShutdown,jdbcType=BIT}, 
+      #{isSupplementalLoggingEnabled,jdbcType=BIT}, #{snapshotIsolationState,jdbcType=TINYINT}, 
+      #{snapshotIsolationStateDesc,jdbcType=NVARCHAR}, #{isReadCommittedSnapshotOn,jdbcType=BIT}, 
+      #{recoveryModel,jdbcType=TINYINT}, #{recoveryModelDesc,jdbcType=NVARCHAR}, #{pageVerifyOption,jdbcType=TINYINT}, 
+      #{pageVerifyOptionDesc,jdbcType=NVARCHAR}, #{isAutoCreateStatsOn,jdbcType=BIT}, 
+      #{isAutoCreateStatsIncrementalOn,jdbcType=BIT}, #{isAutoUpdateStatsOn,jdbcType=BIT}, 
+      #{isAutoUpdateStatsAsyncOn,jdbcType=BIT}, #{isAnsiNullDefaultOn,jdbcType=BIT}, 
+      #{isAnsiNullsOn,jdbcType=BIT}, #{isAnsiPaddingOn,jdbcType=BIT}, #{isAnsiWarningsOn,jdbcType=BIT}, 
+      #{isArithabortOn,jdbcType=BIT}, #{isConcatNullYieldsNullOn,jdbcType=BIT}, #{isNumericRoundabortOn,jdbcType=BIT}, 
+      #{isQuotedIdentifierOn,jdbcType=BIT}, #{isRecursiveTriggersOn,jdbcType=BIT}, #{isCursorCloseOnCommitOn,jdbcType=BIT}, 
+      #{isLocalCursorDefault,jdbcType=BIT}, #{isFulltextEnabled,jdbcType=BIT}, #{isTrustworthyOn,jdbcType=BIT}, 
+      #{isDbChainingOn,jdbcType=BIT}, #{isParameterizationForced,jdbcType=BIT}, #{isMasterKeyEncryptedByServer,jdbcType=BIT}, 
+      #{isQueryStoreOn,jdbcType=BIT}, #{isPublished,jdbcType=BIT}, #{isSubscribed,jdbcType=BIT}, 
+      #{isMergePublished,jdbcType=BIT}, #{isDistributor,jdbcType=BIT}, #{isSyncWithBackup,jdbcType=BIT}, 
+      #{serviceBrokerGuid,jdbcType=CHAR}, #{isBrokerEnabled,jdbcType=BIT}, #{logReuseWait,jdbcType=TINYINT}, 
+      #{logReuseWaitDesc,jdbcType=NVARCHAR}, #{isDateCorrelationOn,jdbcType=BIT}, #{isCdcEnabled,jdbcType=BIT}, 
+      #{isEncrypted,jdbcType=BIT}, #{isHonorBrokerPriorityOn,jdbcType=BIT}, #{replicaId,jdbcType=CHAR}, 
+      #{groupDatabaseId,jdbcType=CHAR}, #{resourcePoolId,jdbcType=INTEGER}, #{defaultLanguageLcid,jdbcType=SMALLINT}, 
+      #{defaultLanguageName,jdbcType=NVARCHAR}, #{defaultFulltextLanguageLcid,jdbcType=INTEGER}, 
+      #{defaultFulltextLanguageName,jdbcType=NVARCHAR}, #{isNestedTriggersOn,jdbcType=BIT}, 
+      #{isTransformNoiseWordsOn,jdbcType=BIT}, #{twoDigitYearCutoff,jdbcType=SMALLINT}, 
+      #{containment,jdbcType=TINYINT}, #{containmentDesc,jdbcType=NVARCHAR}, #{targetRecoveryTimeInSeconds,jdbcType=INTEGER}, 
+      #{delayedDurability,jdbcType=INTEGER}, #{delayedDurabilityDesc,jdbcType=NVARCHAR}, 
+      #{isMemoryOptimizedElevateToSnapshotOn,jdbcType=BIT}, #{ownerSid,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Databases" >
+    insert into databases
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="sourceDatabaseId != null" >
+        source_database_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="compatibilityLevel != null" >
+        compatibility_level,
+      </if>
+      <if test="collationName != null" >
+        collation_name,
+      </if>
+      <if test="userAccess != null" >
+        user_access,
+      </if>
+      <if test="userAccessDesc != null" >
+        user_access_desc,
+      </if>
+      <if test="isReadOnly != null" >
+        is_read_only,
+      </if>
+      <if test="isAutoCloseOn != null" >
+        is_auto_close_on,
+      </if>
+      <if test="isAutoShrinkOn != null" >
+        is_auto_shrink_on,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+      <if test="isInStandby != null" >
+        is_in_standby,
+      </if>
+      <if test="isCleanlyShutdown != null" >
+        is_cleanly_shutdown,
+      </if>
+      <if test="isSupplementalLoggingEnabled != null" >
+        is_supplemental_logging_enabled,
+      </if>
+      <if test="snapshotIsolationState != null" >
+        snapshot_isolation_state,
+      </if>
+      <if test="snapshotIsolationStateDesc != null" >
+        snapshot_isolation_state_desc,
+      </if>
+      <if test="isReadCommittedSnapshotOn != null" >
+        is_read_committed_snapshot_on,
+      </if>
+      <if test="recoveryModel != null" >
+        recovery_model,
+      </if>
+      <if test="recoveryModelDesc != null" >
+        recovery_model_desc,
+      </if>
+      <if test="pageVerifyOption != null" >
+        page_verify_option,
+      </if>
+      <if test="pageVerifyOptionDesc != null" >
+        page_verify_option_desc,
+      </if>
+      <if test="isAutoCreateStatsOn != null" >
+        is_auto_create_stats_on,
+      </if>
+      <if test="isAutoCreateStatsIncrementalOn != null" >
+        is_auto_create_stats_incremental_on,
+      </if>
+      <if test="isAutoUpdateStatsOn != null" >
+        is_auto_update_stats_on,
+      </if>
+      <if test="isAutoUpdateStatsAsyncOn != null" >
+        is_auto_update_stats_async_on,
+      </if>
+      <if test="isAnsiNullDefaultOn != null" >
+        is_ansi_null_default_on,
+      </if>
+      <if test="isAnsiNullsOn != null" >
+        is_ansi_nulls_on,
+      </if>
+      <if test="isAnsiPaddingOn != null" >
+        is_ansi_padding_on,
+      </if>
+      <if test="isAnsiWarningsOn != null" >
+        is_ansi_warnings_on,
+      </if>
+      <if test="isArithabortOn != null" >
+        is_arithabort_on,
+      </if>
+      <if test="isConcatNullYieldsNullOn != null" >
+        is_concat_null_yields_null_on,
+      </if>
+      <if test="isNumericRoundabortOn != null" >
+        is_numeric_roundabort_on,
+      </if>
+      <if test="isQuotedIdentifierOn != null" >
+        is_quoted_identifier_on,
+      </if>
+      <if test="isRecursiveTriggersOn != null" >
+        is_recursive_triggers_on,
+      </if>
+      <if test="isCursorCloseOnCommitOn != null" >
+        is_cursor_close_on_commit_on,
+      </if>
+      <if test="isLocalCursorDefault != null" >
+        is_local_cursor_default,
+      </if>
+      <if test="isFulltextEnabled != null" >
+        is_fulltext_enabled,
+      </if>
+      <if test="isTrustworthyOn != null" >
+        is_trustworthy_on,
+      </if>
+      <if test="isDbChainingOn != null" >
+        is_db_chaining_on,
+      </if>
+      <if test="isParameterizationForced != null" >
+        is_parameterization_forced,
+      </if>
+      <if test="isMasterKeyEncryptedByServer != null" >
+        is_master_key_encrypted_by_server,
+      </if>
+      <if test="isQueryStoreOn != null" >
+        is_query_store_on,
+      </if>
+      <if test="isPublished != null" >
+        is_published,
+      </if>
+      <if test="isSubscribed != null" >
+        is_subscribed,
+      </if>
+      <if test="isMergePublished != null" >
+        is_merge_published,
+      </if>
+      <if test="isDistributor != null" >
+        is_distributor,
+      </if>
+      <if test="isSyncWithBackup != null" >
+        is_sync_with_backup,
+      </if>
+      <if test="serviceBrokerGuid != null" >
+        service_broker_guid,
+      </if>
+      <if test="isBrokerEnabled != null" >
+        is_broker_enabled,
+      </if>
+      <if test="logReuseWait != null" >
+        log_reuse_wait,
+      </if>
+      <if test="logReuseWaitDesc != null" >
+        log_reuse_wait_desc,
+      </if>
+      <if test="isDateCorrelationOn != null" >
+        is_date_correlation_on,
+      </if>
+      <if test="isCdcEnabled != null" >
+        is_cdc_enabled,
+      </if>
+      <if test="isEncrypted != null" >
+        is_encrypted,
+      </if>
+      <if test="isHonorBrokerPriorityOn != null" >
+        is_honor_broker_priority_on,
+      </if>
+      <if test="replicaId != null" >
+        replica_id,
+      </if>
+      <if test="groupDatabaseId != null" >
+        group_database_id,
+      </if>
+      <if test="resourcePoolId != null" >
+        resource_pool_id,
+      </if>
+      <if test="defaultLanguageLcid != null" >
+        default_language_lcid,
+      </if>
+      <if test="defaultLanguageName != null" >
+        default_language_name,
+      </if>
+      <if test="defaultFulltextLanguageLcid != null" >
+        default_fulltext_language_lcid,
+      </if>
+      <if test="defaultFulltextLanguageName != null" >
+        default_fulltext_language_name,
+      </if>
+      <if test="isNestedTriggersOn != null" >
+        is_nested_triggers_on,
+      </if>
+      <if test="isTransformNoiseWordsOn != null" >
+        is_transform_noise_words_on,
+      </if>
+      <if test="twoDigitYearCutoff != null" >
+        two_digit_year_cutoff,
+      </if>
+      <if test="containment != null" >
+        containment,
+      </if>
+      <if test="containmentDesc != null" >
+        containment_desc,
+      </if>
+      <if test="targetRecoveryTimeInSeconds != null" >
+        target_recovery_time_in_seconds,
+      </if>
+      <if test="delayedDurability != null" >
+        delayed_durability,
+      </if>
+      <if test="delayedDurabilityDesc != null" >
+        delayed_durability_desc,
+      </if>
+      <if test="isMemoryOptimizedElevateToSnapshotOn != null" >
+        is_memory_optimized_elevate_to_snapshot_on,
+      </if>
+      <if test="ownerSid != null" >
+        owner_sid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceDatabaseId != null" >
+        #{sourceDatabaseId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="compatibilityLevel != null" >
+        #{compatibilityLevel,jdbcType=TINYINT},
+      </if>
+      <if test="collationName != null" >
+        #{collationName,jdbcType=NVARCHAR},
+      </if>
+      <if test="userAccess != null" >
+        #{userAccess,jdbcType=TINYINT},
+      </if>
+      <if test="userAccessDesc != null" >
+        #{userAccessDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isReadOnly != null" >
+        #{isReadOnly,jdbcType=BIT},
+      </if>
+      <if test="isAutoCloseOn != null" >
+        #{isAutoCloseOn,jdbcType=BIT},
+      </if>
+      <if test="isAutoShrinkOn != null" >
+        #{isAutoShrinkOn,jdbcType=BIT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isInStandby != null" >
+        #{isInStandby,jdbcType=BIT},
+      </if>
+      <if test="isCleanlyShutdown != null" >
+        #{isCleanlyShutdown,jdbcType=BIT},
+      </if>
+      <if test="isSupplementalLoggingEnabled != null" >
+        #{isSupplementalLoggingEnabled,jdbcType=BIT},
+      </if>
+      <if test="snapshotIsolationState != null" >
+        #{snapshotIsolationState,jdbcType=TINYINT},
+      </if>
+      <if test="snapshotIsolationStateDesc != null" >
+        #{snapshotIsolationStateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isReadCommittedSnapshotOn != null" >
+        #{isReadCommittedSnapshotOn,jdbcType=BIT},
+      </if>
+      <if test="recoveryModel != null" >
+        #{recoveryModel,jdbcType=TINYINT},
+      </if>
+      <if test="recoveryModelDesc != null" >
+        #{recoveryModelDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="pageVerifyOption != null" >
+        #{pageVerifyOption,jdbcType=TINYINT},
+      </if>
+      <if test="pageVerifyOptionDesc != null" >
+        #{pageVerifyOptionDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isAutoCreateStatsOn != null" >
+        #{isAutoCreateStatsOn,jdbcType=BIT},
+      </if>
+      <if test="isAutoCreateStatsIncrementalOn != null" >
+        #{isAutoCreateStatsIncrementalOn,jdbcType=BIT},
+      </if>
+      <if test="isAutoUpdateStatsOn != null" >
+        #{isAutoUpdateStatsOn,jdbcType=BIT},
+      </if>
+      <if test="isAutoUpdateStatsAsyncOn != null" >
+        #{isAutoUpdateStatsAsyncOn,jdbcType=BIT},
+      </if>
+      <if test="isAnsiNullDefaultOn != null" >
+        #{isAnsiNullDefaultOn,jdbcType=BIT},
+      </if>
+      <if test="isAnsiNullsOn != null" >
+        #{isAnsiNullsOn,jdbcType=BIT},
+      </if>
+      <if test="isAnsiPaddingOn != null" >
+        #{isAnsiPaddingOn,jdbcType=BIT},
+      </if>
+      <if test="isAnsiWarningsOn != null" >
+        #{isAnsiWarningsOn,jdbcType=BIT},
+      </if>
+      <if test="isArithabortOn != null" >
+        #{isArithabortOn,jdbcType=BIT},
+      </if>
+      <if test="isConcatNullYieldsNullOn != null" >
+        #{isConcatNullYieldsNullOn,jdbcType=BIT},
+      </if>
+      <if test="isNumericRoundabortOn != null" >
+        #{isNumericRoundabortOn,jdbcType=BIT},
+      </if>
+      <if test="isQuotedIdentifierOn != null" >
+        #{isQuotedIdentifierOn,jdbcType=BIT},
+      </if>
+      <if test="isRecursiveTriggersOn != null" >
+        #{isRecursiveTriggersOn,jdbcType=BIT},
+      </if>
+      <if test="isCursorCloseOnCommitOn != null" >
+        #{isCursorCloseOnCommitOn,jdbcType=BIT},
+      </if>
+      <if test="isLocalCursorDefault != null" >
+        #{isLocalCursorDefault,jdbcType=BIT},
+      </if>
+      <if test="isFulltextEnabled != null" >
+        #{isFulltextEnabled,jdbcType=BIT},
+      </if>
+      <if test="isTrustworthyOn != null" >
+        #{isTrustworthyOn,jdbcType=BIT},
+      </if>
+      <if test="isDbChainingOn != null" >
+        #{isDbChainingOn,jdbcType=BIT},
+      </if>
+      <if test="isParameterizationForced != null" >
+        #{isParameterizationForced,jdbcType=BIT},
+      </if>
+      <if test="isMasterKeyEncryptedByServer != null" >
+        #{isMasterKeyEncryptedByServer,jdbcType=BIT},
+      </if>
+      <if test="isQueryStoreOn != null" >
+        #{isQueryStoreOn,jdbcType=BIT},
+      </if>
+      <if test="isPublished != null" >
+        #{isPublished,jdbcType=BIT},
+      </if>
+      <if test="isSubscribed != null" >
+        #{isSubscribed,jdbcType=BIT},
+      </if>
+      <if test="isMergePublished != null" >
+        #{isMergePublished,jdbcType=BIT},
+      </if>
+      <if test="isDistributor != null" >
+        #{isDistributor,jdbcType=BIT},
+      </if>
+      <if test="isSyncWithBackup != null" >
+        #{isSyncWithBackup,jdbcType=BIT},
+      </if>
+      <if test="serviceBrokerGuid != null" >
+        #{serviceBrokerGuid,jdbcType=CHAR},
+      </if>
+      <if test="isBrokerEnabled != null" >
+        #{isBrokerEnabled,jdbcType=BIT},
+      </if>
+      <if test="logReuseWait != null" >
+        #{logReuseWait,jdbcType=TINYINT},
+      </if>
+      <if test="logReuseWaitDesc != null" >
+        #{logReuseWaitDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isDateCorrelationOn != null" >
+        #{isDateCorrelationOn,jdbcType=BIT},
+      </if>
+      <if test="isCdcEnabled != null" >
+        #{isCdcEnabled,jdbcType=BIT},
+      </if>
+      <if test="isEncrypted != null" >
+        #{isEncrypted,jdbcType=BIT},
+      </if>
+      <if test="isHonorBrokerPriorityOn != null" >
+        #{isHonorBrokerPriorityOn,jdbcType=BIT},
+      </if>
+      <if test="replicaId != null" >
+        #{replicaId,jdbcType=CHAR},
+      </if>
+      <if test="groupDatabaseId != null" >
+        #{groupDatabaseId,jdbcType=CHAR},
+      </if>
+      <if test="resourcePoolId != null" >
+        #{resourcePoolId,jdbcType=INTEGER},
+      </if>
+      <if test="defaultLanguageLcid != null" >
+        #{defaultLanguageLcid,jdbcType=SMALLINT},
+      </if>
+      <if test="defaultLanguageName != null" >
+        #{defaultLanguageName,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultFulltextLanguageLcid != null" >
+        #{defaultFulltextLanguageLcid,jdbcType=INTEGER},
+      </if>
+      <if test="defaultFulltextLanguageName != null" >
+        #{defaultFulltextLanguageName,jdbcType=NVARCHAR},
+      </if>
+      <if test="isNestedTriggersOn != null" >
+        #{isNestedTriggersOn,jdbcType=BIT},
+      </if>
+      <if test="isTransformNoiseWordsOn != null" >
+        #{isTransformNoiseWordsOn,jdbcType=BIT},
+      </if>
+      <if test="twoDigitYearCutoff != null" >
+        #{twoDigitYearCutoff,jdbcType=SMALLINT},
+      </if>
+      <if test="containment != null" >
+        #{containment,jdbcType=TINYINT},
+      </if>
+      <if test="containmentDesc != null" >
+        #{containmentDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="targetRecoveryTimeInSeconds != null" >
+        #{targetRecoveryTimeInSeconds,jdbcType=INTEGER},
+      </if>
+      <if test="delayedDurability != null" >
+        #{delayedDurability,jdbcType=INTEGER},
+      </if>
+      <if test="delayedDurabilityDesc != null" >
+        #{delayedDurabilityDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isMemoryOptimizedElevateToSnapshotOn != null" >
+        #{isMemoryOptimizedElevateToSnapshotOn,jdbcType=BIT},
+      </if>
+      <if test="ownerSid != null" >
+        #{ownerSid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

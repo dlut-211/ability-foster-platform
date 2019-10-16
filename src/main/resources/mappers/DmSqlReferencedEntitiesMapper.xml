@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmSqlReferencedEntitiesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmSqlReferencedEntities" >
+    <result column="referencing_minor_id" property="referencingMinorId" jdbcType="INTEGER" />
+    <result column="referenced_server_name" property="referencedServerName" jdbcType="NVARCHAR" />
+    <result column="referenced_database_name" property="referencedDatabaseName" jdbcType="NVARCHAR" />
+    <result column="referenced_schema_name" property="referencedSchemaName" jdbcType="NVARCHAR" />
+    <result column="referenced_entity_name" property="referencedEntityName" jdbcType="NVARCHAR" />
+    <result column="referenced_minor_name" property="referencedMinorName" jdbcType="NVARCHAR" />
+    <result column="referenced_id" property="referencedId" jdbcType="INTEGER" />
+    <result column="referenced_minor_id" property="referencedMinorId" jdbcType="INTEGER" />
+    <result column="referenced_class" property="referencedClass" jdbcType="TINYINT" />
+    <result column="referenced_class_desc" property="referencedClassDesc" jdbcType="NVARCHAR" />
+    <result column="is_caller_dependent" property="isCallerDependent" jdbcType="BIT" />
+    <result column="is_ambiguous" property="isAmbiguous" jdbcType="BIT" />
+    <result column="is_selected" property="isSelected" jdbcType="BIT" />
+    <result column="is_updated" property="isUpdated" jdbcType="BIT" />
+    <result column="is_select_all" property="isSelectAll" jdbcType="BIT" />
+    <result column="is_all_columns_found" property="isAllColumnsFound" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmSqlReferencedEntities" >
+    insert into dm_sql_referenced_entities (referencing_minor_id, referenced_server_name, 
+      referenced_database_name, referenced_schema_name, 
+      referenced_entity_name, referenced_minor_name, 
+      referenced_id, referenced_minor_id, referenced_class, 
+      referenced_class_desc, is_caller_dependent, is_ambiguous, 
+      is_selected, is_updated, is_select_all, 
+      is_all_columns_found)
+    values (#{referencingMinorId,jdbcType=INTEGER}, #{referencedServerName,jdbcType=NVARCHAR}, 
+      #{referencedDatabaseName,jdbcType=NVARCHAR}, #{referencedSchemaName,jdbcType=NVARCHAR}, 
+      #{referencedEntityName,jdbcType=NVARCHAR}, #{referencedMinorName,jdbcType=NVARCHAR}, 
+      #{referencedId,jdbcType=INTEGER}, #{referencedMinorId,jdbcType=INTEGER}, #{referencedClass,jdbcType=TINYINT}, 
+      #{referencedClassDesc,jdbcType=NVARCHAR}, #{isCallerDependent,jdbcType=BIT}, #{isAmbiguous,jdbcType=BIT}, 
+      #{isSelected,jdbcType=BIT}, #{isUpdated,jdbcType=BIT}, #{isSelectAll,jdbcType=BIT}, 
+      #{isAllColumnsFound,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmSqlReferencedEntities" >
+    insert into dm_sql_referenced_entities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="referencingMinorId != null" >
+        referencing_minor_id,
+      </if>
+      <if test="referencedServerName != null" >
+        referenced_server_name,
+      </if>
+      <if test="referencedDatabaseName != null" >
+        referenced_database_name,
+      </if>
+      <if test="referencedSchemaName != null" >
+        referenced_schema_name,
+      </if>
+      <if test="referencedEntityName != null" >
+        referenced_entity_name,
+      </if>
+      <if test="referencedMinorName != null" >
+        referenced_minor_name,
+      </if>
+      <if test="referencedId != null" >
+        referenced_id,
+      </if>
+      <if test="referencedMinorId != null" >
+        referenced_minor_id,
+      </if>
+      <if test="referencedClass != null" >
+        referenced_class,
+      </if>
+      <if test="referencedClassDesc != null" >
+        referenced_class_desc,
+      </if>
+      <if test="isCallerDependent != null" >
+        is_caller_dependent,
+      </if>
+      <if test="isAmbiguous != null" >
+        is_ambiguous,
+      </if>
+      <if test="isSelected != null" >
+        is_selected,
+      </if>
+      <if test="isUpdated != null" >
+        is_updated,
+      </if>
+      <if test="isSelectAll != null" >
+        is_select_all,
+      </if>
+      <if test="isAllColumnsFound != null" >
+        is_all_columns_found,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="referencingMinorId != null" >
+        #{referencingMinorId,jdbcType=INTEGER},
+      </if>
+      <if test="referencedServerName != null" >
+        #{referencedServerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="referencedDatabaseName != null" >
+        #{referencedDatabaseName,jdbcType=NVARCHAR},
+      </if>
+      <if test="referencedSchemaName != null" >
+        #{referencedSchemaName,jdbcType=NVARCHAR},
+      </if>
+      <if test="referencedEntityName != null" >
+        #{referencedEntityName,jdbcType=NVARCHAR},
+      </if>
+      <if test="referencedMinorName != null" >
+        #{referencedMinorName,jdbcType=NVARCHAR},
+      </if>
+      <if test="referencedId != null" >
+        #{referencedId,jdbcType=INTEGER},
+      </if>
+      <if test="referencedMinorId != null" >
+        #{referencedMinorId,jdbcType=INTEGER},
+      </if>
+      <if test="referencedClass != null" >
+        #{referencedClass,jdbcType=TINYINT},
+      </if>
+      <if test="referencedClassDesc != null" >
+        #{referencedClassDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isCallerDependent != null" >
+        #{isCallerDependent,jdbcType=BIT},
+      </if>
+      <if test="isAmbiguous != null" >
+        #{isAmbiguous,jdbcType=BIT},
+      </if>
+      <if test="isSelected != null" >
+        #{isSelected,jdbcType=BIT},
+      </if>
+      <if test="isUpdated != null" >
+        #{isUpdated,jdbcType=BIT},
+      </if>
+      <if test="isSelectAll != null" >
+        #{isSelectAll,jdbcType=BIT},
+      </if>
+      <if test="isAllColumnsFound != null" >
+        #{isAllColumnsFound,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

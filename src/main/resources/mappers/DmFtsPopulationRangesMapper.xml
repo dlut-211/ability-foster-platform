@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmFtsPopulationRangesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsPopulationRanges" >
+    <result column="is_retry" property="isRetry" jdbcType="BIT" />
+    <result column="session_id" property="sessionId" jdbcType="SMALLINT" />
+    <result column="processed_row_count" property="processedRowCount" jdbcType="INTEGER" />
+    <result column="error_count" property="errorCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsPopulationRangesWithBLOBs" extends="BaseResultMap" >
+    <result column="memory_address" property="memoryAddress" jdbcType="VARBINARY" />
+    <result column="parent_memory_address" property="parentMemoryAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    memory_address, parent_memory_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsPopulationRangesWithBLOBs" >
+    insert into dm_fts_population_ranges (is_retry, session_id, processed_row_count, 
+      error_count, memory_address, parent_memory_address
+      )
+    values (#{isRetry,jdbcType=BIT}, #{sessionId,jdbcType=SMALLINT}, #{processedRowCount,jdbcType=INTEGER}, 
+      #{errorCount,jdbcType=INTEGER}, #{memoryAddress,jdbcType=VARBINARY}, #{parentMemoryAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsPopulationRangesWithBLOBs" >
+    insert into dm_fts_population_ranges
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="isRetry != null" >
+        is_retry,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="processedRowCount != null" >
+        processed_row_count,
+      </if>
+      <if test="errorCount != null" >
+        error_count,
+      </if>
+      <if test="memoryAddress != null" >
+        memory_address,
+      </if>
+      <if test="parentMemoryAddress != null" >
+        parent_memory_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="isRetry != null" >
+        #{isRetry,jdbcType=BIT},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=SMALLINT},
+      </if>
+      <if test="processedRowCount != null" >
+        #{processedRowCount,jdbcType=INTEGER},
+      </if>
+      <if test="errorCount != null" >
+        #{errorCount,jdbcType=INTEGER},
+      </if>
+      <if test="memoryAddress != null" >
+        #{memoryAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="parentMemoryAddress != null" >
+        #{parentMemoryAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmBrokerQueueMonitorsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmBrokerQueueMonitors" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="queue_id" property="queueId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="NVARCHAR" />
+    <result column="last_empty_rowset_time" property="lastEmptyRowsetTime" jdbcType="TIMESTAMP" />
+    <result column="last_activated_time" property="lastActivatedTime" jdbcType="TIMESTAMP" />
+    <result column="tasks_waiting" property="tasksWaiting" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmBrokerQueueMonitors" >
+    insert into dm_broker_queue_monitors (database_id, queue_id, state, 
+      last_empty_rowset_time, last_activated_time, 
+      tasks_waiting)
+    values (#{databaseId,jdbcType=INTEGER}, #{queueId,jdbcType=INTEGER}, #{state,jdbcType=NVARCHAR}, 
+      #{lastEmptyRowsetTime,jdbcType=TIMESTAMP}, #{lastActivatedTime,jdbcType=TIMESTAMP}, 
+      #{tasksWaiting,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmBrokerQueueMonitors" >
+    insert into dm_broker_queue_monitors
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="queueId != null" >
+        queue_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="lastEmptyRowsetTime != null" >
+        last_empty_rowset_time,
+      </if>
+      <if test="lastActivatedTime != null" >
+        last_activated_time,
+      </if>
+      <if test="tasksWaiting != null" >
+        tasks_waiting,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="queueId != null" >
+        #{queueId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastEmptyRowsetTime != null" >
+        #{lastEmptyRowsetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastActivatedTime != null" >
+        #{lastActivatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tasksWaiting != null" >
+        #{tasksWaiting,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

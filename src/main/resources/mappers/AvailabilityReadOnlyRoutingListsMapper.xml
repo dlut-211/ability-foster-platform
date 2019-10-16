@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.AvailabilityReadOnlyRoutingListsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.AvailabilityReadOnlyRoutingLists" >
+    <result column="replica_id" property="replicaId" jdbcType="CHAR" />
+    <result column="routing_priority" property="routingPriority" jdbcType="INTEGER" />
+    <result column="read_only_replica_id" property="readOnlyReplicaId" jdbcType="CHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AvailabilityReadOnlyRoutingLists" >
+    insert into availability_read_only_routing_lists (replica_id, routing_priority, read_only_replica_id
+      )
+    values (#{replicaId,jdbcType=CHAR}, #{routingPriority,jdbcType=INTEGER}, #{readOnlyReplicaId,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AvailabilityReadOnlyRoutingLists" >
+    insert into availability_read_only_routing_lists
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        replica_id,
+      </if>
+      <if test="routingPriority != null" >
+        routing_priority,
+      </if>
+      <if test="readOnlyReplicaId != null" >
+        read_only_replica_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        #{replicaId,jdbcType=CHAR},
+      </if>
+      <if test="routingPriority != null" >
+        #{routingPriority,jdbcType=INTEGER},
+      </if>
+      <if test="readOnlyReplicaId != null" >
+        #{readOnlyReplicaId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

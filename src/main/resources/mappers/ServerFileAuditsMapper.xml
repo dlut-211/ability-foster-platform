@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServerFileAuditsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServerFileAudits" >
+    <result column="audit_id" property="auditId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="audit_guid" property="auditGuid" jdbcType="CHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="on_failure" property="onFailure" jdbcType="TINYINT" />
+    <result column="on_failure_desc" property="onFailureDesc" jdbcType="NVARCHAR" />
+    <result column="is_state_enabled" property="isStateEnabled" jdbcType="BIT" />
+    <result column="queue_delay" property="queueDelay" jdbcType="INTEGER" />
+    <result column="predicate" property="predicate" jdbcType="NVARCHAR" />
+    <result column="max_file_size" property="maxFileSize" jdbcType="BIGINT" />
+    <result column="max_rollover_files" property="maxRolloverFiles" jdbcType="INTEGER" />
+    <result column="max_files" property="maxFiles" jdbcType="INTEGER" />
+    <result column="reserve_disk_space" property="reserveDiskSpace" jdbcType="BIT" />
+    <result column="log_file_path" property="logFilePath" jdbcType="NVARCHAR" />
+    <result column="log_file_name" property="logFileName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerFileAudits" >
+    insert into server_file_audits (audit_id, name, audit_guid, 
+      create_date, modify_date, principal_id, 
+      type, type_desc, on_failure, 
+      on_failure_desc, is_state_enabled, queue_delay, 
+      predicate, max_file_size, max_rollover_files, 
+      max_files, reserve_disk_space, log_file_path, 
+      log_file_name)
+    values (#{auditId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{auditGuid,jdbcType=CHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, #{principalId,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{typeDesc,jdbcType=NVARCHAR}, #{onFailure,jdbcType=TINYINT}, 
+      #{onFailureDesc,jdbcType=NVARCHAR}, #{isStateEnabled,jdbcType=BIT}, #{queueDelay,jdbcType=INTEGER}, 
+      #{predicate,jdbcType=NVARCHAR}, #{maxFileSize,jdbcType=BIGINT}, #{maxRolloverFiles,jdbcType=INTEGER}, 
+      #{maxFiles,jdbcType=INTEGER}, #{reserveDiskSpace,jdbcType=BIT}, #{logFilePath,jdbcType=NVARCHAR}, 
+      #{logFileName,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerFileAudits" >
+    insert into server_file_audits
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="auditId != null" >
+        audit_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="auditGuid != null" >
+        audit_guid,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="onFailure != null" >
+        on_failure,
+      </if>
+      <if test="onFailureDesc != null" >
+        on_failure_desc,
+      </if>
+      <if test="isStateEnabled != null" >
+        is_state_enabled,
+      </if>
+      <if test="queueDelay != null" >
+        queue_delay,
+      </if>
+      <if test="predicate != null" >
+        predicate,
+      </if>
+      <if test="maxFileSize != null" >
+        max_file_size,
+      </if>
+      <if test="maxRolloverFiles != null" >
+        max_rollover_files,
+      </if>
+      <if test="maxFiles != null" >
+        max_files,
+      </if>
+      <if test="reserveDiskSpace != null" >
+        reserve_disk_space,
+      </if>
+      <if test="logFilePath != null" >
+        log_file_path,
+      </if>
+      <if test="logFileName != null" >
+        log_file_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="auditId != null" >
+        #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="auditGuid != null" >
+        #{auditGuid,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="onFailure != null" >
+        #{onFailure,jdbcType=TINYINT},
+      </if>
+      <if test="onFailureDesc != null" >
+        #{onFailureDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isStateEnabled != null" >
+        #{isStateEnabled,jdbcType=BIT},
+      </if>
+      <if test="queueDelay != null" >
+        #{queueDelay,jdbcType=INTEGER},
+      </if>
+      <if test="predicate != null" >
+        #{predicate,jdbcType=NVARCHAR},
+      </if>
+      <if test="maxFileSize != null" >
+        #{maxFileSize,jdbcType=BIGINT},
+      </if>
+      <if test="maxRolloverFiles != null" >
+        #{maxRolloverFiles,jdbcType=INTEGER},
+      </if>
+      <if test="maxFiles != null" >
+        #{maxFiles,jdbcType=INTEGER},
+      </if>
+      <if test="reserveDiskSpace != null" >
+        #{reserveDiskSpace,jdbcType=BIT},
+      </if>
+      <if test="logFilePath != null" >
+        #{logFilePath,jdbcType=NVARCHAR},
+      </if>
+      <if test="logFileName != null" >
+        #{logFileName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

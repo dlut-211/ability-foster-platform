@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ResourceGovernorWorkloadGroupsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorWorkloadGroups" >
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="importance" property="importance" jdbcType="NVARCHAR" />
+    <result column="request_max_memory_grant_percent" property="requestMaxMemoryGrantPercent" jdbcType="INTEGER" />
+    <result column="request_max_cpu_time_sec" property="requestMaxCpuTimeSec" jdbcType="INTEGER" />
+    <result column="request_memory_grant_timeout_sec" property="requestMemoryGrantTimeoutSec" jdbcType="INTEGER" />
+    <result column="max_dop" property="maxDop" jdbcType="INTEGER" />
+    <result column="group_max_requests" property="groupMaxRequests" jdbcType="INTEGER" />
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorWorkloadGroups" >
+    insert into resource_governor_workload_groups (group_id, name, importance, 
+      request_max_memory_grant_percent, request_max_cpu_time_sec, 
+      request_memory_grant_timeout_sec, max_dop, group_max_requests, 
+      pool_id)
+    values (#{groupId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{importance,jdbcType=NVARCHAR}, 
+      #{requestMaxMemoryGrantPercent,jdbcType=INTEGER}, #{requestMaxCpuTimeSec,jdbcType=INTEGER}, 
+      #{requestMemoryGrantTimeoutSec,jdbcType=INTEGER}, #{maxDop,jdbcType=INTEGER}, #{groupMaxRequests,jdbcType=INTEGER}, 
+      #{poolId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorWorkloadGroups" >
+    insert into resource_governor_workload_groups
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="importance != null" >
+        importance,
+      </if>
+      <if test="requestMaxMemoryGrantPercent != null" >
+        request_max_memory_grant_percent,
+      </if>
+      <if test="requestMaxCpuTimeSec != null" >
+        request_max_cpu_time_sec,
+      </if>
+      <if test="requestMemoryGrantTimeoutSec != null" >
+        request_memory_grant_timeout_sec,
+      </if>
+      <if test="maxDop != null" >
+        max_dop,
+      </if>
+      <if test="groupMaxRequests != null" >
+        group_max_requests,
+      </if>
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="importance != null" >
+        #{importance,jdbcType=NVARCHAR},
+      </if>
+      <if test="requestMaxMemoryGrantPercent != null" >
+        #{requestMaxMemoryGrantPercent,jdbcType=INTEGER},
+      </if>
+      <if test="requestMaxCpuTimeSec != null" >
+        #{requestMaxCpuTimeSec,jdbcType=INTEGER},
+      </if>
+      <if test="requestMemoryGrantTimeoutSec != null" >
+        #{requestMemoryGrantTimeoutSec,jdbcType=INTEGER},
+      </if>
+      <if test="maxDop != null" >
+        #{maxDop,jdbcType=INTEGER},
+      </if>
+      <if test="groupMaxRequests != null" >
+        #{groupMaxRequests,jdbcType=INTEGER},
+      </if>
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

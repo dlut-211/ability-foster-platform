@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbXtpTransactionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpTransactions" >
+    <result column="xtp_transaction_id" property="xtpTransactionId" jdbcType="BIGINT" />
+    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    <result column="session_id" property="sessionId" jdbcType="SMALLINT" />
+    <result column="begin_tsn" property="beginTsn" jdbcType="BIGINT" />
+    <result column="end_tsn" property="endTsn" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="state_desc" property="stateDesc" jdbcType="NVARCHAR" />
+    <result column="result" property="result" jdbcType="INTEGER" />
+    <result column="result_desc" property="resultDesc" jdbcType="NVARCHAR" />
+    <result column="last_error" property="lastError" jdbcType="INTEGER" />
+    <result column="is_speculative" property="isSpeculative" jdbcType="BIT" />
+    <result column="is_prepared" property="isPrepared" jdbcType="BIT" />
+    <result column="is_delayed_durability" property="isDelayedDurability" jdbcType="BIT" />
+    <result column="thread_id" property="threadId" jdbcType="INTEGER" />
+    <result column="read_set_row_count" property="readSetRowCount" jdbcType="INTEGER" />
+    <result column="write_set_row_count" property="writeSetRowCount" jdbcType="INTEGER" />
+    <result column="scan_set_count" property="scanSetCount" jdbcType="INTEGER" />
+    <result column="savepoint_garbage_count" property="savepointGarbageCount" jdbcType="INTEGER" />
+    <result column="log_bytes_required" property="logBytesRequired" jdbcType="BIGINT" />
+    <result column="count_of_allocations" property="countOfAllocations" jdbcType="INTEGER" />
+    <result column="allocated_bytes" property="allocatedBytes" jdbcType="INTEGER" />
+    <result column="reserved_bytes" property="reservedBytes" jdbcType="INTEGER" />
+    <result column="commit_dependency_count" property="commitDependencyCount" jdbcType="INTEGER" />
+    <result column="commit_dependency_total_attempt_count" property="commitDependencyTotalAttemptCount" jdbcType="INTEGER" />
+    <result column="scan_area" property="scanArea" jdbcType="INTEGER" />
+    <result column="scan_area_desc" property="scanAreaDesc" jdbcType="NVARCHAR" />
+    <result column="scan_location" property="scanLocation" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpTransactionsWithBLOBs" extends="BaseResultMap" >
+    <result column="memory_address" property="memoryAddress" jdbcType="VARBINARY" />
+    <result column="database_address" property="databaseAddress" jdbcType="VARBINARY" />
+    <result column="dependent_1_address" property="dependent1Address" jdbcType="VARBINARY" />
+    <result column="dependent_2_address" property="dependent2Address" jdbcType="VARBINARY" />
+    <result column="dependent_3_address" property="dependent3Address" jdbcType="VARBINARY" />
+    <result column="dependent_4_address" property="dependent4Address" jdbcType="VARBINARY" />
+    <result column="dependent_5_address" property="dependent5Address" jdbcType="VARBINARY" />
+    <result column="dependent_6_address" property="dependent6Address" jdbcType="VARBINARY" />
+    <result column="dependent_7_address" property="dependent7Address" jdbcType="VARBINARY" />
+    <result column="dependent_8_address" property="dependent8Address" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    memory_address, database_address, dependent_1_address, dependent_2_address, dependent_3_address, 
+    dependent_4_address, dependent_5_address, dependent_6_address, dependent_7_address, 
+    dependent_8_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpTransactionsWithBLOBs" >
+    insert into dm_db_xtp_transactions (xtp_transaction_id, transaction_id, session_id, 
+      begin_tsn, end_tsn, state, 
+      state_desc, result, result_desc, 
+      last_error, is_speculative, is_prepared, 
+      is_delayed_durability, thread_id, read_set_row_count, 
+      write_set_row_count, scan_set_count, savepoint_garbage_count, 
+      log_bytes_required, count_of_allocations, allocated_bytes, 
+      reserved_bytes, commit_dependency_count, commit_dependency_total_attempt_count, 
+      scan_area, scan_area_desc, scan_location, 
+      memory_address, database_address, dependent_1_address, 
+      dependent_2_address, dependent_3_address, 
+      dependent_4_address, dependent_5_address, 
+      dependent_6_address, dependent_7_address, 
+      dependent_8_address)
+    values (#{xtpTransactionId,jdbcType=BIGINT}, #{transactionId,jdbcType=BIGINT}, #{sessionId,jdbcType=SMALLINT}, 
+      #{beginTsn,jdbcType=BIGINT}, #{endTsn,jdbcType=BIGINT}, #{state,jdbcType=INTEGER}, 
+      #{stateDesc,jdbcType=NVARCHAR}, #{result,jdbcType=INTEGER}, #{resultDesc,jdbcType=NVARCHAR}, 
+      #{lastError,jdbcType=INTEGER}, #{isSpeculative,jdbcType=BIT}, #{isPrepared,jdbcType=BIT}, 
+      #{isDelayedDurability,jdbcType=BIT}, #{threadId,jdbcType=INTEGER}, #{readSetRowCount,jdbcType=INTEGER}, 
+      #{writeSetRowCount,jdbcType=INTEGER}, #{scanSetCount,jdbcType=INTEGER}, #{savepointGarbageCount,jdbcType=INTEGER}, 
+      #{logBytesRequired,jdbcType=BIGINT}, #{countOfAllocations,jdbcType=INTEGER}, #{allocatedBytes,jdbcType=INTEGER}, 
+      #{reservedBytes,jdbcType=INTEGER}, #{commitDependencyCount,jdbcType=INTEGER}, #{commitDependencyTotalAttemptCount,jdbcType=INTEGER}, 
+      #{scanArea,jdbcType=INTEGER}, #{scanAreaDesc,jdbcType=NVARCHAR}, #{scanLocation,jdbcType=INTEGER}, 
+      #{memoryAddress,jdbcType=VARBINARY}, #{databaseAddress,jdbcType=VARBINARY}, #{dependent1Address,jdbcType=VARBINARY}, 
+      #{dependent2Address,jdbcType=VARBINARY}, #{dependent3Address,jdbcType=VARBINARY}, 
+      #{dependent4Address,jdbcType=VARBINARY}, #{dependent5Address,jdbcType=VARBINARY}, 
+      #{dependent6Address,jdbcType=VARBINARY}, #{dependent7Address,jdbcType=VARBINARY}, 
+      #{dependent8Address,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpTransactionsWithBLOBs" >
+    insert into dm_db_xtp_transactions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xtpTransactionId != null" >
+        xtp_transaction_id,
+      </if>
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="beginTsn != null" >
+        begin_tsn,
+      </if>
+      <if test="endTsn != null" >
+        end_tsn,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDesc != null" >
+        state_desc,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="resultDesc != null" >
+        result_desc,
+      </if>
+      <if test="lastError != null" >
+        last_error,
+      </if>
+      <if test="isSpeculative != null" >
+        is_speculative,
+      </if>
+      <if test="isPrepared != null" >
+        is_prepared,
+      </if>
+      <if test="isDelayedDurability != null" >
+        is_delayed_durability,
+      </if>
+      <if test="threadId != null" >
+        thread_id,
+      </if>
+      <if test="readSetRowCount != null" >
+        read_set_row_count,
+      </if>
+      <if test="writeSetRowCount != null" >
+        write_set_row_count,
+      </if>
+      <if test="scanSetCount != null" >
+        scan_set_count,
+      </if>
+      <if test="savepointGarbageCount != null" >
+        savepoint_garbage_count,
+      </if>
+      <if test="logBytesRequired != null" >
+        log_bytes_required,
+      </if>
+      <if test="countOfAllocations != null" >
+        count_of_allocations,
+      </if>
+      <if test="allocatedBytes != null" >
+        allocated_bytes,
+      </if>
+      <if test="reservedBytes != null" >
+        reserved_bytes,
+      </if>
+      <if test="commitDependencyCount != null" >
+        commit_dependency_count,
+      </if>
+      <if test="commitDependencyTotalAttemptCount != null" >
+        commit_dependency_total_attempt_count,
+      </if>
+      <if test="scanArea != null" >
+        scan_area,
+      </if>
+      <if test="scanAreaDesc != null" >
+        scan_area_desc,
+      </if>
+      <if test="scanLocation != null" >
+        scan_location,
+      </if>
+      <if test="memoryAddress != null" >
+        memory_address,
+      </if>
+      <if test="databaseAddress != null" >
+        database_address,
+      </if>
+      <if test="dependent1Address != null" >
+        dependent_1_address,
+      </if>
+      <if test="dependent2Address != null" >
+        dependent_2_address,
+      </if>
+      <if test="dependent3Address != null" >
+        dependent_3_address,
+      </if>
+      <if test="dependent4Address != null" >
+        dependent_4_address,
+      </if>
+      <if test="dependent5Address != null" >
+        dependent_5_address,
+      </if>
+      <if test="dependent6Address != null" >
+        dependent_6_address,
+      </if>
+      <if test="dependent7Address != null" >
+        dependent_7_address,
+      </if>
+      <if test="dependent8Address != null" >
+        dependent_8_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xtpTransactionId != null" >
+        #{xtpTransactionId,jdbcType=BIGINT},
+      </if>
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=SMALLINT},
+      </if>
+      <if test="beginTsn != null" >
+        #{beginTsn,jdbcType=BIGINT},
+      </if>
+      <if test="endTsn != null" >
+        #{endTsn,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="stateDesc != null" >
+        #{stateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="resultDesc != null" >
+        #{resultDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastError != null" >
+        #{lastError,jdbcType=INTEGER},
+      </if>
+      <if test="isSpeculative != null" >
+        #{isSpeculative,jdbcType=BIT},
+      </if>
+      <if test="isPrepared != null" >
+        #{isPrepared,jdbcType=BIT},
+      </if>
+      <if test="isDelayedDurability != null" >
+        #{isDelayedDurability,jdbcType=BIT},
+      </if>
+      <if test="threadId != null" >
+        #{threadId,jdbcType=INTEGER},
+      </if>
+      <if test="readSetRowCount != null" >
+        #{readSetRowCount,jdbcType=INTEGER},
+      </if>
+      <if test="writeSetRowCount != null" >
+        #{writeSetRowCount,jdbcType=INTEGER},
+      </if>
+      <if test="scanSetCount != null" >
+        #{scanSetCount,jdbcType=INTEGER},
+      </if>
+      <if test="savepointGarbageCount != null" >
+        #{savepointGarbageCount,jdbcType=INTEGER},
+      </if>
+      <if test="logBytesRequired != null" >
+        #{logBytesRequired,jdbcType=BIGINT},
+      </if>
+      <if test="countOfAllocations != null" >
+        #{countOfAllocations,jdbcType=INTEGER},
+      </if>
+      <if test="allocatedBytes != null" >
+        #{allocatedBytes,jdbcType=INTEGER},
+      </if>
+      <if test="reservedBytes != null" >
+        #{reservedBytes,jdbcType=INTEGER},
+      </if>
+      <if test="commitDependencyCount != null" >
+        #{commitDependencyCount,jdbcType=INTEGER},
+      </if>
+      <if test="commitDependencyTotalAttemptCount != null" >
+        #{commitDependencyTotalAttemptCount,jdbcType=INTEGER},
+      </if>
+      <if test="scanArea != null" >
+        #{scanArea,jdbcType=INTEGER},
+      </if>
+      <if test="scanAreaDesc != null" >
+        #{scanAreaDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="scanLocation != null" >
+        #{scanLocation,jdbcType=INTEGER},
+      </if>
+      <if test="memoryAddress != null" >
+        #{memoryAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="databaseAddress != null" >
+        #{databaseAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent1Address != null" >
+        #{dependent1Address,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent2Address != null" >
+        #{dependent2Address,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent3Address != null" >
+        #{dependent3Address,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent4Address != null" >
+        #{dependent4Address,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent5Address != null" >
+        #{dependent5Address,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent6Address != null" >
+        #{dependent6Address,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent7Address != null" >
+        #{dependent7Address,jdbcType=VARBINARY},
+      </if>
+      <if test="dependent8Address != null" >
+        #{dependent8Address,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

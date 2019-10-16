@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysrowsetrefsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysrowsetrefs" >
+    <result column="class" property="class" jdbcType="TINYINT" />
+    <result column="objid" property="objid" jdbcType="INTEGER" />
+    <result column="indexid" property="indexid" jdbcType="INTEGER" />
+    <result column="rowsetnum" property="rowsetnum" jdbcType="INTEGER" />
+    <result column="rowsetid" property="rowsetid" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysrowsetrefs" >
+    insert into sysrowsetrefs (class, objid, indexid, 
+      rowsetnum, rowsetid, status
+      )
+    values (#{class,jdbcType=TINYINT}, #{objid,jdbcType=INTEGER}, #{indexid,jdbcType=INTEGER}, 
+      #{rowsetnum,jdbcType=INTEGER}, #{rowsetid,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysrowsetrefs" >
+    insert into sysrowsetrefs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        class,
+      </if>
+      <if test="objid != null" >
+        objid,
+      </if>
+      <if test="indexid != null" >
+        indexid,
+      </if>
+      <if test="rowsetnum != null" >
+        rowsetnum,
+      </if>
+      <if test="rowsetid != null" >
+        rowsetid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        #{class,jdbcType=TINYINT},
+      </if>
+      <if test="objid != null" >
+        #{objid,jdbcType=INTEGER},
+      </if>
+      <if test="indexid != null" >
+        #{indexid,jdbcType=INTEGER},
+      </if>
+      <if test="rowsetnum != null" >
+        #{rowsetnum,jdbcType=INTEGER},
+      </if>
+      <if test="rowsetid != null" >
+        #{rowsetid,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

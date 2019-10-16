@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecQueryProfilesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecQueryProfiles" >
+    <result column="session_id" property="sessionId" jdbcType="SMALLINT" />
+    <result column="request_id" property="requestId" jdbcType="INTEGER" />
+    <result column="physical_operator_name" property="physicalOperatorName" jdbcType="NVARCHAR" />
+    <result column="node_id" property="nodeId" jdbcType="INTEGER" />
+    <result column="thread_id" property="threadId" jdbcType="INTEGER" />
+    <result column="row_count" property="rowCount" jdbcType="BIGINT" />
+    <result column="rewind_count" property="rewindCount" jdbcType="BIGINT" />
+    <result column="rebind_count" property="rebindCount" jdbcType="BIGINT" />
+    <result column="end_of_scan_count" property="endOfScanCount" jdbcType="BIGINT" />
+    <result column="estimate_row_count" property="estimateRowCount" jdbcType="BIGINT" />
+    <result column="first_active_time" property="firstActiveTime" jdbcType="BIGINT" />
+    <result column="last_active_time" property="lastActiveTime" jdbcType="BIGINT" />
+    <result column="open_time" property="openTime" jdbcType="BIGINT" />
+    <result column="first_row_time" property="firstRowTime" jdbcType="BIGINT" />
+    <result column="last_row_time" property="lastRowTime" jdbcType="BIGINT" />
+    <result column="close_time" property="closeTime" jdbcType="BIGINT" />
+    <result column="elapsed_time_ms" property="elapsedTimeMs" jdbcType="BIGINT" />
+    <result column="cpu_time_ms" property="cpuTimeMs" jdbcType="BIGINT" />
+    <result column="database_id" property="databaseId" jdbcType="SMALLINT" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="scan_count" property="scanCount" jdbcType="BIGINT" />
+    <result column="logical_read_count" property="logicalReadCount" jdbcType="BIGINT" />
+    <result column="physical_read_count" property="physicalReadCount" jdbcType="BIGINT" />
+    <result column="read_ahead_count" property="readAheadCount" jdbcType="BIGINT" />
+    <result column="write_page_count" property="writePageCount" jdbcType="BIGINT" />
+    <result column="lob_logical_read_count" property="lobLogicalReadCount" jdbcType="BIGINT" />
+    <result column="lob_physical_read_count" property="lobPhysicalReadCount" jdbcType="BIGINT" />
+    <result column="lob_read_ahead_count" property="lobReadAheadCount" jdbcType="BIGINT" />
+    <result column="segment_read_count" property="segmentReadCount" jdbcType="INTEGER" />
+    <result column="segment_skip_count" property="segmentSkipCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecQueryProfilesWithBLOBs" extends="BaseResultMap" >
+    <result column="sql_handle" property="sqlHandle" jdbcType="VARBINARY" />
+    <result column="plan_handle" property="planHandle" jdbcType="VARBINARY" />
+    <result column="task_address" property="taskAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sql_handle, plan_handle, task_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecQueryProfilesWithBLOBs" >
+    insert into dm_exec_query_profiles (session_id, request_id, physical_operator_name, 
+      node_id, thread_id, row_count, 
+      rewind_count, rebind_count, end_of_scan_count, 
+      estimate_row_count, first_active_time, last_active_time, 
+      open_time, first_row_time, last_row_time, 
+      close_time, elapsed_time_ms, cpu_time_ms, 
+      database_id, object_id, index_id, 
+      scan_count, logical_read_count, physical_read_count, 
+      read_ahead_count, write_page_count, lob_logical_read_count, 
+      lob_physical_read_count, lob_read_ahead_count, 
+      segment_read_count, segment_skip_count, sql_handle, 
+      plan_handle, task_address)
+    values (#{sessionId,jdbcType=SMALLINT}, #{requestId,jdbcType=INTEGER}, #{physicalOperatorName,jdbcType=NVARCHAR}, 
+      #{nodeId,jdbcType=INTEGER}, #{threadId,jdbcType=INTEGER}, #{rowCount,jdbcType=BIGINT}, 
+      #{rewindCount,jdbcType=BIGINT}, #{rebindCount,jdbcType=BIGINT}, #{endOfScanCount,jdbcType=BIGINT}, 
+      #{estimateRowCount,jdbcType=BIGINT}, #{firstActiveTime,jdbcType=BIGINT}, #{lastActiveTime,jdbcType=BIGINT}, 
+      #{openTime,jdbcType=BIGINT}, #{firstRowTime,jdbcType=BIGINT}, #{lastRowTime,jdbcType=BIGINT}, 
+      #{closeTime,jdbcType=BIGINT}, #{elapsedTimeMs,jdbcType=BIGINT}, #{cpuTimeMs,jdbcType=BIGINT}, 
+      #{databaseId,jdbcType=SMALLINT}, #{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, 
+      #{scanCount,jdbcType=BIGINT}, #{logicalReadCount,jdbcType=BIGINT}, #{physicalReadCount,jdbcType=BIGINT}, 
+      #{readAheadCount,jdbcType=BIGINT}, #{writePageCount,jdbcType=BIGINT}, #{lobLogicalReadCount,jdbcType=BIGINT}, 
+      #{lobPhysicalReadCount,jdbcType=BIGINT}, #{lobReadAheadCount,jdbcType=BIGINT}, 
+      #{segmentReadCount,jdbcType=INTEGER}, #{segmentSkipCount,jdbcType=INTEGER}, #{sqlHandle,jdbcType=VARBINARY}, 
+      #{planHandle,jdbcType=VARBINARY}, #{taskAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecQueryProfilesWithBLOBs" >
+    insert into dm_exec_query_profiles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="requestId != null" >
+        request_id,
+      </if>
+      <if test="physicalOperatorName != null" >
+        physical_operator_name,
+      </if>
+      <if test="nodeId != null" >
+        node_id,
+      </if>
+      <if test="threadId != null" >
+        thread_id,
+      </if>
+      <if test="rowCount != null" >
+        row_count,
+      </if>
+      <if test="rewindCount != null" >
+        rewind_count,
+      </if>
+      <if test="rebindCount != null" >
+        rebind_count,
+      </if>
+      <if test="endOfScanCount != null" >
+        end_of_scan_count,
+      </if>
+      <if test="estimateRowCount != null" >
+        estimate_row_count,
+      </if>
+      <if test="firstActiveTime != null" >
+        first_active_time,
+      </if>
+      <if test="lastActiveTime != null" >
+        last_active_time,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="firstRowTime != null" >
+        first_row_time,
+      </if>
+      <if test="lastRowTime != null" >
+        last_row_time,
+      </if>
+      <if test="closeTime != null" >
+        close_time,
+      </if>
+      <if test="elapsedTimeMs != null" >
+        elapsed_time_ms,
+      </if>
+      <if test="cpuTimeMs != null" >
+        cpu_time_ms,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="scanCount != null" >
+        scan_count,
+      </if>
+      <if test="logicalReadCount != null" >
+        logical_read_count,
+      </if>
+      <if test="physicalReadCount != null" >
+        physical_read_count,
+      </if>
+      <if test="readAheadCount != null" >
+        read_ahead_count,
+      </if>
+      <if test="writePageCount != null" >
+        write_page_count,
+      </if>
+      <if test="lobLogicalReadCount != null" >
+        lob_logical_read_count,
+      </if>
+      <if test="lobPhysicalReadCount != null" >
+        lob_physical_read_count,
+      </if>
+      <if test="lobReadAheadCount != null" >
+        lob_read_ahead_count,
+      </if>
+      <if test="segmentReadCount != null" >
+        segment_read_count,
+      </if>
+      <if test="segmentSkipCount != null" >
+        segment_skip_count,
+      </if>
+      <if test="sqlHandle != null" >
+        sql_handle,
+      </if>
+      <if test="planHandle != null" >
+        plan_handle,
+      </if>
+      <if test="taskAddress != null" >
+        task_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=SMALLINT},
+      </if>
+      <if test="requestId != null" >
+        #{requestId,jdbcType=INTEGER},
+      </if>
+      <if test="physicalOperatorName != null" >
+        #{physicalOperatorName,jdbcType=NVARCHAR},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="threadId != null" >
+        #{threadId,jdbcType=INTEGER},
+      </if>
+      <if test="rowCount != null" >
+        #{rowCount,jdbcType=BIGINT},
+      </if>
+      <if test="rewindCount != null" >
+        #{rewindCount,jdbcType=BIGINT},
+      </if>
+      <if test="rebindCount != null" >
+        #{rebindCount,jdbcType=BIGINT},
+      </if>
+      <if test="endOfScanCount != null" >
+        #{endOfScanCount,jdbcType=BIGINT},
+      </if>
+      <if test="estimateRowCount != null" >
+        #{estimateRowCount,jdbcType=BIGINT},
+      </if>
+      <if test="firstActiveTime != null" >
+        #{firstActiveTime,jdbcType=BIGINT},
+      </if>
+      <if test="lastActiveTime != null" >
+        #{lastActiveTime,jdbcType=BIGINT},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=BIGINT},
+      </if>
+      <if test="firstRowTime != null" >
+        #{firstRowTime,jdbcType=BIGINT},
+      </if>
+      <if test="lastRowTime != null" >
+        #{lastRowTime,jdbcType=BIGINT},
+      </if>
+      <if test="closeTime != null" >
+        #{closeTime,jdbcType=BIGINT},
+      </if>
+      <if test="elapsedTimeMs != null" >
+        #{elapsedTimeMs,jdbcType=BIGINT},
+      </if>
+      <if test="cpuTimeMs != null" >
+        #{cpuTimeMs,jdbcType=BIGINT},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=SMALLINT},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="scanCount != null" >
+        #{scanCount,jdbcType=BIGINT},
+      </if>
+      <if test="logicalReadCount != null" >
+        #{logicalReadCount,jdbcType=BIGINT},
+      </if>
+      <if test="physicalReadCount != null" >
+        #{physicalReadCount,jdbcType=BIGINT},
+      </if>
+      <if test="readAheadCount != null" >
+        #{readAheadCount,jdbcType=BIGINT},
+      </if>
+      <if test="writePageCount != null" >
+        #{writePageCount,jdbcType=BIGINT},
+      </if>
+      <if test="lobLogicalReadCount != null" >
+        #{lobLogicalReadCount,jdbcType=BIGINT},
+      </if>
+      <if test="lobPhysicalReadCount != null" >
+        #{lobPhysicalReadCount,jdbcType=BIGINT},
+      </if>
+      <if test="lobReadAheadCount != null" >
+        #{lobReadAheadCount,jdbcType=BIGINT},
+      </if>
+      <if test="segmentReadCount != null" >
+        #{segmentReadCount,jdbcType=INTEGER},
+      </if>
+      <if test="segmentSkipCount != null" >
+        #{segmentSkipCount,jdbcType=INTEGER},
+      </if>
+      <if test="sqlHandle != null" >
+        #{sqlHandle,jdbcType=VARBINARY},
+      </if>
+      <if test="planHandle != null" >
+        #{planHandle,jdbcType=VARBINARY},
+      </if>
+      <if test="taskAddress != null" >
+        #{taskAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

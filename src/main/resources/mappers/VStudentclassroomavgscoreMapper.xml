@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentclassroomavgscoreMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroomavgscore" >
+    <result column="StudentId" property="studentid" jdbcType="INTEGER" />
+    <result column="ClassRoomId" property="classroomid" jdbcType="INTEGER" />
+    <result column="ClassRoomName" property="classroomname" jdbcType="NVARCHAR" />
+    <result column="AvgScore" property="avgscore" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroomavgscore" >
+    insert into V_StudentClassRoomAvgScore (StudentId, ClassRoomId, ClassRoomName, 
+      AvgScore)
+    values (#{studentid,jdbcType=INTEGER}, #{classroomid,jdbcType=INTEGER}, #{classroomname,jdbcType=NVARCHAR}, 
+      #{avgscore,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentclassroomavgscore" >
+    insert into V_StudentClassRoomAvgScore
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentid != null" >
+        StudentId,
+      </if>
+      <if test="classroomid != null" >
+        ClassRoomId,
+      </if>
+      <if test="classroomname != null" >
+        ClassRoomName,
+      </if>
+      <if test="avgscore != null" >
+        AvgScore,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentid != null" >
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="classroomid != null" >
+        #{classroomid,jdbcType=INTEGER},
+      </if>
+      <if test="classroomname != null" >
+        #{classroomname,jdbcType=NVARCHAR},
+      </if>
+      <if test="avgscore != null" >
+        #{avgscore,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

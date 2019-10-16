@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmCryptographicProviderKeysMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmCryptographicProviderKeys" >
+    <result column="key_id" property="keyId" jdbcType="INTEGER" />
+    <result column="key_name" property="keyName" jdbcType="NVARCHAR" />
+    <result column="algorithm_id" property="algorithmId" jdbcType="INTEGER" />
+    <result column="algorithm_tag" property="algorithmTag" jdbcType="NVARCHAR" />
+    <result column="key_type" property="keyType" jdbcType="NVARCHAR" />
+    <result column="key_length" property="keyLength" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmCryptographicProviderKeys" extends="BaseResultMap" >
+    <result column="key_thumbprint" property="keyThumbprint" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    key_thumbprint
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmCryptographicProviderKeys" >
+    insert into dm_cryptographic_provider_keys (key_id, key_name, algorithm_id, 
+      algorithm_tag, key_type, key_length, 
+      key_thumbprint)
+    values (#{keyId,jdbcType=INTEGER}, #{keyName,jdbcType=NVARCHAR}, #{algorithmId,jdbcType=INTEGER}, 
+      #{algorithmTag,jdbcType=NVARCHAR}, #{keyType,jdbcType=NVARCHAR}, #{keyLength,jdbcType=INTEGER}, 
+      #{keyThumbprint,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmCryptographicProviderKeys" >
+    insert into dm_cryptographic_provider_keys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keyId != null" >
+        key_id,
+      </if>
+      <if test="keyName != null" >
+        key_name,
+      </if>
+      <if test="algorithmId != null" >
+        algorithm_id,
+      </if>
+      <if test="algorithmTag != null" >
+        algorithm_tag,
+      </if>
+      <if test="keyType != null" >
+        key_type,
+      </if>
+      <if test="keyLength != null" >
+        key_length,
+      </if>
+      <if test="keyThumbprint != null" >
+        key_thumbprint,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keyId != null" >
+        #{keyId,jdbcType=INTEGER},
+      </if>
+      <if test="keyName != null" >
+        #{keyName,jdbcType=NVARCHAR},
+      </if>
+      <if test="algorithmId != null" >
+        #{algorithmId,jdbcType=INTEGER},
+      </if>
+      <if test="algorithmTag != null" >
+        #{algorithmTag,jdbcType=NVARCHAR},
+      </if>
+      <if test="keyType != null" >
+        #{keyType,jdbcType=NVARCHAR},
+      </if>
+      <if test="keyLength != null" >
+        #{keyLength,jdbcType=INTEGER},
+      </if>
+      <if test="keyThumbprint != null" >
+        #{keyThumbprint,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

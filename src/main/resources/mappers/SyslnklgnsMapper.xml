@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyslnklgnsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syslnklgns" >
+    <result column="srvid" property="srvid" jdbcType="INTEGER" />
+    <result column="lgnid" property="lgnid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="modate" property="modate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Syslnklgns" extends="BaseResultMap" >
+    <result column="pwdhash" property="pwdhash" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    pwdhash
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syslnklgns" >
+    insert into syslnklgns (srvid, lgnid, name, 
+      status, modate, pwdhash
+      )
+    values (#{srvid,jdbcType=INTEGER}, #{lgnid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{modate,jdbcType=TIMESTAMP}, #{pwdhash,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syslnklgns" >
+    insert into syslnklgns
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="srvid != null" >
+        srvid,
+      </if>
+      <if test="lgnid != null" >
+        lgnid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="modate != null" >
+        modate,
+      </if>
+      <if test="pwdhash != null" >
+        pwdhash,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="srvid != null" >
+        #{srvid,jdbcType=INTEGER},
+      </if>
+      <if test="lgnid != null" >
+        #{lgnid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="modate != null" >
+        #{modate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pwdhash != null" >
+        #{pwdhash,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

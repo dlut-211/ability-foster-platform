@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ComputedColumnsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ComputedColumns" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="column_id" property="columnId" jdbcType="INTEGER" />
+    <result column="system_type_id" property="systemTypeId" jdbcType="TINYINT" />
+    <result column="user_type_id" property="userTypeId" jdbcType="INTEGER" />
+    <result column="max_length" property="maxLength" jdbcType="SMALLINT" />
+    <result column="precision" property="precision" jdbcType="TINYINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="collation_name" property="collationName" jdbcType="NVARCHAR" />
+    <result column="is_nullable" property="isNullable" jdbcType="BIT" />
+    <result column="is_ansi_padded" property="isAnsiPadded" jdbcType="BIT" />
+    <result column="is_rowguidcol" property="isRowguidcol" jdbcType="BIT" />
+    <result column="is_identity" property="isIdentity" jdbcType="BIT" />
+    <result column="is_filestream" property="isFilestream" jdbcType="BIT" />
+    <result column="is_replicated" property="isReplicated" jdbcType="BIT" />
+    <result column="is_non_sql_subscribed" property="isNonSqlSubscribed" jdbcType="BIT" />
+    <result column="is_merge_published" property="isMergePublished" jdbcType="BIT" />
+    <result column="is_dts_replicated" property="isDtsReplicated" jdbcType="BIT" />
+    <result column="is_xml_document" property="isXmlDocument" jdbcType="BIT" />
+    <result column="xml_collection_id" property="xmlCollectionId" jdbcType="INTEGER" />
+    <result column="default_object_id" property="defaultObjectId" jdbcType="INTEGER" />
+    <result column="rule_object_id" property="ruleObjectId" jdbcType="INTEGER" />
+    <result column="definition" property="definition" jdbcType="NVARCHAR" />
+    <result column="uses_database_collation" property="usesDatabaseCollation" jdbcType="BIT" />
+    <result column="is_persisted" property="isPersisted" jdbcType="BIT" />
+    <result column="is_computed" property="isComputed" jdbcType="BIT" />
+    <result column="is_sparse" property="isSparse" jdbcType="BIT" />
+    <result column="is_column_set" property="isColumnSet" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ComputedColumns" >
+    insert into computed_columns (object_id, name, column_id, 
+      system_type_id, user_type_id, max_length, 
+      precision, scale, collation_name, 
+      is_nullable, is_ansi_padded, is_rowguidcol, 
+      is_identity, is_filestream, is_replicated, 
+      is_non_sql_subscribed, is_merge_published, is_dts_replicated, 
+      is_xml_document, xml_collection_id, default_object_id, 
+      rule_object_id, definition, uses_database_collation, 
+      is_persisted, is_computed, is_sparse, 
+      is_column_set)
+    values (#{objectId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{columnId,jdbcType=INTEGER}, 
+      #{systemTypeId,jdbcType=TINYINT}, #{userTypeId,jdbcType=INTEGER}, #{maxLength,jdbcType=SMALLINT}, 
+      #{precision,jdbcType=TINYINT}, #{scale,jdbcType=TINYINT}, #{collationName,jdbcType=NVARCHAR}, 
+      #{isNullable,jdbcType=BIT}, #{isAnsiPadded,jdbcType=BIT}, #{isRowguidcol,jdbcType=BIT}, 
+      #{isIdentity,jdbcType=BIT}, #{isFilestream,jdbcType=BIT}, #{isReplicated,jdbcType=BIT}, 
+      #{isNonSqlSubscribed,jdbcType=BIT}, #{isMergePublished,jdbcType=BIT}, #{isDtsReplicated,jdbcType=BIT}, 
+      #{isXmlDocument,jdbcType=BIT}, #{xmlCollectionId,jdbcType=INTEGER}, #{defaultObjectId,jdbcType=INTEGER}, 
+      #{ruleObjectId,jdbcType=INTEGER}, #{definition,jdbcType=NVARCHAR}, #{usesDatabaseCollation,jdbcType=BIT}, 
+      #{isPersisted,jdbcType=BIT}, #{isComputed,jdbcType=BIT}, #{isSparse,jdbcType=BIT}, 
+      #{isColumnSet,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ComputedColumns" >
+    insert into computed_columns
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="columnId != null" >
+        column_id,
+      </if>
+      <if test="systemTypeId != null" >
+        system_type_id,
+      </if>
+      <if test="userTypeId != null" >
+        user_type_id,
+      </if>
+      <if test="maxLength != null" >
+        max_length,
+      </if>
+      <if test="precision != null" >
+        precision,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+      <if test="collationName != null" >
+        collation_name,
+      </if>
+      <if test="isNullable != null" >
+        is_nullable,
+      </if>
+      <if test="isAnsiPadded != null" >
+        is_ansi_padded,
+      </if>
+      <if test="isRowguidcol != null" >
+        is_rowguidcol,
+      </if>
+      <if test="isIdentity != null" >
+        is_identity,
+      </if>
+      <if test="isFilestream != null" >
+        is_filestream,
+      </if>
+      <if test="isReplicated != null" >
+        is_replicated,
+      </if>
+      <if test="isNonSqlSubscribed != null" >
+        is_non_sql_subscribed,
+      </if>
+      <if test="isMergePublished != null" >
+        is_merge_published,
+      </if>
+      <if test="isDtsReplicated != null" >
+        is_dts_replicated,
+      </if>
+      <if test="isXmlDocument != null" >
+        is_xml_document,
+      </if>
+      <if test="xmlCollectionId != null" >
+        xml_collection_id,
+      </if>
+      <if test="defaultObjectId != null" >
+        default_object_id,
+      </if>
+      <if test="ruleObjectId != null" >
+        rule_object_id,
+      </if>
+      <if test="definition != null" >
+        definition,
+      </if>
+      <if test="usesDatabaseCollation != null" >
+        uses_database_collation,
+      </if>
+      <if test="isPersisted != null" >
+        is_persisted,
+      </if>
+      <if test="isComputed != null" >
+        is_computed,
+      </if>
+      <if test="isSparse != null" >
+        is_sparse,
+      </if>
+      <if test="isColumnSet != null" >
+        is_column_set,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="columnId != null" >
+        #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="systemTypeId != null" >
+        #{systemTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="userTypeId != null" >
+        #{userTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="maxLength != null" >
+        #{maxLength,jdbcType=SMALLINT},
+      </if>
+      <if test="precision != null" >
+        #{precision,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="collationName != null" >
+        #{collationName,jdbcType=NVARCHAR},
+      </if>
+      <if test="isNullable != null" >
+        #{isNullable,jdbcType=BIT},
+      </if>
+      <if test="isAnsiPadded != null" >
+        #{isAnsiPadded,jdbcType=BIT},
+      </if>
+      <if test="isRowguidcol != null" >
+        #{isRowguidcol,jdbcType=BIT},
+      </if>
+      <if test="isIdentity != null" >
+        #{isIdentity,jdbcType=BIT},
+      </if>
+      <if test="isFilestream != null" >
+        #{isFilestream,jdbcType=BIT},
+      </if>
+      <if test="isReplicated != null" >
+        #{isReplicated,jdbcType=BIT},
+      </if>
+      <if test="isNonSqlSubscribed != null" >
+        #{isNonSqlSubscribed,jdbcType=BIT},
+      </if>
+      <if test="isMergePublished != null" >
+        #{isMergePublished,jdbcType=BIT},
+      </if>
+      <if test="isDtsReplicated != null" >
+        #{isDtsReplicated,jdbcType=BIT},
+      </if>
+      <if test="isXmlDocument != null" >
+        #{isXmlDocument,jdbcType=BIT},
+      </if>
+      <if test="xmlCollectionId != null" >
+        #{xmlCollectionId,jdbcType=INTEGER},
+      </if>
+      <if test="defaultObjectId != null" >
+        #{defaultObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleObjectId != null" >
+        #{ruleObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="definition != null" >
+        #{definition,jdbcType=NVARCHAR},
+      </if>
+      <if test="usesDatabaseCollation != null" >
+        #{usesDatabaseCollation,jdbcType=BIT},
+      </if>
+      <if test="isPersisted != null" >
+        #{isPersisted,jdbcType=BIT},
+      </if>
+      <if test="isComputed != null" >
+        #{isComputed,jdbcType=BIT},
+      </if>
+      <if test="isSparse != null" >
+        #{isSparse,jdbcType=BIT},
+      </if>
+      <if test="isColumnSet != null" >
+        #{isColumnSet,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

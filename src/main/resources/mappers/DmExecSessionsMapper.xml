@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecSessionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecSessions" >
+    <result column="session_id" property="sessionId" jdbcType="SMALLINT" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="host_name" property="hostName" jdbcType="NVARCHAR" />
+    <result column="program_name" property="programName" jdbcType="NVARCHAR" />
+    <result column="host_process_id" property="hostProcessId" jdbcType="INTEGER" />
+    <result column="client_version" property="clientVersion" jdbcType="INTEGER" />
+    <result column="client_interface_name" property="clientInterfaceName" jdbcType="NVARCHAR" />
+    <result column="login_name" property="loginName" jdbcType="NVARCHAR" />
+    <result column="nt_domain" property="ntDomain" jdbcType="NVARCHAR" />
+    <result column="nt_user_name" property="ntUserName" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="NVARCHAR" />
+    <result column="cpu_time" property="cpuTime" jdbcType="INTEGER" />
+    <result column="memory_usage" property="memoryUsage" jdbcType="INTEGER" />
+    <result column="total_scheduled_time" property="totalScheduledTime" jdbcType="INTEGER" />
+    <result column="total_elapsed_time" property="totalElapsedTime" jdbcType="INTEGER" />
+    <result column="endpoint_id" property="endpointId" jdbcType="INTEGER" />
+    <result column="last_request_start_time" property="lastRequestStartTime" jdbcType="TIMESTAMP" />
+    <result column="last_request_end_time" property="lastRequestEndTime" jdbcType="TIMESTAMP" />
+    <result column="reads" property="reads" jdbcType="BIGINT" />
+    <result column="writes" property="writes" jdbcType="BIGINT" />
+    <result column="logical_reads" property="logicalReads" jdbcType="BIGINT" />
+    <result column="is_user_process" property="isUserProcess" jdbcType="BIT" />
+    <result column="text_size" property="textSize" jdbcType="INTEGER" />
+    <result column="language" property="language" jdbcType="NVARCHAR" />
+    <result column="date_format" property="dateFormat" jdbcType="NVARCHAR" />
+    <result column="date_first" property="dateFirst" jdbcType="SMALLINT" />
+    <result column="quoted_identifier" property="quotedIdentifier" jdbcType="BIT" />
+    <result column="arithabort" property="arithabort" jdbcType="BIT" />
+    <result column="ansi_null_dflt_on" property="ansiNullDfltOn" jdbcType="BIT" />
+    <result column="ansi_defaults" property="ansiDefaults" jdbcType="BIT" />
+    <result column="ansi_warnings" property="ansiWarnings" jdbcType="BIT" />
+    <result column="ansi_padding" property="ansiPadding" jdbcType="BIT" />
+    <result column="ansi_nulls" property="ansiNulls" jdbcType="BIT" />
+    <result column="concat_null_yields_null" property="concatNullYieldsNull" jdbcType="BIT" />
+    <result column="transaction_isolation_level" property="transactionIsolationLevel" jdbcType="SMALLINT" />
+    <result column="lock_timeout" property="lockTimeout" jdbcType="INTEGER" />
+    <result column="deadlock_priority" property="deadlockPriority" jdbcType="INTEGER" />
+    <result column="row_count" property="rowCount" jdbcType="BIGINT" />
+    <result column="prev_error" property="prevError" jdbcType="INTEGER" />
+    <result column="original_login_name" property="originalLoginName" jdbcType="NVARCHAR" />
+    <result column="last_successful_logon" property="lastSuccessfulLogon" jdbcType="TIMESTAMP" />
+    <result column="last_unsuccessful_logon" property="lastUnsuccessfulLogon" jdbcType="TIMESTAMP" />
+    <result column="unsuccessful_logons" property="unsuccessfulLogons" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="database_id" property="databaseId" jdbcType="SMALLINT" />
+    <result column="authenticating_database_id" property="authenticatingDatabaseId" jdbcType="INTEGER" />
+    <result column="open_transaction_count" property="openTransactionCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecSessionsWithBLOBs" extends="BaseResultMap" >
+    <result column="security_id" property="securityId" jdbcType="VARBINARY" />
+    <result column="context_info" property="contextInfo" jdbcType="VARBINARY" />
+    <result column="original_security_id" property="originalSecurityId" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    security_id, context_info, original_security_id
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecSessionsWithBLOBs" >
+    insert into dm_exec_sessions (session_id, login_time, host_name, 
+      program_name, host_process_id, client_version, 
+      client_interface_name, login_name, nt_domain, 
+      nt_user_name, status, cpu_time, 
+      memory_usage, total_scheduled_time, total_elapsed_time, 
+      endpoint_id, last_request_start_time, last_request_end_time, 
+      reads, writes, logical_reads, 
+      is_user_process, text_size, language, 
+      date_format, date_first, quoted_identifier, 
+      arithabort, ansi_null_dflt_on, ansi_defaults, 
+      ansi_warnings, ansi_padding, ansi_nulls, 
+      concat_null_yields_null, transaction_isolation_level, 
+      lock_timeout, deadlock_priority, row_count, 
+      prev_error, original_login_name, last_successful_logon, 
+      last_unsuccessful_logon, unsuccessful_logons, 
+      group_id, database_id, authenticating_database_id, 
+      open_transaction_count, security_id, context_info, 
+      original_security_id)
+    values (#{sessionId,jdbcType=SMALLINT}, #{loginTime,jdbcType=TIMESTAMP}, #{hostName,jdbcType=NVARCHAR}, 
+      #{programName,jdbcType=NVARCHAR}, #{hostProcessId,jdbcType=INTEGER}, #{clientVersion,jdbcType=INTEGER}, 
+      #{clientInterfaceName,jdbcType=NVARCHAR}, #{loginName,jdbcType=NVARCHAR}, #{ntDomain,jdbcType=NVARCHAR}, 
+      #{ntUserName,jdbcType=NVARCHAR}, #{status,jdbcType=NVARCHAR}, #{cpuTime,jdbcType=INTEGER}, 
+      #{memoryUsage,jdbcType=INTEGER}, #{totalScheduledTime,jdbcType=INTEGER}, #{totalElapsedTime,jdbcType=INTEGER}, 
+      #{endpointId,jdbcType=INTEGER}, #{lastRequestStartTime,jdbcType=TIMESTAMP}, #{lastRequestEndTime,jdbcType=TIMESTAMP}, 
+      #{reads,jdbcType=BIGINT}, #{writes,jdbcType=BIGINT}, #{logicalReads,jdbcType=BIGINT}, 
+      #{isUserProcess,jdbcType=BIT}, #{textSize,jdbcType=INTEGER}, #{language,jdbcType=NVARCHAR}, 
+      #{dateFormat,jdbcType=NVARCHAR}, #{dateFirst,jdbcType=SMALLINT}, #{quotedIdentifier,jdbcType=BIT}, 
+      #{arithabort,jdbcType=BIT}, #{ansiNullDfltOn,jdbcType=BIT}, #{ansiDefaults,jdbcType=BIT}, 
+      #{ansiWarnings,jdbcType=BIT}, #{ansiPadding,jdbcType=BIT}, #{ansiNulls,jdbcType=BIT}, 
+      #{concatNullYieldsNull,jdbcType=BIT}, #{transactionIsolationLevel,jdbcType=SMALLINT}, 
+      #{lockTimeout,jdbcType=INTEGER}, #{deadlockPriority,jdbcType=INTEGER}, #{rowCount,jdbcType=BIGINT}, 
+      #{prevError,jdbcType=INTEGER}, #{originalLoginName,jdbcType=NVARCHAR}, #{lastSuccessfulLogon,jdbcType=TIMESTAMP}, 
+      #{lastUnsuccessfulLogon,jdbcType=TIMESTAMP}, #{unsuccessfulLogons,jdbcType=BIGINT}, 
+      #{groupId,jdbcType=INTEGER}, #{databaseId,jdbcType=SMALLINT}, #{authenticatingDatabaseId,jdbcType=INTEGER}, 
+      #{openTransactionCount,jdbcType=INTEGER}, #{securityId,jdbcType=VARBINARY}, #{contextInfo,jdbcType=VARBINARY}, 
+      #{originalSecurityId,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecSessionsWithBLOBs" >
+    insert into dm_exec_sessions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="hostName != null" >
+        host_name,
+      </if>
+      <if test="programName != null" >
+        program_name,
+      </if>
+      <if test="hostProcessId != null" >
+        host_process_id,
+      </if>
+      <if test="clientVersion != null" >
+        client_version,
+      </if>
+      <if test="clientInterfaceName != null" >
+        client_interface_name,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="ntDomain != null" >
+        nt_domain,
+      </if>
+      <if test="ntUserName != null" >
+        nt_user_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cpuTime != null" >
+        cpu_time,
+      </if>
+      <if test="memoryUsage != null" >
+        memory_usage,
+      </if>
+      <if test="totalScheduledTime != null" >
+        total_scheduled_time,
+      </if>
+      <if test="totalElapsedTime != null" >
+        total_elapsed_time,
+      </if>
+      <if test="endpointId != null" >
+        endpoint_id,
+      </if>
+      <if test="lastRequestStartTime != null" >
+        last_request_start_time,
+      </if>
+      <if test="lastRequestEndTime != null" >
+        last_request_end_time,
+      </if>
+      <if test="reads != null" >
+        reads,
+      </if>
+      <if test="writes != null" >
+        writes,
+      </if>
+      <if test="logicalReads != null" >
+        logical_reads,
+      </if>
+      <if test="isUserProcess != null" >
+        is_user_process,
+      </if>
+      <if test="textSize != null" >
+        text_size,
+      </if>
+      <if test="language != null" >
+        language,
+      </if>
+      <if test="dateFormat != null" >
+        date_format,
+      </if>
+      <if test="dateFirst != null" >
+        date_first,
+      </if>
+      <if test="quotedIdentifier != null" >
+        quoted_identifier,
+      </if>
+      <if test="arithabort != null" >
+        arithabort,
+      </if>
+      <if test="ansiNullDfltOn != null" >
+        ansi_null_dflt_on,
+      </if>
+      <if test="ansiDefaults != null" >
+        ansi_defaults,
+      </if>
+      <if test="ansiWarnings != null" >
+        ansi_warnings,
+      </if>
+      <if test="ansiPadding != null" >
+        ansi_padding,
+      </if>
+      <if test="ansiNulls != null" >
+        ansi_nulls,
+      </if>
+      <if test="concatNullYieldsNull != null" >
+        concat_null_yields_null,
+      </if>
+      <if test="transactionIsolationLevel != null" >
+        transaction_isolation_level,
+      </if>
+      <if test="lockTimeout != null" >
+        lock_timeout,
+      </if>
+      <if test="deadlockPriority != null" >
+        deadlock_priority,
+      </if>
+      <if test="rowCount != null" >
+        row_count,
+      </if>
+      <if test="prevError != null" >
+        prev_error,
+      </if>
+      <if test="originalLoginName != null" >
+        original_login_name,
+      </if>
+      <if test="lastSuccessfulLogon != null" >
+        last_successful_logon,
+      </if>
+      <if test="lastUnsuccessfulLogon != null" >
+        last_unsuccessful_logon,
+      </if>
+      <if test="unsuccessfulLogons != null" >
+        unsuccessful_logons,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="authenticatingDatabaseId != null" >
+        authenticating_database_id,
+      </if>
+      <if test="openTransactionCount != null" >
+        open_transaction_count,
+      </if>
+      <if test="securityId != null" >
+        security_id,
+      </if>
+      <if test="contextInfo != null" >
+        context_info,
+      </if>
+      <if test="originalSecurityId != null" >
+        original_security_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=SMALLINT},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hostName != null" >
+        #{hostName,jdbcType=NVARCHAR},
+      </if>
+      <if test="programName != null" >
+        #{programName,jdbcType=NVARCHAR},
+      </if>
+      <if test="hostProcessId != null" >
+        #{hostProcessId,jdbcType=INTEGER},
+      </if>
+      <if test="clientVersion != null" >
+        #{clientVersion,jdbcType=INTEGER},
+      </if>
+      <if test="clientInterfaceName != null" >
+        #{clientInterfaceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=NVARCHAR},
+      </if>
+      <if test="ntDomain != null" >
+        #{ntDomain,jdbcType=NVARCHAR},
+      </if>
+      <if test="ntUserName != null" >
+        #{ntUserName,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=NVARCHAR},
+      </if>
+      <if test="cpuTime != null" >
+        #{cpuTime,jdbcType=INTEGER},
+      </if>
+      <if test="memoryUsage != null" >
+        #{memoryUsage,jdbcType=INTEGER},
+      </if>
+      <if test="totalScheduledTime != null" >
+        #{totalScheduledTime,jdbcType=INTEGER},
+      </if>
+      <if test="totalElapsedTime != null" >
+        #{totalElapsedTime,jdbcType=INTEGER},
+      </if>
+      <if test="endpointId != null" >
+        #{endpointId,jdbcType=INTEGER},
+      </if>
+      <if test="lastRequestStartTime != null" >
+        #{lastRequestStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastRequestEndTime != null" >
+        #{lastRequestEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reads != null" >
+        #{reads,jdbcType=BIGINT},
+      </if>
+      <if test="writes != null" >
+        #{writes,jdbcType=BIGINT},
+      </if>
+      <if test="logicalReads != null" >
+        #{logicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="isUserProcess != null" >
+        #{isUserProcess,jdbcType=BIT},
+      </if>
+      <if test="textSize != null" >
+        #{textSize,jdbcType=INTEGER},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=NVARCHAR},
+      </if>
+      <if test="dateFormat != null" >
+        #{dateFormat,jdbcType=NVARCHAR},
+      </if>
+      <if test="dateFirst != null" >
+        #{dateFirst,jdbcType=SMALLINT},
+      </if>
+      <if test="quotedIdentifier != null" >
+        #{quotedIdentifier,jdbcType=BIT},
+      </if>
+      <if test="arithabort != null" >
+        #{arithabort,jdbcType=BIT},
+      </if>
+      <if test="ansiNullDfltOn != null" >
+        #{ansiNullDfltOn,jdbcType=BIT},
+      </if>
+      <if test="ansiDefaults != null" >
+        #{ansiDefaults,jdbcType=BIT},
+      </if>
+      <if test="ansiWarnings != null" >
+        #{ansiWarnings,jdbcType=BIT},
+      </if>
+      <if test="ansiPadding != null" >
+        #{ansiPadding,jdbcType=BIT},
+      </if>
+      <if test="ansiNulls != null" >
+        #{ansiNulls,jdbcType=BIT},
+      </if>
+      <if test="concatNullYieldsNull != null" >
+        #{concatNullYieldsNull,jdbcType=BIT},
+      </if>
+      <if test="transactionIsolationLevel != null" >
+        #{transactionIsolationLevel,jdbcType=SMALLINT},
+      </if>
+      <if test="lockTimeout != null" >
+        #{lockTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="deadlockPriority != null" >
+        #{deadlockPriority,jdbcType=INTEGER},
+      </if>
+      <if test="rowCount != null" >
+        #{rowCount,jdbcType=BIGINT},
+      </if>
+      <if test="prevError != null" >
+        #{prevError,jdbcType=INTEGER},
+      </if>
+      <if test="originalLoginName != null" >
+        #{originalLoginName,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastSuccessfulLogon != null" >
+        #{lastSuccessfulLogon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUnsuccessfulLogon != null" >
+        #{lastUnsuccessfulLogon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unsuccessfulLogons != null" >
+        #{unsuccessfulLogons,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=SMALLINT},
+      </if>
+      <if test="authenticatingDatabaseId != null" >
+        #{authenticatingDatabaseId,jdbcType=INTEGER},
+      </if>
+      <if test="openTransactionCount != null" >
+        #{openTransactionCount,jdbcType=INTEGER},
+      </if>
+      <if test="securityId != null" >
+        #{securityId,jdbcType=VARBINARY},
+      </if>
+      <if test="contextInfo != null" >
+        #{contextInfo,jdbcType=VARBINARY},
+      </if>
+      <if test="originalSecurityId != null" >
+        #{originalSecurityId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysdevicesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysdevices" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="low" property="low" jdbcType="INTEGER" />
+    <result column="high" property="high" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="cntrltype" property="cntrltype" jdbcType="SMALLINT" />
+    <result column="phyname" property="phyname" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysdevices" >
+    insert into sysdevices (name, size, low, 
+      high, status, cntrltype, 
+      phyname)
+    values (#{name,jdbcType=NVARCHAR}, #{size,jdbcType=INTEGER}, #{low,jdbcType=INTEGER}, 
+      #{high,jdbcType=INTEGER}, #{status,jdbcType=SMALLINT}, #{cntrltype,jdbcType=SMALLINT}, 
+      #{phyname,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysdevices" >
+    insert into sysdevices
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="low != null" >
+        low,
+      </if>
+      <if test="high != null" >
+        high,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="cntrltype != null" >
+        cntrltype,
+      </if>
+      <if test="phyname != null" >
+        phyname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="low != null" >
+        #{low,jdbcType=INTEGER},
+      </if>
+      <if test="high != null" >
+        #{high,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="cntrltype != null" >
+        #{cntrltype,jdbcType=SMALLINT},
+      </if>
+      <if test="phyname != null" >
+        #{phyname,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

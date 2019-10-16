@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyscursorsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syscursors" >
+    <result column="cursor_handle" property="cursorHandle" jdbcType="INTEGER" />
+    <result column="cursor_name" property="cursorName" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="model" property="model" jdbcType="TINYINT" />
+    <result column="concurrency" property="concurrency" jdbcType="TINYINT" />
+    <result column="scrollable" property="scrollable" jdbcType="TINYINT" />
+    <result column="open_status" property="openStatus" jdbcType="TINYINT" />
+    <result column="cursor_rows" property="cursorRows" jdbcType="NUMERIC" />
+    <result column="fetch_status" property="fetchStatus" jdbcType="SMALLINT" />
+    <result column="column_count" property="columnCount" jdbcType="SMALLINT" />
+    <result column="row_count" property="rowCount" jdbcType="NUMERIC" />
+    <result column="last_operation" property="lastOperation" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syscursors" >
+    insert into syscursors (cursor_handle, cursor_name, status, 
+      model, concurrency, scrollable, 
+      open_status, cursor_rows, fetch_status, 
+      column_count, row_count, last_operation
+      )
+    values (#{cursorHandle,jdbcType=INTEGER}, #{cursorName,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{model,jdbcType=TINYINT}, #{concurrency,jdbcType=TINYINT}, #{scrollable,jdbcType=TINYINT}, 
+      #{openStatus,jdbcType=TINYINT}, #{cursorRows,jdbcType=NUMERIC}, #{fetchStatus,jdbcType=SMALLINT}, 
+      #{columnCount,jdbcType=SMALLINT}, #{rowCount,jdbcType=NUMERIC}, #{lastOperation,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syscursors" >
+    insert into syscursors
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cursorHandle != null" >
+        cursor_handle,
+      </if>
+      <if test="cursorName != null" >
+        cursor_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="model != null" >
+        model,
+      </if>
+      <if test="concurrency != null" >
+        concurrency,
+      </if>
+      <if test="scrollable != null" >
+        scrollable,
+      </if>
+      <if test="openStatus != null" >
+        open_status,
+      </if>
+      <if test="cursorRows != null" >
+        cursor_rows,
+      </if>
+      <if test="fetchStatus != null" >
+        fetch_status,
+      </if>
+      <if test="columnCount != null" >
+        column_count,
+      </if>
+      <if test="rowCount != null" >
+        row_count,
+      </if>
+      <if test="lastOperation != null" >
+        last_operation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cursorHandle != null" >
+        #{cursorHandle,jdbcType=INTEGER},
+      </if>
+      <if test="cursorName != null" >
+        #{cursorName,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=TINYINT},
+      </if>
+      <if test="concurrency != null" >
+        #{concurrency,jdbcType=TINYINT},
+      </if>
+      <if test="scrollable != null" >
+        #{scrollable,jdbcType=TINYINT},
+      </if>
+      <if test="openStatus != null" >
+        #{openStatus,jdbcType=TINYINT},
+      </if>
+      <if test="cursorRows != null" >
+        #{cursorRows,jdbcType=NUMERIC},
+      </if>
+      <if test="fetchStatus != null" >
+        #{fetchStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="columnCount != null" >
+        #{columnCount,jdbcType=SMALLINT},
+      </if>
+      <if test="rowCount != null" >
+        #{rowCount,jdbcType=NUMERIC},
+      </if>
+      <if test="lastOperation != null" >
+        #{lastOperation,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

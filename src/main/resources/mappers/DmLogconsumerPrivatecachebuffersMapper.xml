@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmLogconsumerPrivatecachebuffersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerPrivatecachebuffers" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="recovery_unit_id" property="recoveryUnitId" jdbcType="INTEGER" />
+    <result column="consumer_id" property="consumerId" jdbcType="BIGINT" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="start_log_block_id" property="startLogBlockId" jdbcType="BIGINT" />
+    <result column="last_log_block_id" property="lastLogBlockId" jdbcType="BIGINT" />
+    <result column="ref_counter" property="refCounter" jdbcType="INTEGER" />
+    <result column="is_log_read_ahead" property="isLogReadAhead" jdbcType="TINYINT" />
+    <result column="persistence_status" property="persistenceStatus" jdbcType="INTEGER" />
+    <result column="incomplete" property="incomplete" jdbcType="TINYINT" />
+    <result column="future_interest" property="futureInterest" jdbcType="INTEGER" />
+    <result column="is_emergent_mem" property="isEmergentMem" jdbcType="TINYINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerPrivatecachebuffers" extends="BaseResultMap" >
+    <result column="cache_buffer" property="cacheBuffer" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    cache_buffer
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerPrivatecachebuffers" >
+    insert into dm_logconsumer_privatecachebuffers (database_id, recovery_unit_id, consumer_id, 
+      size, start_log_block_id, last_log_block_id, 
+      ref_counter, is_log_read_ahead, persistence_status, 
+      incomplete, future_interest, is_emergent_mem, 
+      cache_buffer)
+    values (#{databaseId,jdbcType=INTEGER}, #{recoveryUnitId,jdbcType=INTEGER}, #{consumerId,jdbcType=BIGINT}, 
+      #{size,jdbcType=INTEGER}, #{startLogBlockId,jdbcType=BIGINT}, #{lastLogBlockId,jdbcType=BIGINT}, 
+      #{refCounter,jdbcType=INTEGER}, #{isLogReadAhead,jdbcType=TINYINT}, #{persistenceStatus,jdbcType=INTEGER}, 
+      #{incomplete,jdbcType=TINYINT}, #{futureInterest,jdbcType=INTEGER}, #{isEmergentMem,jdbcType=TINYINT}, 
+      #{cacheBuffer,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerPrivatecachebuffers" >
+    insert into dm_logconsumer_privatecachebuffers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="recoveryUnitId != null" >
+        recovery_unit_id,
+      </if>
+      <if test="consumerId != null" >
+        consumer_id,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="startLogBlockId != null" >
+        start_log_block_id,
+      </if>
+      <if test="lastLogBlockId != null" >
+        last_log_block_id,
+      </if>
+      <if test="refCounter != null" >
+        ref_counter,
+      </if>
+      <if test="isLogReadAhead != null" >
+        is_log_read_ahead,
+      </if>
+      <if test="persistenceStatus != null" >
+        persistence_status,
+      </if>
+      <if test="incomplete != null" >
+        incomplete,
+      </if>
+      <if test="futureInterest != null" >
+        future_interest,
+      </if>
+      <if test="isEmergentMem != null" >
+        is_emergent_mem,
+      </if>
+      <if test="cacheBuffer != null" >
+        cache_buffer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="recoveryUnitId != null" >
+        #{recoveryUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="consumerId != null" >
+        #{consumerId,jdbcType=BIGINT},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="startLogBlockId != null" >
+        #{startLogBlockId,jdbcType=BIGINT},
+      </if>
+      <if test="lastLogBlockId != null" >
+        #{lastLogBlockId,jdbcType=BIGINT},
+      </if>
+      <if test="refCounter != null" >
+        #{refCounter,jdbcType=INTEGER},
+      </if>
+      <if test="isLogReadAhead != null" >
+        #{isLogReadAhead,jdbcType=TINYINT},
+      </if>
+      <if test="persistenceStatus != null" >
+        #{persistenceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="incomplete != null" >
+        #{incomplete,jdbcType=TINYINT},
+      </if>
+      <if test="futureInterest != null" >
+        #{futureInterest,jdbcType=INTEGER},
+      </if>
+      <if test="isEmergentMem != null" >
+        #{isEmergentMem,jdbcType=TINYINT},
+      </if>
+      <if test="cacheBuffer != null" >
+        #{cacheBuffer,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

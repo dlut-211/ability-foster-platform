@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyschildinstsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syschildinsts" >
+    <result column="iname" property="iname" jdbcType="NVARCHAR" />
+    <result column="ipipename" property="ipipename" jdbcType="NVARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="crdate" property="crdate" jdbcType="TIMESTAMP" />
+    <result column="modate" property="modate" jdbcType="TIMESTAMP" />
+    <result column="sysdbpath" property="sysdbpath" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Syschildinsts" extends="BaseResultMap" >
+    <result column="lsid" property="lsid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    lsid
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syschildinsts" >
+    insert into syschildinsts (iname, ipipename, pid, 
+      status, crdate, modate, 
+      sysdbpath, lsid)
+    values (#{iname,jdbcType=NVARCHAR}, #{ipipename,jdbcType=NVARCHAR}, #{pid,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{crdate,jdbcType=TIMESTAMP}, #{modate,jdbcType=TIMESTAMP}, 
+      #{sysdbpath,jdbcType=NVARCHAR}, #{lsid,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syschildinsts" >
+    insert into syschildinsts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iname != null" >
+        iname,
+      </if>
+      <if test="ipipename != null" >
+        ipipename,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="crdate != null" >
+        crdate,
+      </if>
+      <if test="modate != null" >
+        modate,
+      </if>
+      <if test="sysdbpath != null" >
+        sysdbpath,
+      </if>
+      <if test="lsid != null" >
+        lsid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iname != null" >
+        #{iname,jdbcType=NVARCHAR},
+      </if>
+      <if test="ipipename != null" >
+        #{ipipename,jdbcType=NVARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="crdate != null" >
+        #{crdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modate != null" >
+        #{modate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysdbpath != null" >
+        #{sysdbpath,jdbcType=NVARCHAR},
+      </if>
+      <if test="lsid != null" >
+        #{lsid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

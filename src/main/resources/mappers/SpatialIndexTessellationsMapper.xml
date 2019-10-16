@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SpatialIndexTessellationsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SpatialIndexTessellations" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="tessellation_scheme" property="tessellationScheme" jdbcType="NVARCHAR" />
+    <result column="bounding_box_xmin" property="boundingBoxXmin" jdbcType="DOUBLE" />
+    <result column="bounding_box_ymin" property="boundingBoxYmin" jdbcType="DOUBLE" />
+    <result column="bounding_box_xmax" property="boundingBoxXmax" jdbcType="DOUBLE" />
+    <result column="bounding_box_ymax" property="boundingBoxYmax" jdbcType="DOUBLE" />
+    <result column="level_1_grid" property="level1Grid" jdbcType="SMALLINT" />
+    <result column="level_1_grid_desc" property="level1GridDesc" jdbcType="NVARCHAR" />
+    <result column="level_2_grid" property="level2Grid" jdbcType="SMALLINT" />
+    <result column="level_2_grid_desc" property="level2GridDesc" jdbcType="NVARCHAR" />
+    <result column="level_3_grid" property="level3Grid" jdbcType="SMALLINT" />
+    <result column="level_3_grid_desc" property="level3GridDesc" jdbcType="NVARCHAR" />
+    <result column="level_4_grid" property="level4Grid" jdbcType="SMALLINT" />
+    <result column="level_4_grid_desc" property="level4GridDesc" jdbcType="NVARCHAR" />
+    <result column="cells_per_object" property="cellsPerObject" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SpatialIndexTessellations" >
+    insert into spatial_index_tessellations (object_id, index_id, tessellation_scheme, 
+      bounding_box_xmin, bounding_box_ymin, bounding_box_xmax, 
+      bounding_box_ymax, level_1_grid, level_1_grid_desc, 
+      level_2_grid, level_2_grid_desc, level_3_grid, 
+      level_3_grid_desc, level_4_grid, level_4_grid_desc, 
+      cells_per_object)
+    values (#{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, #{tessellationScheme,jdbcType=NVARCHAR}, 
+      #{boundingBoxXmin,jdbcType=DOUBLE}, #{boundingBoxYmin,jdbcType=DOUBLE}, #{boundingBoxXmax,jdbcType=DOUBLE}, 
+      #{boundingBoxYmax,jdbcType=DOUBLE}, #{level1Grid,jdbcType=SMALLINT}, #{level1GridDesc,jdbcType=NVARCHAR}, 
+      #{level2Grid,jdbcType=SMALLINT}, #{level2GridDesc,jdbcType=NVARCHAR}, #{level3Grid,jdbcType=SMALLINT}, 
+      #{level3GridDesc,jdbcType=NVARCHAR}, #{level4Grid,jdbcType=SMALLINT}, #{level4GridDesc,jdbcType=NVARCHAR}, 
+      #{cellsPerObject,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SpatialIndexTessellations" >
+    insert into spatial_index_tessellations
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="tessellationScheme != null" >
+        tessellation_scheme,
+      </if>
+      <if test="boundingBoxXmin != null" >
+        bounding_box_xmin,
+      </if>
+      <if test="boundingBoxYmin != null" >
+        bounding_box_ymin,
+      </if>
+      <if test="boundingBoxXmax != null" >
+        bounding_box_xmax,
+      </if>
+      <if test="boundingBoxYmax != null" >
+        bounding_box_ymax,
+      </if>
+      <if test="level1Grid != null" >
+        level_1_grid,
+      </if>
+      <if test="level1GridDesc != null" >
+        level_1_grid_desc,
+      </if>
+      <if test="level2Grid != null" >
+        level_2_grid,
+      </if>
+      <if test="level2GridDesc != null" >
+        level_2_grid_desc,
+      </if>
+      <if test="level3Grid != null" >
+        level_3_grid,
+      </if>
+      <if test="level3GridDesc != null" >
+        level_3_grid_desc,
+      </if>
+      <if test="level4Grid != null" >
+        level_4_grid,
+      </if>
+      <if test="level4GridDesc != null" >
+        level_4_grid_desc,
+      </if>
+      <if test="cellsPerObject != null" >
+        cells_per_object,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="tessellationScheme != null" >
+        #{tessellationScheme,jdbcType=NVARCHAR},
+      </if>
+      <if test="boundingBoxXmin != null" >
+        #{boundingBoxXmin,jdbcType=DOUBLE},
+      </if>
+      <if test="boundingBoxYmin != null" >
+        #{boundingBoxYmin,jdbcType=DOUBLE},
+      </if>
+      <if test="boundingBoxXmax != null" >
+        #{boundingBoxXmax,jdbcType=DOUBLE},
+      </if>
+      <if test="boundingBoxYmax != null" >
+        #{boundingBoxYmax,jdbcType=DOUBLE},
+      </if>
+      <if test="level1Grid != null" >
+        #{level1Grid,jdbcType=SMALLINT},
+      </if>
+      <if test="level1GridDesc != null" >
+        #{level1GridDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="level2Grid != null" >
+        #{level2Grid,jdbcType=SMALLINT},
+      </if>
+      <if test="level2GridDesc != null" >
+        #{level2GridDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="level3Grid != null" >
+        #{level3Grid,jdbcType=SMALLINT},
+      </if>
+      <if test="level3GridDesc != null" >
+        #{level3GridDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="level4Grid != null" >
+        #{level4Grid,jdbcType=SMALLINT},
+      </if>
+      <if test="level4GridDesc != null" >
+        #{level4GridDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="cellsPerObject != null" >
+        #{cellsPerObject,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

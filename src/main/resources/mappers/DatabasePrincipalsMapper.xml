@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DatabasePrincipalsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DatabasePrincipals" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="default_schema_name" property="defaultSchemaName" jdbcType="NVARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="owning_principal_id" property="owningPrincipalId" jdbcType="INTEGER" />
+    <result column="is_fixed_role" property="isFixedRole" jdbcType="BIT" />
+    <result column="authentication_type" property="authenticationType" jdbcType="INTEGER" />
+    <result column="authentication_type_desc" property="authenticationTypeDesc" jdbcType="NVARCHAR" />
+    <result column="default_language_name" property="defaultLanguageName" jdbcType="NVARCHAR" />
+    <result column="default_language_lcid" property="defaultLanguageLcid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DatabasePrincipals" extends="BaseResultMap" >
+    <result column="sid" property="sid" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sid
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabasePrincipals" >
+    insert into database_principals (name, principal_id, type, 
+      type_desc, default_schema_name, create_date, 
+      modify_date, owning_principal_id, is_fixed_role, 
+      authentication_type, authentication_type_desc, 
+      default_language_name, default_language_lcid, 
+      sid)
+    values (#{name,jdbcType=NVARCHAR}, #{principalId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{defaultSchemaName,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{modifyDate,jdbcType=TIMESTAMP}, #{owningPrincipalId,jdbcType=INTEGER}, #{isFixedRole,jdbcType=BIT}, 
+      #{authenticationType,jdbcType=INTEGER}, #{authenticationTypeDesc,jdbcType=NVARCHAR}, 
+      #{defaultLanguageName,jdbcType=NVARCHAR}, #{defaultLanguageLcid,jdbcType=INTEGER}, 
+      #{sid,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabasePrincipals" >
+    insert into database_principals
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="defaultSchemaName != null" >
+        default_schema_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="owningPrincipalId != null" >
+        owning_principal_id,
+      </if>
+      <if test="isFixedRole != null" >
+        is_fixed_role,
+      </if>
+      <if test="authenticationType != null" >
+        authentication_type,
+      </if>
+      <if test="authenticationTypeDesc != null" >
+        authentication_type_desc,
+      </if>
+      <if test="defaultLanguageName != null" >
+        default_language_name,
+      </if>
+      <if test="defaultLanguageLcid != null" >
+        default_language_lcid,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultSchemaName != null" >
+        #{defaultSchemaName,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="owningPrincipalId != null" >
+        #{owningPrincipalId,jdbcType=INTEGER},
+      </if>
+      <if test="isFixedRole != null" >
+        #{isFixedRole,jdbcType=BIT},
+      </if>
+      <if test="authenticationType != null" >
+        #{authenticationType,jdbcType=INTEGER},
+      </if>
+      <if test="authenticationTypeDesc != null" >
+        #{authenticationTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultLanguageName != null" >
+        #{defaultLanguageName,jdbcType=NVARCHAR},
+      </if>
+      <if test="defaultLanguageLcid != null" >
+        #{defaultLanguageLcid,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

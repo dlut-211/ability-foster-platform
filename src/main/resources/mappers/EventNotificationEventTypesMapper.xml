@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.EventNotificationEventTypesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.EventNotificationEventTypes" >
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="NVARCHAR" />
+    <result column="parent_type" property="parentType" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.EventNotificationEventTypes" >
+    insert into event_notification_event_types (type, type_name, parent_type
+      )
+    values (#{type,jdbcType=INTEGER}, #{typeName,jdbcType=NVARCHAR}, #{parentType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.EventNotificationEventTypes" >
+    insert into event_notification_event_types
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="parentType != null" >
+        parent_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="parentType != null" >
+        #{parentType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

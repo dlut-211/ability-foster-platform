@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServerTriggerEventsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServerTriggerEvents" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="is_trigger_event" property="isTriggerEvent" jdbcType="BIT" />
+    <result column="is_first" property="isFirst" jdbcType="BIT" />
+    <result column="is_last" property="isLast" jdbcType="BIT" />
+    <result column="event_group_type" property="eventGroupType" jdbcType="INTEGER" />
+    <result column="event_group_type_desc" property="eventGroupTypeDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerTriggerEvents" >
+    insert into server_trigger_events (object_id, type, type_desc, 
+      is_trigger_event, is_first, is_last, 
+      event_group_type, event_group_type_desc)
+    values (#{objectId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{typeDesc,jdbcType=NVARCHAR}, 
+      #{isTriggerEvent,jdbcType=BIT}, #{isFirst,jdbcType=BIT}, #{isLast,jdbcType=BIT}, 
+      #{eventGroupType,jdbcType=INTEGER}, #{eventGroupTypeDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerTriggerEvents" >
+    insert into server_trigger_events
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="isTriggerEvent != null" >
+        is_trigger_event,
+      </if>
+      <if test="isFirst != null" >
+        is_first,
+      </if>
+      <if test="isLast != null" >
+        is_last,
+      </if>
+      <if test="eventGroupType != null" >
+        event_group_type,
+      </if>
+      <if test="eventGroupTypeDesc != null" >
+        event_group_type_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isTriggerEvent != null" >
+        #{isTriggerEvent,jdbcType=BIT},
+      </if>
+      <if test="isFirst != null" >
+        #{isFirst,jdbcType=BIT},
+      </if>
+      <if test="isLast != null" >
+        #{isLast,jdbcType=BIT},
+      </if>
+      <if test="eventGroupType != null" >
+        #{eventGroupType,jdbcType=INTEGER},
+      </if>
+      <if test="eventGroupTypeDesc != null" >
+        #{eventGroupTypeDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

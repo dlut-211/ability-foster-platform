@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FulltextSystemStopwordsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FulltextSystemStopwords" >
+    <result column="stopword" property="stopword" jdbcType="NVARCHAR" />
+    <result column="language_id" property="languageId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FulltextSystemStopwords" >
+    insert into fulltext_system_stopwords (stopword, language_id)
+    values (#{stopword,jdbcType=NVARCHAR}, #{languageId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FulltextSystemStopwords" >
+    insert into fulltext_system_stopwords
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stopword != null" >
+        stopword,
+      </if>
+      <if test="languageId != null" >
+        language_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stopword != null" >
+        #{stopword,jdbcType=NVARCHAR},
+      </if>
+      <if test="languageId != null" >
+        #{languageId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

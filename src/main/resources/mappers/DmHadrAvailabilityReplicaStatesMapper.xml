@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmHadrAvailabilityReplicaStatesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaStates" >
+    <result column="replica_id" property="replicaId" jdbcType="CHAR" />
+    <result column="group_id" property="groupId" jdbcType="CHAR" />
+    <result column="is_local" property="isLocal" jdbcType="BIT" />
+    <result column="role" property="role" jdbcType="TINYINT" />
+    <result column="role_desc" property="roleDesc" jdbcType="NVARCHAR" />
+    <result column="operational_state" property="operationalState" jdbcType="TINYINT" />
+    <result column="operational_state_desc" property="operationalStateDesc" jdbcType="NVARCHAR" />
+    <result column="connected_state" property="connectedState" jdbcType="TINYINT" />
+    <result column="connected_state_desc" property="connectedStateDesc" jdbcType="NVARCHAR" />
+    <result column="recovery_health" property="recoveryHealth" jdbcType="TINYINT" />
+    <result column="recovery_health_desc" property="recoveryHealthDesc" jdbcType="NVARCHAR" />
+    <result column="synchronization_health" property="synchronizationHealth" jdbcType="TINYINT" />
+    <result column="synchronization_health_desc" property="synchronizationHealthDesc" jdbcType="NVARCHAR" />
+    <result column="last_connect_error_number" property="lastConnectErrorNumber" jdbcType="INTEGER" />
+    <result column="last_connect_error_description" property="lastConnectErrorDescription" jdbcType="NVARCHAR" />
+    <result column="last_connect_error_timestamp" property="lastConnectErrorTimestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaStates" >
+    insert into dm_hadr_availability_replica_states (replica_id, group_id, is_local, 
+      role, role_desc, operational_state, 
+      operational_state_desc, connected_state, 
+      connected_state_desc, recovery_health, recovery_health_desc, 
+      synchronization_health, synchronization_health_desc, 
+      last_connect_error_number, last_connect_error_description, 
+      last_connect_error_timestamp)
+    values (#{replicaId,jdbcType=CHAR}, #{groupId,jdbcType=CHAR}, #{isLocal,jdbcType=BIT}, 
+      #{role,jdbcType=TINYINT}, #{roleDesc,jdbcType=NVARCHAR}, #{operationalState,jdbcType=TINYINT}, 
+      #{operationalStateDesc,jdbcType=NVARCHAR}, #{connectedState,jdbcType=TINYINT}, 
+      #{connectedStateDesc,jdbcType=NVARCHAR}, #{recoveryHealth,jdbcType=TINYINT}, #{recoveryHealthDesc,jdbcType=NVARCHAR}, 
+      #{synchronizationHealth,jdbcType=TINYINT}, #{synchronizationHealthDesc,jdbcType=NVARCHAR}, 
+      #{lastConnectErrorNumber,jdbcType=INTEGER}, #{lastConnectErrorDescription,jdbcType=NVARCHAR}, 
+      #{lastConnectErrorTimestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaStates" >
+    insert into dm_hadr_availability_replica_states
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        replica_id,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="isLocal != null" >
+        is_local,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="roleDesc != null" >
+        role_desc,
+      </if>
+      <if test="operationalState != null" >
+        operational_state,
+      </if>
+      <if test="operationalStateDesc != null" >
+        operational_state_desc,
+      </if>
+      <if test="connectedState != null" >
+        connected_state,
+      </if>
+      <if test="connectedStateDesc != null" >
+        connected_state_desc,
+      </if>
+      <if test="recoveryHealth != null" >
+        recovery_health,
+      </if>
+      <if test="recoveryHealthDesc != null" >
+        recovery_health_desc,
+      </if>
+      <if test="synchronizationHealth != null" >
+        synchronization_health,
+      </if>
+      <if test="synchronizationHealthDesc != null" >
+        synchronization_health_desc,
+      </if>
+      <if test="lastConnectErrorNumber != null" >
+        last_connect_error_number,
+      </if>
+      <if test="lastConnectErrorDescription != null" >
+        last_connect_error_description,
+      </if>
+      <if test="lastConnectErrorTimestamp != null" >
+        last_connect_error_timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replicaId != null" >
+        #{replicaId,jdbcType=CHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=CHAR},
+      </if>
+      <if test="isLocal != null" >
+        #{isLocal,jdbcType=BIT},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=TINYINT},
+      </if>
+      <if test="roleDesc != null" >
+        #{roleDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="operationalState != null" >
+        #{operationalState,jdbcType=TINYINT},
+      </if>
+      <if test="operationalStateDesc != null" >
+        #{operationalStateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="connectedState != null" >
+        #{connectedState,jdbcType=TINYINT},
+      </if>
+      <if test="connectedStateDesc != null" >
+        #{connectedStateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="recoveryHealth != null" >
+        #{recoveryHealth,jdbcType=TINYINT},
+      </if>
+      <if test="recoveryHealthDesc != null" >
+        #{recoveryHealthDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="synchronizationHealth != null" >
+        #{synchronizationHealth,jdbcType=TINYINT},
+      </if>
+      <if test="synchronizationHealthDesc != null" >
+        #{synchronizationHealthDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastConnectErrorNumber != null" >
+        #{lastConnectErrorNumber,jdbcType=INTEGER},
+      </if>
+      <if test="lastConnectErrorDescription != null" >
+        #{lastConnectErrorDescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="lastConnectErrorTimestamp != null" >
+        #{lastConnectErrorTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

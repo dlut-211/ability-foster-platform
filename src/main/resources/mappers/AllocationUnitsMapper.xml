@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.AllocationUnitsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.AllocationUnits" >
+    <result column="allocation_unit_id" property="allocationUnitId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="container_id" property="containerId" jdbcType="BIGINT" />
+    <result column="data_space_id" property="dataSpaceId" jdbcType="INTEGER" />
+    <result column="total_pages" property="totalPages" jdbcType="BIGINT" />
+    <result column="used_pages" property="usedPages" jdbcType="BIGINT" />
+    <result column="data_pages" property="dataPages" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AllocationUnits" >
+    insert into allocation_units (allocation_unit_id, type, type_desc, 
+      container_id, data_space_id, total_pages, 
+      used_pages, data_pages)
+    values (#{allocationUnitId,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{typeDesc,jdbcType=NVARCHAR}, 
+      #{containerId,jdbcType=BIGINT}, #{dataSpaceId,jdbcType=INTEGER}, #{totalPages,jdbcType=BIGINT}, 
+      #{usedPages,jdbcType=BIGINT}, #{dataPages,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.AllocationUnits" >
+    insert into allocation_units
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="allocationUnitId != null" >
+        allocation_unit_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="containerId != null" >
+        container_id,
+      </if>
+      <if test="dataSpaceId != null" >
+        data_space_id,
+      </if>
+      <if test="totalPages != null" >
+        total_pages,
+      </if>
+      <if test="usedPages != null" >
+        used_pages,
+      </if>
+      <if test="dataPages != null" >
+        data_pages,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="allocationUnitId != null" >
+        #{allocationUnitId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="containerId != null" >
+        #{containerId,jdbcType=BIGINT},
+      </if>
+      <if test="dataSpaceId != null" >
+        #{dataSpaceId,jdbcType=INTEGER},
+      </if>
+      <if test="totalPages != null" >
+        #{totalPages,jdbcType=BIGINT},
+      </if>
+      <if test="usedPages != null" >
+        #{usedPages,jdbcType=BIGINT},
+      </if>
+      <if test="dataPages != null" >
+        #{dataPages,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

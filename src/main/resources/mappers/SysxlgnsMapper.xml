@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysxlgnsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysxlgns" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="crdate" property="crdate" jdbcType="TIMESTAMP" />
+    <result column="modate" property="modate" jdbcType="TIMESTAMP" />
+    <result column="dbname" property="dbname" jdbcType="NVARCHAR" />
+    <result column="lang" property="lang" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.SysxlgnsWithBLOBs" extends="BaseResultMap" >
+    <result column="sid" property="sid" jdbcType="VARBINARY" />
+    <result column="pwdhash" property="pwdhash" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sid, pwdhash
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysxlgnsWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysxlgns (id, name, status, 
+      type, crdate, modate, 
+      dbname, lang, sid, 
+      pwdhash)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{crdate,jdbcType=TIMESTAMP}, #{modate,jdbcType=TIMESTAMP}, 
+      #{dbname,jdbcType=NVARCHAR}, #{lang,jdbcType=NVARCHAR}, #{sid,jdbcType=VARBINARY}, 
+      #{pwdhash,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysxlgnsWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysxlgns
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="crdate != null" >
+        crdate,
+      </if>
+      <if test="modate != null" >
+        modate,
+      </if>
+      <if test="dbname != null" >
+        dbname,
+      </if>
+      <if test="lang != null" >
+        lang,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="pwdhash != null" >
+        pwdhash,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="crdate != null" >
+        #{crdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modate != null" >
+        #{modate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dbname != null" >
+        #{dbname,jdbcType=NVARCHAR},
+      </if>
+      <if test="lang != null" >
+        #{lang,jdbcType=NVARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARBINARY},
+      </if>
+      <if test="pwdhash != null" >
+        #{pwdhash,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

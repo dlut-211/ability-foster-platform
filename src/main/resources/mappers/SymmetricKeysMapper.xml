@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SymmetricKeysMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SymmetricKeys" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="symmetric_key_id" property="symmetricKeyId" jdbcType="INTEGER" />
+    <result column="key_length" property="keyLength" jdbcType="INTEGER" />
+    <result column="key_algorithm" property="keyAlgorithm" jdbcType="CHAR" />
+    <result column="algorithm_desc" property="algorithmDesc" jdbcType="NVARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="key_guid" property="keyGuid" jdbcType="CHAR" />
+    <result column="key_thumbprint" property="keyThumbprint" jdbcType="OTHER" />
+    <result column="provider_type" property="providerType" jdbcType="NVARCHAR" />
+    <result column="cryptographic_provider_guid" property="cryptographicProviderGuid" jdbcType="CHAR" />
+    <result column="cryptographic_provider_algid" property="cryptographicProviderAlgid" jdbcType="OTHER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SymmetricKeys" >
+    insert into symmetric_keys (name, principal_id, symmetric_key_id, 
+      key_length, key_algorithm, algorithm_desc, 
+      create_date, modify_date, key_guid, 
+      key_thumbprint, provider_type, cryptographic_provider_guid, 
+      cryptographic_provider_algid)
+    values (#{name,jdbcType=NVARCHAR}, #{principalId,jdbcType=INTEGER}, #{symmetricKeyId,jdbcType=INTEGER}, 
+      #{keyLength,jdbcType=INTEGER}, #{keyAlgorithm,jdbcType=CHAR}, #{algorithmDesc,jdbcType=NVARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, #{keyGuid,jdbcType=CHAR}, 
+      #{keyThumbprint,jdbcType=OTHER}, #{providerType,jdbcType=NVARCHAR}, #{cryptographicProviderGuid,jdbcType=CHAR}, 
+      #{cryptographicProviderAlgid,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SymmetricKeys" >
+    insert into symmetric_keys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="symmetricKeyId != null" >
+        symmetric_key_id,
+      </if>
+      <if test="keyLength != null" >
+        key_length,
+      </if>
+      <if test="keyAlgorithm != null" >
+        key_algorithm,
+      </if>
+      <if test="algorithmDesc != null" >
+        algorithm_desc,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="keyGuid != null" >
+        key_guid,
+      </if>
+      <if test="keyThumbprint != null" >
+        key_thumbprint,
+      </if>
+      <if test="providerType != null" >
+        provider_type,
+      </if>
+      <if test="cryptographicProviderGuid != null" >
+        cryptographic_provider_guid,
+      </if>
+      <if test="cryptographicProviderAlgid != null" >
+        cryptographic_provider_algid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="symmetricKeyId != null" >
+        #{symmetricKeyId,jdbcType=INTEGER},
+      </if>
+      <if test="keyLength != null" >
+        #{keyLength,jdbcType=INTEGER},
+      </if>
+      <if test="keyAlgorithm != null" >
+        #{keyAlgorithm,jdbcType=CHAR},
+      </if>
+      <if test="algorithmDesc != null" >
+        #{algorithmDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyGuid != null" >
+        #{keyGuid,jdbcType=CHAR},
+      </if>
+      <if test="keyThumbprint != null" >
+        #{keyThumbprint,jdbcType=OTHER},
+      </if>
+      <if test="providerType != null" >
+        #{providerType,jdbcType=NVARCHAR},
+      </if>
+      <if test="cryptographicProviderGuid != null" >
+        #{cryptographicProviderGuid,jdbcType=CHAR},
+      </if>
+      <if test="cryptographicProviderAlgid != null" >
+        #{cryptographicProviderAlgid,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

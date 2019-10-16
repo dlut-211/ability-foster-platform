@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsTasksMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsTasks" >
+    <result column="task_state" property="taskState" jdbcType="NVARCHAR" />
+    <result column="context_switches_count" property="contextSwitchesCount" jdbcType="INTEGER" />
+    <result column="pending_io_count" property="pendingIoCount" jdbcType="INTEGER" />
+    <result column="pending_io_byte_count" property="pendingIoByteCount" jdbcType="BIGINT" />
+    <result column="pending_io_byte_average" property="pendingIoByteAverage" jdbcType="INTEGER" />
+    <result column="scheduler_id" property="schedulerId" jdbcType="INTEGER" />
+    <result column="session_id" property="sessionId" jdbcType="SMALLINT" />
+    <result column="exec_context_id" property="execContextId" jdbcType="INTEGER" />
+    <result column="request_id" property="requestId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsTasksWithBLOBs" extends="BaseResultMap" >
+    <result column="task_address" property="taskAddress" jdbcType="VARBINARY" />
+    <result column="worker_address" property="workerAddress" jdbcType="VARBINARY" />
+    <result column="host_address" property="hostAddress" jdbcType="VARBINARY" />
+    <result column="parent_task_address" property="parentTaskAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    task_address, worker_address, host_address, parent_task_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsTasksWithBLOBs" >
+    insert into dm_os_tasks (task_state, context_switches_count, 
+      pending_io_count, pending_io_byte_count, pending_io_byte_average, 
+      scheduler_id, session_id, exec_context_id, 
+      request_id, task_address, worker_address, 
+      host_address, parent_task_address)
+    values (#{taskState,jdbcType=NVARCHAR}, #{contextSwitchesCount,jdbcType=INTEGER}, 
+      #{pendingIoCount,jdbcType=INTEGER}, #{pendingIoByteCount,jdbcType=BIGINT}, #{pendingIoByteAverage,jdbcType=INTEGER}, 
+      #{schedulerId,jdbcType=INTEGER}, #{sessionId,jdbcType=SMALLINT}, #{execContextId,jdbcType=INTEGER}, 
+      #{requestId,jdbcType=INTEGER}, #{taskAddress,jdbcType=VARBINARY}, #{workerAddress,jdbcType=VARBINARY}, 
+      #{hostAddress,jdbcType=VARBINARY}, #{parentTaskAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsTasksWithBLOBs" >
+    insert into dm_os_tasks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskState != null" >
+        task_state,
+      </if>
+      <if test="contextSwitchesCount != null" >
+        context_switches_count,
+      </if>
+      <if test="pendingIoCount != null" >
+        pending_io_count,
+      </if>
+      <if test="pendingIoByteCount != null" >
+        pending_io_byte_count,
+      </if>
+      <if test="pendingIoByteAverage != null" >
+        pending_io_byte_average,
+      </if>
+      <if test="schedulerId != null" >
+        scheduler_id,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="execContextId != null" >
+        exec_context_id,
+      </if>
+      <if test="requestId != null" >
+        request_id,
+      </if>
+      <if test="taskAddress != null" >
+        task_address,
+      </if>
+      <if test="workerAddress != null" >
+        worker_address,
+      </if>
+      <if test="hostAddress != null" >
+        host_address,
+      </if>
+      <if test="parentTaskAddress != null" >
+        parent_task_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskState != null" >
+        #{taskState,jdbcType=NVARCHAR},
+      </if>
+      <if test="contextSwitchesCount != null" >
+        #{contextSwitchesCount,jdbcType=INTEGER},
+      </if>
+      <if test="pendingIoCount != null" >
+        #{pendingIoCount,jdbcType=INTEGER},
+      </if>
+      <if test="pendingIoByteCount != null" >
+        #{pendingIoByteCount,jdbcType=BIGINT},
+      </if>
+      <if test="pendingIoByteAverage != null" >
+        #{pendingIoByteAverage,jdbcType=INTEGER},
+      </if>
+      <if test="schedulerId != null" >
+        #{schedulerId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=SMALLINT},
+      </if>
+      <if test="execContextId != null" >
+        #{execContextId,jdbcType=INTEGER},
+      </if>
+      <if test="requestId != null" >
+        #{requestId,jdbcType=INTEGER},
+      </if>
+      <if test="taskAddress != null" >
+        #{taskAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="workerAddress != null" >
+        #{workerAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="hostAddress != null" >
+        #{hostAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="parentTaskAddress != null" >
+        #{parentTaskAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

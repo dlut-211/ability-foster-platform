@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TraceEventsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.TraceEvents" >
+    <result column="trace_event_id" property="traceEventId" jdbcType="SMALLINT" />
+    <result column="category_id" property="categoryId" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TraceEvents" >
+    insert into trace_events (trace_event_id, category_id, name
+      )
+    values (#{traceEventId,jdbcType=SMALLINT}, #{categoryId,jdbcType=SMALLINT}, #{name,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TraceEvents" >
+    insert into trace_events
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="traceEventId != null" >
+        trace_event_id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="traceEventId != null" >
+        #{traceEventId,jdbcType=SMALLINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

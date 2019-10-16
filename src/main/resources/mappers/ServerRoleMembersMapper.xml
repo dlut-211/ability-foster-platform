@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServerRoleMembersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServerRoleMembers" >
+    <result column="role_principal_id" property="rolePrincipalId" jdbcType="INTEGER" />
+    <result column="member_principal_id" property="memberPrincipalId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerRoleMembers" >
+    insert into server_role_members (role_principal_id, member_principal_id
+      )
+    values (#{rolePrincipalId,jdbcType=INTEGER}, #{memberPrincipalId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServerRoleMembers" >
+    insert into server_role_members
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rolePrincipalId != null" >
+        role_principal_id,
+      </if>
+      <if test="memberPrincipalId != null" >
+        member_principal_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rolePrincipalId != null" >
+        #{rolePrincipalId,jdbcType=INTEGER},
+      </if>
+      <if test="memberPrincipalId != null" >
+        #{memberPrincipalId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

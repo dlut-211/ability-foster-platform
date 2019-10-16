@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.PartitionFunctionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.PartitionFunctions" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="function_id" property="functionId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="fanout" property="fanout" jdbcType="INTEGER" />
+    <result column="boundary_value_on_right" property="boundaryValueOnRight" jdbcType="BIT" />
+    <result column="is_system" property="isSystem" jdbcType="BIT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.PartitionFunctions" >
+    insert into partition_functions (name, function_id, type, 
+      type_desc, fanout, boundary_value_on_right, 
+      is_system, create_date, modify_date
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{functionId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{fanout,jdbcType=INTEGER}, #{boundaryValueOnRight,jdbcType=BIT}, 
+      #{isSystem,jdbcType=BIT}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.PartitionFunctions" >
+    insert into partition_functions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="functionId != null" >
+        function_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="fanout != null" >
+        fanout,
+      </if>
+      <if test="boundaryValueOnRight != null" >
+        boundary_value_on_right,
+      </if>
+      <if test="isSystem != null" >
+        is_system,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="functionId != null" >
+        #{functionId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="fanout != null" >
+        #{fanout,jdbcType=INTEGER},
+      </if>
+      <if test="boundaryValueOnRight != null" >
+        #{boundaryValueOnRight,jdbcType=BIT},
+      </if>
+      <if test="isSystem != null" >
+        #{isSystem,jdbcType=BIT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

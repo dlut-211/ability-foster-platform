@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmIoPendingIoRequestsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmIoPendingIoRequests" >
+    <result column="io_type" property="ioType" jdbcType="NVARCHAR" />
+    <result column="io_pending_ms_ticks" property="ioPendingMsTicks" jdbcType="BIGINT" />
+    <result column="io_pending" property="ioPending" jdbcType="INTEGER" />
+    <result column="io_offset" property="ioOffset" jdbcType="BIGINT" />
+    <result column="io_handle_path" property="ioHandlePath" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmIoPendingIoRequestsWithBLOBs" extends="BaseResultMap" >
+    <result column="io_completion_request_address" property="ioCompletionRequestAddress" jdbcType="VARBINARY" />
+    <result column="io_completion_routine_address" property="ioCompletionRoutineAddress" jdbcType="VARBINARY" />
+    <result column="io_user_data_address" property="ioUserDataAddress" jdbcType="VARBINARY" />
+    <result column="scheduler_address" property="schedulerAddress" jdbcType="VARBINARY" />
+    <result column="io_handle" property="ioHandle" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    io_completion_request_address, io_completion_routine_address, io_user_data_address, 
+    scheduler_address, io_handle
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmIoPendingIoRequestsWithBLOBs" >
+    insert into dm_io_pending_io_requests (io_type, io_pending_ms_ticks, io_pending, 
+      io_offset, io_handle_path, io_completion_request_address, 
+      io_completion_routine_address, io_user_data_address, 
+      scheduler_address, io_handle)
+    values (#{ioType,jdbcType=NVARCHAR}, #{ioPendingMsTicks,jdbcType=BIGINT}, #{ioPending,jdbcType=INTEGER}, 
+      #{ioOffset,jdbcType=BIGINT}, #{ioHandlePath,jdbcType=NVARCHAR}, #{ioCompletionRequestAddress,jdbcType=VARBINARY}, 
+      #{ioCompletionRoutineAddress,jdbcType=VARBINARY}, #{ioUserDataAddress,jdbcType=VARBINARY}, 
+      #{schedulerAddress,jdbcType=VARBINARY}, #{ioHandle,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmIoPendingIoRequestsWithBLOBs" >
+    insert into dm_io_pending_io_requests
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ioType != null" >
+        io_type,
+      </if>
+      <if test="ioPendingMsTicks != null" >
+        io_pending_ms_ticks,
+      </if>
+      <if test="ioPending != null" >
+        io_pending,
+      </if>
+      <if test="ioOffset != null" >
+        io_offset,
+      </if>
+      <if test="ioHandlePath != null" >
+        io_handle_path,
+      </if>
+      <if test="ioCompletionRequestAddress != null" >
+        io_completion_request_address,
+      </if>
+      <if test="ioCompletionRoutineAddress != null" >
+        io_completion_routine_address,
+      </if>
+      <if test="ioUserDataAddress != null" >
+        io_user_data_address,
+      </if>
+      <if test="schedulerAddress != null" >
+        scheduler_address,
+      </if>
+      <if test="ioHandle != null" >
+        io_handle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ioType != null" >
+        #{ioType,jdbcType=NVARCHAR},
+      </if>
+      <if test="ioPendingMsTicks != null" >
+        #{ioPendingMsTicks,jdbcType=BIGINT},
+      </if>
+      <if test="ioPending != null" >
+        #{ioPending,jdbcType=INTEGER},
+      </if>
+      <if test="ioOffset != null" >
+        #{ioOffset,jdbcType=BIGINT},
+      </if>
+      <if test="ioHandlePath != null" >
+        #{ioHandlePath,jdbcType=NVARCHAR},
+      </if>
+      <if test="ioCompletionRequestAddress != null" >
+        #{ioCompletionRequestAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="ioCompletionRoutineAddress != null" >
+        #{ioCompletionRoutineAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="ioUserDataAddress != null" >
+        #{ioUserDataAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="schedulerAddress != null" >
+        #{schedulerAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="ioHandle != null" >
+        #{ioHandle,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

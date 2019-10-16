@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ChangeTrackingTablesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ChangeTrackingTables" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="is_track_columns_updated_on" property="isTrackColumnsUpdatedOn" jdbcType="BIT" />
+    <result column="min_valid_version" property="minValidVersion" jdbcType="BIGINT" />
+    <result column="begin_version" property="beginVersion" jdbcType="BIGINT" />
+    <result column="cleanup_version" property="cleanupVersion" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ChangeTrackingTables" >
+    insert into change_tracking_tables (object_id, is_track_columns_updated_on, min_valid_version, 
+      begin_version, cleanup_version)
+    values (#{objectId,jdbcType=INTEGER}, #{isTrackColumnsUpdatedOn,jdbcType=BIT}, #{minValidVersion,jdbcType=BIGINT}, 
+      #{beginVersion,jdbcType=BIGINT}, #{cleanupVersion,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ChangeTrackingTables" >
+    insert into change_tracking_tables
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="isTrackColumnsUpdatedOn != null" >
+        is_track_columns_updated_on,
+      </if>
+      <if test="minValidVersion != null" >
+        min_valid_version,
+      </if>
+      <if test="beginVersion != null" >
+        begin_version,
+      </if>
+      <if test="cleanupVersion != null" >
+        cleanup_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="isTrackColumnsUpdatedOn != null" >
+        #{isTrackColumnsUpdatedOn,jdbcType=BIT},
+      </if>
+      <if test="minValidVersion != null" >
+        #{minValidVersion,jdbcType=BIGINT},
+      </if>
+      <if test="beginVersion != null" >
+        #{beginVersion,jdbcType=BIGINT},
+      </if>
+      <if test="cleanupVersion != null" >
+        #{cleanupVersion,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

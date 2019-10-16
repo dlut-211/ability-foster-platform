@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbMissingIndexColumnsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbMissingIndexColumns" >
+    <result column="column_id" property="columnId" jdbcType="INTEGER" />
+    <result column="column_name" property="columnName" jdbcType="NVARCHAR" />
+    <result column="column_usage" property="columnUsage" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbMissingIndexColumns" >
+    insert into dm_db_missing_index_columns (column_id, column_name, column_usage
+      )
+    values (#{columnId,jdbcType=INTEGER}, #{columnName,jdbcType=NVARCHAR}, #{columnUsage,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbMissingIndexColumns" >
+    insert into dm_db_missing_index_columns
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="columnId != null" >
+        column_id,
+      </if>
+      <if test="columnName != null" >
+        column_name,
+      </if>
+      <if test="columnUsage != null" >
+        column_usage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="columnId != null" >
+        #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="columnName != null" >
+        #{columnName,jdbcType=NVARCHAR},
+      </if>
+      <if test="columnUsage != null" >
+        #{columnUsage,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

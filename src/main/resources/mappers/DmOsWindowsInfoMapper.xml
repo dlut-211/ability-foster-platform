@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsWindowsInfoMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWindowsInfo" >
+    <result column="windows_release" property="windowsRelease" jdbcType="NVARCHAR" />
+    <result column="windows_service_pack_level" property="windowsServicePackLevel" jdbcType="NVARCHAR" />
+    <result column="windows_sku" property="windowsSku" jdbcType="INTEGER" />
+    <result column="os_language_version" property="osLanguageVersion" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWindowsInfo" >
+    insert into dm_os_windows_info (windows_release, windows_service_pack_level, 
+      windows_sku, os_language_version)
+    values (#{windowsRelease,jdbcType=NVARCHAR}, #{windowsServicePackLevel,jdbcType=NVARCHAR}, 
+      #{windowsSku,jdbcType=INTEGER}, #{osLanguageVersion,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWindowsInfo" >
+    insert into dm_os_windows_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="windowsRelease != null" >
+        windows_release,
+      </if>
+      <if test="windowsServicePackLevel != null" >
+        windows_service_pack_level,
+      </if>
+      <if test="windowsSku != null" >
+        windows_sku,
+      </if>
+      <if test="osLanguageVersion != null" >
+        os_language_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="windowsRelease != null" >
+        #{windowsRelease,jdbcType=NVARCHAR},
+      </if>
+      <if test="windowsServicePackLevel != null" >
+        #{windowsServicePackLevel,jdbcType=NVARCHAR},
+      </if>
+      <if test="windowsSku != null" >
+        #{windowsSku,jdbcType=INTEGER},
+      </if>
+      <if test="osLanguageVersion != null" >
+        #{osLanguageVersion,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

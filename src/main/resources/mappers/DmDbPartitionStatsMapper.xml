@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbPartitionStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbPartitionStats" >
+    <result column="partition_id" property="partitionId" jdbcType="BIGINT" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="partition_number" property="partitionNumber" jdbcType="INTEGER" />
+    <result column="in_row_data_page_count" property="inRowDataPageCount" jdbcType="BIGINT" />
+    <result column="in_row_used_page_count" property="inRowUsedPageCount" jdbcType="BIGINT" />
+    <result column="in_row_reserved_page_count" property="inRowReservedPageCount" jdbcType="BIGINT" />
+    <result column="lob_used_page_count" property="lobUsedPageCount" jdbcType="BIGINT" />
+    <result column="lob_reserved_page_count" property="lobReservedPageCount" jdbcType="BIGINT" />
+    <result column="row_overflow_used_page_count" property="rowOverflowUsedPageCount" jdbcType="BIGINT" />
+    <result column="row_overflow_reserved_page_count" property="rowOverflowReservedPageCount" jdbcType="BIGINT" />
+    <result column="used_page_count" property="usedPageCount" jdbcType="BIGINT" />
+    <result column="reserved_page_count" property="reservedPageCount" jdbcType="BIGINT" />
+    <result column="row_count" property="rowCount" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbPartitionStats" >
+    insert into dm_db_partition_stats (partition_id, object_id, index_id, 
+      partition_number, in_row_data_page_count, in_row_used_page_count, 
+      in_row_reserved_page_count, lob_used_page_count, 
+      lob_reserved_page_count, row_overflow_used_page_count, 
+      row_overflow_reserved_page_count, used_page_count, 
+      reserved_page_count, row_count)
+    values (#{partitionId,jdbcType=BIGINT}, #{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, 
+      #{partitionNumber,jdbcType=INTEGER}, #{inRowDataPageCount,jdbcType=BIGINT}, #{inRowUsedPageCount,jdbcType=BIGINT}, 
+      #{inRowReservedPageCount,jdbcType=BIGINT}, #{lobUsedPageCount,jdbcType=BIGINT}, 
+      #{lobReservedPageCount,jdbcType=BIGINT}, #{rowOverflowUsedPageCount,jdbcType=BIGINT}, 
+      #{rowOverflowReservedPageCount,jdbcType=BIGINT}, #{usedPageCount,jdbcType=BIGINT}, 
+      #{reservedPageCount,jdbcType=BIGINT}, #{rowCount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbPartitionStats" >
+    insert into dm_db_partition_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="partitionId != null" >
+        partition_id,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="partitionNumber != null" >
+        partition_number,
+      </if>
+      <if test="inRowDataPageCount != null" >
+        in_row_data_page_count,
+      </if>
+      <if test="inRowUsedPageCount != null" >
+        in_row_used_page_count,
+      </if>
+      <if test="inRowReservedPageCount != null" >
+        in_row_reserved_page_count,
+      </if>
+      <if test="lobUsedPageCount != null" >
+        lob_used_page_count,
+      </if>
+      <if test="lobReservedPageCount != null" >
+        lob_reserved_page_count,
+      </if>
+      <if test="rowOverflowUsedPageCount != null" >
+        row_overflow_used_page_count,
+      </if>
+      <if test="rowOverflowReservedPageCount != null" >
+        row_overflow_reserved_page_count,
+      </if>
+      <if test="usedPageCount != null" >
+        used_page_count,
+      </if>
+      <if test="reservedPageCount != null" >
+        reserved_page_count,
+      </if>
+      <if test="rowCount != null" >
+        row_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="partitionId != null" >
+        #{partitionId,jdbcType=BIGINT},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="partitionNumber != null" >
+        #{partitionNumber,jdbcType=INTEGER},
+      </if>
+      <if test="inRowDataPageCount != null" >
+        #{inRowDataPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="inRowUsedPageCount != null" >
+        #{inRowUsedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="inRowReservedPageCount != null" >
+        #{inRowReservedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="lobUsedPageCount != null" >
+        #{lobUsedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="lobReservedPageCount != null" >
+        #{lobReservedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="rowOverflowUsedPageCount != null" >
+        #{rowOverflowUsedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="rowOverflowReservedPageCount != null" >
+        #{rowOverflowReservedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="usedPageCount != null" >
+        #{usedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="reservedPageCount != null" >
+        #{reservedPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="rowCount != null" >
+        #{rowCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

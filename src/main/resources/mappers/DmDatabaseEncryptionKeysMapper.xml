@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDatabaseEncryptionKeysMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDatabaseEncryptionKeys" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="encryption_state" property="encryptionState" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="regenerate_date" property="regenerateDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="set_date" property="setDate" jdbcType="TIMESTAMP" />
+    <result column="opened_date" property="openedDate" jdbcType="TIMESTAMP" />
+    <result column="key_algorithm" property="keyAlgorithm" jdbcType="NVARCHAR" />
+    <result column="key_length" property="keyLength" jdbcType="INTEGER" />
+    <result column="encryptor_type" property="encryptorType" jdbcType="NVARCHAR" />
+    <result column="percent_complete" property="percentComplete" jdbcType="REAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDatabaseEncryptionKeys" extends="BaseResultMap" >
+    <result column="encryptor_thumbprint" property="encryptorThumbprint" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    encryptor_thumbprint
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDatabaseEncryptionKeys" >
+    insert into dm_database_encryption_keys (database_id, encryption_state, create_date, 
+      regenerate_date, modify_date, set_date, 
+      opened_date, key_algorithm, key_length, 
+      encryptor_type, percent_complete, encryptor_thumbprint
+      )
+    values (#{databaseId,jdbcType=INTEGER}, #{encryptionState,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{regenerateDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, #{setDate,jdbcType=TIMESTAMP}, 
+      #{openedDate,jdbcType=TIMESTAMP}, #{keyAlgorithm,jdbcType=NVARCHAR}, #{keyLength,jdbcType=INTEGER}, 
+      #{encryptorType,jdbcType=NVARCHAR}, #{percentComplete,jdbcType=REAL}, #{encryptorThumbprint,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDatabaseEncryptionKeys" >
+    insert into dm_database_encryption_keys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="encryptionState != null" >
+        encryption_state,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="regenerateDate != null" >
+        regenerate_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="setDate != null" >
+        set_date,
+      </if>
+      <if test="openedDate != null" >
+        opened_date,
+      </if>
+      <if test="keyAlgorithm != null" >
+        key_algorithm,
+      </if>
+      <if test="keyLength != null" >
+        key_length,
+      </if>
+      <if test="encryptorType != null" >
+        encryptor_type,
+      </if>
+      <if test="percentComplete != null" >
+        percent_complete,
+      </if>
+      <if test="encryptorThumbprint != null" >
+        encryptor_thumbprint,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="encryptionState != null" >
+        #{encryptionState,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regenerateDate != null" >
+        #{regenerateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="setDate != null" >
+        #{setDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openedDate != null" >
+        #{openedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="keyAlgorithm != null" >
+        #{keyAlgorithm,jdbcType=NVARCHAR},
+      </if>
+      <if test="keyLength != null" >
+        #{keyLength,jdbcType=INTEGER},
+      </if>
+      <if test="encryptorType != null" >
+        #{encryptorType,jdbcType=NVARCHAR},
+      </if>
+      <if test="percentComplete != null" >
+        #{percentComplete,jdbcType=REAL},
+      </if>
+      <if test="encryptorThumbprint != null" >
+        #{encryptorThumbprint,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

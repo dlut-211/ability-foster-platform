@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysforeignkeysMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysforeignkeys" >
+    <result column="constid" property="constid" jdbcType="INTEGER" />
+    <result column="fkeyid" property="fkeyid" jdbcType="INTEGER" />
+    <result column="rkeyid" property="rkeyid" jdbcType="INTEGER" />
+    <result column="fkey" property="fkey" jdbcType="SMALLINT" />
+    <result column="rkey" property="rkey" jdbcType="SMALLINT" />
+    <result column="keyno" property="keyno" jdbcType="SMALLINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysforeignkeys" >
+    insert into sysforeignkeys (constid, fkeyid, rkeyid, 
+      fkey, rkey, keyno
+      )
+    values (#{constid,jdbcType=INTEGER}, #{fkeyid,jdbcType=INTEGER}, #{rkeyid,jdbcType=INTEGER}, 
+      #{fkey,jdbcType=SMALLINT}, #{rkey,jdbcType=SMALLINT}, #{keyno,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysforeignkeys" >
+    insert into sysforeignkeys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="constid != null" >
+        constid,
+      </if>
+      <if test="fkeyid != null" >
+        fkeyid,
+      </if>
+      <if test="rkeyid != null" >
+        rkeyid,
+      </if>
+      <if test="fkey != null" >
+        fkey,
+      </if>
+      <if test="rkey != null" >
+        rkey,
+      </if>
+      <if test="keyno != null" >
+        keyno,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="constid != null" >
+        #{constid,jdbcType=INTEGER},
+      </if>
+      <if test="fkeyid != null" >
+        #{fkeyid,jdbcType=INTEGER},
+      </if>
+      <if test="rkeyid != null" >
+        #{rkeyid,jdbcType=INTEGER},
+      </if>
+      <if test="fkey != null" >
+        #{fkey,jdbcType=SMALLINT},
+      </if>
+      <if test="rkey != null" >
+        #{rkey,jdbcType=SMALLINT},
+      </if>
+      <if test="keyno != null" >
+        #{keyno,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.XmlSchemaComponentPlacementsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaComponentPlacements" >
+    <result column="xml_component_id" property="xmlComponentId" jdbcType="INTEGER" />
+    <result column="placement_id" property="placementId" jdbcType="INTEGER" />
+    <result column="placed_xml_component_id" property="placedXmlComponentId" jdbcType="INTEGER" />
+    <result column="is_default_fixed" property="isDefaultFixed" jdbcType="BIT" />
+    <result column="min_occurences" property="minOccurences" jdbcType="INTEGER" />
+    <result column="max_occurences" property="maxOccurences" jdbcType="INTEGER" />
+    <result column="default_value" property="defaultValue" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaComponentPlacements" >
+    insert into xml_schema_component_placements (xml_component_id, placement_id, placed_xml_component_id, 
+      is_default_fixed, min_occurences, max_occurences, 
+      default_value)
+    values (#{xmlComponentId,jdbcType=INTEGER}, #{placementId,jdbcType=INTEGER}, #{placedXmlComponentId,jdbcType=INTEGER}, 
+      #{isDefaultFixed,jdbcType=BIT}, #{minOccurences,jdbcType=INTEGER}, #{maxOccurences,jdbcType=INTEGER}, 
+      #{defaultValue,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaComponentPlacements" >
+    insert into xml_schema_component_placements
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xmlComponentId != null" >
+        xml_component_id,
+      </if>
+      <if test="placementId != null" >
+        placement_id,
+      </if>
+      <if test="placedXmlComponentId != null" >
+        placed_xml_component_id,
+      </if>
+      <if test="isDefaultFixed != null" >
+        is_default_fixed,
+      </if>
+      <if test="minOccurences != null" >
+        min_occurences,
+      </if>
+      <if test="maxOccurences != null" >
+        max_occurences,
+      </if>
+      <if test="defaultValue != null" >
+        default_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xmlComponentId != null" >
+        #{xmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="placementId != null" >
+        #{placementId,jdbcType=INTEGER},
+      </if>
+      <if test="placedXmlComponentId != null" >
+        #{placedXmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="isDefaultFixed != null" >
+        #{isDefaultFixed,jdbcType=BIT},
+      </if>
+      <if test="minOccurences != null" >
+        #{minOccurences,jdbcType=INTEGER},
+      </if>
+      <if test="maxOccurences != null" >
+        #{maxOccurences,jdbcType=INTEGER},
+      </if>
+      <if test="defaultValue != null" >
+        #{defaultValue,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyscursorrefsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syscursorrefs" >
+    <result column="reference_name" property="referenceName" jdbcType="NVARCHAR" />
+    <result column="cursor_scope" property="cursorScope" jdbcType="TINYINT" />
+    <result column="cursor_handl" property="cursorHandl" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syscursorrefs" >
+    insert into syscursorrefs (reference_name, cursor_scope, cursor_handl
+      )
+    values (#{referenceName,jdbcType=NVARCHAR}, #{cursorScope,jdbcType=TINYINT}, #{cursorHandl,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syscursorrefs" >
+    insert into syscursorrefs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="referenceName != null" >
+        reference_name,
+      </if>
+      <if test="cursorScope != null" >
+        cursor_scope,
+      </if>
+      <if test="cursorHandl != null" >
+        cursor_handl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="referenceName != null" >
+        #{referenceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="cursorScope != null" >
+        #{cursorScope,jdbcType=TINYINT},
+      </if>
+      <if test="cursorHandl != null" >
+        #{cursorHandl,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

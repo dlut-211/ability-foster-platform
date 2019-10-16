@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ExtendedPropertiesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ExtendedProperties" >
+    <result column="class" property="class" jdbcType="TINYINT" />
+    <result column="class_desc" property="classDesc" jdbcType="NVARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="INTEGER" />
+    <result column="minor_id" property="minorId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="value" property="value" jdbcType="OTHER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ExtendedProperties" >
+    insert into extended_properties (class, class_desc, major_id, 
+      minor_id, name, value
+      )
+    values (#{class,jdbcType=TINYINT}, #{classDesc,jdbcType=NVARCHAR}, #{majorId,jdbcType=INTEGER}, 
+      #{minorId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{value,jdbcType=OTHER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ExtendedProperties" >
+    insert into extended_properties
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        class,
+      </if>
+      <if test="classDesc != null" >
+        class_desc,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="minorId != null" >
+        minor_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        #{class,jdbcType=TINYINT},
+      </if>
+      <if test="classDesc != null" >
+        #{classDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=INTEGER},
+      </if>
+      <if test="minorId != null" >
+        #{minorId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

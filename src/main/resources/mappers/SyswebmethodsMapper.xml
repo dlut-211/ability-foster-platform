@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyswebmethodsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syswebmethods" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="nmspace" property="nmspace" jdbcType="NVARCHAR" />
+    <result column="alias" property="alias" jdbcType="NVARCHAR" />
+    <result column="objname" property="objname" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syswebmethods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into syswebmethods (id, nmspace, alias, 
+      objname, status)
+    values (#{id,jdbcType=INTEGER}, #{nmspace,jdbcType=NVARCHAR}, #{alias,jdbcType=NVARCHAR}, 
+      #{objname,jdbcType=NVARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syswebmethods" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into syswebmethods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="nmspace != null" >
+        nmspace,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="objname != null" >
+        objname,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="nmspace != null" >
+        #{nmspace,jdbcType=NVARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=NVARCHAR},
+      </if>
+      <if test="objname != null" >
+        #{objname,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

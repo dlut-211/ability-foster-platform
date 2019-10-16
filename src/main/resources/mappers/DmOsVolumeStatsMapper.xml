@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsVolumeStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsVolumeStats" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="file_id" property="fileId" jdbcType="INTEGER" />
+    <result column="volume_mount_point" property="volumeMountPoint" jdbcType="NVARCHAR" />
+    <result column="volume_id" property="volumeId" jdbcType="NVARCHAR" />
+    <result column="logical_volume_name" property="logicalVolumeName" jdbcType="NVARCHAR" />
+    <result column="file_system_type" property="fileSystemType" jdbcType="NVARCHAR" />
+    <result column="total_bytes" property="totalBytes" jdbcType="BIGINT" />
+    <result column="available_bytes" property="availableBytes" jdbcType="BIGINT" />
+    <result column="supports_compression" property="supportsCompression" jdbcType="TINYINT" />
+    <result column="supports_alternate_streams" property="supportsAlternateStreams" jdbcType="TINYINT" />
+    <result column="supports_sparse_files" property="supportsSparseFiles" jdbcType="TINYINT" />
+    <result column="is_read_only" property="isReadOnly" jdbcType="TINYINT" />
+    <result column="is_compressed" property="isCompressed" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsVolumeStats" >
+    insert into dm_os_volume_stats (database_id, file_id, volume_mount_point, 
+      volume_id, logical_volume_name, file_system_type, 
+      total_bytes, available_bytes, supports_compression, 
+      supports_alternate_streams, supports_sparse_files, 
+      is_read_only, is_compressed)
+    values (#{databaseId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{volumeMountPoint,jdbcType=NVARCHAR}, 
+      #{volumeId,jdbcType=NVARCHAR}, #{logicalVolumeName,jdbcType=NVARCHAR}, #{fileSystemType,jdbcType=NVARCHAR}, 
+      #{totalBytes,jdbcType=BIGINT}, #{availableBytes,jdbcType=BIGINT}, #{supportsCompression,jdbcType=TINYINT}, 
+      #{supportsAlternateStreams,jdbcType=TINYINT}, #{supportsSparseFiles,jdbcType=TINYINT}, 
+      #{isReadOnly,jdbcType=TINYINT}, #{isCompressed,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsVolumeStats" >
+    insert into dm_os_volume_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="volumeMountPoint != null" >
+        volume_mount_point,
+      </if>
+      <if test="volumeId != null" >
+        volume_id,
+      </if>
+      <if test="logicalVolumeName != null" >
+        logical_volume_name,
+      </if>
+      <if test="fileSystemType != null" >
+        file_system_type,
+      </if>
+      <if test="totalBytes != null" >
+        total_bytes,
+      </if>
+      <if test="availableBytes != null" >
+        available_bytes,
+      </if>
+      <if test="supportsCompression != null" >
+        supports_compression,
+      </if>
+      <if test="supportsAlternateStreams != null" >
+        supports_alternate_streams,
+      </if>
+      <if test="supportsSparseFiles != null" >
+        supports_sparse_files,
+      </if>
+      <if test="isReadOnly != null" >
+        is_read_only,
+      </if>
+      <if test="isCompressed != null" >
+        is_compressed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="fileId != null" >
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="volumeMountPoint != null" >
+        #{volumeMountPoint,jdbcType=NVARCHAR},
+      </if>
+      <if test="volumeId != null" >
+        #{volumeId,jdbcType=NVARCHAR},
+      </if>
+      <if test="logicalVolumeName != null" >
+        #{logicalVolumeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="fileSystemType != null" >
+        #{fileSystemType,jdbcType=NVARCHAR},
+      </if>
+      <if test="totalBytes != null" >
+        #{totalBytes,jdbcType=BIGINT},
+      </if>
+      <if test="availableBytes != null" >
+        #{availableBytes,jdbcType=BIGINT},
+      </if>
+      <if test="supportsCompression != null" >
+        #{supportsCompression,jdbcType=TINYINT},
+      </if>
+      <if test="supportsAlternateStreams != null" >
+        #{supportsAlternateStreams,jdbcType=TINYINT},
+      </if>
+      <if test="supportsSparseFiles != null" >
+        #{supportsSparseFiles,jdbcType=TINYINT},
+      </if>
+      <if test="isReadOnly != null" >
+        #{isReadOnly,jdbcType=TINYINT},
+      </if>
+      <if test="isCompressed != null" >
+        #{isCompressed,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

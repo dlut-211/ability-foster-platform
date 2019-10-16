@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StatsColumnsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.StatsColumns" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="stats_id" property="statsId" jdbcType="INTEGER" />
+    <result column="stats_column_id" property="statsColumnId" jdbcType="INTEGER" />
+    <result column="column_id" property="columnId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StatsColumns" >
+    insert into stats_columns (object_id, stats_id, stats_column_id, 
+      column_id)
+    values (#{objectId,jdbcType=INTEGER}, #{statsId,jdbcType=INTEGER}, #{statsColumnId,jdbcType=INTEGER}, 
+      #{columnId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StatsColumns" >
+    insert into stats_columns
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="statsId != null" >
+        stats_id,
+      </if>
+      <if test="statsColumnId != null" >
+        stats_column_id,
+      </if>
+      <if test="columnId != null" >
+        column_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="statsId != null" >
+        #{statsId,jdbcType=INTEGER},
+      </if>
+      <if test="statsColumnId != null" >
+        #{statsColumnId,jdbcType=INTEGER},
+      </if>
+      <if test="columnId != null" >
+        #{columnId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

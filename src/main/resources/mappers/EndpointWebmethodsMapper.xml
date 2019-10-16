@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.EndpointWebmethodsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.EndpointWebmethods" >
+    <result column="endpoint_id" property="endpointId" jdbcType="INTEGER" />
+    <result column="namespace" property="namespace" jdbcType="NVARCHAR" />
+    <result column="method_alias" property="methodAlias" jdbcType="NVARCHAR" />
+    <result column="object_name" property="objectName" jdbcType="NVARCHAR" />
+    <result column="result_schema" property="resultSchema" jdbcType="TINYINT" />
+    <result column="result_schema_desc" property="resultSchemaDesc" jdbcType="NVARCHAR" />
+    <result column="result_format" property="resultFormat" jdbcType="TINYINT" />
+    <result column="result_format_desc" property="resultFormatDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.EndpointWebmethods" >
+    insert into endpoint_webmethods (endpoint_id, namespace, method_alias, 
+      object_name, result_schema, result_schema_desc, 
+      result_format, result_format_desc)
+    values (#{endpointId,jdbcType=INTEGER}, #{namespace,jdbcType=NVARCHAR}, #{methodAlias,jdbcType=NVARCHAR}, 
+      #{objectName,jdbcType=NVARCHAR}, #{resultSchema,jdbcType=TINYINT}, #{resultSchemaDesc,jdbcType=NVARCHAR}, 
+      #{resultFormat,jdbcType=TINYINT}, #{resultFormatDesc,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.EndpointWebmethods" >
+    insert into endpoint_webmethods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="endpointId != null" >
+        endpoint_id,
+      </if>
+      <if test="namespace != null" >
+        namespace,
+      </if>
+      <if test="methodAlias != null" >
+        method_alias,
+      </if>
+      <if test="objectName != null" >
+        object_name,
+      </if>
+      <if test="resultSchema != null" >
+        result_schema,
+      </if>
+      <if test="resultSchemaDesc != null" >
+        result_schema_desc,
+      </if>
+      <if test="resultFormat != null" >
+        result_format,
+      </if>
+      <if test="resultFormatDesc != null" >
+        result_format_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="endpointId != null" >
+        #{endpointId,jdbcType=INTEGER},
+      </if>
+      <if test="namespace != null" >
+        #{namespace,jdbcType=NVARCHAR},
+      </if>
+      <if test="methodAlias != null" >
+        #{methodAlias,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectName != null" >
+        #{objectName,jdbcType=NVARCHAR},
+      </if>
+      <if test="resultSchema != null" >
+        #{resultSchema,jdbcType=TINYINT},
+      </if>
+      <if test="resultSchemaDesc != null" >
+        #{resultSchemaDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="resultFormat != null" >
+        #{resultFormat,jdbcType=TINYINT},
+      </if>
+      <if test="resultFormatDesc != null" >
+        #{resultFormatDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

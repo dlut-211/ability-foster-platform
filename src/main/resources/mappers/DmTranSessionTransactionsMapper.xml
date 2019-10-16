@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmTranSessionTransactionsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmTranSessionTransactions" >
+    <result column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="transaction_id" property="transactionId" jdbcType="BIGINT" />
+    <result column="enlist_count" property="enlistCount" jdbcType="INTEGER" />
+    <result column="is_user_transaction" property="isUserTransaction" jdbcType="BIT" />
+    <result column="is_local" property="isLocal" jdbcType="BIT" />
+    <result column="is_enlisted" property="isEnlisted" jdbcType="BIT" />
+    <result column="is_bound" property="isBound" jdbcType="BIT" />
+    <result column="open_transaction_count" property="openTransactionCount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmTranSessionTransactions" extends="BaseResultMap" >
+    <result column="transaction_descriptor" property="transactionDescriptor" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    transaction_descriptor
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranSessionTransactions" >
+    insert into dm_tran_session_transactions (session_id, transaction_id, enlist_count, 
+      is_user_transaction, is_local, is_enlisted, 
+      is_bound, open_transaction_count, transaction_descriptor
+      )
+    values (#{sessionId,jdbcType=INTEGER}, #{transactionId,jdbcType=BIGINT}, #{enlistCount,jdbcType=INTEGER}, 
+      #{isUserTransaction,jdbcType=BIT}, #{isLocal,jdbcType=BIT}, #{isEnlisted,jdbcType=BIT}, 
+      #{isBound,jdbcType=BIT}, #{openTransactionCount,jdbcType=INTEGER}, #{transactionDescriptor,jdbcType=BINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranSessionTransactions" >
+    insert into dm_tran_session_transactions
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="enlistCount != null" >
+        enlist_count,
+      </if>
+      <if test="isUserTransaction != null" >
+        is_user_transaction,
+      </if>
+      <if test="isLocal != null" >
+        is_local,
+      </if>
+      <if test="isEnlisted != null" >
+        is_enlisted,
+      </if>
+      <if test="isBound != null" >
+        is_bound,
+      </if>
+      <if test="openTransactionCount != null" >
+        open_transaction_count,
+      </if>
+      <if test="transactionDescriptor != null" >
+        transaction_descriptor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=BIGINT},
+      </if>
+      <if test="enlistCount != null" >
+        #{enlistCount,jdbcType=INTEGER},
+      </if>
+      <if test="isUserTransaction != null" >
+        #{isUserTransaction,jdbcType=BIT},
+      </if>
+      <if test="isLocal != null" >
+        #{isLocal,jdbcType=BIT},
+      </if>
+      <if test="isEnlisted != null" >
+        #{isEnlisted,jdbcType=BIT},
+      </if>
+      <if test="isBound != null" >
+        #{isBound,jdbcType=BIT},
+      </if>
+      <if test="openTransactionCount != null" >
+        #{openTransactionCount,jdbcType=INTEGER},
+      </if>
+      <if test="transactionDescriptor != null" >
+        #{transactionDescriptor,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

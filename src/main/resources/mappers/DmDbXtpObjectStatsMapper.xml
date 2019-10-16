@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbXtpObjectStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpObjectStats" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="row_insert_attempts" property="rowInsertAttempts" jdbcType="BIGINT" />
+    <result column="row_update_attempts" property="rowUpdateAttempts" jdbcType="BIGINT" />
+    <result column="row_delete_attempts" property="rowDeleteAttempts" jdbcType="BIGINT" />
+    <result column="write_conflicts" property="writeConflicts" jdbcType="BIGINT" />
+    <result column="unique_constraint_violations" property="uniqueConstraintViolations" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpObjectStats" extends="BaseResultMap" >
+    <result column="object_address" property="objectAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    object_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpObjectStats" >
+    insert into dm_db_xtp_object_stats (object_id, row_insert_attempts, row_update_attempts, 
+      row_delete_attempts, write_conflicts, unique_constraint_violations, 
+      object_address)
+    values (#{objectId,jdbcType=INTEGER}, #{rowInsertAttempts,jdbcType=BIGINT}, #{rowUpdateAttempts,jdbcType=BIGINT}, 
+      #{rowDeleteAttempts,jdbcType=BIGINT}, #{writeConflicts,jdbcType=BIGINT}, #{uniqueConstraintViolations,jdbcType=BIGINT}, 
+      #{objectAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpObjectStats" >
+    insert into dm_db_xtp_object_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="rowInsertAttempts != null" >
+        row_insert_attempts,
+      </if>
+      <if test="rowUpdateAttempts != null" >
+        row_update_attempts,
+      </if>
+      <if test="rowDeleteAttempts != null" >
+        row_delete_attempts,
+      </if>
+      <if test="writeConflicts != null" >
+        write_conflicts,
+      </if>
+      <if test="uniqueConstraintViolations != null" >
+        unique_constraint_violations,
+      </if>
+      <if test="objectAddress != null" >
+        object_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="rowInsertAttempts != null" >
+        #{rowInsertAttempts,jdbcType=BIGINT},
+      </if>
+      <if test="rowUpdateAttempts != null" >
+        #{rowUpdateAttempts,jdbcType=BIGINT},
+      </if>
+      <if test="rowDeleteAttempts != null" >
+        #{rowDeleteAttempts,jdbcType=BIGINT},
+      </if>
+      <if test="writeConflicts != null" >
+        #{writeConflicts,jdbcType=BIGINT},
+      </if>
+      <if test="uniqueConstraintViolations != null" >
+        #{uniqueConstraintViolations,jdbcType=BIGINT},
+      </if>
+      <if test="objectAddress != null" >
+        #{objectAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysexttablesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysexttables" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="data_source_id" property="dataSourceId" jdbcType="INTEGER" />
+    <result column="file_format_id" property="fileFormatId" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="NVARCHAR" />
+    <result column="reject_type" property="rejectType" jdbcType="NVARCHAR" />
+    <result column="reject_value" property="rejectValue" jdbcType="DOUBLE" />
+    <result column="reject_sample_value" property="rejectSampleValue" jdbcType="DOUBLE" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysexttables" >
+    insert into sysexttables (object_id, data_source_id, file_format_id, 
+      location, reject_type, reject_value, 
+      reject_sample_value)
+    values (#{objectId,jdbcType=INTEGER}, #{dataSourceId,jdbcType=INTEGER}, #{fileFormatId,jdbcType=INTEGER}, 
+      #{location,jdbcType=NVARCHAR}, #{rejectType,jdbcType=NVARCHAR}, #{rejectValue,jdbcType=DOUBLE}, 
+      #{rejectSampleValue,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysexttables" >
+    insert into sysexttables
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="dataSourceId != null" >
+        data_source_id,
+      </if>
+      <if test="fileFormatId != null" >
+        file_format_id,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="rejectType != null" >
+        reject_type,
+      </if>
+      <if test="rejectValue != null" >
+        reject_value,
+      </if>
+      <if test="rejectSampleValue != null" >
+        reject_sample_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="dataSourceId != null" >
+        #{dataSourceId,jdbcType=INTEGER},
+      </if>
+      <if test="fileFormatId != null" >
+        #{fileFormatId,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=NVARCHAR},
+      </if>
+      <if test="rejectType != null" >
+        #{rejectType,jdbcType=NVARCHAR},
+      </if>
+      <if test="rejectValue != null" >
+        #{rejectValue,jdbcType=DOUBLE},
+      </if>
+      <if test="rejectSampleValue != null" >
+        #{rejectSampleValue,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

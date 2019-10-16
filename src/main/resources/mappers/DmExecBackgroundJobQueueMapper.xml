@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecBackgroundJobQueueMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecBackgroundJobQueue" >
+    <result column="time_queued" property="timeQueued" jdbcType="TIMESTAMP" />
+    <result column="job_id" property="jobId" jdbcType="INTEGER" />
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="object_id1" property="objectId1" jdbcType="INTEGER" />
+    <result column="object_id2" property="objectId2" jdbcType="INTEGER" />
+    <result column="object_id3" property="objectId3" jdbcType="INTEGER" />
+    <result column="object_id4" property="objectId4" jdbcType="INTEGER" />
+    <result column="error_code" property="errorCode" jdbcType="INTEGER" />
+    <result column="request_type" property="requestType" jdbcType="SMALLINT" />
+    <result column="retry_count" property="retryCount" jdbcType="SMALLINT" />
+    <result column="in_progress" property="inProgress" jdbcType="SMALLINT" />
+    <result column="session_id" property="sessionId" jdbcType="SMALLINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecBackgroundJobQueue" >
+    insert into dm_exec_background_job_queue (time_queued, job_id, database_id, 
+      object_id1, object_id2, object_id3, 
+      object_id4, error_code, request_type, 
+      retry_count, in_progress, session_id
+      )
+    values (#{timeQueued,jdbcType=TIMESTAMP}, #{jobId,jdbcType=INTEGER}, #{databaseId,jdbcType=INTEGER}, 
+      #{objectId1,jdbcType=INTEGER}, #{objectId2,jdbcType=INTEGER}, #{objectId3,jdbcType=INTEGER}, 
+      #{objectId4,jdbcType=INTEGER}, #{errorCode,jdbcType=INTEGER}, #{requestType,jdbcType=SMALLINT}, 
+      #{retryCount,jdbcType=SMALLINT}, #{inProgress,jdbcType=SMALLINT}, #{sessionId,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecBackgroundJobQueue" >
+    insert into dm_exec_background_job_queue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="timeQueued != null" >
+        time_queued,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="objectId1 != null" >
+        object_id1,
+      </if>
+      <if test="objectId2 != null" >
+        object_id2,
+      </if>
+      <if test="objectId3 != null" >
+        object_id3,
+      </if>
+      <if test="objectId4 != null" >
+        object_id4,
+      </if>
+      <if test="errorCode != null" >
+        error_code,
+      </if>
+      <if test="requestType != null" >
+        request_type,
+      </if>
+      <if test="retryCount != null" >
+        retry_count,
+      </if>
+      <if test="inProgress != null" >
+        in_progress,
+      </if>
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="timeQueued != null" >
+        #{timeQueued,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="objectId1 != null" >
+        #{objectId1,jdbcType=INTEGER},
+      </if>
+      <if test="objectId2 != null" >
+        #{objectId2,jdbcType=INTEGER},
+      </if>
+      <if test="objectId3 != null" >
+        #{objectId3,jdbcType=INTEGER},
+      </if>
+      <if test="objectId4 != null" >
+        #{objectId4,jdbcType=INTEGER},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=INTEGER},
+      </if>
+      <if test="requestType != null" >
+        #{requestType,jdbcType=SMALLINT},
+      </if>
+      <if test="retryCount != null" >
+        #{retryCount,jdbcType=SMALLINT},
+      </if>
+      <if test="inProgress != null" >
+        #{inProgress,jdbcType=SMALLINT},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmHadrAvailabilityReplicaClusterNodesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaClusterNodes" >
+    <result column="group_name" property="groupName" jdbcType="NVARCHAR" />
+    <result column="replica_server_name" property="replicaServerName" jdbcType="NVARCHAR" />
+    <result column="node_name" property="nodeName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaClusterNodes" >
+    insert into dm_hadr_availability_replica_cluster_nodes (group_name, replica_server_name, node_name
+      )
+    values (#{groupName,jdbcType=NVARCHAR}, #{replicaServerName,jdbcType=NVARCHAR}, #{nodeName,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrAvailabilityReplicaClusterNodes" >
+    insert into dm_hadr_availability_replica_cluster_nodes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        group_name,
+      </if>
+      <if test="replicaServerName != null" >
+        replica_server_name,
+      </if>
+      <if test="nodeName != null" >
+        node_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupName != null" >
+        #{groupName,jdbcType=NVARCHAR},
+      </if>
+      <if test="replicaServerName != null" >
+        #{replicaServerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

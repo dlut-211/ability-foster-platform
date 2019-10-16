@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyssqlguidesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syssqlguides" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="scopetype" property="scopetype" jdbcType="TINYINT" />
+    <result column="scopeid" property="scopeid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+    <result column="batchtext" property="batchtext" jdbcType="NVARCHAR" />
+    <result column="paramorhinttext" property="paramorhinttext" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Syssqlguides" extends="BaseResultMap" >
+    <result column="hash" property="hash" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    hash
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syssqlguides" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into syssqlguides (id, name, scopetype, 
+      scopeid, status, created, 
+      modified, batchtext, paramorhinttext, 
+      hash)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{scopetype,jdbcType=TINYINT}, 
+      #{scopeid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, 
+      #{modified,jdbcType=TIMESTAMP}, #{batchtext,jdbcType=NVARCHAR}, #{paramorhinttext,jdbcType=NVARCHAR}, 
+      #{hash,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syssqlguides" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into syssqlguides
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="scopetype != null" >
+        scopetype,
+      </if>
+      <if test="scopeid != null" >
+        scopeid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+      <if test="batchtext != null" >
+        batchtext,
+      </if>
+      <if test="paramorhinttext != null" >
+        paramorhinttext,
+      </if>
+      <if test="hash != null" >
+        hash,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="scopetype != null" >
+        #{scopetype,jdbcType=TINYINT},
+      </if>
+      <if test="scopeid != null" >
+        #{scopeid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchtext != null" >
+        #{batchtext,jdbcType=NVARCHAR},
+      </if>
+      <if test="paramorhinttext != null" >
+        #{paramorhinttext,jdbcType=NVARCHAR},
+      </if>
+      <if test="hash != null" >
+        #{hash,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

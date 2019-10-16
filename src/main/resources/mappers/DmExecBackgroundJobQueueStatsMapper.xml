@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecBackgroundJobQueueStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecBackgroundJobQueueStats" >
+    <result column="queue_max_len" property="queueMaxLen" jdbcType="INTEGER" />
+    <result column="enqueued_count" property="enqueuedCount" jdbcType="INTEGER" />
+    <result column="started_count" property="startedCount" jdbcType="INTEGER" />
+    <result column="ended_count" property="endedCount" jdbcType="INTEGER" />
+    <result column="failed_lock_count" property="failedLockCount" jdbcType="INTEGER" />
+    <result column="failed_other_count" property="failedOtherCount" jdbcType="INTEGER" />
+    <result column="failed_giveup_count" property="failedGiveupCount" jdbcType="INTEGER" />
+    <result column="enqueue_failed_full_count" property="enqueueFailedFullCount" jdbcType="INTEGER" />
+    <result column="enqueue_failed_duplicate_count" property="enqueueFailedDuplicateCount" jdbcType="INTEGER" />
+    <result column="elapsed_avg_ms" property="elapsedAvgMs" jdbcType="INTEGER" />
+    <result column="elapsed_max_ms" property="elapsedMaxMs" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecBackgroundJobQueueStats" >
+    insert into dm_exec_background_job_queue_stats (queue_max_len, enqueued_count, started_count, 
+      ended_count, failed_lock_count, failed_other_count, 
+      failed_giveup_count, enqueue_failed_full_count, 
+      enqueue_failed_duplicate_count, elapsed_avg_ms, 
+      elapsed_max_ms)
+    values (#{queueMaxLen,jdbcType=INTEGER}, #{enqueuedCount,jdbcType=INTEGER}, #{startedCount,jdbcType=INTEGER}, 
+      #{endedCount,jdbcType=INTEGER}, #{failedLockCount,jdbcType=INTEGER}, #{failedOtherCount,jdbcType=INTEGER}, 
+      #{failedGiveupCount,jdbcType=INTEGER}, #{enqueueFailedFullCount,jdbcType=INTEGER}, 
+      #{enqueueFailedDuplicateCount,jdbcType=INTEGER}, #{elapsedAvgMs,jdbcType=INTEGER}, 
+      #{elapsedMaxMs,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecBackgroundJobQueueStats" >
+    insert into dm_exec_background_job_queue_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="queueMaxLen != null" >
+        queue_max_len,
+      </if>
+      <if test="enqueuedCount != null" >
+        enqueued_count,
+      </if>
+      <if test="startedCount != null" >
+        started_count,
+      </if>
+      <if test="endedCount != null" >
+        ended_count,
+      </if>
+      <if test="failedLockCount != null" >
+        failed_lock_count,
+      </if>
+      <if test="failedOtherCount != null" >
+        failed_other_count,
+      </if>
+      <if test="failedGiveupCount != null" >
+        failed_giveup_count,
+      </if>
+      <if test="enqueueFailedFullCount != null" >
+        enqueue_failed_full_count,
+      </if>
+      <if test="enqueueFailedDuplicateCount != null" >
+        enqueue_failed_duplicate_count,
+      </if>
+      <if test="elapsedAvgMs != null" >
+        elapsed_avg_ms,
+      </if>
+      <if test="elapsedMaxMs != null" >
+        elapsed_max_ms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="queueMaxLen != null" >
+        #{queueMaxLen,jdbcType=INTEGER},
+      </if>
+      <if test="enqueuedCount != null" >
+        #{enqueuedCount,jdbcType=INTEGER},
+      </if>
+      <if test="startedCount != null" >
+        #{startedCount,jdbcType=INTEGER},
+      </if>
+      <if test="endedCount != null" >
+        #{endedCount,jdbcType=INTEGER},
+      </if>
+      <if test="failedLockCount != null" >
+        #{failedLockCount,jdbcType=INTEGER},
+      </if>
+      <if test="failedOtherCount != null" >
+        #{failedOtherCount,jdbcType=INTEGER},
+      </if>
+      <if test="failedGiveupCount != null" >
+        #{failedGiveupCount,jdbcType=INTEGER},
+      </if>
+      <if test="enqueueFailedFullCount != null" >
+        #{enqueueFailedFullCount,jdbcType=INTEGER},
+      </if>
+      <if test="enqueueFailedDuplicateCount != null" >
+        #{enqueueFailedDuplicateCount,jdbcType=INTEGER},
+      </if>
+      <if test="elapsedAvgMs != null" >
+        #{elapsedAvgMs,jdbcType=INTEGER},
+      </if>
+      <if test="elapsedMaxMs != null" >
+        #{elapsedMaxMs,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

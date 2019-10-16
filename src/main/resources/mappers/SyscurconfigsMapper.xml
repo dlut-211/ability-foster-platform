@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyscurconfigsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syscurconfigs" >
+    <result column="value" property="value" jdbcType="INTEGER" />
+    <result column="config" property="config" jdbcType="SMALLINT" />
+    <result column="comment" property="comment" jdbcType="NVARCHAR" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syscurconfigs" >
+    insert into syscurconfigs (value, config, comment, 
+      status)
+    values (#{value,jdbcType=INTEGER}, #{config,jdbcType=SMALLINT}, #{comment,jdbcType=NVARCHAR}, 
+      #{status,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Syscurconfigs" >
+    insert into syscurconfigs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="config != null" >
+        config,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="value != null" >
+        #{value,jdbcType=INTEGER},
+      </if>
+      <if test="config != null" >
+        #{config,jdbcType=SMALLINT},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=NVARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsRingBuffersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsRingBuffers" >
+    <result column="ring_buffer_type" property="ringBufferType" jdbcType="NVARCHAR" />
+    <result column="timestamp" property="timestamp" jdbcType="BIGINT" />
+    <result column="record" property="record" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsRingBuffers" extends="BaseResultMap" >
+    <result column="ring_buffer_address" property="ringBufferAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    ring_buffer_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsRingBuffers" >
+    insert into dm_os_ring_buffers (ring_buffer_type, timestamp, record, 
+      ring_buffer_address)
+    values (#{ringBufferType,jdbcType=NVARCHAR}, #{timestamp,jdbcType=BIGINT}, #{record,jdbcType=NVARCHAR}, 
+      #{ringBufferAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsRingBuffers" >
+    insert into dm_os_ring_buffers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ringBufferType != null" >
+        ring_buffer_type,
+      </if>
+      <if test="timestamp != null" >
+        timestamp,
+      </if>
+      <if test="record != null" >
+        record,
+      </if>
+      <if test="ringBufferAddress != null" >
+        ring_buffer_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ringBufferType != null" >
+        #{ringBufferType,jdbcType=NVARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="record != null" >
+        #{record,jdbcType=NVARCHAR},
+      </if>
+      <if test="ringBufferAddress != null" >
+        #{ringBufferAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

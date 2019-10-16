@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbStatsPropertiesInternalMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbStatsPropertiesInternal" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="stats_id" property="statsId" jdbcType="INTEGER" />
+    <result column="last_updated" property="lastUpdated" jdbcType="TIMESTAMP" />
+    <result column="rows" property="rows" jdbcType="BIGINT" />
+    <result column="rows_sampled" property="rowsSampled" jdbcType="BIGINT" />
+    <result column="steps" property="steps" jdbcType="INTEGER" />
+    <result column="unfiltered_rows" property="unfilteredRows" jdbcType="BIGINT" />
+    <result column="modification_counter" property="modificationCounter" jdbcType="BIGINT" />
+    <result column="node_id" property="nodeId" jdbcType="INTEGER" />
+    <result column="first_child" property="firstChild" jdbcType="INTEGER" />
+    <result column="next_sibling" property="nextSibling" jdbcType="INTEGER" />
+    <result column="left_boundary" property="leftBoundary" jdbcType="OTHER" />
+    <result column="right_boundary" property="rightBoundary" jdbcType="OTHER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbStatsPropertiesInternal" >
+    insert into dm_db_stats_properties_internal (object_id, stats_id, last_updated, 
+      rows, rows_sampled, steps, 
+      unfiltered_rows, modification_counter, node_id, 
+      first_child, next_sibling, left_boundary, 
+      right_boundary)
+    values (#{objectId,jdbcType=INTEGER}, #{statsId,jdbcType=INTEGER}, #{lastUpdated,jdbcType=TIMESTAMP}, 
+      #{rows,jdbcType=BIGINT}, #{rowsSampled,jdbcType=BIGINT}, #{steps,jdbcType=INTEGER}, 
+      #{unfilteredRows,jdbcType=BIGINT}, #{modificationCounter,jdbcType=BIGINT}, #{nodeId,jdbcType=INTEGER}, 
+      #{firstChild,jdbcType=INTEGER}, #{nextSibling,jdbcType=INTEGER}, #{leftBoundary,jdbcType=OTHER}, 
+      #{rightBoundary,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbStatsPropertiesInternal" >
+    insert into dm_db_stats_properties_internal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="statsId != null" >
+        stats_id,
+      </if>
+      <if test="lastUpdated != null" >
+        last_updated,
+      </if>
+      <if test="rows != null" >
+        rows,
+      </if>
+      <if test="rowsSampled != null" >
+        rows_sampled,
+      </if>
+      <if test="steps != null" >
+        steps,
+      </if>
+      <if test="unfilteredRows != null" >
+        unfiltered_rows,
+      </if>
+      <if test="modificationCounter != null" >
+        modification_counter,
+      </if>
+      <if test="nodeId != null" >
+        node_id,
+      </if>
+      <if test="firstChild != null" >
+        first_child,
+      </if>
+      <if test="nextSibling != null" >
+        next_sibling,
+      </if>
+      <if test="leftBoundary != null" >
+        left_boundary,
+      </if>
+      <if test="rightBoundary != null" >
+        right_boundary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="statsId != null" >
+        #{statsId,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdated != null" >
+        #{lastUpdated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rows != null" >
+        #{rows,jdbcType=BIGINT},
+      </if>
+      <if test="rowsSampled != null" >
+        #{rowsSampled,jdbcType=BIGINT},
+      </if>
+      <if test="steps != null" >
+        #{steps,jdbcType=INTEGER},
+      </if>
+      <if test="unfilteredRows != null" >
+        #{unfilteredRows,jdbcType=BIGINT},
+      </if>
+      <if test="modificationCounter != null" >
+        #{modificationCounter,jdbcType=BIGINT},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="firstChild != null" >
+        #{firstChild,jdbcType=INTEGER},
+      </if>
+      <if test="nextSibling != null" >
+        #{nextSibling,jdbcType=INTEGER},
+      </if>
+      <if test="leftBoundary != null" >
+        #{leftBoundary,jdbcType=OTHER},
+      </if>
+      <if test="rightBoundary != null" >
+        #{rightBoundary,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbFtsIndexPhysicalStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbFtsIndexPhysicalStats" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="fulltext_index_page_count" property="fulltextIndexPageCount" jdbcType="BIGINT" />
+    <result column="keyphrase_index_page_count" property="keyphraseIndexPageCount" jdbcType="BIGINT" />
+    <result column="similarity_index_page_count" property="similarityIndexPageCount" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbFtsIndexPhysicalStats" >
+    insert into dm_db_fts_index_physical_stats (object_id, fulltext_index_page_count, 
+      keyphrase_index_page_count, similarity_index_page_count
+      )
+    values (#{objectId,jdbcType=INTEGER}, #{fulltextIndexPageCount,jdbcType=BIGINT}, 
+      #{keyphraseIndexPageCount,jdbcType=BIGINT}, #{similarityIndexPageCount,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbFtsIndexPhysicalStats" >
+    insert into dm_db_fts_index_physical_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="fulltextIndexPageCount != null" >
+        fulltext_index_page_count,
+      </if>
+      <if test="keyphraseIndexPageCount != null" >
+        keyphrase_index_page_count,
+      </if>
+      <if test="similarityIndexPageCount != null" >
+        similarity_index_page_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="fulltextIndexPageCount != null" >
+        #{fulltextIndexPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="keyphraseIndexPageCount != null" >
+        #{keyphraseIndexPageCount,jdbcType=BIGINT},
+      </if>
+      <if test="similarityIndexPageCount != null" >
+        #{similarityIndexPageCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

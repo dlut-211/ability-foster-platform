@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmFilestreamFileIoHandlesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFilestreamFileIoHandles" >
+    <result column="creation_request_id" property="creationRequestId" jdbcType="INTEGER" />
+    <result column="creation_irp_id" property="creationIrpId" jdbcType="INTEGER" />
+    <result column="handle_id" property="handleId" jdbcType="INTEGER" />
+    <result column="access_type" property="accessType" jdbcType="NVARCHAR" />
+    <result column="logical_path" property="logicalPath" jdbcType="NVARCHAR" />
+    <result column="physical_path" property="physicalPath" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFilestreamFileIoHandlesWithBLOBs" extends="BaseResultMap" >
+    <result column="handle_context_address" property="handleContextAddress" jdbcType="VARBINARY" />
+    <result column="creation_client_thread_id" property="creationClientThreadId" jdbcType="VARBINARY" />
+    <result column="creation_client_process_id" property="creationClientProcessId" jdbcType="VARBINARY" />
+    <result column="filestream_transaction_id" property="filestreamTransactionId" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    handle_context_address, creation_client_thread_id, creation_client_process_id, filestream_transaction_id
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFilestreamFileIoHandlesWithBLOBs" >
+    insert into dm_filestream_file_io_handles (creation_request_id, creation_irp_id, 
+      handle_id, access_type, logical_path, 
+      physical_path, handle_context_address, 
+      creation_client_thread_id, creation_client_process_id, 
+      filestream_transaction_id)
+    values (#{creationRequestId,jdbcType=INTEGER}, #{creationIrpId,jdbcType=INTEGER}, 
+      #{handleId,jdbcType=INTEGER}, #{accessType,jdbcType=NVARCHAR}, #{logicalPath,jdbcType=NVARCHAR}, 
+      #{physicalPath,jdbcType=NVARCHAR}, #{handleContextAddress,jdbcType=VARBINARY}, 
+      #{creationClientThreadId,jdbcType=VARBINARY}, #{creationClientProcessId,jdbcType=VARBINARY}, 
+      #{filestreamTransactionId,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFilestreamFileIoHandlesWithBLOBs" >
+    insert into dm_filestream_file_io_handles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="creationRequestId != null" >
+        creation_request_id,
+      </if>
+      <if test="creationIrpId != null" >
+        creation_irp_id,
+      </if>
+      <if test="handleId != null" >
+        handle_id,
+      </if>
+      <if test="accessType != null" >
+        access_type,
+      </if>
+      <if test="logicalPath != null" >
+        logical_path,
+      </if>
+      <if test="physicalPath != null" >
+        physical_path,
+      </if>
+      <if test="handleContextAddress != null" >
+        handle_context_address,
+      </if>
+      <if test="creationClientThreadId != null" >
+        creation_client_thread_id,
+      </if>
+      <if test="creationClientProcessId != null" >
+        creation_client_process_id,
+      </if>
+      <if test="filestreamTransactionId != null" >
+        filestream_transaction_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="creationRequestId != null" >
+        #{creationRequestId,jdbcType=INTEGER},
+      </if>
+      <if test="creationIrpId != null" >
+        #{creationIrpId,jdbcType=INTEGER},
+      </if>
+      <if test="handleId != null" >
+        #{handleId,jdbcType=INTEGER},
+      </if>
+      <if test="accessType != null" >
+        #{accessType,jdbcType=NVARCHAR},
+      </if>
+      <if test="logicalPath != null" >
+        #{logicalPath,jdbcType=NVARCHAR},
+      </if>
+      <if test="physicalPath != null" >
+        #{physicalPath,jdbcType=NVARCHAR},
+      </if>
+      <if test="handleContextAddress != null" >
+        #{handleContextAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="creationClientThreadId != null" >
+        #{creationClientThreadId,jdbcType=VARBINARY},
+      </if>
+      <if test="creationClientProcessId != null" >
+        #{creationClientProcessId,jdbcType=VARBINARY},
+      </if>
+      <if test="filestreamTransactionId != null" >
+        #{filestreamTransactionId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

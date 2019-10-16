@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysphfgMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysphfg" >
+    <result column="dbfragid" property="dbfragid" jdbcType="INTEGER" />
+    <result column="phfgid" property="phfgid" jdbcType="INTEGER" />
+    <result column="fgid" property="fgid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="fgguid" property="fgguid" jdbcType="CHAR" />
+    <result column="lgfgid" property="lgfgid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysphfg" >
+    insert into sysphfg (dbfragid, phfgid, fgid, 
+      type, fgguid, lgfgid, status, 
+      name)
+    values (#{dbfragid,jdbcType=INTEGER}, #{phfgid,jdbcType=INTEGER}, #{fgid,jdbcType=INTEGER}, 
+      #{type,jdbcType=CHAR}, #{fgguid,jdbcType=CHAR}, #{lgfgid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{name,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysphfg" >
+    insert into sysphfg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dbfragid != null" >
+        dbfragid,
+      </if>
+      <if test="phfgid != null" >
+        phfgid,
+      </if>
+      <if test="fgid != null" >
+        fgid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="fgguid != null" >
+        fgguid,
+      </if>
+      <if test="lgfgid != null" >
+        lgfgid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dbfragid != null" >
+        #{dbfragid,jdbcType=INTEGER},
+      </if>
+      <if test="phfgid != null" >
+        #{phfgid,jdbcType=INTEGER},
+      </if>
+      <if test="fgid != null" >
+        #{fgid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="fgguid != null" >
+        #{fgguid,jdbcType=CHAR},
+      </if>
+      <if test="lgfgid != null" >
+        #{lgfgid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

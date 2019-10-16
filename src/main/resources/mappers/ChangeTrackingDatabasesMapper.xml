@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ChangeTrackingDatabasesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ChangeTrackingDatabases" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="is_auto_cleanup_on" property="isAutoCleanupOn" jdbcType="TINYINT" />
+    <result column="retention_period" property="retentionPeriod" jdbcType="INTEGER" />
+    <result column="retention_period_units" property="retentionPeriodUnits" jdbcType="TINYINT" />
+    <result column="retention_period_units_desc" property="retentionPeriodUnitsDesc" jdbcType="NVARCHAR" />
+    <result column="max_cleanup_version" property="maxCleanupVersion" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ChangeTrackingDatabases" >
+    insert into change_tracking_databases (database_id, is_auto_cleanup_on, retention_period, 
+      retention_period_units, retention_period_units_desc, 
+      max_cleanup_version)
+    values (#{databaseId,jdbcType=INTEGER}, #{isAutoCleanupOn,jdbcType=TINYINT}, #{retentionPeriod,jdbcType=INTEGER}, 
+      #{retentionPeriodUnits,jdbcType=TINYINT}, #{retentionPeriodUnitsDesc,jdbcType=NVARCHAR}, 
+      #{maxCleanupVersion,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ChangeTrackingDatabases" >
+    insert into change_tracking_databases
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="isAutoCleanupOn != null" >
+        is_auto_cleanup_on,
+      </if>
+      <if test="retentionPeriod != null" >
+        retention_period,
+      </if>
+      <if test="retentionPeriodUnits != null" >
+        retention_period_units,
+      </if>
+      <if test="retentionPeriodUnitsDesc != null" >
+        retention_period_units_desc,
+      </if>
+      <if test="maxCleanupVersion != null" >
+        max_cleanup_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="isAutoCleanupOn != null" >
+        #{isAutoCleanupOn,jdbcType=TINYINT},
+      </if>
+      <if test="retentionPeriod != null" >
+        #{retentionPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="retentionPeriodUnits != null" >
+        #{retentionPeriodUnits,jdbcType=TINYINT},
+      </if>
+      <if test="retentionPeriodUnitsDesc != null" >
+        #{retentionPeriodUnitsDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="maxCleanupVersion != null" >
+        #{maxCleanupVersion,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmLogpoolStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolStats" >
+    <result column="hash_hit_total_search_length" property="hashHitTotalSearchLength" jdbcType="BIGINT" />
+    <result column="hash_miss_total_search_length" property="hashMissTotalSearchLength" jdbcType="BIGINT" />
+    <result column="hash_hits" property="hashHits" jdbcType="BIGINT" />
+    <result column="hash_misses" property="hashMisses" jdbcType="BIGINT" />
+    <result column="hash_bucket_count" property="hashBucketCount" jdbcType="INTEGER" />
+    <result column="mem_status_stamp" property="memStatusStamp" jdbcType="BIGINT" />
+    <result column="mem_status" property="memStatus" jdbcType="INTEGER" />
+    <result column="logpoolmgr_count" property="logpoolmgrCount" jdbcType="INTEGER" />
+    <result column="total_pages" property="totalPages" jdbcType="BIGINT" />
+    <result column="private_pages" property="privatePages" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolStats" >
+    insert into dm_logpool_stats (hash_hit_total_search_length, hash_miss_total_search_length, 
+      hash_hits, hash_misses, hash_bucket_count, 
+      mem_status_stamp, mem_status, logpoolmgr_count, 
+      total_pages, private_pages)
+    values (#{hashHitTotalSearchLength,jdbcType=BIGINT}, #{hashMissTotalSearchLength,jdbcType=BIGINT}, 
+      #{hashHits,jdbcType=BIGINT}, #{hashMisses,jdbcType=BIGINT}, #{hashBucketCount,jdbcType=INTEGER}, 
+      #{memStatusStamp,jdbcType=BIGINT}, #{memStatus,jdbcType=INTEGER}, #{logpoolmgrCount,jdbcType=INTEGER}, 
+      #{totalPages,jdbcType=BIGINT}, #{privatePages,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogpoolStats" >
+    insert into dm_logpool_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hashHitTotalSearchLength != null" >
+        hash_hit_total_search_length,
+      </if>
+      <if test="hashMissTotalSearchLength != null" >
+        hash_miss_total_search_length,
+      </if>
+      <if test="hashHits != null" >
+        hash_hits,
+      </if>
+      <if test="hashMisses != null" >
+        hash_misses,
+      </if>
+      <if test="hashBucketCount != null" >
+        hash_bucket_count,
+      </if>
+      <if test="memStatusStamp != null" >
+        mem_status_stamp,
+      </if>
+      <if test="memStatus != null" >
+        mem_status,
+      </if>
+      <if test="logpoolmgrCount != null" >
+        logpoolmgr_count,
+      </if>
+      <if test="totalPages != null" >
+        total_pages,
+      </if>
+      <if test="privatePages != null" >
+        private_pages,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hashHitTotalSearchLength != null" >
+        #{hashHitTotalSearchLength,jdbcType=BIGINT},
+      </if>
+      <if test="hashMissTotalSearchLength != null" >
+        #{hashMissTotalSearchLength,jdbcType=BIGINT},
+      </if>
+      <if test="hashHits != null" >
+        #{hashHits,jdbcType=BIGINT},
+      </if>
+      <if test="hashMisses != null" >
+        #{hashMisses,jdbcType=BIGINT},
+      </if>
+      <if test="hashBucketCount != null" >
+        #{hashBucketCount,jdbcType=INTEGER},
+      </if>
+      <if test="memStatusStamp != null" >
+        #{memStatusStamp,jdbcType=BIGINT},
+      </if>
+      <if test="memStatus != null" >
+        #{memStatus,jdbcType=INTEGER},
+      </if>
+      <if test="logpoolmgrCount != null" >
+        #{logpoolmgrCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalPages != null" >
+        #{totalPages,jdbcType=BIGINT},
+      </if>
+      <if test="privatePages != null" >
+        #{privatePages,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsLoadedModulesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsLoadedModules" >
+    <result column="file_version" property="fileVersion" jdbcType="VARCHAR" />
+    <result column="product_version" property="productVersion" jdbcType="VARCHAR" />
+    <result column="debug" property="debug" jdbcType="BIT" />
+    <result column="patched" property="patched" jdbcType="BIT" />
+    <result column="prerelease" property="prerelease" jdbcType="BIT" />
+    <result column="private_build" property="privateBuild" jdbcType="BIT" />
+    <result column="special_build" property="specialBuild" jdbcType="BIT" />
+    <result column="language" property="language" jdbcType="INTEGER" />
+    <result column="company" property="company" jdbcType="NVARCHAR" />
+    <result column="description" property="description" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsLoadedModules" extends="BaseResultMap" >
+    <result column="base_address" property="baseAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    base_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsLoadedModules" >
+    insert into dm_os_loaded_modules (file_version, product_version, debug, 
+      patched, prerelease, private_build, 
+      special_build, language, company, 
+      description, name, base_address
+      )
+    values (#{fileVersion,jdbcType=VARCHAR}, #{productVersion,jdbcType=VARCHAR}, #{debug,jdbcType=BIT}, 
+      #{patched,jdbcType=BIT}, #{prerelease,jdbcType=BIT}, #{privateBuild,jdbcType=BIT}, 
+      #{specialBuild,jdbcType=BIT}, #{language,jdbcType=INTEGER}, #{company,jdbcType=NVARCHAR}, 
+      #{description,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{baseAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsLoadedModules" >
+    insert into dm_os_loaded_modules
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fileVersion != null" >
+        file_version,
+      </if>
+      <if test="productVersion != null" >
+        product_version,
+      </if>
+      <if test="debug != null" >
+        debug,
+      </if>
+      <if test="patched != null" >
+        patched,
+      </if>
+      <if test="prerelease != null" >
+        prerelease,
+      </if>
+      <if test="privateBuild != null" >
+        private_build,
+      </if>
+      <if test="specialBuild != null" >
+        special_build,
+      </if>
+      <if test="language != null" >
+        language,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="baseAddress != null" >
+        base_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fileVersion != null" >
+        #{fileVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="productVersion != null" >
+        #{productVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="debug != null" >
+        #{debug,jdbcType=BIT},
+      </if>
+      <if test="patched != null" >
+        #{patched,jdbcType=BIT},
+      </if>
+      <if test="prerelease != null" >
+        #{prerelease,jdbcType=BIT},
+      </if>
+      <if test="privateBuild != null" >
+        #{privateBuild,jdbcType=BIT},
+      </if>
+      <if test="specialBuild != null" >
+        #{specialBuild,jdbcType=BIT},
+      </if>
+      <if test="language != null" >
+        #{language,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=NVARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="baseAddress != null" >
+        #{baseAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

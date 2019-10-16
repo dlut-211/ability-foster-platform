@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysdbfragMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysdbfrag" >
+    <result column="dbid" property="dbid" jdbcType="INTEGER" />
+    <result column="fragid" property="fragid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="brickid" property="brickid" jdbcType="INTEGER" />
+    <result column="pruid" property="pruid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysdbfrag" >
+    insert into sysdbfrag (dbid, fragid, name, 
+      brickid, pruid, status
+      )
+    values (#{dbid,jdbcType=INTEGER}, #{fragid,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, 
+      #{brickid,jdbcType=INTEGER}, #{pruid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysdbfrag" >
+    insert into sysdbfrag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dbid != null" >
+        dbid,
+      </if>
+      <if test="fragid != null" >
+        fragid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="brickid != null" >
+        brickid,
+      </if>
+      <if test="pruid != null" >
+        pruid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dbid != null" >
+        #{dbid,jdbcType=INTEGER},
+      </if>
+      <if test="fragid != null" >
+        #{fragid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="brickid != null" >
+        #{brickid,jdbcType=INTEGER},
+      </if>
+      <if test="pruid != null" >
+        #{pruid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

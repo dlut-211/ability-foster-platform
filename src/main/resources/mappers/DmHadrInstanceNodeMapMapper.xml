@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmHadrInstanceNodeMapMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrInstanceNodeMap" >
+    <result column="ag_resource_id" property="agResourceId" jdbcType="NVARCHAR" />
+    <result column="instance_name" property="instanceName" jdbcType="NVARCHAR" />
+    <result column="node_name" property="nodeName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrInstanceNodeMap" >
+    insert into dm_hadr_instance_node_map (ag_resource_id, instance_name, node_name
+      )
+    values (#{agResourceId,jdbcType=NVARCHAR}, #{instanceName,jdbcType=NVARCHAR}, #{nodeName,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrInstanceNodeMap" >
+    insert into dm_hadr_instance_node_map
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="agResourceId != null" >
+        ag_resource_id,
+      </if>
+      <if test="instanceName != null" >
+        instance_name,
+      </if>
+      <if test="nodeName != null" >
+        node_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="agResourceId != null" >
+        #{agResourceId,jdbcType=NVARCHAR},
+      </if>
+      <if test="instanceName != null" >
+        #{instanceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

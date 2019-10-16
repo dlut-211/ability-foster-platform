@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.XmlSchemaWildcardsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaWildcards" >
+    <result column="xml_component_id" property="xmlComponentId" jdbcType="INTEGER" />
+    <result column="xml_collection_id" property="xmlCollectionId" jdbcType="INTEGER" />
+    <result column="xml_namespace_id" property="xmlNamespaceId" jdbcType="INTEGER" />
+    <result column="is_qualified" property="isQualified" jdbcType="BIT" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="symbol_space" property="symbolSpace" jdbcType="CHAR" />
+    <result column="symbol_space_desc" property="symbolSpaceDesc" jdbcType="NVARCHAR" />
+    <result column="kind" property="kind" jdbcType="CHAR" />
+    <result column="kind_desc" property="kindDesc" jdbcType="NVARCHAR" />
+    <result column="derivation" property="derivation" jdbcType="CHAR" />
+    <result column="derivation_desc" property="derivationDesc" jdbcType="NVARCHAR" />
+    <result column="base_xml_component_id" property="baseXmlComponentId" jdbcType="INTEGER" />
+    <result column="scoping_xml_component_id" property="scopingXmlComponentId" jdbcType="INTEGER" />
+    <result column="process_content" property="processContent" jdbcType="CHAR" />
+    <result column="process_content_desc" property="processContentDesc" jdbcType="NVARCHAR" />
+    <result column="disallow_namespaces" property="disallowNamespaces" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaWildcards" >
+    insert into xml_schema_wildcards (xml_component_id, xml_collection_id, 
+      xml_namespace_id, is_qualified, name, 
+      symbol_space, symbol_space_desc, kind, 
+      kind_desc, derivation, derivation_desc, 
+      base_xml_component_id, scoping_xml_component_id, 
+      process_content, process_content_desc, disallow_namespaces
+      )
+    values (#{xmlComponentId,jdbcType=INTEGER}, #{xmlCollectionId,jdbcType=INTEGER}, 
+      #{xmlNamespaceId,jdbcType=INTEGER}, #{isQualified,jdbcType=BIT}, #{name,jdbcType=NVARCHAR}, 
+      #{symbolSpace,jdbcType=CHAR}, #{symbolSpaceDesc,jdbcType=NVARCHAR}, #{kind,jdbcType=CHAR}, 
+      #{kindDesc,jdbcType=NVARCHAR}, #{derivation,jdbcType=CHAR}, #{derivationDesc,jdbcType=NVARCHAR}, 
+      #{baseXmlComponentId,jdbcType=INTEGER}, #{scopingXmlComponentId,jdbcType=INTEGER}, 
+      #{processContent,jdbcType=CHAR}, #{processContentDesc,jdbcType=NVARCHAR}, #{disallowNamespaces,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.XmlSchemaWildcards" >
+    insert into xml_schema_wildcards
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xmlComponentId != null" >
+        xml_component_id,
+      </if>
+      <if test="xmlCollectionId != null" >
+        xml_collection_id,
+      </if>
+      <if test="xmlNamespaceId != null" >
+        xml_namespace_id,
+      </if>
+      <if test="isQualified != null" >
+        is_qualified,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="symbolSpace != null" >
+        symbol_space,
+      </if>
+      <if test="symbolSpaceDesc != null" >
+        symbol_space_desc,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="kindDesc != null" >
+        kind_desc,
+      </if>
+      <if test="derivation != null" >
+        derivation,
+      </if>
+      <if test="derivationDesc != null" >
+        derivation_desc,
+      </if>
+      <if test="baseXmlComponentId != null" >
+        base_xml_component_id,
+      </if>
+      <if test="scopingXmlComponentId != null" >
+        scoping_xml_component_id,
+      </if>
+      <if test="processContent != null" >
+        process_content,
+      </if>
+      <if test="processContentDesc != null" >
+        process_content_desc,
+      </if>
+      <if test="disallowNamespaces != null" >
+        disallow_namespaces,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xmlComponentId != null" >
+        #{xmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="xmlCollectionId != null" >
+        #{xmlCollectionId,jdbcType=INTEGER},
+      </if>
+      <if test="xmlNamespaceId != null" >
+        #{xmlNamespaceId,jdbcType=INTEGER},
+      </if>
+      <if test="isQualified != null" >
+        #{isQualified,jdbcType=BIT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="symbolSpace != null" >
+        #{symbolSpace,jdbcType=CHAR},
+      </if>
+      <if test="symbolSpaceDesc != null" >
+        #{symbolSpaceDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=CHAR},
+      </if>
+      <if test="kindDesc != null" >
+        #{kindDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="derivation != null" >
+        #{derivation,jdbcType=CHAR},
+      </if>
+      <if test="derivationDesc != null" >
+        #{derivationDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="baseXmlComponentId != null" >
+        #{baseXmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="scopingXmlComponentId != null" >
+        #{scopingXmlComponentId,jdbcType=INTEGER},
+      </if>
+      <if test="processContent != null" >
+        #{processContent,jdbcType=CHAR},
+      </if>
+      <if test="processContentDesc != null" >
+        #{processContentDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="disallowNamespaces != null" >
+        #{disallowNamespaces,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

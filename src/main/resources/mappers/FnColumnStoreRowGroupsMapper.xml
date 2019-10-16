@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FnColumnStoreRowGroupsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FnColumnStoreRowGroups" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="partition_number" property="partitionNumber" jdbcType="INTEGER" />
+    <result column="row_group_id" property="rowGroupId" jdbcType="INTEGER" />
+    <result column="delta_store_hobt_id" property="deltaStoreHobtId" jdbcType="BIGINT" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="state_description" property="stateDescription" jdbcType="NVARCHAR" />
+    <result column="total_rows" property="totalRows" jdbcType="BIGINT" />
+    <result column="deleted_rows" property="deletedRows" jdbcType="BIGINT" />
+    <result column="size_in_bytes" property="sizeInBytes" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnColumnStoreRowGroups" >
+    insert into fn_column_store_row_groups (object_id, index_id, partition_number, 
+      row_group_id, delta_store_hobt_id, state, 
+      state_description, total_rows, deleted_rows, 
+      size_in_bytes)
+    values (#{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, #{partitionNumber,jdbcType=INTEGER}, 
+      #{rowGroupId,jdbcType=INTEGER}, #{deltaStoreHobtId,jdbcType=BIGINT}, #{state,jdbcType=TINYINT}, 
+      #{stateDescription,jdbcType=NVARCHAR}, #{totalRows,jdbcType=BIGINT}, #{deletedRows,jdbcType=BIGINT}, 
+      #{sizeInBytes,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnColumnStoreRowGroups" >
+    insert into fn_column_store_row_groups
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="partitionNumber != null" >
+        partition_number,
+      </if>
+      <if test="rowGroupId != null" >
+        row_group_id,
+      </if>
+      <if test="deltaStoreHobtId != null" >
+        delta_store_hobt_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="stateDescription != null" >
+        state_description,
+      </if>
+      <if test="totalRows != null" >
+        total_rows,
+      </if>
+      <if test="deletedRows != null" >
+        deleted_rows,
+      </if>
+      <if test="sizeInBytes != null" >
+        size_in_bytes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="partitionNumber != null" >
+        #{partitionNumber,jdbcType=INTEGER},
+      </if>
+      <if test="rowGroupId != null" >
+        #{rowGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="deltaStoreHobtId != null" >
+        #{deltaStoreHobtId,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="stateDescription != null" >
+        #{stateDescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="totalRows != null" >
+        #{totalRows,jdbcType=BIGINT},
+      </if>
+      <if test="deletedRows != null" >
+        #{deletedRows,jdbcType=BIGINT},
+      </if>
+      <if test="sizeInBytes != null" >
+        #{sizeInBytes,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TablesMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Tables">
+    <result column="TABLE_CATALOG" jdbcType="NVARCHAR" property="tableCatalog" />
+    <result column="TABLE_SCHEMA" jdbcType="NVARCHAR" property="tableSchema" />
+    <result column="TABLE_NAME" jdbcType="NVARCHAR" property="tableName" />
+    <result column="TABLE_TYPE" jdbcType="VARCHAR" property="tableType" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Tables">
+    insert into TABLES (TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, 
+      TABLE_TYPE)
+    values (#{tableCatalog,jdbcType=NVARCHAR}, #{tableSchema,jdbcType=NVARCHAR}, #{tableName,jdbcType=NVARCHAR}, 
+      #{tableType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Tables">
+    insert into TABLES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tableCatalog != null">
+        TABLE_CATALOG,
+      </if>
+      <if test="tableSchema != null">
+        TABLE_SCHEMA,
+      </if>
+      <if test="tableName != null">
+        TABLE_NAME,
+      </if>
+      <if test="tableType != null">
+        TABLE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tableCatalog != null">
+        #{tableCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableSchema != null">
+        #{tableSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableType != null">
+        #{tableType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Tables">
+    <result column="name" jdbcType="NVARCHAR" property="name" />
+    <result column="object_id" jdbcType="INTEGER" property="objectId" />
+    <result column="principal_id" jdbcType="INTEGER" property="principalId" />
+    <result column="schema_id" jdbcType="INTEGER" property="schemaId" />
+    <result column="parent_object_id" jdbcType="INTEGER" property="parentObjectId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="type_desc" jdbcType="NVARCHAR" property="typeDesc" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="is_ms_shipped" jdbcType="BIT" property="isMsShipped" />
+    <result column="is_published" jdbcType="BIT" property="isPublished" />
+    <result column="is_schema_published" jdbcType="BIT" property="isSchemaPublished" />
+    <result column="lob_data_space_id" jdbcType="INTEGER" property="lobDataSpaceId" />
+    <result column="filestream_data_space_id" jdbcType="INTEGER" property="filestreamDataSpaceId" />
+    <result column="max_column_id_used" jdbcType="INTEGER" property="maxColumnIdUsed" />
+    <result column="lock_on_bulk_load" jdbcType="BIT" property="lockOnBulkLoad" />
+    <result column="uses_ansi_nulls" jdbcType="BIT" property="usesAnsiNulls" />
+    <result column="is_replicated" jdbcType="BIT" property="isReplicated" />
+    <result column="has_replication_filter" jdbcType="BIT" property="hasReplicationFilter" />
+    <result column="is_merge_published" jdbcType="BIT" property="isMergePublished" />
+    <result column="is_sync_tran_subscribed" jdbcType="BIT" property="isSyncTranSubscribed" />
+    <result column="has_unchecked_assembly_data" jdbcType="BIT" property="hasUncheckedAssemblyData" />
+    <result column="text_in_row_limit" jdbcType="INTEGER" property="textInRowLimit" />
+    <result column="large_value_types_out_of_row" jdbcType="BIT" property="largeValueTypesOutOfRow" />
+    <result column="is_tracked_by_cdc" jdbcType="BIT" property="isTrackedByCdc" />
+    <result column="lock_escalation" jdbcType="TINYINT" property="lockEscalation" />
+    <result column="lock_escalation_desc" jdbcType="NVARCHAR" property="lockEscalationDesc" />
+    <result column="is_filetable" jdbcType="BIT" property="isFiletable" />
+    <result column="is_memory_optimized" jdbcType="BIT" property="isMemoryOptimized" />
+    <result column="durability" jdbcType="TINYINT" property="durability" />
+    <result column="durability_desc" jdbcType="NVARCHAR" property="durabilityDesc" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Tables">
+    insert into tables (name, object_id, principal_id, 
+      schema_id, parent_object_id, type, 
+      type_desc, create_date, modify_date, 
+      is_ms_shipped, is_published, is_schema_published, 
+      lob_data_space_id, filestream_data_space_id, 
+      max_column_id_used, lock_on_bulk_load, uses_ansi_nulls, 
+      is_replicated, has_replication_filter, is_merge_published, 
+      is_sync_tran_subscribed, has_unchecked_assembly_data, 
+      text_in_row_limit, large_value_types_out_of_row, is_tracked_by_cdc, 
+      lock_escalation, lock_escalation_desc, is_filetable, 
+      is_memory_optimized, durability, durability_desc
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{objectId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{schemaId,jdbcType=INTEGER}, #{parentObjectId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{isMsShipped,jdbcType=BIT}, #{isPublished,jdbcType=BIT}, #{isSchemaPublished,jdbcType=BIT}, 
+      #{lobDataSpaceId,jdbcType=INTEGER}, #{filestreamDataSpaceId,jdbcType=INTEGER}, 
+      #{maxColumnIdUsed,jdbcType=INTEGER}, #{lockOnBulkLoad,jdbcType=BIT}, #{usesAnsiNulls,jdbcType=BIT}, 
+      #{isReplicated,jdbcType=BIT}, #{hasReplicationFilter,jdbcType=BIT}, #{isMergePublished,jdbcType=BIT}, 
+      #{isSyncTranSubscribed,jdbcType=BIT}, #{hasUncheckedAssemblyData,jdbcType=BIT}, 
+      #{textInRowLimit,jdbcType=INTEGER}, #{largeValueTypesOutOfRow,jdbcType=BIT}, #{isTrackedByCdc,jdbcType=BIT}, 
+      #{lockEscalation,jdbcType=TINYINT}, #{lockEscalationDesc,jdbcType=NVARCHAR}, #{isFiletable,jdbcType=BIT}, 
+      #{isMemoryOptimized,jdbcType=BIT}, #{durability,jdbcType=TINYINT}, #{durabilityDesc,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Tables">
+    insert into tables
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="principalId != null">
+        principal_id,
+      </if>
+      <if test="schemaId != null">
+        schema_id,
+      </if>
+      <if test="parentObjectId != null">
+        parent_object_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="typeDesc != null">
+        type_desc,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="isMsShipped != null">
+        is_ms_shipped,
+      </if>
+      <if test="isPublished != null">
+        is_published,
+      </if>
+      <if test="isSchemaPublished != null">
+        is_schema_published,
+      </if>
+      <if test="lobDataSpaceId != null">
+        lob_data_space_id,
+      </if>
+      <if test="filestreamDataSpaceId != null">
+        filestream_data_space_id,
+      </if>
+      <if test="maxColumnIdUsed != null">
+        max_column_id_used,
+      </if>
+      <if test="lockOnBulkLoad != null">
+        lock_on_bulk_load,
+      </if>
+      <if test="usesAnsiNulls != null">
+        uses_ansi_nulls,
+      </if>
+      <if test="isReplicated != null">
+        is_replicated,
+      </if>
+      <if test="hasReplicationFilter != null">
+        has_replication_filter,
+      </if>
+      <if test="isMergePublished != null">
+        is_merge_published,
+      </if>
+      <if test="isSyncTranSubscribed != null">
+        is_sync_tran_subscribed,
+      </if>
+      <if test="hasUncheckedAssemblyData != null">
+        has_unchecked_assembly_data,
+      </if>
+      <if test="textInRowLimit != null">
+        text_in_row_limit,
+      </if>
+      <if test="largeValueTypesOutOfRow != null">
+        large_value_types_out_of_row,
+      </if>
+      <if test="isTrackedByCdc != null">
+        is_tracked_by_cdc,
+      </if>
+      <if test="lockEscalation != null">
+        lock_escalation,
+      </if>
+      <if test="lockEscalationDesc != null">
+        lock_escalation_desc,
+      </if>
+      <if test="isFiletable != null">
+        is_filetable,
+      </if>
+      <if test="isMemoryOptimized != null">
+        is_memory_optimized,
+      </if>
+      <if test="durability != null">
+        durability,
+      </if>
+      <if test="durabilityDesc != null">
+        durability_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectId != null">
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null">
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="schemaId != null">
+        #{schemaId,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjectId != null">
+        #{parentObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null">
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMsShipped != null">
+        #{isMsShipped,jdbcType=BIT},
+      </if>
+      <if test="isPublished != null">
+        #{isPublished,jdbcType=BIT},
+      </if>
+      <if test="isSchemaPublished != null">
+        #{isSchemaPublished,jdbcType=BIT},
+      </if>
+      <if test="lobDataSpaceId != null">
+        #{lobDataSpaceId,jdbcType=INTEGER},
+      </if>
+      <if test="filestreamDataSpaceId != null">
+        #{filestreamDataSpaceId,jdbcType=INTEGER},
+      </if>
+      <if test="maxColumnIdUsed != null">
+        #{maxColumnIdUsed,jdbcType=INTEGER},
+      </if>
+      <if test="lockOnBulkLoad != null">
+        #{lockOnBulkLoad,jdbcType=BIT},
+      </if>
+      <if test="usesAnsiNulls != null">
+        #{usesAnsiNulls,jdbcType=BIT},
+      </if>
+      <if test="isReplicated != null">
+        #{isReplicated,jdbcType=BIT},
+      </if>
+      <if test="hasReplicationFilter != null">
+        #{hasReplicationFilter,jdbcType=BIT},
+      </if>
+      <if test="isMergePublished != null">
+        #{isMergePublished,jdbcType=BIT},
+      </if>
+      <if test="isSyncTranSubscribed != null">
+        #{isSyncTranSubscribed,jdbcType=BIT},
+      </if>
+      <if test="hasUncheckedAssemblyData != null">
+        #{hasUncheckedAssemblyData,jdbcType=BIT},
+      </if>
+      <if test="textInRowLimit != null">
+        #{textInRowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="largeValueTypesOutOfRow != null">
+        #{largeValueTypesOutOfRow,jdbcType=BIT},
+      </if>
+      <if test="isTrackedByCdc != null">
+        #{isTrackedByCdc,jdbcType=BIT},
+      </if>
+      <if test="lockEscalation != null">
+        #{lockEscalation,jdbcType=TINYINT},
+      </if>
+      <if test="lockEscalationDesc != null">
+        #{lockEscalationDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="isFiletable != null">
+        #{isFiletable,jdbcType=BIT},
+      </if>
+      <if test="isMemoryOptimized != null">
+        #{isMemoryOptimized,jdbcType=BIT},
+      </if>
+      <if test="durability != null">
+        #{durability,jdbcType=TINYINT},
+      </if>
+      <if test="durabilityDesc != null">
+        #{durabilityDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

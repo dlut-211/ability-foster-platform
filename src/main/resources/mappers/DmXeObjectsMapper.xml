@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmXeObjectsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmXeObjects" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="object_type" property="objectType" jdbcType="NVARCHAR" />
+    <result column="package_guid" property="packageGuid" jdbcType="CHAR" />
+    <result column="description" property="description" jdbcType="NVARCHAR" />
+    <result column="capabilities" property="capabilities" jdbcType="INTEGER" />
+    <result column="capabilities_desc" property="capabilitiesDesc" jdbcType="NVARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="NVARCHAR" />
+    <result column="type_package_guid" property="typePackageGuid" jdbcType="CHAR" />
+    <result column="type_size" property="typeSize" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXeObjects" >
+    insert into dm_xe_objects (name, object_type, package_guid, 
+      description, capabilities, capabilities_desc, 
+      type_name, type_package_guid, type_size
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{objectType,jdbcType=NVARCHAR}, #{packageGuid,jdbcType=CHAR}, 
+      #{description,jdbcType=NVARCHAR}, #{capabilities,jdbcType=INTEGER}, #{capabilitiesDesc,jdbcType=NVARCHAR}, 
+      #{typeName,jdbcType=NVARCHAR}, #{typePackageGuid,jdbcType=CHAR}, #{typeSize,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmXeObjects" >
+    insert into dm_xe_objects
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="objectType != null" >
+        object_type,
+      </if>
+      <if test="packageGuid != null" >
+        package_guid,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="capabilities != null" >
+        capabilities,
+      </if>
+      <if test="capabilitiesDesc != null" >
+        capabilities_desc,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="typePackageGuid != null" >
+        type_package_guid,
+      </if>
+      <if test="typeSize != null" >
+        type_size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=NVARCHAR},
+      </if>
+      <if test="packageGuid != null" >
+        #{packageGuid,jdbcType=CHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=NVARCHAR},
+      </if>
+      <if test="capabilities != null" >
+        #{capabilities,jdbcType=INTEGER},
+      </if>
+      <if test="capabilitiesDesc != null" >
+        #{capabilitiesDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="typePackageGuid != null" >
+        #{typePackageGuid,jdbcType=CHAR},
+      </if>
+      <if test="typeSize != null" >
+        #{typeSize,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

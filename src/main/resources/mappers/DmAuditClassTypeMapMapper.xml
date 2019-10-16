@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmAuditClassTypeMapMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmAuditClassTypeMap" >
+    <result column="class_type" property="classType" jdbcType="VARCHAR" />
+    <result column="class_type_desc" property="classTypeDesc" jdbcType="NVARCHAR" />
+    <result column="securable_class_desc" property="securableClassDesc" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmAuditClassTypeMap" >
+    insert into dm_audit_class_type_map (class_type, class_type_desc, securable_class_desc
+      )
+    values (#{classType,jdbcType=VARCHAR}, #{classTypeDesc,jdbcType=NVARCHAR}, #{securableClassDesc,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmAuditClassTypeMap" >
+    insert into dm_audit_class_type_map
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classType != null" >
+        class_type,
+      </if>
+      <if test="classTypeDesc != null" >
+        class_type_desc,
+      </if>
+      <if test="securableClassDesc != null" >
+        securable_class_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classType != null" >
+        #{classType,jdbcType=VARCHAR},
+      </if>
+      <if test="classTypeDesc != null" >
+        #{classTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="securableClassDesc != null" >
+        #{securableClassDesc,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

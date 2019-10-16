@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmTranLocksMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmTranLocks" >
+    <result column="resource_type" property="resourceType" jdbcType="NVARCHAR" />
+    <result column="resource_subtype" property="resourceSubtype" jdbcType="NVARCHAR" />
+    <result column="resource_database_id" property="resourceDatabaseId" jdbcType="INTEGER" />
+    <result column="resource_description" property="resourceDescription" jdbcType="NVARCHAR" />
+    <result column="resource_associated_entity_id" property="resourceAssociatedEntityId" jdbcType="BIGINT" />
+    <result column="resource_lock_partition" property="resourceLockPartition" jdbcType="INTEGER" />
+    <result column="request_mode" property="requestMode" jdbcType="NVARCHAR" />
+    <result column="request_type" property="requestType" jdbcType="NVARCHAR" />
+    <result column="request_status" property="requestStatus" jdbcType="NVARCHAR" />
+    <result column="request_reference_count" property="requestReferenceCount" jdbcType="SMALLINT" />
+    <result column="request_lifetime" property="requestLifetime" jdbcType="INTEGER" />
+    <result column="request_session_id" property="requestSessionId" jdbcType="INTEGER" />
+    <result column="request_exec_context_id" property="requestExecContextId" jdbcType="INTEGER" />
+    <result column="request_request_id" property="requestRequestId" jdbcType="INTEGER" />
+    <result column="request_owner_type" property="requestOwnerType" jdbcType="NVARCHAR" />
+    <result column="request_owner_id" property="requestOwnerId" jdbcType="BIGINT" />
+    <result column="request_owner_guid" property="requestOwnerGuid" jdbcType="CHAR" />
+    <result column="request_owner_lockspace_id" property="requestOwnerLockspaceId" jdbcType="NVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmTranLocks" extends="BaseResultMap" >
+    <result column="lock_owner_address" property="lockOwnerAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    lock_owner_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranLocks" >
+    insert into dm_tran_locks (resource_type, resource_subtype, 
+      resource_database_id, resource_description, 
+      resource_associated_entity_id, resource_lock_partition, 
+      request_mode, request_type, request_status, 
+      request_reference_count, request_lifetime, 
+      request_session_id, request_exec_context_id, 
+      request_request_id, request_owner_type, request_owner_id, 
+      request_owner_guid, request_owner_lockspace_id, 
+      lock_owner_address)
+    values (#{resourceType,jdbcType=NVARCHAR}, #{resourceSubtype,jdbcType=NVARCHAR}, 
+      #{resourceDatabaseId,jdbcType=INTEGER}, #{resourceDescription,jdbcType=NVARCHAR}, 
+      #{resourceAssociatedEntityId,jdbcType=BIGINT}, #{resourceLockPartition,jdbcType=INTEGER}, 
+      #{requestMode,jdbcType=NVARCHAR}, #{requestType,jdbcType=NVARCHAR}, #{requestStatus,jdbcType=NVARCHAR}, 
+      #{requestReferenceCount,jdbcType=SMALLINT}, #{requestLifetime,jdbcType=INTEGER}, 
+      #{requestSessionId,jdbcType=INTEGER}, #{requestExecContextId,jdbcType=INTEGER}, 
+      #{requestRequestId,jdbcType=INTEGER}, #{requestOwnerType,jdbcType=NVARCHAR}, #{requestOwnerId,jdbcType=BIGINT}, 
+      #{requestOwnerGuid,jdbcType=CHAR}, #{requestOwnerLockspaceId,jdbcType=NVARCHAR}, 
+      #{lockOwnerAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmTranLocks" >
+    insert into dm_tran_locks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourceType != null" >
+        resource_type,
+      </if>
+      <if test="resourceSubtype != null" >
+        resource_subtype,
+      </if>
+      <if test="resourceDatabaseId != null" >
+        resource_database_id,
+      </if>
+      <if test="resourceDescription != null" >
+        resource_description,
+      </if>
+      <if test="resourceAssociatedEntityId != null" >
+        resource_associated_entity_id,
+      </if>
+      <if test="resourceLockPartition != null" >
+        resource_lock_partition,
+      </if>
+      <if test="requestMode != null" >
+        request_mode,
+      </if>
+      <if test="requestType != null" >
+        request_type,
+      </if>
+      <if test="requestStatus != null" >
+        request_status,
+      </if>
+      <if test="requestReferenceCount != null" >
+        request_reference_count,
+      </if>
+      <if test="requestLifetime != null" >
+        request_lifetime,
+      </if>
+      <if test="requestSessionId != null" >
+        request_session_id,
+      </if>
+      <if test="requestExecContextId != null" >
+        request_exec_context_id,
+      </if>
+      <if test="requestRequestId != null" >
+        request_request_id,
+      </if>
+      <if test="requestOwnerType != null" >
+        request_owner_type,
+      </if>
+      <if test="requestOwnerId != null" >
+        request_owner_id,
+      </if>
+      <if test="requestOwnerGuid != null" >
+        request_owner_guid,
+      </if>
+      <if test="requestOwnerLockspaceId != null" >
+        request_owner_lockspace_id,
+      </if>
+      <if test="lockOwnerAddress != null" >
+        lock_owner_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourceType != null" >
+        #{resourceType,jdbcType=NVARCHAR},
+      </if>
+      <if test="resourceSubtype != null" >
+        #{resourceSubtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="resourceDatabaseId != null" >
+        #{resourceDatabaseId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceDescription != null" >
+        #{resourceDescription,jdbcType=NVARCHAR},
+      </if>
+      <if test="resourceAssociatedEntityId != null" >
+        #{resourceAssociatedEntityId,jdbcType=BIGINT},
+      </if>
+      <if test="resourceLockPartition != null" >
+        #{resourceLockPartition,jdbcType=INTEGER},
+      </if>
+      <if test="requestMode != null" >
+        #{requestMode,jdbcType=NVARCHAR},
+      </if>
+      <if test="requestType != null" >
+        #{requestType,jdbcType=NVARCHAR},
+      </if>
+      <if test="requestStatus != null" >
+        #{requestStatus,jdbcType=NVARCHAR},
+      </if>
+      <if test="requestReferenceCount != null" >
+        #{requestReferenceCount,jdbcType=SMALLINT},
+      </if>
+      <if test="requestLifetime != null" >
+        #{requestLifetime,jdbcType=INTEGER},
+      </if>
+      <if test="requestSessionId != null" >
+        #{requestSessionId,jdbcType=INTEGER},
+      </if>
+      <if test="requestExecContextId != null" >
+        #{requestExecContextId,jdbcType=INTEGER},
+      </if>
+      <if test="requestRequestId != null" >
+        #{requestRequestId,jdbcType=INTEGER},
+      </if>
+      <if test="requestOwnerType != null" >
+        #{requestOwnerType,jdbcType=NVARCHAR},
+      </if>
+      <if test="requestOwnerId != null" >
+        #{requestOwnerId,jdbcType=BIGINT},
+      </if>
+      <if test="requestOwnerGuid != null" >
+        #{requestOwnerGuid,jdbcType=CHAR},
+      </if>
+      <if test="requestOwnerLockspaceId != null" >
+        #{requestOwnerLockspaceId,jdbcType=NVARCHAR},
+      </if>
+      <if test="lockOwnerAddress != null" >
+        #{lockOwnerAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TraceXeActionMapMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.TraceXeActionMap" >
+    <result column="trace_column_id" property="traceColumnId" jdbcType="SMALLINT" />
+    <result column="package_name" property="packageName" jdbcType="NVARCHAR" />
+    <result column="xe_action_name" property="xeActionName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TraceXeActionMap" >
+    insert into trace_xe_action_map (trace_column_id, package_name, xe_action_name
+      )
+    values (#{traceColumnId,jdbcType=SMALLINT}, #{packageName,jdbcType=NVARCHAR}, #{xeActionName,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TraceXeActionMap" >
+    insert into trace_xe_action_map
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="traceColumnId != null" >
+        trace_column_id,
+      </if>
+      <if test="packageName != null" >
+        package_name,
+      </if>
+      <if test="xeActionName != null" >
+        xe_action_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="traceColumnId != null" >
+        #{traceColumnId,jdbcType=SMALLINT},
+      </if>
+      <if test="packageName != null" >
+        #{packageName,jdbcType=NVARCHAR},
+      </if>
+      <if test="xeActionName != null" >
+        #{xeActionName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

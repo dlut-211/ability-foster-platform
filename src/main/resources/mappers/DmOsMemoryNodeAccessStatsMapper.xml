@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsMemoryNodeAccessStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryNodeAccessStats" >
+    <result column="local_node" property="localNode" jdbcType="INTEGER" />
+    <result column="remote_node" property="remoteNode" jdbcType="INTEGER" />
+    <result column="page_class" property="pageClass" jdbcType="NVARCHAR" />
+    <result column="read_count" property="readCount" jdbcType="BIGINT" />
+    <result column="write_count" property="writeCount" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryNodeAccessStats" >
+    insert into dm_os_memory_node_access_stats (local_node, remote_node, page_class, 
+      read_count, write_count)
+    values (#{localNode,jdbcType=INTEGER}, #{remoteNode,jdbcType=INTEGER}, #{pageClass,jdbcType=NVARCHAR}, 
+      #{readCount,jdbcType=BIGINT}, #{writeCount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryNodeAccessStats" >
+    insert into dm_os_memory_node_access_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="localNode != null" >
+        local_node,
+      </if>
+      <if test="remoteNode != null" >
+        remote_node,
+      </if>
+      <if test="pageClass != null" >
+        page_class,
+      </if>
+      <if test="readCount != null" >
+        read_count,
+      </if>
+      <if test="writeCount != null" >
+        write_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="localNode != null" >
+        #{localNode,jdbcType=INTEGER},
+      </if>
+      <if test="remoteNode != null" >
+        #{remoteNode,jdbcType=INTEGER},
+      </if>
+      <if test="pageClass != null" >
+        #{pageClass,jdbcType=NVARCHAR},
+      </if>
+      <if test="readCount != null" >
+        #{readCount,jdbcType=BIGINT},
+      </if>
+      <if test="writeCount != null" >
+        #{writeCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

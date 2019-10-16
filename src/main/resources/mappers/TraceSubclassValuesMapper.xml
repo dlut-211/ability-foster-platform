@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TraceSubclassValuesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.TraceSubclassValues" >
+    <result column="trace_event_id" property="traceEventId" jdbcType="SMALLINT" />
+    <result column="trace_column_id" property="traceColumnId" jdbcType="SMALLINT" />
+    <result column="subclass_name" property="subclassName" jdbcType="NVARCHAR" />
+    <result column="subclass_value" property="subclassValue" jdbcType="SMALLINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TraceSubclassValues" >
+    insert into trace_subclass_values (trace_event_id, trace_column_id, subclass_name, 
+      subclass_value)
+    values (#{traceEventId,jdbcType=SMALLINT}, #{traceColumnId,jdbcType=SMALLINT}, #{subclassName,jdbcType=NVARCHAR}, 
+      #{subclassValue,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TraceSubclassValues" >
+    insert into trace_subclass_values
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="traceEventId != null" >
+        trace_event_id,
+      </if>
+      <if test="traceColumnId != null" >
+        trace_column_id,
+      </if>
+      <if test="subclassName != null" >
+        subclass_name,
+      </if>
+      <if test="subclassValue != null" >
+        subclass_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="traceEventId != null" >
+        #{traceEventId,jdbcType=SMALLINT},
+      </if>
+      <if test="traceColumnId != null" >
+        #{traceColumnId,jdbcType=SMALLINT},
+      </if>
+      <if test="subclassName != null" >
+        #{subclassName,jdbcType=NVARCHAR},
+      </if>
+      <if test="subclassValue != null" >
+        #{subclassValue,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

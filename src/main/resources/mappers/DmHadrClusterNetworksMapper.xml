@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmHadrClusterNetworksMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrClusterNetworks" >
+    <result column="member_name" property="memberName" jdbcType="NVARCHAR" />
+    <result column="network_subnet_ip" property="networkSubnetIp" jdbcType="NVARCHAR" />
+    <result column="network_subnet_ipv4_mask" property="networkSubnetIpv4Mask" jdbcType="NVARCHAR" />
+    <result column="network_subnet_prefix_length" property="networkSubnetPrefixLength" jdbcType="INTEGER" />
+    <result column="is_public" property="isPublic" jdbcType="BIT" />
+    <result column="is_ipv4" property="isIpv4" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrClusterNetworks" >
+    insert into dm_hadr_cluster_networks (member_name, network_subnet_ip, network_subnet_ipv4_mask, 
+      network_subnet_prefix_length, is_public, is_ipv4
+      )
+    values (#{memberName,jdbcType=NVARCHAR}, #{networkSubnetIp,jdbcType=NVARCHAR}, #{networkSubnetIpv4Mask,jdbcType=NVARCHAR}, 
+      #{networkSubnetPrefixLength,jdbcType=INTEGER}, #{isPublic,jdbcType=BIT}, #{isIpv4,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmHadrClusterNetworks" >
+    insert into dm_hadr_cluster_networks
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="networkSubnetIp != null" >
+        network_subnet_ip,
+      </if>
+      <if test="networkSubnetIpv4Mask != null" >
+        network_subnet_ipv4_mask,
+      </if>
+      <if test="networkSubnetPrefixLength != null" >
+        network_subnet_prefix_length,
+      </if>
+      <if test="isPublic != null" >
+        is_public,
+      </if>
+      <if test="isIpv4 != null" >
+        is_ipv4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberName != null" >
+        #{memberName,jdbcType=NVARCHAR},
+      </if>
+      <if test="networkSubnetIp != null" >
+        #{networkSubnetIp,jdbcType=NVARCHAR},
+      </if>
+      <if test="networkSubnetIpv4Mask != null" >
+        #{networkSubnetIpv4Mask,jdbcType=NVARCHAR},
+      </if>
+      <if test="networkSubnetPrefixLength != null" >
+        #{networkSubnetPrefixLength,jdbcType=INTEGER},
+      </if>
+      <if test="isPublic != null" >
+        #{isPublic,jdbcType=BIT},
+      </if>
+      <if test="isIpv4 != null" >
+        #{isIpv4,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

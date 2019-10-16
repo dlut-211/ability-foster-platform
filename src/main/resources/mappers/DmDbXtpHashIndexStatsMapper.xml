@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbXtpHashIndexStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpHashIndexStats" >
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="total_bucket_count" property="totalBucketCount" jdbcType="BIGINT" />
+    <result column="empty_bucket_count" property="emptyBucketCount" jdbcType="BIGINT" />
+    <result column="avg_chain_length" property="avgChainLength" jdbcType="BIGINT" />
+    <result column="max_chain_length" property="maxChainLength" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpHashIndexStats" >
+    insert into dm_db_xtp_hash_index_stats (object_id, index_id, total_bucket_count, 
+      empty_bucket_count, avg_chain_length, max_chain_length
+      )
+    values (#{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, #{totalBucketCount,jdbcType=BIGINT}, 
+      #{emptyBucketCount,jdbcType=BIGINT}, #{avgChainLength,jdbcType=BIGINT}, #{maxChainLength,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpHashIndexStats" >
+    insert into dm_db_xtp_hash_index_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="totalBucketCount != null" >
+        total_bucket_count,
+      </if>
+      <if test="emptyBucketCount != null" >
+        empty_bucket_count,
+      </if>
+      <if test="avgChainLength != null" >
+        avg_chain_length,
+      </if>
+      <if test="maxChainLength != null" >
+        max_chain_length,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="totalBucketCount != null" >
+        #{totalBucketCount,jdbcType=BIGINT},
+      </if>
+      <if test="emptyBucketCount != null" >
+        #{emptyBucketCount,jdbcType=BIGINT},
+      </if>
+      <if test="avgChainLength != null" >
+        #{avgChainLength,jdbcType=BIGINT},
+      </if>
+      <if test="maxChainLength != null" >
+        #{maxChainLength,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

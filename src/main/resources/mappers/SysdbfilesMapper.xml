@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysdbfilesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysdbfiles" >
+    <result column="dbfragid" property="dbfragid" jdbcType="INTEGER" />
+    <result column="fileid" property="fileid" jdbcType="INTEGER" />
+    <result column="fileguid" property="fileguid" jdbcType="CHAR" />
+    <result column="pname" property="pname" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysdbfiles" >
+    insert into sysdbfiles (dbfragid, fileid, fileguid, 
+      pname)
+    values (#{dbfragid,jdbcType=INTEGER}, #{fileid,jdbcType=INTEGER}, #{fileguid,jdbcType=CHAR}, 
+      #{pname,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysdbfiles" >
+    insert into sysdbfiles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dbfragid != null" >
+        dbfragid,
+      </if>
+      <if test="fileid != null" >
+        fileid,
+      </if>
+      <if test="fileguid != null" >
+        fileguid,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dbfragid != null" >
+        #{dbfragid,jdbcType=INTEGER},
+      </if>
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="fileguid != null" >
+        #{fileguid,jdbcType=CHAR},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

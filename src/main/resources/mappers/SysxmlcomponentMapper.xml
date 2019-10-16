@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysxmlcomponentMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmlcomponent" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="xsdid" property="xsdid" jdbcType="INTEGER" />
+    <result column="uriord" property="uriord" jdbcType="INTEGER" />
+    <result column="qual" property="qual" jdbcType="TINYINT" />
+    <result column="nameid" property="nameid" jdbcType="INTEGER" />
+    <result column="symspace" property="symspace" jdbcType="CHAR" />
+    <result column="nmscope" property="nmscope" jdbcType="INTEGER" />
+    <result column="kind" property="kind" jdbcType="CHAR" />
+    <result column="deriv" property="deriv" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="enum" property="enum" jdbcType="CHAR" />
+    <result column="defval" property="defval" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmlcomponent" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysxmlcomponent (id, xsdid, uriord, 
+      qual, nameid, symspace, 
+      nmscope, kind, deriv, status, 
+      enum, defval)
+    values (#{id,jdbcType=INTEGER}, #{xsdid,jdbcType=INTEGER}, #{uriord,jdbcType=INTEGER}, 
+      #{qual,jdbcType=TINYINT}, #{nameid,jdbcType=INTEGER}, #{symspace,jdbcType=CHAR}, 
+      #{nmscope,jdbcType=INTEGER}, #{kind,jdbcType=CHAR}, #{deriv,jdbcType=CHAR}, #{status,jdbcType=INTEGER}, 
+      #{enum,jdbcType=CHAR}, #{defval,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysxmlcomponent" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysxmlcomponent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="xsdid != null" >
+        xsdid,
+      </if>
+      <if test="uriord != null" >
+        uriord,
+      </if>
+      <if test="qual != null" >
+        qual,
+      </if>
+      <if test="nameid != null" >
+        nameid,
+      </if>
+      <if test="symspace != null" >
+        symspace,
+      </if>
+      <if test="nmscope != null" >
+        nmscope,
+      </if>
+      <if test="kind != null" >
+        kind,
+      </if>
+      <if test="deriv != null" >
+        deriv,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="enum != null" >
+        enum,
+      </if>
+      <if test="defval != null" >
+        defval,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="xsdid != null" >
+        #{xsdid,jdbcType=INTEGER},
+      </if>
+      <if test="uriord != null" >
+        #{uriord,jdbcType=INTEGER},
+      </if>
+      <if test="qual != null" >
+        #{qual,jdbcType=TINYINT},
+      </if>
+      <if test="nameid != null" >
+        #{nameid,jdbcType=INTEGER},
+      </if>
+      <if test="symspace != null" >
+        #{symspace,jdbcType=CHAR},
+      </if>
+      <if test="nmscope != null" >
+        #{nmscope,jdbcType=INTEGER},
+      </if>
+      <if test="kind != null" >
+        #{kind,jdbcType=CHAR},
+      </if>
+      <if test="deriv != null" >
+        #{deriv,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="enum != null" >
+        #{enum,jdbcType=CHAR},
+      </if>
+      <if test="defval != null" >
+        #{defval,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

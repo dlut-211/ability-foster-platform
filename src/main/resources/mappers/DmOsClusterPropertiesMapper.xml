@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsClusterPropertiesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsClusterProperties" >
+    <result column="VerboseLogging" property="verboselogging" jdbcType="BIGINT" />
+    <result column="SqlDumperDumpFlags" property="sqldumperdumpflags" jdbcType="BIGINT" />
+    <result column="SqlDumperDumpPath" property="sqldumperdumppath" jdbcType="NVARCHAR" />
+    <result column="SqlDumperDumpTimeOut" property="sqldumperdumptimeout" jdbcType="BIGINT" />
+    <result column="FailureConditionLevel" property="failureconditionlevel" jdbcType="BIGINT" />
+    <result column="HealthCheckTimeout" property="healthchecktimeout" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsClusterProperties" >
+    insert into dm_os_cluster_properties (VerboseLogging, SqlDumperDumpFlags, 
+      SqlDumperDumpPath, SqlDumperDumpTimeOut, 
+      FailureConditionLevel, HealthCheckTimeout
+      )
+    values (#{verboselogging,jdbcType=BIGINT}, #{sqldumperdumpflags,jdbcType=BIGINT}, 
+      #{sqldumperdumppath,jdbcType=NVARCHAR}, #{sqldumperdumptimeout,jdbcType=BIGINT}, 
+      #{failureconditionlevel,jdbcType=BIGINT}, #{healthchecktimeout,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsClusterProperties" >
+    insert into dm_os_cluster_properties
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="verboselogging != null" >
+        VerboseLogging,
+      </if>
+      <if test="sqldumperdumpflags != null" >
+        SqlDumperDumpFlags,
+      </if>
+      <if test="sqldumperdumppath != null" >
+        SqlDumperDumpPath,
+      </if>
+      <if test="sqldumperdumptimeout != null" >
+        SqlDumperDumpTimeOut,
+      </if>
+      <if test="failureconditionlevel != null" >
+        FailureConditionLevel,
+      </if>
+      <if test="healthchecktimeout != null" >
+        HealthCheckTimeout,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="verboselogging != null" >
+        #{verboselogging,jdbcType=BIGINT},
+      </if>
+      <if test="sqldumperdumpflags != null" >
+        #{sqldumperdumpflags,jdbcType=BIGINT},
+      </if>
+      <if test="sqldumperdumppath != null" >
+        #{sqldumperdumppath,jdbcType=NVARCHAR},
+      </if>
+      <if test="sqldumperdumptimeout != null" >
+        #{sqldumperdumptimeout,jdbcType=BIGINT},
+      </if>
+      <if test="failureconditionlevel != null" >
+        #{failureconditionlevel,jdbcType=BIGINT},
+      </if>
+      <if test="healthchecktimeout != null" >
+        #{healthchecktimeout,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

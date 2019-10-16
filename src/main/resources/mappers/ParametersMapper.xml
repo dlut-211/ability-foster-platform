@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ParametersMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Parameters">
+    <result column="SPECIFIC_CATALOG" jdbcType="NVARCHAR" property="specificCatalog" />
+    <result column="SPECIFIC_SCHEMA" jdbcType="NVARCHAR" property="specificSchema" />
+    <result column="SPECIFIC_NAME" jdbcType="NVARCHAR" property="specificName" />
+    <result column="ORDINAL_POSITION" jdbcType="INTEGER" property="ordinalPosition" />
+    <result column="PARAMETER_MODE" jdbcType="NVARCHAR" property="parameterMode" />
+    <result column="IS_RESULT" jdbcType="NVARCHAR" property="isResult" />
+    <result column="AS_LOCATOR" jdbcType="NVARCHAR" property="asLocator" />
+    <result column="PARAMETER_NAME" jdbcType="NVARCHAR" property="parameterName" />
+    <result column="DATA_TYPE" jdbcType="NVARCHAR" property="dataType" />
+    <result column="CHARACTER_MAXIMUM_LENGTH" jdbcType="INTEGER" property="characterMaximumLength" />
+    <result column="CHARACTER_OCTET_LENGTH" jdbcType="INTEGER" property="characterOctetLength" />
+    <result column="COLLATION_CATALOG" jdbcType="NVARCHAR" property="collationCatalog" />
+    <result column="COLLATION_SCHEMA" jdbcType="NVARCHAR" property="collationSchema" />
+    <result column="COLLATION_NAME" jdbcType="NVARCHAR" property="collationName" />
+    <result column="CHARACTER_SET_CATALOG" jdbcType="NVARCHAR" property="characterSetCatalog" />
+    <result column="CHARACTER_SET_SCHEMA" jdbcType="NVARCHAR" property="characterSetSchema" />
+    <result column="CHARACTER_SET_NAME" jdbcType="NVARCHAR" property="characterSetName" />
+    <result column="NUMERIC_PRECISION" jdbcType="TINYINT" property="numericPrecision" />
+    <result column="NUMERIC_PRECISION_RADIX" jdbcType="SMALLINT" property="numericPrecisionRadix" />
+    <result column="NUMERIC_SCALE" jdbcType="INTEGER" property="numericScale" />
+    <result column="DATETIME_PRECISION" jdbcType="SMALLINT" property="datetimePrecision" />
+    <result column="INTERVAL_TYPE" jdbcType="NVARCHAR" property="intervalType" />
+    <result column="INTERVAL_PRECISION" jdbcType="SMALLINT" property="intervalPrecision" />
+    <result column="USER_DEFINED_TYPE_CATALOG" jdbcType="NVARCHAR" property="userDefinedTypeCatalog" />
+    <result column="USER_DEFINED_TYPE_SCHEMA" jdbcType="NVARCHAR" property="userDefinedTypeSchema" />
+    <result column="USER_DEFINED_TYPE_NAME" jdbcType="NVARCHAR" property="userDefinedTypeName" />
+    <result column="SCOPE_CATALOG" jdbcType="NVARCHAR" property="scopeCatalog" />
+    <result column="SCOPE_SCHEMA" jdbcType="NVARCHAR" property="scopeSchema" />
+    <result column="SCOPE_NAME" jdbcType="NVARCHAR" property="scopeName" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Parameters">
+    insert into PARAMETERS (SPECIFIC_CATALOG, SPECIFIC_SCHEMA, 
+      SPECIFIC_NAME, ORDINAL_POSITION, PARAMETER_MODE, 
+      IS_RESULT, AS_LOCATOR, PARAMETER_NAME, 
+      DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, CHARACTER_OCTET_LENGTH, 
+      COLLATION_CATALOG, COLLATION_SCHEMA, COLLATION_NAME, 
+      CHARACTER_SET_CATALOG, CHARACTER_SET_SCHEMA, 
+      CHARACTER_SET_NAME, NUMERIC_PRECISION, NUMERIC_PRECISION_RADIX, 
+      NUMERIC_SCALE, DATETIME_PRECISION, INTERVAL_TYPE, 
+      INTERVAL_PRECISION, USER_DEFINED_TYPE_CATALOG, 
+      USER_DEFINED_TYPE_SCHEMA, USER_DEFINED_TYPE_NAME, 
+      SCOPE_CATALOG, SCOPE_SCHEMA, SCOPE_NAME
+      )
+    values (#{specificCatalog,jdbcType=NVARCHAR}, #{specificSchema,jdbcType=NVARCHAR}, 
+      #{specificName,jdbcType=NVARCHAR}, #{ordinalPosition,jdbcType=INTEGER}, #{parameterMode,jdbcType=NVARCHAR}, 
+      #{isResult,jdbcType=NVARCHAR}, #{asLocator,jdbcType=NVARCHAR}, #{parameterName,jdbcType=NVARCHAR}, 
+      #{dataType,jdbcType=NVARCHAR}, #{characterMaximumLength,jdbcType=INTEGER}, #{characterOctetLength,jdbcType=INTEGER}, 
+      #{collationCatalog,jdbcType=NVARCHAR}, #{collationSchema,jdbcType=NVARCHAR}, #{collationName,jdbcType=NVARCHAR}, 
+      #{characterSetCatalog,jdbcType=NVARCHAR}, #{characterSetSchema,jdbcType=NVARCHAR}, 
+      #{characterSetName,jdbcType=NVARCHAR}, #{numericPrecision,jdbcType=TINYINT}, #{numericPrecisionRadix,jdbcType=SMALLINT}, 
+      #{numericScale,jdbcType=INTEGER}, #{datetimePrecision,jdbcType=SMALLINT}, #{intervalType,jdbcType=NVARCHAR}, 
+      #{intervalPrecision,jdbcType=SMALLINT}, #{userDefinedTypeCatalog,jdbcType=NVARCHAR}, 
+      #{userDefinedTypeSchema,jdbcType=NVARCHAR}, #{userDefinedTypeName,jdbcType=NVARCHAR}, 
+      #{scopeCatalog,jdbcType=NVARCHAR}, #{scopeSchema,jdbcType=NVARCHAR}, #{scopeName,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Parameters">
+    insert into PARAMETERS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="specificCatalog != null">
+        SPECIFIC_CATALOG,
+      </if>
+      <if test="specificSchema != null">
+        SPECIFIC_SCHEMA,
+      </if>
+      <if test="specificName != null">
+        SPECIFIC_NAME,
+      </if>
+      <if test="ordinalPosition != null">
+        ORDINAL_POSITION,
+      </if>
+      <if test="parameterMode != null">
+        PARAMETER_MODE,
+      </if>
+      <if test="isResult != null">
+        IS_RESULT,
+      </if>
+      <if test="asLocator != null">
+        AS_LOCATOR,
+      </if>
+      <if test="parameterName != null">
+        PARAMETER_NAME,
+      </if>
+      <if test="dataType != null">
+        DATA_TYPE,
+      </if>
+      <if test="characterMaximumLength != null">
+        CHARACTER_MAXIMUM_LENGTH,
+      </if>
+      <if test="characterOctetLength != null">
+        CHARACTER_OCTET_LENGTH,
+      </if>
+      <if test="collationCatalog != null">
+        COLLATION_CATALOG,
+      </if>
+      <if test="collationSchema != null">
+        COLLATION_SCHEMA,
+      </if>
+      <if test="collationName != null">
+        COLLATION_NAME,
+      </if>
+      <if test="characterSetCatalog != null">
+        CHARACTER_SET_CATALOG,
+      </if>
+      <if test="characterSetSchema != null">
+        CHARACTER_SET_SCHEMA,
+      </if>
+      <if test="characterSetName != null">
+        CHARACTER_SET_NAME,
+      </if>
+      <if test="numericPrecision != null">
+        NUMERIC_PRECISION,
+      </if>
+      <if test="numericPrecisionRadix != null">
+        NUMERIC_PRECISION_RADIX,
+      </if>
+      <if test="numericScale != null">
+        NUMERIC_SCALE,
+      </if>
+      <if test="datetimePrecision != null">
+        DATETIME_PRECISION,
+      </if>
+      <if test="intervalType != null">
+        INTERVAL_TYPE,
+      </if>
+      <if test="intervalPrecision != null">
+        INTERVAL_PRECISION,
+      </if>
+      <if test="userDefinedTypeCatalog != null">
+        USER_DEFINED_TYPE_CATALOG,
+      </if>
+      <if test="userDefinedTypeSchema != null">
+        USER_DEFINED_TYPE_SCHEMA,
+      </if>
+      <if test="userDefinedTypeName != null">
+        USER_DEFINED_TYPE_NAME,
+      </if>
+      <if test="scopeCatalog != null">
+        SCOPE_CATALOG,
+      </if>
+      <if test="scopeSchema != null">
+        SCOPE_SCHEMA,
+      </if>
+      <if test="scopeName != null">
+        SCOPE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="specificCatalog != null">
+        #{specificCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="specificSchema != null">
+        #{specificSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="specificName != null">
+        #{specificName,jdbcType=NVARCHAR},
+      </if>
+      <if test="ordinalPosition != null">
+        #{ordinalPosition,jdbcType=INTEGER},
+      </if>
+      <if test="parameterMode != null">
+        #{parameterMode,jdbcType=NVARCHAR},
+      </if>
+      <if test="isResult != null">
+        #{isResult,jdbcType=NVARCHAR},
+      </if>
+      <if test="asLocator != null">
+        #{asLocator,jdbcType=NVARCHAR},
+      </if>
+      <if test="parameterName != null">
+        #{parameterName,jdbcType=NVARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterMaximumLength != null">
+        #{characterMaximumLength,jdbcType=INTEGER},
+      </if>
+      <if test="characterOctetLength != null">
+        #{characterOctetLength,jdbcType=INTEGER},
+      </if>
+      <if test="collationCatalog != null">
+        #{collationCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="collationSchema != null">
+        #{collationSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="collationName != null">
+        #{collationName,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterSetCatalog != null">
+        #{characterSetCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterSetSchema != null">
+        #{characterSetSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="characterSetName != null">
+        #{characterSetName,jdbcType=NVARCHAR},
+      </if>
+      <if test="numericPrecision != null">
+        #{numericPrecision,jdbcType=TINYINT},
+      </if>
+      <if test="numericPrecisionRadix != null">
+        #{numericPrecisionRadix,jdbcType=SMALLINT},
+      </if>
+      <if test="numericScale != null">
+        #{numericScale,jdbcType=INTEGER},
+      </if>
+      <if test="datetimePrecision != null">
+        #{datetimePrecision,jdbcType=SMALLINT},
+      </if>
+      <if test="intervalType != null">
+        #{intervalType,jdbcType=NVARCHAR},
+      </if>
+      <if test="intervalPrecision != null">
+        #{intervalPrecision,jdbcType=SMALLINT},
+      </if>
+      <if test="userDefinedTypeCatalog != null">
+        #{userDefinedTypeCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="userDefinedTypeSchema != null">
+        #{userDefinedTypeSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="userDefinedTypeName != null">
+        #{userDefinedTypeName,jdbcType=NVARCHAR},
+      </if>
+      <if test="scopeCatalog != null">
+        #{scopeCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="scopeSchema != null">
+        #{scopeSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="scopeName != null">
+        #{scopeName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Parameters">
+    <result column="object_id" jdbcType="INTEGER" property="objectId" />
+    <result column="name" jdbcType="NVARCHAR" property="name" />
+    <result column="parameter_id" jdbcType="INTEGER" property="parameterId" />
+    <result column="system_type_id" jdbcType="TINYINT" property="systemTypeId" />
+    <result column="user_type_id" jdbcType="INTEGER" property="userTypeId" />
+    <result column="max_length" jdbcType="SMALLINT" property="maxLength" />
+    <result column="precision" jdbcType="TINYINT" property="precision" />
+    <result column="scale" jdbcType="TINYINT" property="scale" />
+    <result column="is_output" jdbcType="BIT" property="isOutput" />
+    <result column="is_cursor_ref" jdbcType="BIT" property="isCursorRef" />
+    <result column="has_default_value" jdbcType="BIT" property="hasDefaultValue" />
+    <result column="is_xml_document" jdbcType="BIT" property="isXmlDocument" />
+    <result column="default_value" jdbcType="OTHER" property="defaultValue" />
+    <result column="xml_collection_id" jdbcType="INTEGER" property="xmlCollectionId" />
+    <result column="is_readonly" jdbcType="BIT" property="isReadonly" />
+    <result column="is_nullable" jdbcType="BIT" property="isNullable" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Parameters">
+    insert into parameters (object_id, name, parameter_id, 
+      system_type_id, user_type_id, max_length, 
+      precision, scale, is_output, 
+      is_cursor_ref, has_default_value, is_xml_document, 
+      default_value, xml_collection_id, is_readonly, 
+      is_nullable)
+    values (#{objectId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{parameterId,jdbcType=INTEGER}, 
+      #{systemTypeId,jdbcType=TINYINT}, #{userTypeId,jdbcType=INTEGER}, #{maxLength,jdbcType=SMALLINT}, 
+      #{precision,jdbcType=TINYINT}, #{scale,jdbcType=TINYINT}, #{isOutput,jdbcType=BIT}, 
+      #{isCursorRef,jdbcType=BIT}, #{hasDefaultValue,jdbcType=BIT}, #{isXmlDocument,jdbcType=BIT}, 
+      #{defaultValue,jdbcType=OTHER}, #{xmlCollectionId,jdbcType=INTEGER}, #{isReadonly,jdbcType=BIT}, 
+      #{isNullable,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Parameters">
+    insert into parameters
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objectId != null">
+        object_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="parameterId != null">
+        parameter_id,
+      </if>
+      <if test="systemTypeId != null">
+        system_type_id,
+      </if>
+      <if test="userTypeId != null">
+        user_type_id,
+      </if>
+      <if test="maxLength != null">
+        max_length,
+      </if>
+      <if test="precision != null">
+        precision,
+      </if>
+      <if test="scale != null">
+        scale,
+      </if>
+      <if test="isOutput != null">
+        is_output,
+      </if>
+      <if test="isCursorRef != null">
+        is_cursor_ref,
+      </if>
+      <if test="hasDefaultValue != null">
+        has_default_value,
+      </if>
+      <if test="isXmlDocument != null">
+        is_xml_document,
+      </if>
+      <if test="defaultValue != null">
+        default_value,
+      </if>
+      <if test="xmlCollectionId != null">
+        xml_collection_id,
+      </if>
+      <if test="isReadonly != null">
+        is_readonly,
+      </if>
+      <if test="isNullable != null">
+        is_nullable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objectId != null">
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="parameterId != null">
+        #{parameterId,jdbcType=INTEGER},
+      </if>
+      <if test="systemTypeId != null">
+        #{systemTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="userTypeId != null">
+        #{userTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="maxLength != null">
+        #{maxLength,jdbcType=SMALLINT},
+      </if>
+      <if test="precision != null">
+        #{precision,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null">
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="isOutput != null">
+        #{isOutput,jdbcType=BIT},
+      </if>
+      <if test="isCursorRef != null">
+        #{isCursorRef,jdbcType=BIT},
+      </if>
+      <if test="hasDefaultValue != null">
+        #{hasDefaultValue,jdbcType=BIT},
+      </if>
+      <if test="isXmlDocument != null">
+        #{isXmlDocument,jdbcType=BIT},
+      </if>
+      <if test="defaultValue != null">
+        #{defaultValue,jdbcType=OTHER},
+      </if>
+      <if test="xmlCollectionId != null">
+        #{xmlCollectionId,jdbcType=INTEGER},
+      </if>
+      <if test="isReadonly != null">
+        #{isReadonly,jdbcType=BIT},
+      </if>
+      <if test="isNullable != null">
+        #{isNullable,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

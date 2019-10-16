@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsBufferDescriptorsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsBufferDescriptors" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="file_id" property="fileId" jdbcType="INTEGER" />
+    <result column="page_id" property="pageId" jdbcType="INTEGER" />
+    <result column="page_level" property="pageLevel" jdbcType="INTEGER" />
+    <result column="allocation_unit_id" property="allocationUnitId" jdbcType="BIGINT" />
+    <result column="page_type" property="pageType" jdbcType="NVARCHAR" />
+    <result column="row_count" property="rowCount" jdbcType="INTEGER" />
+    <result column="free_space_in_bytes" property="freeSpaceInBytes" jdbcType="INTEGER" />
+    <result column="is_modified" property="isModified" jdbcType="BIT" />
+    <result column="numa_node" property="numaNode" jdbcType="INTEGER" />
+    <result column="read_microsec" property="readMicrosec" jdbcType="BIGINT" />
+    <result column="is_in_bpool_extension" property="isInBpoolExtension" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsBufferDescriptors" >
+    insert into dm_os_buffer_descriptors (database_id, file_id, page_id, 
+      page_level, allocation_unit_id, page_type, 
+      row_count, free_space_in_bytes, is_modified, 
+      numa_node, read_microsec, is_in_bpool_extension
+      )
+    values (#{databaseId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{pageId,jdbcType=INTEGER}, 
+      #{pageLevel,jdbcType=INTEGER}, #{allocationUnitId,jdbcType=BIGINT}, #{pageType,jdbcType=NVARCHAR}, 
+      #{rowCount,jdbcType=INTEGER}, #{freeSpaceInBytes,jdbcType=INTEGER}, #{isModified,jdbcType=BIT}, 
+      #{numaNode,jdbcType=INTEGER}, #{readMicrosec,jdbcType=BIGINT}, #{isInBpoolExtension,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsBufferDescriptors" >
+    insert into dm_os_buffer_descriptors
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="pageId != null" >
+        page_id,
+      </if>
+      <if test="pageLevel != null" >
+        page_level,
+      </if>
+      <if test="allocationUnitId != null" >
+        allocation_unit_id,
+      </if>
+      <if test="pageType != null" >
+        page_type,
+      </if>
+      <if test="rowCount != null" >
+        row_count,
+      </if>
+      <if test="freeSpaceInBytes != null" >
+        free_space_in_bytes,
+      </if>
+      <if test="isModified != null" >
+        is_modified,
+      </if>
+      <if test="numaNode != null" >
+        numa_node,
+      </if>
+      <if test="readMicrosec != null" >
+        read_microsec,
+      </if>
+      <if test="isInBpoolExtension != null" >
+        is_in_bpool_extension,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="fileId != null" >
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="pageId != null" >
+        #{pageId,jdbcType=INTEGER},
+      </if>
+      <if test="pageLevel != null" >
+        #{pageLevel,jdbcType=INTEGER},
+      </if>
+      <if test="allocationUnitId != null" >
+        #{allocationUnitId,jdbcType=BIGINT},
+      </if>
+      <if test="pageType != null" >
+        #{pageType,jdbcType=NVARCHAR},
+      </if>
+      <if test="rowCount != null" >
+        #{rowCount,jdbcType=INTEGER},
+      </if>
+      <if test="freeSpaceInBytes != null" >
+        #{freeSpaceInBytes,jdbcType=INTEGER},
+      </if>
+      <if test="isModified != null" >
+        #{isModified,jdbcType=BIT},
+      </if>
+      <if test="numaNode != null" >
+        #{numaNode,jdbcType=INTEGER},
+      </if>
+      <if test="readMicrosec != null" >
+        #{readMicrosec,jdbcType=BIGINT},
+      </if>
+      <if test="isInBpoolExtension != null" >
+        #{isInBpoolExtension,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FulltextDocumentTypesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FulltextDocumentTypes" >
+    <result column="document_type" property="documentType" jdbcType="NVARCHAR" />
+    <result column="class_id" property="classId" jdbcType="CHAR" />
+    <result column="path" property="path" jdbcType="NVARCHAR" />
+    <result column="version" property="version" jdbcType="NVARCHAR" />
+    <result column="manufacturer" property="manufacturer" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FulltextDocumentTypes" >
+    insert into fulltext_document_types (document_type, class_id, path, 
+      version, manufacturer)
+    values (#{documentType,jdbcType=NVARCHAR}, #{classId,jdbcType=CHAR}, #{path,jdbcType=NVARCHAR}, 
+      #{version,jdbcType=NVARCHAR}, #{manufacturer,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FulltextDocumentTypes" >
+    insert into fulltext_document_types
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="documentType != null" >
+        document_type,
+      </if>
+      <if test="classId != null" >
+        class_id,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="manufacturer != null" >
+        manufacturer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="documentType != null" >
+        #{documentType,jdbcType=NVARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=CHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=NVARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=NVARCHAR},
+      </if>
+      <if test="manufacturer != null" >
+        #{manufacturer,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

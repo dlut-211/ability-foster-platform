@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmServerMemoryDumpsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmServerMemoryDumps" >
+    <result column="filename" property="filename" jdbcType="NVARCHAR" />
+    <result column="creation_time" property="creationTime" jdbcType="OTHER" />
+    <result column="size_in_bytes" property="sizeInBytes" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmServerMemoryDumps" >
+    insert into dm_server_memory_dumps (filename, creation_time, size_in_bytes
+      )
+    values (#{filename,jdbcType=NVARCHAR}, #{creationTime,jdbcType=OTHER}, #{sizeInBytes,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmServerMemoryDumps" >
+    insert into dm_server_memory_dumps
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="filename != null" >
+        filename,
+      </if>
+      <if test="creationTime != null" >
+        creation_time,
+      </if>
+      <if test="sizeInBytes != null" >
+        size_in_bytes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="filename != null" >
+        #{filename,jdbcType=NVARCHAR},
+      </if>
+      <if test="creationTime != null" >
+        #{creationTime,jdbcType=OTHER},
+      </if>
+      <if test="sizeInBytes != null" >
+        #{sizeInBytes,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

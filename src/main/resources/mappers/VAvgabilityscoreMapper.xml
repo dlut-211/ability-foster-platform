@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VAvgabilityscoreMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VAvgabilityscore" >
+    <result column="SubjectId" property="subjectid" jdbcType="INTEGER" />
+    <result column="CourseId" property="courseid" jdbcType="INTEGER" />
+    <result column="ClassRoomId" property="classroomid" jdbcType="INTEGER" />
+    <result column="AbilityId" property="abilityid" jdbcType="INTEGER" />
+    <result column="AbilityName" property="abilityname" jdbcType="NVARCHAR" />
+    <result column="AvgScore" property="avgscore" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAvgabilityscore" >
+    insert into V_AvgAbilityScore (SubjectId, CourseId, ClassRoomId, 
+      AbilityId, AbilityName, AvgScore
+      )
+    values (#{subjectid,jdbcType=INTEGER}, #{courseid,jdbcType=INTEGER}, #{classroomid,jdbcType=INTEGER}, 
+      #{abilityid,jdbcType=INTEGER}, #{abilityname,jdbcType=NVARCHAR}, #{avgscore,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAvgabilityscore" >
+    insert into V_AvgAbilityScore
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subjectid != null" >
+        SubjectId,
+      </if>
+      <if test="courseid != null" >
+        CourseId,
+      </if>
+      <if test="classroomid != null" >
+        ClassRoomId,
+      </if>
+      <if test="abilityid != null" >
+        AbilityId,
+      </if>
+      <if test="abilityname != null" >
+        AbilityName,
+      </if>
+      <if test="avgscore != null" >
+        AvgScore,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subjectid != null" >
+        #{subjectid,jdbcType=INTEGER},
+      </if>
+      <if test="courseid != null" >
+        #{courseid,jdbcType=INTEGER},
+      </if>
+      <if test="classroomid != null" >
+        #{classroomid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityid != null" >
+        #{abilityid,jdbcType=INTEGER},
+      </if>
+      <if test="abilityname != null" >
+        #{abilityname,jdbcType=NVARCHAR},
+      </if>
+      <if test="avgscore != null" >
+        #{avgscore,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

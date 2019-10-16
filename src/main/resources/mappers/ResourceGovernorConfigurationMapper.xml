@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ResourceGovernorConfigurationMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorConfiguration" >
+    <result column="classifier_function_id" property="classifierFunctionId" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="max_outstanding_io_per_volume" property="maxOutstandingIoPerVolume" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorConfiguration" >
+    insert into resource_governor_configuration (classifier_function_id, is_enabled, max_outstanding_io_per_volume
+      )
+    values (#{classifierFunctionId,jdbcType=INTEGER}, #{isEnabled,jdbcType=BIT}, #{maxOutstandingIoPerVolume,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorConfiguration" >
+    insert into resource_governor_configuration
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classifierFunctionId != null" >
+        classifier_function_id,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="maxOutstandingIoPerVolume != null" >
+        max_outstanding_io_per_volume,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classifierFunctionId != null" >
+        #{classifierFunctionId,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="maxOutstandingIoPerVolume != null" >
+        #{maxOutstandingIoPerVolume,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

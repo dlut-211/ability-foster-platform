@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ResourceGovernorResourcePoolAffinityMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorResourcePoolAffinity" >
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="processor_group" property="processorGroup" jdbcType="SMALLINT" />
+    <result column="scheduler_mask" property="schedulerMask" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorResourcePoolAffinity" >
+    insert into resource_governor_resource_pool_affinity (pool_id, processor_group, scheduler_mask
+      )
+    values (#{poolId,jdbcType=INTEGER}, #{processorGroup,jdbcType=SMALLINT}, #{schedulerMask,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorResourcePoolAffinity" >
+    insert into resource_governor_resource_pool_affinity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="processorGroup != null" >
+        processor_group,
+      </if>
+      <if test="schedulerMask != null" >
+        scheduler_mask,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="processorGroup != null" >
+        #{processorGroup,jdbcType=SMALLINT},
+      </if>
+      <if test="schedulerMask != null" >
+        #{schedulerMask,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

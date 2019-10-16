@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysobjkeycryptsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysobjkeycrypts" >
+    <result column="class" property="class" jdbcType="TINYINT" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.SysobjkeycryptsWithBLOBs" extends="BaseResultMap" >
+    <result column="thumbprint" property="thumbprint" jdbcType="VARBINARY" />
+    <result column="crypto" property="crypto" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    thumbprint, crypto
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysobjkeycryptsWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysobjkeycrypts (class, id, type, 
+      status, thumbprint, crypto
+      )
+    values (#{class,jdbcType=TINYINT}, #{id,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{status,jdbcType=INTEGER}, #{thumbprint,jdbcType=VARBINARY}, #{crypto,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysobjkeycryptsWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysobjkeycrypts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        class,
+      </if>
+      id,
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="thumbprint != null" >
+        thumbprint,
+      </if>
+      <if test="crypto != null" >
+        crypto,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="class != null" >
+        #{class,jdbcType=TINYINT},
+      </if>
+      #{id,jdbcType=INTEGER},
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="thumbprint != null" >
+        #{thumbprint,jdbcType=VARBINARY},
+      </if>
+      <if test="crypto != null" >
+        #{crypto,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

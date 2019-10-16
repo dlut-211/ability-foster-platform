@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ConstraintTableUsageMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ConstraintTableUsage" >
+    <result column="TABLE_CATALOG" property="tableCatalog" jdbcType="NVARCHAR" />
+    <result column="TABLE_SCHEMA" property="tableSchema" jdbcType="NVARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="NVARCHAR" />
+    <result column="CONSTRAINT_CATALOG" property="constraintCatalog" jdbcType="NVARCHAR" />
+    <result column="CONSTRAINT_SCHEMA" property="constraintSchema" jdbcType="NVARCHAR" />
+    <result column="CONSTRAINT_NAME" property="constraintName" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ConstraintTableUsage" >
+    insert into CONSTRAINT_TABLE_USAGE (TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, 
+      CONSTRAINT_CATALOG, CONSTRAINT_SCHEMA, 
+      CONSTRAINT_NAME)
+    values (#{tableCatalog,jdbcType=NVARCHAR}, #{tableSchema,jdbcType=NVARCHAR}, #{tableName,jdbcType=NVARCHAR}, 
+      #{constraintCatalog,jdbcType=NVARCHAR}, #{constraintSchema,jdbcType=NVARCHAR}, 
+      #{constraintName,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ConstraintTableUsage" >
+    insert into CONSTRAINT_TABLE_USAGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tableCatalog != null" >
+        TABLE_CATALOG,
+      </if>
+      <if test="tableSchema != null" >
+        TABLE_SCHEMA,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="constraintCatalog != null" >
+        CONSTRAINT_CATALOG,
+      </if>
+      <if test="constraintSchema != null" >
+        CONSTRAINT_SCHEMA,
+      </if>
+      <if test="constraintName != null" >
+        CONSTRAINT_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tableCatalog != null" >
+        #{tableCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableSchema != null" >
+        #{tableSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=NVARCHAR},
+      </if>
+      <if test="constraintCatalog != null" >
+        #{constraintCatalog,jdbcType=NVARCHAR},
+      </if>
+      <if test="constraintSchema != null" >
+        #{constraintSchema,jdbcType=NVARCHAR},
+      </if>
+      <if test="constraintName != null" >
+        #{constraintName,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

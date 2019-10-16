@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmServerRegistryMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmServerRegistry" >
+    <result column="registry_key" property="registryKey" jdbcType="NVARCHAR" />
+    <result column="value_name" property="valueName" jdbcType="NVARCHAR" />
+    <result column="value_data" property="valueData" jdbcType="OTHER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmServerRegistry" >
+    insert into dm_server_registry (registry_key, value_name, value_data
+      )
+    values (#{registryKey,jdbcType=NVARCHAR}, #{valueName,jdbcType=NVARCHAR}, #{valueData,jdbcType=OTHER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmServerRegistry" >
+    insert into dm_server_registry
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="registryKey != null" >
+        registry_key,
+      </if>
+      <if test="valueName != null" >
+        value_name,
+      </if>
+      <if test="valueData != null" >
+        value_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="registryKey != null" >
+        #{registryKey,jdbcType=NVARCHAR},
+      </if>
+      <if test="valueName != null" >
+        #{valueName,jdbcType=NVARCHAR},
+      </if>
+      <if test="valueData != null" >
+        #{valueData,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.FnSqlagentSubsystemsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.FnSqlagentSubsystems" >
+    <result column="subsystem_id" property="subsystemId" jdbcType="INTEGER" />
+    <result column="subsystem" property="subsystem" jdbcType="NVARCHAR" />
+    <result column="description_id" property="descriptionId" jdbcType="INTEGER" />
+    <result column="subsystem_dll" property="subsystemDll" jdbcType="NVARCHAR" />
+    <result column="agent_exe" property="agentExe" jdbcType="NVARCHAR" />
+    <result column="start_entry_point" property="startEntryPoint" jdbcType="NVARCHAR" />
+    <result column="event_entry_point" property="eventEntryPoint" jdbcType="NVARCHAR" />
+    <result column="stop_entry_point" property="stopEntryPoint" jdbcType="NVARCHAR" />
+    <result column="max_worker_threads" property="maxWorkerThreads" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnSqlagentSubsystems" >
+    insert into fn_sqlagent_subsystems (subsystem_id, subsystem, description_id, 
+      subsystem_dll, agent_exe, start_entry_point, 
+      event_entry_point, stop_entry_point, max_worker_threads
+      )
+    values (#{subsystemId,jdbcType=INTEGER}, #{subsystem,jdbcType=NVARCHAR}, #{descriptionId,jdbcType=INTEGER}, 
+      #{subsystemDll,jdbcType=NVARCHAR}, #{agentExe,jdbcType=NVARCHAR}, #{startEntryPoint,jdbcType=NVARCHAR}, 
+      #{eventEntryPoint,jdbcType=NVARCHAR}, #{stopEntryPoint,jdbcType=NVARCHAR}, #{maxWorkerThreads,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.FnSqlagentSubsystems" >
+    insert into fn_sqlagent_subsystems
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subsystemId != null" >
+        subsystem_id,
+      </if>
+      <if test="subsystem != null" >
+        subsystem,
+      </if>
+      <if test="descriptionId != null" >
+        description_id,
+      </if>
+      <if test="subsystemDll != null" >
+        subsystem_dll,
+      </if>
+      <if test="agentExe != null" >
+        agent_exe,
+      </if>
+      <if test="startEntryPoint != null" >
+        start_entry_point,
+      </if>
+      <if test="eventEntryPoint != null" >
+        event_entry_point,
+      </if>
+      <if test="stopEntryPoint != null" >
+        stop_entry_point,
+      </if>
+      <if test="maxWorkerThreads != null" >
+        max_worker_threads,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subsystemId != null" >
+        #{subsystemId,jdbcType=INTEGER},
+      </if>
+      <if test="subsystem != null" >
+        #{subsystem,jdbcType=NVARCHAR},
+      </if>
+      <if test="descriptionId != null" >
+        #{descriptionId,jdbcType=INTEGER},
+      </if>
+      <if test="subsystemDll != null" >
+        #{subsystemDll,jdbcType=NVARCHAR},
+      </if>
+      <if test="agentExe != null" >
+        #{agentExe,jdbcType=NVARCHAR},
+      </if>
+      <if test="startEntryPoint != null" >
+        #{startEntryPoint,jdbcType=NVARCHAR},
+      </if>
+      <if test="eventEntryPoint != null" >
+        #{eventEntryPoint,jdbcType=NVARCHAR},
+      </if>
+      <if test="stopEntryPoint != null" >
+        #{stopEntryPoint,jdbcType=NVARCHAR},
+      </if>
+      <if test="maxWorkerThreads != null" >
+        #{maxWorkerThreads,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

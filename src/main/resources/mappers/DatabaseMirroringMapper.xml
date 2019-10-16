@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DatabaseMirroringMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseMirroring" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="mirroring_guid" property="mirroringGuid" jdbcType="CHAR" />
+    <result column="mirroring_state" property="mirroringState" jdbcType="TINYINT" />
+    <result column="mirroring_state_desc" property="mirroringStateDesc" jdbcType="NVARCHAR" />
+    <result column="mirroring_role" property="mirroringRole" jdbcType="TINYINT" />
+    <result column="mirroring_role_desc" property="mirroringRoleDesc" jdbcType="NVARCHAR" />
+    <result column="mirroring_role_sequence" property="mirroringRoleSequence" jdbcType="INTEGER" />
+    <result column="mirroring_safety_level" property="mirroringSafetyLevel" jdbcType="TINYINT" />
+    <result column="mirroring_safety_level_desc" property="mirroringSafetyLevelDesc" jdbcType="NVARCHAR" />
+    <result column="mirroring_safety_sequence" property="mirroringSafetySequence" jdbcType="INTEGER" />
+    <result column="mirroring_partner_name" property="mirroringPartnerName" jdbcType="NVARCHAR" />
+    <result column="mirroring_partner_instance" property="mirroringPartnerInstance" jdbcType="NVARCHAR" />
+    <result column="mirroring_witness_name" property="mirroringWitnessName" jdbcType="NVARCHAR" />
+    <result column="mirroring_witness_state" property="mirroringWitnessState" jdbcType="TINYINT" />
+    <result column="mirroring_witness_state_desc" property="mirroringWitnessStateDesc" jdbcType="NVARCHAR" />
+    <result column="mirroring_failover_lsn" property="mirroringFailoverLsn" jdbcType="NUMERIC" />
+    <result column="mirroring_connection_timeout" property="mirroringConnectionTimeout" jdbcType="INTEGER" />
+    <result column="mirroring_redo_queue" property="mirroringRedoQueue" jdbcType="INTEGER" />
+    <result column="mirroring_redo_queue_type" property="mirroringRedoQueueType" jdbcType="NVARCHAR" />
+    <result column="mirroring_end_of_log_lsn" property="mirroringEndOfLogLsn" jdbcType="NUMERIC" />
+    <result column="mirroring_replication_lsn" property="mirroringReplicationLsn" jdbcType="NUMERIC" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseMirroring" >
+    insert into database_mirroring (database_id, mirroring_guid, mirroring_state, 
+      mirroring_state_desc, mirroring_role, mirroring_role_desc, 
+      mirroring_role_sequence, mirroring_safety_level, 
+      mirroring_safety_level_desc, mirroring_safety_sequence, 
+      mirroring_partner_name, mirroring_partner_instance, 
+      mirroring_witness_name, mirroring_witness_state, 
+      mirroring_witness_state_desc, mirroring_failover_lsn, 
+      mirroring_connection_timeout, mirroring_redo_queue, 
+      mirroring_redo_queue_type, mirroring_end_of_log_lsn, 
+      mirroring_replication_lsn)
+    values (#{databaseId,jdbcType=INTEGER}, #{mirroringGuid,jdbcType=CHAR}, #{mirroringState,jdbcType=TINYINT}, 
+      #{mirroringStateDesc,jdbcType=NVARCHAR}, #{mirroringRole,jdbcType=TINYINT}, #{mirroringRoleDesc,jdbcType=NVARCHAR}, 
+      #{mirroringRoleSequence,jdbcType=INTEGER}, #{mirroringSafetyLevel,jdbcType=TINYINT}, 
+      #{mirroringSafetyLevelDesc,jdbcType=NVARCHAR}, #{mirroringSafetySequence,jdbcType=INTEGER}, 
+      #{mirroringPartnerName,jdbcType=NVARCHAR}, #{mirroringPartnerInstance,jdbcType=NVARCHAR}, 
+      #{mirroringWitnessName,jdbcType=NVARCHAR}, #{mirroringWitnessState,jdbcType=TINYINT}, 
+      #{mirroringWitnessStateDesc,jdbcType=NVARCHAR}, #{mirroringFailoverLsn,jdbcType=NUMERIC}, 
+      #{mirroringConnectionTimeout,jdbcType=INTEGER}, #{mirroringRedoQueue,jdbcType=INTEGER}, 
+      #{mirroringRedoQueueType,jdbcType=NVARCHAR}, #{mirroringEndOfLogLsn,jdbcType=NUMERIC}, 
+      #{mirroringReplicationLsn,jdbcType=NUMERIC})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DatabaseMirroring" >
+    insert into database_mirroring
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="mirroringGuid != null" >
+        mirroring_guid,
+      </if>
+      <if test="mirroringState != null" >
+        mirroring_state,
+      </if>
+      <if test="mirroringStateDesc != null" >
+        mirroring_state_desc,
+      </if>
+      <if test="mirroringRole != null" >
+        mirroring_role,
+      </if>
+      <if test="mirroringRoleDesc != null" >
+        mirroring_role_desc,
+      </if>
+      <if test="mirroringRoleSequence != null" >
+        mirroring_role_sequence,
+      </if>
+      <if test="mirroringSafetyLevel != null" >
+        mirroring_safety_level,
+      </if>
+      <if test="mirroringSafetyLevelDesc != null" >
+        mirroring_safety_level_desc,
+      </if>
+      <if test="mirroringSafetySequence != null" >
+        mirroring_safety_sequence,
+      </if>
+      <if test="mirroringPartnerName != null" >
+        mirroring_partner_name,
+      </if>
+      <if test="mirroringPartnerInstance != null" >
+        mirroring_partner_instance,
+      </if>
+      <if test="mirroringWitnessName != null" >
+        mirroring_witness_name,
+      </if>
+      <if test="mirroringWitnessState != null" >
+        mirroring_witness_state,
+      </if>
+      <if test="mirroringWitnessStateDesc != null" >
+        mirroring_witness_state_desc,
+      </if>
+      <if test="mirroringFailoverLsn != null" >
+        mirroring_failover_lsn,
+      </if>
+      <if test="mirroringConnectionTimeout != null" >
+        mirroring_connection_timeout,
+      </if>
+      <if test="mirroringRedoQueue != null" >
+        mirroring_redo_queue,
+      </if>
+      <if test="mirroringRedoQueueType != null" >
+        mirroring_redo_queue_type,
+      </if>
+      <if test="mirroringEndOfLogLsn != null" >
+        mirroring_end_of_log_lsn,
+      </if>
+      <if test="mirroringReplicationLsn != null" >
+        mirroring_replication_lsn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="mirroringGuid != null" >
+        #{mirroringGuid,jdbcType=CHAR},
+      </if>
+      <if test="mirroringState != null" >
+        #{mirroringState,jdbcType=TINYINT},
+      </if>
+      <if test="mirroringStateDesc != null" >
+        #{mirroringStateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringRole != null" >
+        #{mirroringRole,jdbcType=TINYINT},
+      </if>
+      <if test="mirroringRoleDesc != null" >
+        #{mirroringRoleDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringRoleSequence != null" >
+        #{mirroringRoleSequence,jdbcType=INTEGER},
+      </if>
+      <if test="mirroringSafetyLevel != null" >
+        #{mirroringSafetyLevel,jdbcType=TINYINT},
+      </if>
+      <if test="mirroringSafetyLevelDesc != null" >
+        #{mirroringSafetyLevelDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringSafetySequence != null" >
+        #{mirroringSafetySequence,jdbcType=INTEGER},
+      </if>
+      <if test="mirroringPartnerName != null" >
+        #{mirroringPartnerName,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringPartnerInstance != null" >
+        #{mirroringPartnerInstance,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringWitnessName != null" >
+        #{mirroringWitnessName,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringWitnessState != null" >
+        #{mirroringWitnessState,jdbcType=TINYINT},
+      </if>
+      <if test="mirroringWitnessStateDesc != null" >
+        #{mirroringWitnessStateDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringFailoverLsn != null" >
+        #{mirroringFailoverLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="mirroringConnectionTimeout != null" >
+        #{mirroringConnectionTimeout,jdbcType=INTEGER},
+      </if>
+      <if test="mirroringRedoQueue != null" >
+        #{mirroringRedoQueue,jdbcType=INTEGER},
+      </if>
+      <if test="mirroringRedoQueueType != null" >
+        #{mirroringRedoQueueType,jdbcType=NVARCHAR},
+      </if>
+      <if test="mirroringEndOfLogLsn != null" >
+        #{mirroringEndOfLogLsn,jdbcType=NUMERIC},
+      </if>
+      <if test="mirroringReplicationLsn != null" >
+        #{mirroringReplicationLsn,jdbcType=NUMERIC},
+      </if>
+    </trim>
+  </insert>
+</mapper>

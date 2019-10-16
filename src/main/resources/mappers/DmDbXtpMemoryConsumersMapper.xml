@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmDbXtpMemoryConsumersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpMemoryConsumers" >
+    <result column="memory_consumer_id" property="memoryConsumerId" jdbcType="BIGINT" />
+    <result column="memory_consumer_type" property="memoryConsumerType" jdbcType="INTEGER" />
+    <result column="memory_consumer_type_desc" property="memoryConsumerTypeDesc" jdbcType="NVARCHAR" />
+    <result column="memory_consumer_desc" property="memoryConsumerDesc" jdbcType="NVARCHAR" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="index_id" property="indexId" jdbcType="INTEGER" />
+    <result column="allocated_bytes" property="allocatedBytes" jdbcType="BIGINT" />
+    <result column="used_bytes" property="usedBytes" jdbcType="BIGINT" />
+    <result column="allocation_count" property="allocationCount" jdbcType="INTEGER" />
+    <result column="partition_count" property="partitionCount" jdbcType="INTEGER" />
+    <result column="sizeclass_count" property="sizeclassCount" jdbcType="INTEGER" />
+    <result column="min_sizeclass" property="minSizeclass" jdbcType="INTEGER" />
+    <result column="max_sizeclass" property="maxSizeclass" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpMemoryConsumers" extends="BaseResultMap" >
+    <result column="memory_consumer_address" property="memoryConsumerAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    memory_consumer_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpMemoryConsumers" >
+    insert into dm_db_xtp_memory_consumers (memory_consumer_id, memory_consumer_type, 
+      memory_consumer_type_desc, memory_consumer_desc, 
+      object_id, index_id, allocated_bytes, 
+      used_bytes, allocation_count, partition_count, 
+      sizeclass_count, min_sizeclass, max_sizeclass, 
+      memory_consumer_address)
+    values (#{memoryConsumerId,jdbcType=BIGINT}, #{memoryConsumerType,jdbcType=INTEGER}, 
+      #{memoryConsumerTypeDesc,jdbcType=NVARCHAR}, #{memoryConsumerDesc,jdbcType=NVARCHAR}, 
+      #{objectId,jdbcType=INTEGER}, #{indexId,jdbcType=INTEGER}, #{allocatedBytes,jdbcType=BIGINT}, 
+      #{usedBytes,jdbcType=BIGINT}, #{allocationCount,jdbcType=INTEGER}, #{partitionCount,jdbcType=INTEGER}, 
+      #{sizeclassCount,jdbcType=INTEGER}, #{minSizeclass,jdbcType=INTEGER}, #{maxSizeclass,jdbcType=INTEGER}, 
+      #{memoryConsumerAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmDbXtpMemoryConsumers" >
+    insert into dm_db_xtp_memory_consumers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memoryConsumerId != null" >
+        memory_consumer_id,
+      </if>
+      <if test="memoryConsumerType != null" >
+        memory_consumer_type,
+      </if>
+      <if test="memoryConsumerTypeDesc != null" >
+        memory_consumer_type_desc,
+      </if>
+      <if test="memoryConsumerDesc != null" >
+        memory_consumer_desc,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="allocatedBytes != null" >
+        allocated_bytes,
+      </if>
+      <if test="usedBytes != null" >
+        used_bytes,
+      </if>
+      <if test="allocationCount != null" >
+        allocation_count,
+      </if>
+      <if test="partitionCount != null" >
+        partition_count,
+      </if>
+      <if test="sizeclassCount != null" >
+        sizeclass_count,
+      </if>
+      <if test="minSizeclass != null" >
+        min_sizeclass,
+      </if>
+      <if test="maxSizeclass != null" >
+        max_sizeclass,
+      </if>
+      <if test="memoryConsumerAddress != null" >
+        memory_consumer_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memoryConsumerId != null" >
+        #{memoryConsumerId,jdbcType=BIGINT},
+      </if>
+      <if test="memoryConsumerType != null" >
+        #{memoryConsumerType,jdbcType=INTEGER},
+      </if>
+      <if test="memoryConsumerTypeDesc != null" >
+        #{memoryConsumerTypeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="memoryConsumerDesc != null" >
+        #{memoryConsumerDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="allocatedBytes != null" >
+        #{allocatedBytes,jdbcType=BIGINT},
+      </if>
+      <if test="usedBytes != null" >
+        #{usedBytes,jdbcType=BIGINT},
+      </if>
+      <if test="allocationCount != null" >
+        #{allocationCount,jdbcType=INTEGER},
+      </if>
+      <if test="partitionCount != null" >
+        #{partitionCount,jdbcType=INTEGER},
+      </if>
+      <if test="sizeclassCount != null" >
+        #{sizeclassCount,jdbcType=INTEGER},
+      </if>
+      <if test="minSizeclass != null" >
+        #{minSizeclass,jdbcType=INTEGER},
+      </if>
+      <if test="maxSizeclass != null" >
+        #{maxSizeclass,jdbcType=INTEGER},
+      </if>
+      <if test="memoryConsumerAddress != null" >
+        #{memoryConsumerAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

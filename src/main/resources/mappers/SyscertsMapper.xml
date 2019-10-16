@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SyscertsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Syscerts" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="encrtype" property="encrtype" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="lastpkeybackup" property="lastpkeybackup" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.SyscertsWithBLOBs" extends="BaseResultMap" >
+    <result column="issuer" property="issuer" jdbcType="VARBINARY" />
+    <result column="snum" property="snum" jdbcType="VARBINARY" />
+    <result column="thumbprint" property="thumbprint" jdbcType="VARBINARY" />
+    <result column="pkey" property="pkey" jdbcType="VARBINARY" />
+    <result column="cert" property="cert" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    issuer, snum, thumbprint, pkey, cert
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SyscertsWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into syscerts (id, name, encrtype, 
+      status, lastpkeybackup, issuer, 
+      snum, thumbprint, pkey, 
+      cert)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{encrtype,jdbcType=CHAR}, 
+      #{status,jdbcType=INTEGER}, #{lastpkeybackup,jdbcType=TIMESTAMP}, #{issuer,jdbcType=VARBINARY}, 
+      #{snum,jdbcType=VARBINARY}, #{thumbprint,jdbcType=VARBINARY}, #{pkey,jdbcType=VARBINARY}, 
+      #{cert,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SyscertsWithBLOBs" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into syscerts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="encrtype != null" >
+        encrtype,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="lastpkeybackup != null" >
+        lastpkeybackup,
+      </if>
+      <if test="issuer != null" >
+        issuer,
+      </if>
+      <if test="snum != null" >
+        snum,
+      </if>
+      <if test="thumbprint != null" >
+        thumbprint,
+      </if>
+      <if test="pkey != null" >
+        pkey,
+      </if>
+      <if test="cert != null" >
+        cert,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="encrtype != null" >
+        #{encrtype,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lastpkeybackup != null" >
+        #{lastpkeybackup,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issuer != null" >
+        #{issuer,jdbcType=VARBINARY},
+      </if>
+      <if test="snum != null" >
+        #{snum,jdbcType=VARBINARY},
+      </if>
+      <if test="thumbprint != null" >
+        #{thumbprint,jdbcType=VARBINARY},
+      </if>
+      <if test="pkey != null" >
+        #{pkey,jdbcType=VARBINARY},
+      </if>
+      <if test="cert != null" >
+        #{cert,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

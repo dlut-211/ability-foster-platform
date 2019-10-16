@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ResourceGovernorResourcePoolsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorResourcePools" >
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="min_cpu_percent" property="minCpuPercent" jdbcType="INTEGER" />
+    <result column="max_cpu_percent" property="maxCpuPercent" jdbcType="INTEGER" />
+    <result column="min_memory_percent" property="minMemoryPercent" jdbcType="INTEGER" />
+    <result column="max_memory_percent" property="maxMemoryPercent" jdbcType="INTEGER" />
+    <result column="cap_cpu_percent" property="capCpuPercent" jdbcType="INTEGER" />
+    <result column="min_iops_per_volume" property="minIopsPerVolume" jdbcType="INTEGER" />
+    <result column="max_iops_per_volume" property="maxIopsPerVolume" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorResourcePools" >
+    insert into resource_governor_resource_pools (pool_id, name, min_cpu_percent, 
+      max_cpu_percent, min_memory_percent, max_memory_percent, 
+      cap_cpu_percent, min_iops_per_volume, max_iops_per_volume
+      )
+    values (#{poolId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{minCpuPercent,jdbcType=INTEGER}, 
+      #{maxCpuPercent,jdbcType=INTEGER}, #{minMemoryPercent,jdbcType=INTEGER}, #{maxMemoryPercent,jdbcType=INTEGER}, 
+      #{capCpuPercent,jdbcType=INTEGER}, #{minIopsPerVolume,jdbcType=INTEGER}, #{maxIopsPerVolume,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ResourceGovernorResourcePools" >
+    insert into resource_governor_resource_pools
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="minCpuPercent != null" >
+        min_cpu_percent,
+      </if>
+      <if test="maxCpuPercent != null" >
+        max_cpu_percent,
+      </if>
+      <if test="minMemoryPercent != null" >
+        min_memory_percent,
+      </if>
+      <if test="maxMemoryPercent != null" >
+        max_memory_percent,
+      </if>
+      <if test="capCpuPercent != null" >
+        cap_cpu_percent,
+      </if>
+      <if test="minIopsPerVolume != null" >
+        min_iops_per_volume,
+      </if>
+      <if test="maxIopsPerVolume != null" >
+        max_iops_per_volume,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="minCpuPercent != null" >
+        #{minCpuPercent,jdbcType=INTEGER},
+      </if>
+      <if test="maxCpuPercent != null" >
+        #{maxCpuPercent,jdbcType=INTEGER},
+      </if>
+      <if test="minMemoryPercent != null" >
+        #{minMemoryPercent,jdbcType=INTEGER},
+      </if>
+      <if test="maxMemoryPercent != null" >
+        #{maxMemoryPercent,jdbcType=INTEGER},
+      </if>
+      <if test="capCpuPercent != null" >
+        #{capCpuPercent,jdbcType=INTEGER},
+      </if>
+      <if test="minIopsPerVolume != null" >
+        #{minIopsPerVolume,jdbcType=INTEGER},
+      </if>
+      <if test="maxIopsPerVolume != null" >
+        #{maxIopsPerVolume,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

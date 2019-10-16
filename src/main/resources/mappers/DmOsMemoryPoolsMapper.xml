@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsMemoryPoolsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryPools" >
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="max_free_entries_count" property="maxFreeEntriesCount" jdbcType="BIGINT" />
+    <result column="free_entries_count" property="freeEntriesCount" jdbcType="BIGINT" />
+    <result column="removed_in_all_rounds_count" property="removedInAllRoundsCount" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryPools" extends="BaseResultMap" >
+    <result column="memory_pool_address" property="memoryPoolAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    memory_pool_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryPools" >
+    insert into dm_os_memory_pools (pool_id, type, name, 
+      max_free_entries_count, free_entries_count, removed_in_all_rounds_count, 
+      memory_pool_address)
+    values (#{poolId,jdbcType=INTEGER}, #{type,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
+      #{maxFreeEntriesCount,jdbcType=BIGINT}, #{freeEntriesCount,jdbcType=BIGINT}, #{removedInAllRoundsCount,jdbcType=BIGINT}, 
+      #{memoryPoolAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryPools" >
+    insert into dm_os_memory_pools
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="maxFreeEntriesCount != null" >
+        max_free_entries_count,
+      </if>
+      <if test="freeEntriesCount != null" >
+        free_entries_count,
+      </if>
+      <if test="removedInAllRoundsCount != null" >
+        removed_in_all_rounds_count,
+      </if>
+      <if test="memoryPoolAddress != null" >
+        memory_pool_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="maxFreeEntriesCount != null" >
+        #{maxFreeEntriesCount,jdbcType=BIGINT},
+      </if>
+      <if test="freeEntriesCount != null" >
+        #{freeEntriesCount,jdbcType=BIGINT},
+      </if>
+      <if test="removedInAllRoundsCount != null" >
+        #{removedInAllRoundsCount,jdbcType=BIGINT},
+      </if>
+      <if test="memoryPoolAddress != null" >
+        #{memoryPoolAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

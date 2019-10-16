@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmLogconsumerCachebufferrefsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerCachebufferrefs" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="recovery_unit_id" property="recoveryUnitId" jdbcType="INTEGER" />
+    <result column="consumer_id" property="consumerId" jdbcType="BIGINT" />
+    <result column="start_log_block_id" property="startLogBlockId" jdbcType="BIGINT" />
+    <result column="last_log_block_id" property="lastLogBlockId" jdbcType="BIGINT" />
+    <result column="shared" property="shared" jdbcType="TINYINT" />
+    <result column="ref_counter" property="refCounter" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerCachebufferrefs" extends="BaseResultMap" >
+    <result column="cache_buffer" property="cacheBuffer" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    cache_buffer
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerCachebufferrefs" >
+    insert into dm_logconsumer_cachebufferrefs (database_id, recovery_unit_id, consumer_id, 
+      start_log_block_id, last_log_block_id, shared, 
+      ref_counter, cache_buffer)
+    values (#{databaseId,jdbcType=INTEGER}, #{recoveryUnitId,jdbcType=INTEGER}, #{consumerId,jdbcType=BIGINT}, 
+      #{startLogBlockId,jdbcType=BIGINT}, #{lastLogBlockId,jdbcType=BIGINT}, #{shared,jdbcType=TINYINT}, 
+      #{refCounter,jdbcType=SMALLINT}, #{cacheBuffer,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmLogconsumerCachebufferrefs" >
+    insert into dm_logconsumer_cachebufferrefs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="recoveryUnitId != null" >
+        recovery_unit_id,
+      </if>
+      <if test="consumerId != null" >
+        consumer_id,
+      </if>
+      <if test="startLogBlockId != null" >
+        start_log_block_id,
+      </if>
+      <if test="lastLogBlockId != null" >
+        last_log_block_id,
+      </if>
+      <if test="shared != null" >
+        shared,
+      </if>
+      <if test="refCounter != null" >
+        ref_counter,
+      </if>
+      <if test="cacheBuffer != null" >
+        cache_buffer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="recoveryUnitId != null" >
+        #{recoveryUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="consumerId != null" >
+        #{consumerId,jdbcType=BIGINT},
+      </if>
+      <if test="startLogBlockId != null" >
+        #{startLogBlockId,jdbcType=BIGINT},
+      </if>
+      <if test="lastLogBlockId != null" >
+        #{lastLogBlockId,jdbcType=BIGINT},
+      </if>
+      <if test="shared != null" >
+        #{shared,jdbcType=TINYINT},
+      </if>
+      <if test="refCounter != null" >
+        #{refCounter,jdbcType=SMALLINT},
+      </if>
+      <if test="cacheBuffer != null" >
+        #{cacheBuffer,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

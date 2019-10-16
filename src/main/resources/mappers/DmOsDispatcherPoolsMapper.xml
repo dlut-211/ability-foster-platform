@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsDispatcherPoolsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsDispatcherPools" >
+    <result column="type" property="type" jdbcType="NVARCHAR" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="dispatcher_count" property="dispatcherCount" jdbcType="INTEGER" />
+    <result column="dispatcher_ideal_count" property="dispatcherIdealCount" jdbcType="INTEGER" />
+    <result column="dispatcher_timeout_ms" property="dispatcherTimeoutMs" jdbcType="INTEGER" />
+    <result column="dispatcher_waiting_count" property="dispatcherWaitingCount" jdbcType="INTEGER" />
+    <result column="queue_length" property="queueLength" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsDispatcherPools" extends="BaseResultMap" >
+    <result column="dispatcher_pool_address" property="dispatcherPoolAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    dispatcher_pool_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsDispatcherPools" >
+    insert into dm_os_dispatcher_pools (type, name, dispatcher_count, 
+      dispatcher_ideal_count, dispatcher_timeout_ms, 
+      dispatcher_waiting_count, queue_length, dispatcher_pool_address
+      )
+    values (#{type,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{dispatcherCount,jdbcType=INTEGER}, 
+      #{dispatcherIdealCount,jdbcType=INTEGER}, #{dispatcherTimeoutMs,jdbcType=INTEGER}, 
+      #{dispatcherWaitingCount,jdbcType=INTEGER}, #{queueLength,jdbcType=INTEGER}, #{dispatcherPoolAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsDispatcherPools" >
+    insert into dm_os_dispatcher_pools
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="dispatcherCount != null" >
+        dispatcher_count,
+      </if>
+      <if test="dispatcherIdealCount != null" >
+        dispatcher_ideal_count,
+      </if>
+      <if test="dispatcherTimeoutMs != null" >
+        dispatcher_timeout_ms,
+      </if>
+      <if test="dispatcherWaitingCount != null" >
+        dispatcher_waiting_count,
+      </if>
+      <if test="queueLength != null" >
+        queue_length,
+      </if>
+      <if test="dispatcherPoolAddress != null" >
+        dispatcher_pool_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="type != null" >
+        #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="dispatcherCount != null" >
+        #{dispatcherCount,jdbcType=INTEGER},
+      </if>
+      <if test="dispatcherIdealCount != null" >
+        #{dispatcherIdealCount,jdbcType=INTEGER},
+      </if>
+      <if test="dispatcherTimeoutMs != null" >
+        #{dispatcherTimeoutMs,jdbcType=INTEGER},
+      </if>
+      <if test="dispatcherWaitingCount != null" >
+        #{dispatcherWaitingCount,jdbcType=INTEGER},
+      </if>
+      <if test="queueLength != null" >
+        #{queueLength,jdbcType=INTEGER},
+      </if>
+      <if test="dispatcherPoolAddress != null" >
+        #{dispatcherPoolAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

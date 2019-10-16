@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsWaitStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWaitStats" >
+    <result column="wait_type" property="waitType" jdbcType="NVARCHAR" />
+    <result column="waiting_tasks_count" property="waitingTasksCount" jdbcType="BIGINT" />
+    <result column="wait_time_ms" property="waitTimeMs" jdbcType="BIGINT" />
+    <result column="max_wait_time_ms" property="maxWaitTimeMs" jdbcType="BIGINT" />
+    <result column="signal_wait_time_ms" property="signalWaitTimeMs" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWaitStats" >
+    insert into dm_os_wait_stats (wait_type, waiting_tasks_count, wait_time_ms, 
+      max_wait_time_ms, signal_wait_time_ms)
+    values (#{waitType,jdbcType=NVARCHAR}, #{waitingTasksCount,jdbcType=BIGINT}, #{waitTimeMs,jdbcType=BIGINT}, 
+      #{maxWaitTimeMs,jdbcType=BIGINT}, #{signalWaitTimeMs,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsWaitStats" >
+    insert into dm_os_wait_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="waitType != null" >
+        wait_type,
+      </if>
+      <if test="waitingTasksCount != null" >
+        waiting_tasks_count,
+      </if>
+      <if test="waitTimeMs != null" >
+        wait_time_ms,
+      </if>
+      <if test="maxWaitTimeMs != null" >
+        max_wait_time_ms,
+      </if>
+      <if test="signalWaitTimeMs != null" >
+        signal_wait_time_ms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="waitType != null" >
+        #{waitType,jdbcType=NVARCHAR},
+      </if>
+      <if test="waitingTasksCount != null" >
+        #{waitingTasksCount,jdbcType=BIGINT},
+      </if>
+      <if test="waitTimeMs != null" >
+        #{waitTimeMs,jdbcType=BIGINT},
+      </if>
+      <if test="maxWaitTimeMs != null" >
+        #{maxWaitTimeMs,jdbcType=BIGINT},
+      </if>
+      <if test="signalWaitTimeMs != null" >
+        #{signalWaitTimeMs,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

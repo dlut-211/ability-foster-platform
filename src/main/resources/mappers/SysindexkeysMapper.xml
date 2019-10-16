@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysindexkeysMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysindexkeys" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="indid" property="indid" jdbcType="SMALLINT" />
+    <result column="colid" property="colid" jdbcType="SMALLINT" />
+    <result column="keyno" property="keyno" jdbcType="SMALLINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysindexkeys" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysindexkeys (id, indid, colid, 
+      keyno)
+    values (#{id,jdbcType=INTEGER}, #{indid,jdbcType=SMALLINT}, #{colid,jdbcType=SMALLINT}, 
+      #{keyno,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysindexkeys" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT SCOPE_IDENTITY()
+    </selectKey>
+    insert into sysindexkeys
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="indid != null" >
+        indid,
+      </if>
+      <if test="colid != null" >
+        colid,
+      </if>
+      <if test="keyno != null" >
+        keyno,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="indid != null" >
+        #{indid,jdbcType=SMALLINT},
+      </if>
+      <if test="colid != null" >
+        #{colid,jdbcType=SMALLINT},
+      </if>
+      <if test="keyno != null" >
+        #{keyno,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

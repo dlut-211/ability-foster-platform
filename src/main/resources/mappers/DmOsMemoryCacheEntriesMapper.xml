@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmOsMemoryCacheEntriesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheEntries" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="type" property="type" jdbcType="NVARCHAR" />
+    <result column="in_use_count" property="inUseCount" jdbcType="INTEGER" />
+    <result column="is_dirty" property="isDirty" jdbcType="BIT" />
+    <result column="disk_ios_count" property="diskIosCount" jdbcType="INTEGER" />
+    <result column="context_switches_count" property="contextSwitchesCount" jdbcType="INTEGER" />
+    <result column="original_cost" property="originalCost" jdbcType="INTEGER" />
+    <result column="current_cost" property="currentCost" jdbcType="INTEGER" />
+    <result column="pages_kb" property="pagesKb" jdbcType="BIGINT" />
+    <result column="entry_data" property="entryData" jdbcType="NVARCHAR" />
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="time_to_generate" property="timeToGenerate" jdbcType="DOUBLE" />
+    <result column="use_count" property="useCount" jdbcType="BIGINT" />
+    <result column="average_time_between_uses" property="averageTimeBetweenUses" jdbcType="DOUBLE" />
+    <result column="time_since_last_use" property="timeSinceLastUse" jdbcType="DOUBLE" />
+    <result column="probability_of_reuse" property="probabilityOfReuse" jdbcType="DOUBLE" />
+    <result column="value" property="value" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheEntriesWithBLOBs" extends="BaseResultMap" >
+    <result column="cache_address" property="cacheAddress" jdbcType="VARBINARY" />
+    <result column="entry_address" property="entryAddress" jdbcType="VARBINARY" />
+    <result column="entry_data_address" property="entryDataAddress" jdbcType="VARBINARY" />
+    <result column="memory_object_address" property="memoryObjectAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    cache_address, entry_address, entry_data_address, memory_object_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheEntriesWithBLOBs" >
+    insert into dm_os_memory_cache_entries (name, type, in_use_count, 
+      is_dirty, disk_ios_count, context_switches_count, 
+      original_cost, current_cost, pages_kb, 
+      entry_data, pool_id, time_to_generate, 
+      use_count, average_time_between_uses, time_since_last_use, 
+      probability_of_reuse, value, cache_address, 
+      entry_address, entry_data_address, memory_object_address
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{type,jdbcType=NVARCHAR}, #{inUseCount,jdbcType=INTEGER}, 
+      #{isDirty,jdbcType=BIT}, #{diskIosCount,jdbcType=INTEGER}, #{contextSwitchesCount,jdbcType=INTEGER}, 
+      #{originalCost,jdbcType=INTEGER}, #{currentCost,jdbcType=INTEGER}, #{pagesKb,jdbcType=BIGINT}, 
+      #{entryData,jdbcType=NVARCHAR}, #{poolId,jdbcType=INTEGER}, #{timeToGenerate,jdbcType=DOUBLE}, 
+      #{useCount,jdbcType=BIGINT}, #{averageTimeBetweenUses,jdbcType=DOUBLE}, #{timeSinceLastUse,jdbcType=DOUBLE}, 
+      #{probabilityOfReuse,jdbcType=DOUBLE}, #{value,jdbcType=DOUBLE}, #{cacheAddress,jdbcType=VARBINARY}, 
+      #{entryAddress,jdbcType=VARBINARY}, #{entryDataAddress,jdbcType=VARBINARY}, #{memoryObjectAddress,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmOsMemoryCacheEntriesWithBLOBs" >
+    insert into dm_os_memory_cache_entries
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="inUseCount != null" >
+        in_use_count,
+      </if>
+      <if test="isDirty != null" >
+        is_dirty,
+      </if>
+      <if test="diskIosCount != null" >
+        disk_ios_count,
+      </if>
+      <if test="contextSwitchesCount != null" >
+        context_switches_count,
+      </if>
+      <if test="originalCost != null" >
+        original_cost,
+      </if>
+      <if test="currentCost != null" >
+        current_cost,
+      </if>
+      <if test="pagesKb != null" >
+        pages_kb,
+      </if>
+      <if test="entryData != null" >
+        entry_data,
+      </if>
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="timeToGenerate != null" >
+        time_to_generate,
+      </if>
+      <if test="useCount != null" >
+        use_count,
+      </if>
+      <if test="averageTimeBetweenUses != null" >
+        average_time_between_uses,
+      </if>
+      <if test="timeSinceLastUse != null" >
+        time_since_last_use,
+      </if>
+      <if test="probabilityOfReuse != null" >
+        probability_of_reuse,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="cacheAddress != null" >
+        cache_address,
+      </if>
+      <if test="entryAddress != null" >
+        entry_address,
+      </if>
+      <if test="entryDataAddress != null" >
+        entry_data_address,
+      </if>
+      <if test="memoryObjectAddress != null" >
+        memory_object_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=NVARCHAR},
+      </if>
+      <if test="inUseCount != null" >
+        #{inUseCount,jdbcType=INTEGER},
+      </if>
+      <if test="isDirty != null" >
+        #{isDirty,jdbcType=BIT},
+      </if>
+      <if test="diskIosCount != null" >
+        #{diskIosCount,jdbcType=INTEGER},
+      </if>
+      <if test="contextSwitchesCount != null" >
+        #{contextSwitchesCount,jdbcType=INTEGER},
+      </if>
+      <if test="originalCost != null" >
+        #{originalCost,jdbcType=INTEGER},
+      </if>
+      <if test="currentCost != null" >
+        #{currentCost,jdbcType=INTEGER},
+      </if>
+      <if test="pagesKb != null" >
+        #{pagesKb,jdbcType=BIGINT},
+      </if>
+      <if test="entryData != null" >
+        #{entryData,jdbcType=NVARCHAR},
+      </if>
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="timeToGenerate != null" >
+        #{timeToGenerate,jdbcType=DOUBLE},
+      </if>
+      <if test="useCount != null" >
+        #{useCount,jdbcType=BIGINT},
+      </if>
+      <if test="averageTimeBetweenUses != null" >
+        #{averageTimeBetweenUses,jdbcType=DOUBLE},
+      </if>
+      <if test="timeSinceLastUse != null" >
+        #{timeSinceLastUse,jdbcType=DOUBLE},
+      </if>
+      <if test="probabilityOfReuse != null" >
+        #{probabilityOfReuse,jdbcType=DOUBLE},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=DOUBLE},
+      </if>
+      <if test="cacheAddress != null" >
+        #{cacheAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="entryAddress != null" >
+        #{entryAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="entryDataAddress != null" >
+        #{entryDataAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="memoryObjectAddress != null" >
+        #{memoryObjectAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

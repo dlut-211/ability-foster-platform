@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysprufilesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysprufiles" >
+    <result column="dbfragid" property="dbfragid" jdbcType="INTEGER" />
+    <result column="fileid" property="fileid" jdbcType="INTEGER" />
+    <result column="grpid" property="grpid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="filetype" property="filetype" jdbcType="TINYINT" />
+    <result column="filestate" property="filestate" jdbcType="TINYINT" />
+    <result column="size" property="size" jdbcType="INTEGER" />
+    <result column="maxsize" property="maxsize" jdbcType="INTEGER" />
+    <result column="growth" property="growth" jdbcType="INTEGER" />
+    <result column="lname" property="lname" jdbcType="NVARCHAR" />
+    <result column="pname" property="pname" jdbcType="NVARCHAR" />
+    <result column="fileguid" property="fileguid" jdbcType="CHAR" />
+    <result column="internalstatus" property="internalstatus" jdbcType="INTEGER" />
+    <result column="diffbaseguid" property="diffbaseguid" jdbcType="CHAR" />
+    <result column="diffbasetime" property="diffbasetime" jdbcType="TIMESTAMP" />
+    <result column="forkguid" property="forkguid" jdbcType="CHAR" />
+    <result column="forkvc" property="forkvc" jdbcType="BIGINT" />
+    <result column="redostartforkguid" property="redostartforkguid" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.SysprufilesWithBLOBs" extends="BaseResultMap" >
+    <result column="createlsn" property="createlsn" jdbcType="BINARY" />
+    <result column="droplsn" property="droplsn" jdbcType="BINARY" />
+    <result column="readonlylsn" property="readonlylsn" jdbcType="BINARY" />
+    <result column="readwritelsn" property="readwritelsn" jdbcType="BINARY" />
+    <result column="readonlybaselsn" property="readonlybaselsn" jdbcType="BINARY" />
+    <result column="firstupdatelsn" property="firstupdatelsn" jdbcType="BINARY" />
+    <result column="lastupdatelsn" property="lastupdatelsn" jdbcType="BINARY" />
+    <result column="backuplsn" property="backuplsn" jdbcType="BINARY" />
+    <result column="diffbaselsn" property="diffbaselsn" jdbcType="BINARY" />
+    <result column="diffbaseseclsn" property="diffbaseseclsn" jdbcType="BINARY" />
+    <result column="redostartlsn" property="redostartlsn" jdbcType="BINARY" />
+    <result column="redotargetlsn" property="redotargetlsn" jdbcType="BINARY" />
+    <result column="forklsn" property="forklsn" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    createlsn, droplsn, readonlylsn, readwritelsn, readonlybaselsn, firstupdatelsn, lastupdatelsn, 
+    backuplsn, diffbaselsn, diffbaseseclsn, redostartlsn, redotargetlsn, forklsn
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysprufilesWithBLOBs" >
+    insert into sysprufiles (dbfragid, fileid, grpid, 
+      status, filetype, filestate, 
+      size, maxsize, growth, 
+      lname, pname, fileguid, 
+      internalstatus, diffbaseguid, diffbasetime, 
+      forkguid, forkvc, redostartforkguid, 
+      createlsn, droplsn, readonlylsn, 
+      readwritelsn, readonlybaselsn, firstupdatelsn, 
+      lastupdatelsn, backuplsn, diffbaselsn, 
+      diffbaseseclsn, redostartlsn, redotargetlsn, 
+      forklsn)
+    values (#{dbfragid,jdbcType=INTEGER}, #{fileid,jdbcType=INTEGER}, #{grpid,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{filetype,jdbcType=TINYINT}, #{filestate,jdbcType=TINYINT}, 
+      #{size,jdbcType=INTEGER}, #{maxsize,jdbcType=INTEGER}, #{growth,jdbcType=INTEGER}, 
+      #{lname,jdbcType=NVARCHAR}, #{pname,jdbcType=NVARCHAR}, #{fileguid,jdbcType=CHAR}, 
+      #{internalstatus,jdbcType=INTEGER}, #{diffbaseguid,jdbcType=CHAR}, #{diffbasetime,jdbcType=TIMESTAMP}, 
+      #{forkguid,jdbcType=CHAR}, #{forkvc,jdbcType=BIGINT}, #{redostartforkguid,jdbcType=CHAR}, 
+      #{createlsn,jdbcType=BINARY}, #{droplsn,jdbcType=BINARY}, #{readonlylsn,jdbcType=BINARY}, 
+      #{readwritelsn,jdbcType=BINARY}, #{readonlybaselsn,jdbcType=BINARY}, #{firstupdatelsn,jdbcType=BINARY}, 
+      #{lastupdatelsn,jdbcType=BINARY}, #{backuplsn,jdbcType=BINARY}, #{diffbaselsn,jdbcType=BINARY}, 
+      #{diffbaseseclsn,jdbcType=BINARY}, #{redostartlsn,jdbcType=BINARY}, #{redotargetlsn,jdbcType=BINARY}, 
+      #{forklsn,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SysprufilesWithBLOBs" >
+    insert into sysprufiles
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dbfragid != null" >
+        dbfragid,
+      </if>
+      <if test="fileid != null" >
+        fileid,
+      </if>
+      <if test="grpid != null" >
+        grpid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="filetype != null" >
+        filetype,
+      </if>
+      <if test="filestate != null" >
+        filestate,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="maxsize != null" >
+        maxsize,
+      </if>
+      <if test="growth != null" >
+        growth,
+      </if>
+      <if test="lname != null" >
+        lname,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="fileguid != null" >
+        fileguid,
+      </if>
+      <if test="internalstatus != null" >
+        internalstatus,
+      </if>
+      <if test="diffbaseguid != null" >
+        diffbaseguid,
+      </if>
+      <if test="diffbasetime != null" >
+        diffbasetime,
+      </if>
+      <if test="forkguid != null" >
+        forkguid,
+      </if>
+      <if test="forkvc != null" >
+        forkvc,
+      </if>
+      <if test="redostartforkguid != null" >
+        redostartforkguid,
+      </if>
+      <if test="createlsn != null" >
+        createlsn,
+      </if>
+      <if test="droplsn != null" >
+        droplsn,
+      </if>
+      <if test="readonlylsn != null" >
+        readonlylsn,
+      </if>
+      <if test="readwritelsn != null" >
+        readwritelsn,
+      </if>
+      <if test="readonlybaselsn != null" >
+        readonlybaselsn,
+      </if>
+      <if test="firstupdatelsn != null" >
+        firstupdatelsn,
+      </if>
+      <if test="lastupdatelsn != null" >
+        lastupdatelsn,
+      </if>
+      <if test="backuplsn != null" >
+        backuplsn,
+      </if>
+      <if test="diffbaselsn != null" >
+        diffbaselsn,
+      </if>
+      <if test="diffbaseseclsn != null" >
+        diffbaseseclsn,
+      </if>
+      <if test="redostartlsn != null" >
+        redostartlsn,
+      </if>
+      <if test="redotargetlsn != null" >
+        redotargetlsn,
+      </if>
+      <if test="forklsn != null" >
+        forklsn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dbfragid != null" >
+        #{dbfragid,jdbcType=INTEGER},
+      </if>
+      <if test="fileid != null" >
+        #{fileid,jdbcType=INTEGER},
+      </if>
+      <if test="grpid != null" >
+        #{grpid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=TINYINT},
+      </if>
+      <if test="filestate != null" >
+        #{filestate,jdbcType=TINYINT},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="maxsize != null" >
+        #{maxsize,jdbcType=INTEGER},
+      </if>
+      <if test="growth != null" >
+        #{growth,jdbcType=INTEGER},
+      </if>
+      <if test="lname != null" >
+        #{lname,jdbcType=NVARCHAR},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=NVARCHAR},
+      </if>
+      <if test="fileguid != null" >
+        #{fileguid,jdbcType=CHAR},
+      </if>
+      <if test="internalstatus != null" >
+        #{internalstatus,jdbcType=INTEGER},
+      </if>
+      <if test="diffbaseguid != null" >
+        #{diffbaseguid,jdbcType=CHAR},
+      </if>
+      <if test="diffbasetime != null" >
+        #{diffbasetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="forkguid != null" >
+        #{forkguid,jdbcType=CHAR},
+      </if>
+      <if test="forkvc != null" >
+        #{forkvc,jdbcType=BIGINT},
+      </if>
+      <if test="redostartforkguid != null" >
+        #{redostartforkguid,jdbcType=CHAR},
+      </if>
+      <if test="createlsn != null" >
+        #{createlsn,jdbcType=BINARY},
+      </if>
+      <if test="droplsn != null" >
+        #{droplsn,jdbcType=BINARY},
+      </if>
+      <if test="readonlylsn != null" >
+        #{readonlylsn,jdbcType=BINARY},
+      </if>
+      <if test="readwritelsn != null" >
+        #{readwritelsn,jdbcType=BINARY},
+      </if>
+      <if test="readonlybaselsn != null" >
+        #{readonlybaselsn,jdbcType=BINARY},
+      </if>
+      <if test="firstupdatelsn != null" >
+        #{firstupdatelsn,jdbcType=BINARY},
+      </if>
+      <if test="lastupdatelsn != null" >
+        #{lastupdatelsn,jdbcType=BINARY},
+      </if>
+      <if test="backuplsn != null" >
+        #{backuplsn,jdbcType=BINARY},
+      </if>
+      <if test="diffbaselsn != null" >
+        #{diffbaselsn,jdbcType=BINARY},
+      </if>
+      <if test="diffbaseseclsn != null" >
+        #{diffbaseseclsn,jdbcType=BINARY},
+      </if>
+      <if test="redostartlsn != null" >
+        #{redostartlsn,jdbcType=BINARY},
+      </if>
+      <if test="redotargetlsn != null" >
+        #{redotargetlsn,jdbcType=BINARY},
+      </if>
+      <if test="forklsn != null" >
+        #{forklsn,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

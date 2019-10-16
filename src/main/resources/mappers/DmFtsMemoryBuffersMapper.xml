@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmFtsMemoryBuffersMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsMemoryBuffers" >
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="is_free" property="isFree" jdbcType="BIT" />
+    <result column="row_count" property="rowCount" jdbcType="INTEGER" />
+    <result column="bytes_used" property="bytesUsed" jdbcType="INTEGER" />
+    <result column="percent_used" property="percentUsed" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsMemoryBuffers" extends="BaseResultMap" >
+    <result column="memory_address" property="memoryAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    memory_address
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsMemoryBuffers" >
+    insert into dm_fts_memory_buffers (pool_id, name, is_free, 
+      row_count, bytes_used, percent_used, 
+      memory_address)
+    values (#{poolId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{isFree,jdbcType=BIT}, 
+      #{rowCount,jdbcType=INTEGER}, #{bytesUsed,jdbcType=INTEGER}, #{percentUsed,jdbcType=INTEGER}, 
+      #{memoryAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsMemoryBuffers" >
+    insert into dm_fts_memory_buffers
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="isFree != null" >
+        is_free,
+      </if>
+      <if test="rowCount != null" >
+        row_count,
+      </if>
+      <if test="bytesUsed != null" >
+        bytes_used,
+      </if>
+      <if test="percentUsed != null" >
+        percent_used,
+      </if>
+      <if test="memoryAddress != null" >
+        memory_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="isFree != null" >
+        #{isFree,jdbcType=BIT},
+      </if>
+      <if test="rowCount != null" >
+        #{rowCount,jdbcType=INTEGER},
+      </if>
+      <if test="bytesUsed != null" >
+        #{bytesUsed,jdbcType=INTEGER},
+      </if>
+      <if test="percentUsed != null" >
+        #{percentUsed,jdbcType=INTEGER},
+      </if>
+      <if test="memoryAddress != null" >
+        #{memoryAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

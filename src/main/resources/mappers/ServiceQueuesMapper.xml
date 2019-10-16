@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ServiceQueuesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ServiceQueues" >
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="principal_id" property="principalId" jdbcType="INTEGER" />
+    <result column="schema_id" property="schemaId" jdbcType="INTEGER" />
+    <result column="parent_object_id" property="parentObjectId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="is_ms_shipped" property="isMsShipped" jdbcType="BIT" />
+    <result column="is_published" property="isPublished" jdbcType="BIT" />
+    <result column="is_schema_published" property="isSchemaPublished" jdbcType="BIT" />
+    <result column="max_readers" property="maxReaders" jdbcType="SMALLINT" />
+    <result column="activation_procedure" property="activationProcedure" jdbcType="NVARCHAR" />
+    <result column="execute_as_principal_id" property="executeAsPrincipalId" jdbcType="INTEGER" />
+    <result column="is_activation_enabled" property="isActivationEnabled" jdbcType="BIT" />
+    <result column="is_receive_enabled" property="isReceiveEnabled" jdbcType="BIT" />
+    <result column="is_enqueue_enabled" property="isEnqueueEnabled" jdbcType="BIT" />
+    <result column="is_retention_enabled" property="isRetentionEnabled" jdbcType="BIT" />
+    <result column="is_poison_message_handling_enabled" property="isPoisonMessageHandlingEnabled" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServiceQueues" >
+    insert into service_queues (name, object_id, principal_id, 
+      schema_id, parent_object_id, type, 
+      type_desc, create_date, modify_date, 
+      is_ms_shipped, is_published, is_schema_published, 
+      max_readers, activation_procedure, execute_as_principal_id, 
+      is_activation_enabled, is_receive_enabled, is_enqueue_enabled, 
+      is_retention_enabled, is_poison_message_handling_enabled
+      )
+    values (#{name,jdbcType=NVARCHAR}, #{objectId,jdbcType=INTEGER}, #{principalId,jdbcType=INTEGER}, 
+      #{schemaId,jdbcType=INTEGER}, #{parentObjectId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{isMsShipped,jdbcType=BIT}, #{isPublished,jdbcType=BIT}, #{isSchemaPublished,jdbcType=BIT}, 
+      #{maxReaders,jdbcType=SMALLINT}, #{activationProcedure,jdbcType=NVARCHAR}, #{executeAsPrincipalId,jdbcType=INTEGER}, 
+      #{isActivationEnabled,jdbcType=BIT}, #{isReceiveEnabled,jdbcType=BIT}, #{isEnqueueEnabled,jdbcType=BIT}, 
+      #{isRetentionEnabled,jdbcType=BIT}, #{isPoisonMessageHandlingEnabled,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ServiceQueues" >
+    insert into service_queues
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="principalId != null" >
+        principal_id,
+      </if>
+      <if test="schemaId != null" >
+        schema_id,
+      </if>
+      <if test="parentObjectId != null" >
+        parent_object_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="modifyDate != null" >
+        modify_date,
+      </if>
+      <if test="isMsShipped != null" >
+        is_ms_shipped,
+      </if>
+      <if test="isPublished != null" >
+        is_published,
+      </if>
+      <if test="isSchemaPublished != null" >
+        is_schema_published,
+      </if>
+      <if test="maxReaders != null" >
+        max_readers,
+      </if>
+      <if test="activationProcedure != null" >
+        activation_procedure,
+      </if>
+      <if test="executeAsPrincipalId != null" >
+        execute_as_principal_id,
+      </if>
+      <if test="isActivationEnabled != null" >
+        is_activation_enabled,
+      </if>
+      <if test="isReceiveEnabled != null" >
+        is_receive_enabled,
+      </if>
+      <if test="isEnqueueEnabled != null" >
+        is_enqueue_enabled,
+      </if>
+      <if test="isRetentionEnabled != null" >
+        is_retention_enabled,
+      </if>
+      <if test="isPoisonMessageHandlingEnabled != null" >
+        is_poison_message_handling_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="principalId != null" >
+        #{principalId,jdbcType=INTEGER},
+      </if>
+      <if test="schemaId != null" >
+        #{schemaId,jdbcType=INTEGER},
+      </if>
+      <if test="parentObjectId != null" >
+        #{parentObjectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMsShipped != null" >
+        #{isMsShipped,jdbcType=BIT},
+      </if>
+      <if test="isPublished != null" >
+        #{isPublished,jdbcType=BIT},
+      </if>
+      <if test="isSchemaPublished != null" >
+        #{isSchemaPublished,jdbcType=BIT},
+      </if>
+      <if test="maxReaders != null" >
+        #{maxReaders,jdbcType=SMALLINT},
+      </if>
+      <if test="activationProcedure != null" >
+        #{activationProcedure,jdbcType=NVARCHAR},
+      </if>
+      <if test="executeAsPrincipalId != null" >
+        #{executeAsPrincipalId,jdbcType=INTEGER},
+      </if>
+      <if test="isActivationEnabled != null" >
+        #{isActivationEnabled,jdbcType=BIT},
+      </if>
+      <if test="isReceiveEnabled != null" >
+        #{isReceiveEnabled,jdbcType=BIT},
+      </if>
+      <if test="isEnqueueEnabled != null" >
+        #{isEnqueueEnabled,jdbcType=BIT},
+      </if>
+      <if test="isRetentionEnabled != null" >
+        #{isRetentionEnabled,jdbcType=BIT},
+      </if>
+      <if test="isPoisonMessageHandlingEnabled != null" >
+        #{isPoisonMessageHandlingEnabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

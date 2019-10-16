@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecCachedPlansMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlans" >
+    <result column="bucketid" property="bucketid" jdbcType="INTEGER" />
+    <result column="refcounts" property="refcounts" jdbcType="INTEGER" />
+    <result column="usecounts" property="usecounts" jdbcType="INTEGER" />
+    <result column="size_in_bytes" property="sizeInBytes" jdbcType="INTEGER" />
+    <result column="cacheobjtype" property="cacheobjtype" jdbcType="NVARCHAR" />
+    <result column="objtype" property="objtype" jdbcType="NVARCHAR" />
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlansWithBLOBs" extends="BaseResultMap" >
+    <result column="memory_object_address" property="memoryObjectAddress" jdbcType="VARBINARY" />
+    <result column="plan_handle" property="planHandle" jdbcType="VARBINARY" />
+    <result column="parent_plan_handle" property="parentPlanHandle" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    memory_object_address, plan_handle, parent_plan_handle
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlansWithBLOBs" >
+    insert into dm_exec_cached_plans (bucketid, refcounts, usecounts, 
+      size_in_bytes, cacheobjtype, objtype, 
+      pool_id, memory_object_address, plan_handle, 
+      parent_plan_handle)
+    values (#{bucketid,jdbcType=INTEGER}, #{refcounts,jdbcType=INTEGER}, #{usecounts,jdbcType=INTEGER}, 
+      #{sizeInBytes,jdbcType=INTEGER}, #{cacheobjtype,jdbcType=NVARCHAR}, #{objtype,jdbcType=NVARCHAR}, 
+      #{poolId,jdbcType=INTEGER}, #{memoryObjectAddress,jdbcType=VARBINARY}, #{planHandle,jdbcType=VARBINARY}, 
+      #{parentPlanHandle,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecCachedPlansWithBLOBs" >
+    insert into dm_exec_cached_plans
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bucketid != null" >
+        bucketid,
+      </if>
+      <if test="refcounts != null" >
+        refcounts,
+      </if>
+      <if test="usecounts != null" >
+        usecounts,
+      </if>
+      <if test="sizeInBytes != null" >
+        size_in_bytes,
+      </if>
+      <if test="cacheobjtype != null" >
+        cacheobjtype,
+      </if>
+      <if test="objtype != null" >
+        objtype,
+      </if>
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="memoryObjectAddress != null" >
+        memory_object_address,
+      </if>
+      <if test="planHandle != null" >
+        plan_handle,
+      </if>
+      <if test="parentPlanHandle != null" >
+        parent_plan_handle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bucketid != null" >
+        #{bucketid,jdbcType=INTEGER},
+      </if>
+      <if test="refcounts != null" >
+        #{refcounts,jdbcType=INTEGER},
+      </if>
+      <if test="usecounts != null" >
+        #{usecounts,jdbcType=INTEGER},
+      </if>
+      <if test="sizeInBytes != null" >
+        #{sizeInBytes,jdbcType=INTEGER},
+      </if>
+      <if test="cacheobjtype != null" >
+        #{cacheobjtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="objtype != null" >
+        #{objtype,jdbcType=NVARCHAR},
+      </if>
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="memoryObjectAddress != null" >
+        #{memoryObjectAddress,jdbcType=VARBINARY},
+      </if>
+      <if test="planHandle != null" >
+        #{planHandle,jdbcType=VARBINARY},
+      </if>
+      <if test="parentPlanHandle != null" >
+        #{parentPlanHandle,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

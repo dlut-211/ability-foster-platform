@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.ConversationPrioritiesMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.ConversationPriorities" >
+    <result column="priority_id" property="priorityId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="NVARCHAR" />
+    <result column="service_contract_id" property="serviceContractId" jdbcType="INTEGER" />
+    <result column="local_service_id" property="localServiceId" jdbcType="INTEGER" />
+    <result column="remote_service_name" property="remoteServiceName" jdbcType="NVARCHAR" />
+    <result column="priority" property="priority" jdbcType="TINYINT" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ConversationPriorities" >
+    insert into conversation_priorities (priority_id, name, service_contract_id, 
+      local_service_id, remote_service_name, priority
+      )
+    values (#{priorityId,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{serviceContractId,jdbcType=INTEGER}, 
+      #{localServiceId,jdbcType=INTEGER}, #{remoteServiceName,jdbcType=NVARCHAR}, #{priority,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.ConversationPriorities" >
+    insert into conversation_priorities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="priorityId != null" >
+        priority_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="serviceContractId != null" >
+        service_contract_id,
+      </if>
+      <if test="localServiceId != null" >
+        local_service_id,
+      </if>
+      <if test="remoteServiceName != null" >
+        remote_service_name,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="priorityId != null" >
+        #{priorityId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="serviceContractId != null" >
+        #{serviceContractId,jdbcType=INTEGER},
+      </if>
+      <if test="localServiceId != null" >
+        #{localServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="remoteServiceName != null" >
+        #{remoteServiceName,jdbcType=NVARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

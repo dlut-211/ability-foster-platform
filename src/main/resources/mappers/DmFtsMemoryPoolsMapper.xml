@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmFtsMemoryPoolsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsMemoryPools" >
+    <result column="pool_id" property="poolId" jdbcType="INTEGER" />
+    <result column="buffer_size" property="bufferSize" jdbcType="INTEGER" />
+    <result column="min_buffer_limit" property="minBufferLimit" jdbcType="INTEGER" />
+    <result column="max_buffer_limit" property="maxBufferLimit" jdbcType="INTEGER" />
+    <result column="buffer_count" property="bufferCount" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsMemoryPools" >
+    insert into dm_fts_memory_pools (pool_id, buffer_size, min_buffer_limit, 
+      max_buffer_limit, buffer_count)
+    values (#{poolId,jdbcType=INTEGER}, #{bufferSize,jdbcType=INTEGER}, #{minBufferLimit,jdbcType=INTEGER}, 
+      #{maxBufferLimit,jdbcType=INTEGER}, #{bufferCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmFtsMemoryPools" >
+    insert into dm_fts_memory_pools
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        pool_id,
+      </if>
+      <if test="bufferSize != null" >
+        buffer_size,
+      </if>
+      <if test="minBufferLimit != null" >
+        min_buffer_limit,
+      </if>
+      <if test="maxBufferLimit != null" >
+        max_buffer_limit,
+      </if>
+      <if test="bufferCount != null" >
+        buffer_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="poolId != null" >
+        #{poolId,jdbcType=INTEGER},
+      </if>
+      <if test="bufferSize != null" >
+        #{bufferSize,jdbcType=INTEGER},
+      </if>
+      <if test="minBufferLimit != null" >
+        #{minBufferLimit,jdbcType=INTEGER},
+      </if>
+      <if test="maxBufferLimit != null" >
+        #{maxBufferLimit,jdbcType=INTEGER},
+      </if>
+      <if test="bufferCount != null" >
+        #{bufferCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

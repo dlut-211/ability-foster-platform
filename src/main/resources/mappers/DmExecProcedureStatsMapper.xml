@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.DmExecProcedureStatsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecProcedureStats" >
+    <result column="database_id" property="databaseId" jdbcType="INTEGER" />
+    <result column="object_id" property="objectId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="CHAR" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="cached_time" property="cachedTime" jdbcType="TIMESTAMP" />
+    <result column="last_execution_time" property="lastExecutionTime" jdbcType="TIMESTAMP" />
+    <result column="execution_count" property="executionCount" jdbcType="BIGINT" />
+    <result column="total_worker_time" property="totalWorkerTime" jdbcType="BIGINT" />
+    <result column="last_worker_time" property="lastWorkerTime" jdbcType="BIGINT" />
+    <result column="min_worker_time" property="minWorkerTime" jdbcType="BIGINT" />
+    <result column="max_worker_time" property="maxWorkerTime" jdbcType="BIGINT" />
+    <result column="total_physical_reads" property="totalPhysicalReads" jdbcType="BIGINT" />
+    <result column="last_physical_reads" property="lastPhysicalReads" jdbcType="BIGINT" />
+    <result column="min_physical_reads" property="minPhysicalReads" jdbcType="BIGINT" />
+    <result column="max_physical_reads" property="maxPhysicalReads" jdbcType="BIGINT" />
+    <result column="total_logical_writes" property="totalLogicalWrites" jdbcType="BIGINT" />
+    <result column="last_logical_writes" property="lastLogicalWrites" jdbcType="BIGINT" />
+    <result column="min_logical_writes" property="minLogicalWrites" jdbcType="BIGINT" />
+    <result column="max_logical_writes" property="maxLogicalWrites" jdbcType="BIGINT" />
+    <result column="total_logical_reads" property="totalLogicalReads" jdbcType="BIGINT" />
+    <result column="last_logical_reads" property="lastLogicalReads" jdbcType="BIGINT" />
+    <result column="min_logical_reads" property="minLogicalReads" jdbcType="BIGINT" />
+    <result column="max_logical_reads" property="maxLogicalReads" jdbcType="BIGINT" />
+    <result column="total_elapsed_time" property="totalElapsedTime" jdbcType="BIGINT" />
+    <result column="last_elapsed_time" property="lastElapsedTime" jdbcType="BIGINT" />
+    <result column="min_elapsed_time" property="minElapsedTime" jdbcType="BIGINT" />
+    <result column="max_elapsed_time" property="maxElapsedTime" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.DmExecProcedureStatsWithBLOBs" extends="BaseResultMap" >
+    <result column="sql_handle" property="sqlHandle" jdbcType="VARBINARY" />
+    <result column="plan_handle" property="planHandle" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    sql_handle, plan_handle
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecProcedureStatsWithBLOBs" >
+    insert into dm_exec_procedure_stats (database_id, object_id, type, 
+      type_desc, cached_time, last_execution_time, 
+      execution_count, total_worker_time, last_worker_time, 
+      min_worker_time, max_worker_time, total_physical_reads, 
+      last_physical_reads, min_physical_reads, max_physical_reads, 
+      total_logical_writes, last_logical_writes, min_logical_writes, 
+      max_logical_writes, total_logical_reads, last_logical_reads, 
+      min_logical_reads, max_logical_reads, total_elapsed_time, 
+      last_elapsed_time, min_elapsed_time, max_elapsed_time, 
+      sql_handle, plan_handle)
+    values (#{databaseId,jdbcType=INTEGER}, #{objectId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
+      #{typeDesc,jdbcType=NVARCHAR}, #{cachedTime,jdbcType=TIMESTAMP}, #{lastExecutionTime,jdbcType=TIMESTAMP}, 
+      #{executionCount,jdbcType=BIGINT}, #{totalWorkerTime,jdbcType=BIGINT}, #{lastWorkerTime,jdbcType=BIGINT}, 
+      #{minWorkerTime,jdbcType=BIGINT}, #{maxWorkerTime,jdbcType=BIGINT}, #{totalPhysicalReads,jdbcType=BIGINT}, 
+      #{lastPhysicalReads,jdbcType=BIGINT}, #{minPhysicalReads,jdbcType=BIGINT}, #{maxPhysicalReads,jdbcType=BIGINT}, 
+      #{totalLogicalWrites,jdbcType=BIGINT}, #{lastLogicalWrites,jdbcType=BIGINT}, #{minLogicalWrites,jdbcType=BIGINT}, 
+      #{maxLogicalWrites,jdbcType=BIGINT}, #{totalLogicalReads,jdbcType=BIGINT}, #{lastLogicalReads,jdbcType=BIGINT}, 
+      #{minLogicalReads,jdbcType=BIGINT}, #{maxLogicalReads,jdbcType=BIGINT}, #{totalElapsedTime,jdbcType=BIGINT}, 
+      #{lastElapsedTime,jdbcType=BIGINT}, #{minElapsedTime,jdbcType=BIGINT}, #{maxElapsedTime,jdbcType=BIGINT}, 
+      #{sqlHandle,jdbcType=VARBINARY}, #{planHandle,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.DmExecProcedureStatsWithBLOBs" >
+    insert into dm_exec_procedure_stats
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        database_id,
+      </if>
+      <if test="objectId != null" >
+        object_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="cachedTime != null" >
+        cached_time,
+      </if>
+      <if test="lastExecutionTime != null" >
+        last_execution_time,
+      </if>
+      <if test="executionCount != null" >
+        execution_count,
+      </if>
+      <if test="totalWorkerTime != null" >
+        total_worker_time,
+      </if>
+      <if test="lastWorkerTime != null" >
+        last_worker_time,
+      </if>
+      <if test="minWorkerTime != null" >
+        min_worker_time,
+      </if>
+      <if test="maxWorkerTime != null" >
+        max_worker_time,
+      </if>
+      <if test="totalPhysicalReads != null" >
+        total_physical_reads,
+      </if>
+      <if test="lastPhysicalReads != null" >
+        last_physical_reads,
+      </if>
+      <if test="minPhysicalReads != null" >
+        min_physical_reads,
+      </if>
+      <if test="maxPhysicalReads != null" >
+        max_physical_reads,
+      </if>
+      <if test="totalLogicalWrites != null" >
+        total_logical_writes,
+      </if>
+      <if test="lastLogicalWrites != null" >
+        last_logical_writes,
+      </if>
+      <if test="minLogicalWrites != null" >
+        min_logical_writes,
+      </if>
+      <if test="maxLogicalWrites != null" >
+        max_logical_writes,
+      </if>
+      <if test="totalLogicalReads != null" >
+        total_logical_reads,
+      </if>
+      <if test="lastLogicalReads != null" >
+        last_logical_reads,
+      </if>
+      <if test="minLogicalReads != null" >
+        min_logical_reads,
+      </if>
+      <if test="maxLogicalReads != null" >
+        max_logical_reads,
+      </if>
+      <if test="totalElapsedTime != null" >
+        total_elapsed_time,
+      </if>
+      <if test="lastElapsedTime != null" >
+        last_elapsed_time,
+      </if>
+      <if test="minElapsedTime != null" >
+        min_elapsed_time,
+      </if>
+      <if test="maxElapsedTime != null" >
+        max_elapsed_time,
+      </if>
+      <if test="sqlHandle != null" >
+        sql_handle,
+      </if>
+      <if test="planHandle != null" >
+        plan_handle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseId != null" >
+        #{databaseId,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="cachedTime != null" >
+        #{cachedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastExecutionTime != null" >
+        #{lastExecutionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionCount != null" >
+        #{executionCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalWorkerTime != null" >
+        #{totalWorkerTime,jdbcType=BIGINT},
+      </if>
+      <if test="lastWorkerTime != null" >
+        #{lastWorkerTime,jdbcType=BIGINT},
+      </if>
+      <if test="minWorkerTime != null" >
+        #{minWorkerTime,jdbcType=BIGINT},
+      </if>
+      <if test="maxWorkerTime != null" >
+        #{maxWorkerTime,jdbcType=BIGINT},
+      </if>
+      <if test="totalPhysicalReads != null" >
+        #{totalPhysicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="lastPhysicalReads != null" >
+        #{lastPhysicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="minPhysicalReads != null" >
+        #{minPhysicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="maxPhysicalReads != null" >
+        #{maxPhysicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="totalLogicalWrites != null" >
+        #{totalLogicalWrites,jdbcType=BIGINT},
+      </if>
+      <if test="lastLogicalWrites != null" >
+        #{lastLogicalWrites,jdbcType=BIGINT},
+      </if>
+      <if test="minLogicalWrites != null" >
+        #{minLogicalWrites,jdbcType=BIGINT},
+      </if>
+      <if test="maxLogicalWrites != null" >
+        #{maxLogicalWrites,jdbcType=BIGINT},
+      </if>
+      <if test="totalLogicalReads != null" >
+        #{totalLogicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="lastLogicalReads != null" >
+        #{lastLogicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="minLogicalReads != null" >
+        #{minLogicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="maxLogicalReads != null" >
+        #{maxLogicalReads,jdbcType=BIGINT},
+      </if>
+      <if test="totalElapsedTime != null" >
+        #{totalElapsedTime,jdbcType=BIGINT},
+      </if>
+      <if test="lastElapsedTime != null" >
+        #{lastElapsedTime,jdbcType=BIGINT},
+      </if>
+      <if test="minElapsedTime != null" >
+        #{minElapsedTime,jdbcType=BIGINT},
+      </if>
+      <if test="maxElapsedTime != null" >
+        #{maxElapsedTime,jdbcType=BIGINT},
+      </if>
+      <if test="sqlHandle != null" >
+        #{sqlHandle,jdbcType=VARBINARY},
+      </if>
+      <if test="planHandle != null" >
+        #{planHandle,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SystemInternalsAllocationUnitsMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.SystemInternalsAllocationUnits" >
+    <result column="allocation_unit_id" property="allocationUnitId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="type_desc" property="typeDesc" jdbcType="NVARCHAR" />
+    <result column="container_id" property="containerId" jdbcType="BIGINT" />
+    <result column="filegroup_id" property="filegroupId" jdbcType="SMALLINT" />
+    <result column="total_pages" property="totalPages" jdbcType="BIGINT" />
+    <result column="used_pages" property="usedPages" jdbcType="BIGINT" />
+    <result column="data_pages" property="dataPages" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.SystemInternalsAllocationUnitsWithBLOBs" extends="BaseResultMap" >
+    <result column="first_page" property="firstPage" jdbcType="BINARY" />
+    <result column="root_page" property="rootPage" jdbcType="BINARY" />
+    <result column="first_iam_page" property="firstIamPage" jdbcType="BINARY" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    first_page, root_page, first_iam_page
+  </sql>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SystemInternalsAllocationUnitsWithBLOBs" >
+    insert into system_internals_allocation_units (allocation_unit_id, type, type_desc, 
+      container_id, filegroup_id, total_pages, 
+      used_pages, data_pages, first_page, 
+      root_page, first_iam_page)
+    values (#{allocationUnitId,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{typeDesc,jdbcType=NVARCHAR}, 
+      #{containerId,jdbcType=BIGINT}, #{filegroupId,jdbcType=SMALLINT}, #{totalPages,jdbcType=BIGINT}, 
+      #{usedPages,jdbcType=BIGINT}, #{dataPages,jdbcType=BIGINT}, #{firstPage,jdbcType=BINARY}, 
+      #{rootPage,jdbcType=BINARY}, #{firstIamPage,jdbcType=BINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.SystemInternalsAllocationUnitsWithBLOBs" >
+    insert into system_internals_allocation_units
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="allocationUnitId != null" >
+        allocation_unit_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="typeDesc != null" >
+        type_desc,
+      </if>
+      <if test="containerId != null" >
+        container_id,
+      </if>
+      <if test="filegroupId != null" >
+        filegroup_id,
+      </if>
+      <if test="totalPages != null" >
+        total_pages,
+      </if>
+      <if test="usedPages != null" >
+        used_pages,
+      </if>
+      <if test="dataPages != null" >
+        data_pages,
+      </if>
+      <if test="firstPage != null" >
+        first_page,
+      </if>
+      <if test="rootPage != null" >
+        root_page,
+      </if>
+      <if test="firstIamPage != null" >
+        first_iam_page,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="allocationUnitId != null" >
+        #{allocationUnitId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="typeDesc != null" >
+        #{typeDesc,jdbcType=NVARCHAR},
+      </if>
+      <if test="containerId != null" >
+        #{containerId,jdbcType=BIGINT},
+      </if>
+      <if test="filegroupId != null" >
+        #{filegroupId,jdbcType=SMALLINT},
+      </if>
+      <if test="totalPages != null" >
+        #{totalPages,jdbcType=BIGINT},
+      </if>
+      <if test="usedPages != null" >
+        #{usedPages,jdbcType=BIGINT},
+      </if>
+      <if test="dataPages != null" >
+        #{dataPages,jdbcType=BIGINT},
+      </if>
+      <if test="firstPage != null" >
+        #{firstPage,jdbcType=BINARY},
+      </if>
+      <if test="rootPage != null" >
+        #{rootPage,jdbcType=BINARY},
+      </if>
+      <if test="firstIamPage != null" >
+        #{firstIamPage,jdbcType=BINARY},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.SysfgfragMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Sysfgfrag" >
+    <result column="fgid" property="fgid" jdbcType="INTEGER" />
+    <result column="fgfragid" property="fgfragid" jdbcType="INTEGER" />
+    <result column="dbfragid" property="dbfragid" jdbcType="INTEGER" />
+    <result column="phfgid" property="phfgid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysfgfrag" >
+    insert into sysfgfrag (fgid, fgfragid, dbfragid, 
+      phfgid, status)
+    values (#{fgid,jdbcType=INTEGER}, #{fgfragid,jdbcType=INTEGER}, #{dbfragid,jdbcType=INTEGER}, 
+      #{phfgid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Sysfgfrag" >
+    insert into sysfgfrag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fgid != null" >
+        fgid,
+      </if>
+      <if test="fgfragid != null" >
+        fgfragid,
+      </if>
+      <if test="dbfragid != null" >
+        dbfragid,
+      </if>
+      <if test="phfgid != null" >
+        phfgid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fgid != null" >
+        #{fgid,jdbcType=INTEGER},
+      </if>
+      <if test="fgfragid != null" >
+        #{fgfragid,jdbcType=INTEGER},
+      </if>
+      <if test="dbfragid != null" >
+        #{dbfragid,jdbcType=INTEGER},
+      </if>
+      <if test="phfgid != null" >
+        #{phfgid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
