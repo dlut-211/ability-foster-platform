@@ -1,48 +1,23 @@
-# ability-foster-platform
-大学生能力培养体系平台
 
-# install dependencies
+# 大学生能力培养体系平台
+
+## 1 前端部分
+### 1.1 安装node_modules依赖
+```
+# 安装依赖
 npm install
-
-# serve with hot reload at localhost:8080
+# 运行项目
 npm run dev
+```
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-
-# generate ssh key
+## 2 Git 部分
+### 2.1 生成 ssh key
+```
+# 生成
 ssh-keygen -t rsa -C "xxxx@xx.xx"
+# 复制
 cat ~/.ssh/id_rsa.pub
 
-# use vue-cli to create project
-npm install --global vue-cli
-vue init webpack xxx
-cd xxx
-npm install
-npm run dev
-
-# npm run build
-
-# depedencies need to be installed so far
-npm install fastclick --save
-npm install stylus --save
-npm install stylus-loader --save
-npm install vue-awesome-swiper@2.6.7 --save
-npm install axios --save
-npm install better-scroll --save
-npm install vuex --save
-npm install babel-polyfill --save
-
-# git commands
 # 查看分支状态
 git status
 # 查看本地分支
@@ -72,3 +47,7 @@ git push origin [branch_name]
 git checkout master
 git merge origin/[branch_name]
 git push
+
+```
+## 3 待解决问题
+- 视图部分 Views 视图的 model mapper mapper.xml未创建

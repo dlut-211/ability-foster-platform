@@ -49,7 +49,7 @@
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="SqlServer" type="post" identity="true"/>
+            <generatedKey column="id" sqlStatement="SqlServer"/>
         </table>
     </context>
 </generatorConfiguration>
