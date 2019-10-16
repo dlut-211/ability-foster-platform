@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentworkbychapterMapper">
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter">
-    <result column="CourseId" jdbcType="INTEGER" property="courseid" />
-    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
-    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
-    <result column="ChapterId" jdbcType="INTEGER" property="chapterid" />
-    <result column="ChapterName" jdbcType="NVARCHAR" property="chaptername" />
-    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
-    <result column="Description" jdbcType="NVARCHAR" property="description" />
-    <result column="WorkName" jdbcType="NVARCHAR" property="workname" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
-    <result column="CreatedOnTime" jdbcType="TIMESTAMP" property="createdontime" />
-    <result column="StudentWorkId" jdbcType="INTEGER" property="studentworkid" />
-    <result column="LayoutTime" jdbcType="TIMESTAMP" property="layouttime" />
-    <result column="IsSubmit" jdbcType="INTEGER" property="issubmit" />
-    <result column="isScore" jdbcType="BIT" property="isscore" />
-    <result column="EndTime" jdbcType="TIMESTAMP" property="endtime" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentworkbychapterMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter" >
+    <result column="CourseId" property="courseid" jdbcType="INTEGER" />
+    <result column="ClassRoomId" property="classroomid" jdbcType="INTEGER" />
+    <result column="ClassRoomName" property="classroomname" jdbcType="NVARCHAR" />
+    <result column="ChapterId" property="chapterid" jdbcType="INTEGER" />
+    <result column="ChapterName" property="chaptername" jdbcType="NVARCHAR" />
+    <result column="StudentId" property="studentid" jdbcType="INTEGER" />
+    <result column="Description" property="description" jdbcType="NVARCHAR" />
+    <result column="WorkName" property="workname" jdbcType="NVARCHAR" />
+    <result column="Score" property="score" jdbcType="INTEGER" />
+    <result column="CreatedOnTime" property="createdontime" jdbcType="TIMESTAMP" />
+    <result column="StudentWorkId" property="studentworkid" jdbcType="INTEGER" />
+    <result column="LayoutTime" property="layouttime" jdbcType="TIMESTAMP" />
+    <result column="IsSubmit" property="issubmit" jdbcType="INTEGER" />
+    <result column="isScore" property="isscore" jdbcType="BIT" />
+    <result column="EndTime" property="endtime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter">
-    <result column="StudentWorkVerionNum" jdbcType="BINARY" property="studentworkverionnum" />
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter" extends="BaseResultMap" >
+    <result column="StudentWorkVerionNum" property="studentworkverionnum" jdbcType="BINARY" />
   </resultMap>
-  <sql id="Blob_Column_List">
+  <sql id="Blob_Column_List" >
     StudentWorkVerionNum
   </sql>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter">
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter" >
     insert into V_StudentWorkByChapter (CourseId, ClassRoomId, ClassRoomName, 
       ChapterId, ChapterName, StudentId, 
       Description, WorkName, Score, 
@@ -38,245 +38,105 @@
       #{issubmit,jdbcType=INTEGER}, #{isscore,jdbcType=BIT}, #{endtime,jdbcType=TIMESTAMP}, 
       #{studentworkverionnum,jdbcType=BINARY})
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter">
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkbychapter" >
     insert into V_StudentWorkByChapter
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="courseid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseid != null" >
         CourseId,
       </if>
-      <if test="classroomid != null">
+      <if test="classroomid != null" >
         ClassRoomId,
       </if>
-      <if test="classroomname != null">
+      <if test="classroomname != null" >
         ClassRoomName,
       </if>
-      <if test="chapterid != null">
+      <if test="chapterid != null" >
         ChapterId,
       </if>
-      <if test="chaptername != null">
+      <if test="chaptername != null" >
         ChapterName,
       </if>
-      <if test="studentid != null">
+      <if test="studentid != null" >
         StudentId,
       </if>
-      <if test="description != null">
+      <if test="description != null" >
         Description,
       </if>
-      <if test="workname != null">
+      <if test="workname != null" >
         WorkName,
       </if>
-      <if test="score != null">
+      <if test="score != null" >
         Score,
       </if>
-      <if test="createdontime != null">
+      <if test="createdontime != null" >
         CreatedOnTime,
       </if>
-      <if test="studentworkid != null">
+      <if test="studentworkid != null" >
         StudentWorkId,
       </if>
-      <if test="layouttime != null">
+      <if test="layouttime != null" >
         LayoutTime,
       </if>
-      <if test="issubmit != null">
+      <if test="issubmit != null" >
         IsSubmit,
       </if>
-      <if test="isscore != null">
+      <if test="isscore != null" >
         isScore,
       </if>
-      <if test="endtime != null">
+      <if test="endtime != null" >
         EndTime,
       </if>
-      <if test="studentworkverionnum != null">
+      <if test="studentworkverionnum != null" >
         StudentWorkVerionNum,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="courseid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseid != null" >
         #{courseid,jdbcType=INTEGER},
       </if>
-      <if test="classroomid != null">
+      <if test="classroomid != null" >
         #{classroomid,jdbcType=INTEGER},
       </if>
-      <if test="classroomname != null">
+      <if test="classroomname != null" >
         #{classroomname,jdbcType=NVARCHAR},
       </if>
-      <if test="chapterid != null">
+      <if test="chapterid != null" >
         #{chapterid,jdbcType=INTEGER},
       </if>
-      <if test="chaptername != null">
+      <if test="chaptername != null" >
         #{chaptername,jdbcType=NVARCHAR},
       </if>
-      <if test="studentid != null">
+      <if test="studentid != null" >
         #{studentid,jdbcType=INTEGER},
       </if>
-      <if test="description != null">
+      <if test="description != null" >
         #{description,jdbcType=NVARCHAR},
       </if>
-      <if test="workname != null">
+      <if test="workname != null" >
         #{workname,jdbcType=NVARCHAR},
       </if>
-      <if test="score != null">
+      <if test="score != null" >
         #{score,jdbcType=INTEGER},
       </if>
-      <if test="createdontime != null">
+      <if test="createdontime != null" >
         #{createdontime,jdbcType=TIMESTAMP},
       </if>
-      <if test="studentworkid != null">
+      <if test="studentworkid != null" >
         #{studentworkid,jdbcType=INTEGER},
       </if>
-      <if test="layouttime != null">
+      <if test="layouttime != null" >
         #{layouttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="issubmit != null">
+      <if test="issubmit != null" >
         #{issubmit,jdbcType=INTEGER},
       </if>
-      <if test="isscore != null">
+      <if test="isscore != null" >
         #{isscore,jdbcType=BIT},
       </if>
-      <if test="endtime != null">
+      <if test="endtime != null" >
         #{endtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="studentworkverionnum != null">
-        #{studentworkverionnum,jdbcType=BINARY},
-      </if>
-    </trim>
-  </insert>
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.VStudentworkbychapter">
-    <result column="CourseId" jdbcType="INTEGER" property="courseid" />
-    <result column="ClassRoomId" jdbcType="INTEGER" property="classroomid" />
-    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
-    <result column="ChapterId" jdbcType="INTEGER" property="chapterid" />
-    <result column="ChapterName" jdbcType="NVARCHAR" property="chaptername" />
-    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
-    <result column="Description" jdbcType="NVARCHAR" property="description" />
-    <result column="WorkName" jdbcType="NVARCHAR" property="workname" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
-    <result column="CreatedOnTime" jdbcType="TIMESTAMP" property="createdontime" />
-    <result column="StudentWorkId" jdbcType="INTEGER" property="studentworkid" />
-    <result column="LayoutTime" jdbcType="TIMESTAMP" property="layouttime" />
-    <result column="IsSubmit" jdbcType="INTEGER" property="issubmit" />
-    <result column="isScore" jdbcType="BIT" property="isscore" />
-    <result column="EndTime" jdbcType="TIMESTAMP" property="endtime" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.view.VStudentworkbychapter">
-    <result column="StudentWorkVerionNum" jdbcType="BINARY" property="studentworkverionnum" />
-  </resultMap>
-  <sql id="Blob_Column_List">
-    StudentWorkVerionNum
-  </sql>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentworkbychapter">
-    insert into V_StudentWorkByChapter (CourseId, ClassRoomId, ClassRoomName, 
-      ChapterId, ChapterName, StudentId, 
-      Description, WorkName, Score, 
-      CreatedOnTime, StudentWorkId, LayoutTime, 
-      IsSubmit, isScore, EndTime, 
-      StudentWorkVerionNum)
-    values (#{courseid,jdbcType=INTEGER}, #{classroomid,jdbcType=INTEGER}, #{classroomname,jdbcType=NVARCHAR}, 
-      #{chapterid,jdbcType=INTEGER}, #{chaptername,jdbcType=NVARCHAR}, #{studentid,jdbcType=INTEGER}, 
-      #{description,jdbcType=NVARCHAR}, #{workname,jdbcType=NVARCHAR}, #{score,jdbcType=INTEGER}, 
-      #{createdontime,jdbcType=TIMESTAMP}, #{studentworkid,jdbcType=INTEGER}, #{layouttime,jdbcType=TIMESTAMP}, 
-      #{issubmit,jdbcType=INTEGER}, #{isscore,jdbcType=BIT}, #{endtime,jdbcType=TIMESTAMP}, 
-      #{studentworkverionnum,jdbcType=BINARY})
-  </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentworkbychapter">
-    insert into V_StudentWorkByChapter
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="courseid != null">
-        CourseId,
-      </if>
-      <if test="classroomid != null">
-        ClassRoomId,
-      </if>
-      <if test="classroomname != null">
-        ClassRoomName,
-      </if>
-      <if test="chapterid != null">
-        ChapterId,
-      </if>
-      <if test="chaptername != null">
-        ChapterName,
-      </if>
-      <if test="studentid != null">
-        StudentId,
-      </if>
-      <if test="description != null">
-        Description,
-      </if>
-      <if test="workname != null">
-        WorkName,
-      </if>
-      <if test="score != null">
-        Score,
-      </if>
-      <if test="createdontime != null">
-        CreatedOnTime,
-      </if>
-      <if test="studentworkid != null">
-        StudentWorkId,
-      </if>
-      <if test="layouttime != null">
-        LayoutTime,
-      </if>
-      <if test="issubmit != null">
-        IsSubmit,
-      </if>
-      <if test="isscore != null">
-        isScore,
-      </if>
-      <if test="endtime != null">
-        EndTime,
-      </if>
-      <if test="studentworkverionnum != null">
-        StudentWorkVerionNum,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="courseid != null">
-        #{courseid,jdbcType=INTEGER},
-      </if>
-      <if test="classroomid != null">
-        #{classroomid,jdbcType=INTEGER},
-      </if>
-      <if test="classroomname != null">
-        #{classroomname,jdbcType=NVARCHAR},
-      </if>
-      <if test="chapterid != null">
-        #{chapterid,jdbcType=INTEGER},
-      </if>
-      <if test="chaptername != null">
-        #{chaptername,jdbcType=NVARCHAR},
-      </if>
-      <if test="studentid != null">
-        #{studentid,jdbcType=INTEGER},
-      </if>
-      <if test="description != null">
-        #{description,jdbcType=NVARCHAR},
-      </if>
-      <if test="workname != null">
-        #{workname,jdbcType=NVARCHAR},
-      </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
-      </if>
-      <if test="createdontime != null">
-        #{createdontime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="studentworkid != null">
-        #{studentworkid,jdbcType=INTEGER},
-      </if>
-      <if test="layouttime != null">
-        #{layouttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="issubmit != null">
-        #{issubmit,jdbcType=INTEGER},
-      </if>
-      <if test="isscore != null">
-        #{isscore,jdbcType=BIT},
-      </if>
-      <if test="endtime != null">
-        #{endtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="studentworkverionnum != null">
+      <if test="studentworkverionnum != null" >
         #{studentworkverionnum,jdbcType=BINARY},
       </if>
     </trim>

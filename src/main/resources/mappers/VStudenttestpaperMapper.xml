@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudenttestpaperMapper">
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudenttestpaper">
-    <result column="StudentNumber" jdbcType="NVARCHAR" property="studentnumber" />
-    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
-    <result column="TestPaperId" jdbcType="INTEGER" property="testpaperid" />
-    <result column="DetailType" jdbcType="INTEGER" property="detailtype" />
-    <result column="DetailNumber" jdbcType="INTEGER" property="detailnumber" />
-    <result column="DetailScore" jdbcType="INTEGER" property="detailscore" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudenttestpaperMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudenttestpaper" >
+    <result column="StudentNumber" property="studentnumber" jdbcType="NVARCHAR" />
+    <result column="StudentName" property="studentname" jdbcType="NVARCHAR" />
+    <result column="TestPaperId" property="testpaperid" jdbcType="INTEGER" />
+    <result column="DetailType" property="detailtype" jdbcType="INTEGER" />
+    <result column="DetailNumber" property="detailnumber" jdbcType="INTEGER" />
+    <result column="DetailScore" property="detailscore" jdbcType="INTEGER" />
+    <result column="Score" property="score" jdbcType="INTEGER" />
   </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudenttestpaper">
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudenttestpaper" >
     insert into V_StudentTestPaper (StudentNumber, StudentName, TestPaperId, 
       DetailType, DetailNumber, DetailScore, 
       Score)
@@ -18,117 +18,51 @@
       #{detailtype,jdbcType=INTEGER}, #{detailnumber,jdbcType=INTEGER}, #{detailscore,jdbcType=INTEGER}, 
       #{score,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudenttestpaper">
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudenttestpaper" >
     insert into V_StudentTestPaper
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="studentnumber != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentnumber != null" >
         StudentNumber,
       </if>
-      <if test="studentname != null">
+      <if test="studentname != null" >
         StudentName,
       </if>
-      <if test="testpaperid != null">
+      <if test="testpaperid != null" >
         TestPaperId,
       </if>
-      <if test="detailtype != null">
+      <if test="detailtype != null" >
         DetailType,
       </if>
-      <if test="detailnumber != null">
+      <if test="detailnumber != null" >
         DetailNumber,
       </if>
-      <if test="detailscore != null">
+      <if test="detailscore != null" >
         DetailScore,
       </if>
-      <if test="score != null">
+      <if test="score != null" >
         Score,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="studentnumber != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentnumber != null" >
         #{studentnumber,jdbcType=NVARCHAR},
       </if>
-      <if test="studentname != null">
+      <if test="studentname != null" >
         #{studentname,jdbcType=NVARCHAR},
       </if>
-      <if test="testpaperid != null">
+      <if test="testpaperid != null" >
         #{testpaperid,jdbcType=INTEGER},
       </if>
-      <if test="detailtype != null">
+      <if test="detailtype != null" >
         #{detailtype,jdbcType=INTEGER},
       </if>
-      <if test="detailnumber != null">
+      <if test="detailnumber != null" >
         #{detailnumber,jdbcType=INTEGER},
       </if>
-      <if test="detailscore != null">
+      <if test="detailscore != null" >
         #{detailscore,jdbcType=INTEGER},
       </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.VStudenttestpaper">
-    <result column="StudentNumber" jdbcType="NVARCHAR" property="studentnumber" />
-    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
-    <result column="TestPaperId" jdbcType="INTEGER" property="testpaperid" />
-    <result column="DetailType" jdbcType="INTEGER" property="detailtype" />
-    <result column="DetailNumber" jdbcType="INTEGER" property="detailnumber" />
-    <result column="DetailScore" jdbcType="INTEGER" property="detailscore" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
-  </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudenttestpaper">
-    insert into V_StudentTestPaper (StudentNumber, StudentName, TestPaperId, 
-      DetailType, DetailNumber, DetailScore, 
-      Score)
-    values (#{studentnumber,jdbcType=NVARCHAR}, #{studentname,jdbcType=NVARCHAR}, #{testpaperid,jdbcType=INTEGER}, 
-      #{detailtype,jdbcType=INTEGER}, #{detailnumber,jdbcType=INTEGER}, #{detailscore,jdbcType=INTEGER}, 
-      #{score,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudenttestpaper">
-    insert into V_StudentTestPaper
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="studentnumber != null">
-        StudentNumber,
-      </if>
-      <if test="studentname != null">
-        StudentName,
-      </if>
-      <if test="testpaperid != null">
-        TestPaperId,
-      </if>
-      <if test="detailtype != null">
-        DetailType,
-      </if>
-      <if test="detailnumber != null">
-        DetailNumber,
-      </if>
-      <if test="detailscore != null">
-        DetailScore,
-      </if>
-      <if test="score != null">
-        Score,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="studentnumber != null">
-        #{studentnumber,jdbcType=NVARCHAR},
-      </if>
-      <if test="studentname != null">
-        #{studentname,jdbcType=NVARCHAR},
-      </if>
-      <if test="testpaperid != null">
-        #{testpaperid,jdbcType=INTEGER},
-      </if>
-      <if test="detailtype != null">
-        #{detailtype,jdbcType=INTEGER},
-      </if>
-      <if test="detailnumber != null">
-        #{detailnumber,jdbcType=INTEGER},
-      </if>
-      <if test="detailscore != null">
-        #{detailscore,jdbcType=INTEGER},
-      </if>
-      <if test="score != null">
+      <if test="score != null" >
         #{score,jdbcType=INTEGER},
       </if>
     </trim>

@@ -1,74 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VUserroleMapper">
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VUserrole">
-    <result column="UserId" jdbcType="INTEGER" property="userid" />
-    <result column="RoleId" jdbcType="INTEGER" property="roleid" />
-    <result column="CreatedOn" jdbcType="TIMESTAMP" property="createdon" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VUserroleMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VUserrole" >
+    <result column="UserId" property="userid" jdbcType="INTEGER" />
+    <result column="RoleId" property="roleid" jdbcType="INTEGER" />
+    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
   </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VUserrole">
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VUserrole" >
     insert into V_UserRole (UserId, RoleId, CreatedOn
       )
     values (#{userid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VUserrole">
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VUserrole" >
     insert into V_UserRole
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
         UserId,
       </if>
-      <if test="roleid != null">
+      <if test="roleid != null" >
         RoleId,
       </if>
-      <if test="createdon != null">
+      <if test="createdon != null" >
         CreatedOn,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="roleid != null">
+      <if test="roleid != null" >
         #{roleid,jdbcType=INTEGER},
       </if>
-      <if test="createdon != null">
-        #{createdon,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.VUserrole">
-    <result column="UserId" jdbcType="INTEGER" property="userid" />
-    <result column="RoleId" jdbcType="INTEGER" property="roleid" />
-    <result column="CreatedOn" jdbcType="TIMESTAMP" property="createdon" />
-  </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VUserrole">
-    insert into V_UserRole (UserId, RoleId, CreatedOn
-      )
-    values (#{userid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VUserrole">
-    insert into V_UserRole
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        UserId,
-      </if>
-      <if test="roleid != null">
-        RoleId,
-      </if>
-      <if test="createdon != null">
-        CreatedOn,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="roleid != null">
-        #{roleid,jdbcType=INTEGER},
-      </if>
-      <if test="createdon != null">
+      <if test="createdon != null" >
         #{createdon,jdbcType=TIMESTAMP},
       </if>
     </trim>

@@ -1,236 +1,121 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentworkMapper">
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork">
-    <result column="Id" jdbcType="INTEGER" property="id" />
-    <result column="ClassRoomStudentId" jdbcType="INTEGER" property="classroomstudentid" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
-    <result column="WorkMessage" jdbcType="NVARCHAR" property="workmessage" />
-    <result column="ClassRoomWorkId" jdbcType="INTEGER" property="classroomworkid" />
-    <result column="StudentNumber" jdbcType="NVARCHAR" property="studentnumber" />
-    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
-    <result column="SubmitTime" jdbcType="TIMESTAMP" property="submittime" />
-    <result column="UseTime" jdbcType="INTEGER" property="usetime" />
-    <result column="SubmitCount" jdbcType="INTEGER" property="submitcount" />
-    <result column="IsSubmit" jdbcType="INTEGER" property="issubmit" />
-    <result column="WorkPath" jdbcType="NVARCHAR" property="workpath" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentworkMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork" >
+    <result column="Id" property="id" jdbcType="INTEGER" />
+    <result column="ClassRoomStudentId" property="classroomstudentid" jdbcType="INTEGER" />
+    <result column="Score" property="score" jdbcType="INTEGER" />
+    <result column="WorkMessage" property="workmessage" jdbcType="NVARCHAR" />
+    <result column="ClassRoomWorkId" property="classroomworkid" jdbcType="INTEGER" />
+    <result column="StudentNumber" property="studentnumber" jdbcType="NVARCHAR" />
+    <result column="StudentName" property="studentname" jdbcType="NVARCHAR" />
+    <result column="SubmitTime" property="submittime" jdbcType="TIMESTAMP" />
+    <result column="UseTime" property="usetime" jdbcType="INTEGER" />
+    <result column="SubmitCount" property="submitcount" jdbcType="INTEGER" />
+    <result column="IsSubmit" property="issubmit" jdbcType="INTEGER" />
+    <result column="WorkPath" property="workpath" jdbcType="NVARCHAR" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork">
-    <result column="VersionNumber" jdbcType="BINARY" property="versionnumber" />
+  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork" extends="BaseResultMap" >
+    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
   </resultMap>
-  <sql id="Blob_Column_List">
+  <sql id="Blob_Column_List" >
     VersionNumber
   </sql>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
-    insert into V_StudentWork (ClassRoomStudentId, Score, WorkMessage, 
-      ClassRoomWorkId, StudentNumber, StudentName, 
-      SubmitTime, UseTime, SubmitCount, 
-      IsSubmit, WorkPath, VersionNumber
-      )
-    values (#{classroomstudentid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{workmessage,jdbcType=NVARCHAR}, 
-      #{classroomworkid,jdbcType=INTEGER}, #{studentnumber,jdbcType=NVARCHAR}, #{studentname,jdbcType=NVARCHAR}, 
-      #{submittime,jdbcType=TIMESTAMP}, #{usetime,jdbcType=INTEGER}, #{submitcount,jdbcType=INTEGER}, 
-      #{issubmit,jdbcType=INTEGER}, #{workpath,jdbcType=NVARCHAR}, #{versionnumber,jdbcType=BINARY}
-      )
+    insert into V_StudentWork (Id, ClassRoomStudentId, Score, 
+      WorkMessage, ClassRoomWorkId, StudentNumber, 
+      StudentName, SubmitTime, UseTime, 
+      SubmitCount, IsSubmit, WorkPath, 
+      VersionNumber)
+    values (#{id,jdbcType=INTEGER}, #{classroomstudentid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{workmessage,jdbcType=NVARCHAR}, #{classroomworkid,jdbcType=INTEGER}, #{studentnumber,jdbcType=NVARCHAR}, 
+      #{studentname,jdbcType=NVARCHAR}, #{submittime,jdbcType=TIMESTAMP}, #{usetime,jdbcType=INTEGER}, 
+      #{submitcount,jdbcType=INTEGER}, #{issubmit,jdbcType=INTEGER}, #{workpath,jdbcType=NVARCHAR}, 
+      #{versionnumber,jdbcType=BINARY})
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentwork" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
       SELECT SCOPE_IDENTITY()
     </selectKey>
     insert into V_StudentWork
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="classroomstudentid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      Id,
+      <if test="classroomstudentid != null" >
         ClassRoomStudentId,
       </if>
-      <if test="score != null">
+      <if test="score != null" >
         Score,
       </if>
-      <if test="workmessage != null">
+      <if test="workmessage != null" >
         WorkMessage,
       </if>
-      <if test="classroomworkid != null">
+      <if test="classroomworkid != null" >
         ClassRoomWorkId,
       </if>
-      <if test="studentnumber != null">
+      <if test="studentnumber != null" >
         StudentNumber,
       </if>
-      <if test="studentname != null">
+      <if test="studentname != null" >
         StudentName,
       </if>
-      <if test="submittime != null">
+      <if test="submittime != null" >
         SubmitTime,
       </if>
-      <if test="usetime != null">
+      <if test="usetime != null" >
         UseTime,
       </if>
-      <if test="submitcount != null">
+      <if test="submitcount != null" >
         SubmitCount,
       </if>
-      <if test="issubmit != null">
+      <if test="issubmit != null" >
         IsSubmit,
       </if>
-      <if test="workpath != null">
+      <if test="workpath != null" >
         WorkPath,
       </if>
-      <if test="versionnumber != null">
+      <if test="versionnumber != null" >
         VersionNumber,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="classroomstudentid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="classroomstudentid != null" >
         #{classroomstudentid,jdbcType=INTEGER},
       </if>
-      <if test="score != null">
+      <if test="score != null" >
         #{score,jdbcType=INTEGER},
       </if>
-      <if test="workmessage != null">
+      <if test="workmessage != null" >
         #{workmessage,jdbcType=NVARCHAR},
       </if>
-      <if test="classroomworkid != null">
+      <if test="classroomworkid != null" >
         #{classroomworkid,jdbcType=INTEGER},
       </if>
-      <if test="studentnumber != null">
+      <if test="studentnumber != null" >
         #{studentnumber,jdbcType=NVARCHAR},
       </if>
-      <if test="studentname != null">
+      <if test="studentname != null" >
         #{studentname,jdbcType=NVARCHAR},
       </if>
-      <if test="submittime != null">
+      <if test="submittime != null" >
         #{submittime,jdbcType=TIMESTAMP},
       </if>
-      <if test="usetime != null">
+      <if test="usetime != null" >
         #{usetime,jdbcType=INTEGER},
       </if>
-      <if test="submitcount != null">
+      <if test="submitcount != null" >
         #{submitcount,jdbcType=INTEGER},
       </if>
-      <if test="issubmit != null">
+      <if test="issubmit != null" >
         #{issubmit,jdbcType=INTEGER},
       </if>
-      <if test="workpath != null">
+      <if test="workpath != null" >
         #{workpath,jdbcType=NVARCHAR},
       </if>
-      <if test="versionnumber != null">
-        #{versionnumber,jdbcType=BINARY},
-      </if>
-    </trim>
-  </insert>
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.VStudentwork">
-    <result column="Id" jdbcType="INTEGER" property="id" />
-    <result column="ClassRoomStudentId" jdbcType="INTEGER" property="classroomstudentid" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
-    <result column="WorkMessage" jdbcType="NVARCHAR" property="workmessage" />
-    <result column="ClassRoomWorkId" jdbcType="INTEGER" property="classroomworkid" />
-    <result column="StudentNumber" jdbcType="NVARCHAR" property="studentnumber" />
-    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
-    <result column="SubmitTime" jdbcType="TIMESTAMP" property="submittime" />
-    <result column="UseTime" jdbcType="INTEGER" property="usetime" />
-    <result column="SubmitCount" jdbcType="INTEGER" property="submitcount" />
-    <result column="IsSubmit" jdbcType="INTEGER" property="issubmit" />
-    <result column="WorkPath" jdbcType="NVARCHAR" property="workpath" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.view.VStudentwork">
-    <result column="VersionNumber" jdbcType="BINARY" property="versionnumber" />
-  </resultMap>
-  <sql id="Blob_Column_List">
-    VersionNumber
-  </sql>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentwork">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT SCOPE_IDENTITY()
-    </selectKey>
-    insert into V_StudentWork (ClassRoomStudentId, Score, WorkMessage, 
-      ClassRoomWorkId, StudentNumber, StudentName, 
-      SubmitTime, UseTime, SubmitCount, 
-      IsSubmit, WorkPath, VersionNumber
-      )
-    values (#{classroomstudentid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{workmessage,jdbcType=NVARCHAR}, 
-      #{classroomworkid,jdbcType=INTEGER}, #{studentnumber,jdbcType=NVARCHAR}, #{studentname,jdbcType=NVARCHAR}, 
-      #{submittime,jdbcType=TIMESTAMP}, #{usetime,jdbcType=INTEGER}, #{submitcount,jdbcType=INTEGER}, 
-      #{issubmit,jdbcType=INTEGER}, #{workpath,jdbcType=NVARCHAR}, #{versionnumber,jdbcType=BINARY}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentwork">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT SCOPE_IDENTITY()
-    </selectKey>
-    insert into V_StudentWork
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="classroomstudentid != null">
-        ClassRoomStudentId,
-      </if>
-      <if test="score != null">
-        Score,
-      </if>
-      <if test="workmessage != null">
-        WorkMessage,
-      </if>
-      <if test="classroomworkid != null">
-        ClassRoomWorkId,
-      </if>
-      <if test="studentnumber != null">
-        StudentNumber,
-      </if>
-      <if test="studentname != null">
-        StudentName,
-      </if>
-      <if test="submittime != null">
-        SubmitTime,
-      </if>
-      <if test="usetime != null">
-        UseTime,
-      </if>
-      <if test="submitcount != null">
-        SubmitCount,
-      </if>
-      <if test="issubmit != null">
-        IsSubmit,
-      </if>
-      <if test="workpath != null">
-        WorkPath,
-      </if>
-      <if test="versionnumber != null">
-        VersionNumber,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="classroomstudentid != null">
-        #{classroomstudentid,jdbcType=INTEGER},
-      </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
-      </if>
-      <if test="workmessage != null">
-        #{workmessage,jdbcType=NVARCHAR},
-      </if>
-      <if test="classroomworkid != null">
-        #{classroomworkid,jdbcType=INTEGER},
-      </if>
-      <if test="studentnumber != null">
-        #{studentnumber,jdbcType=NVARCHAR},
-      </if>
-      <if test="studentname != null">
-        #{studentname,jdbcType=NVARCHAR},
-      </if>
-      <if test="submittime != null">
-        #{submittime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="usetime != null">
-        #{usetime,jdbcType=INTEGER},
-      </if>
-      <if test="submitcount != null">
-        #{submitcount,jdbcType=INTEGER},
-      </if>
-      <if test="issubmit != null">
-        #{issubmit,jdbcType=INTEGER},
-      </if>
-      <if test="workpath != null">
-        #{workpath,jdbcType=NVARCHAR},
-      </if>
-      <if test="versionnumber != null">
+      <if test="versionnumber != null" >
         #{versionnumber,jdbcType=BINARY},
       </if>
     </trim>

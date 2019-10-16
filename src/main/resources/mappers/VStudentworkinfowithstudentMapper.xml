@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentworkinfowithstudentMapper">
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkinfowithstudent">
-    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
-    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
-    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
-    <result column="WorkName" jdbcType="NVARCHAR" property="workname" />
-    <result column="StudentWorkId" jdbcType="INTEGER" property="studentworkid" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
-    <result column="isScore" jdbcType="BIT" property="isscore" />
-    <result column="ClassRoomWorkId" jdbcType="INTEGER" property="classroomworkid" />
-    <result column="ClassRoomStudentId" jdbcType="INTEGER" property="classroomstudentid" />
-    <result column="LayoutTime" jdbcType="TIMESTAMP" property="layouttime" />
-    <result column="StudentTotalCount" jdbcType="INTEGER" property="studenttotalcount" />
-    <result column="SubmitCount" jdbcType="INTEGER" property="submitcount" />
-    <result column="Rank" jdbcType="BIGINT" property="rank" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentworkinfowithstudentMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkinfowithstudent" >
+    <result column="StudentId" property="studentid" jdbcType="INTEGER" />
+    <result column="StudentName" property="studentname" jdbcType="NVARCHAR" />
+    <result column="ClassRoomName" property="classroomname" jdbcType="NVARCHAR" />
+    <result column="WorkName" property="workname" jdbcType="NVARCHAR" />
+    <result column="StudentWorkId" property="studentworkid" jdbcType="INTEGER" />
+    <result column="Score" property="score" jdbcType="INTEGER" />
+    <result column="isScore" property="isscore" jdbcType="BIT" />
+    <result column="ClassRoomWorkId" property="classroomworkid" jdbcType="INTEGER" />
+    <result column="ClassRoomStudentId" property="classroomstudentid" jdbcType="INTEGER" />
+    <result column="LayoutTime" property="layouttime" jdbcType="TIMESTAMP" />
+    <result column="StudentTotalCount" property="studenttotalcount" jdbcType="INTEGER" />
+    <result column="SubmitCount" property="submitcount" jdbcType="INTEGER" />
+    <result column="Rank" property="rank" jdbcType="BIGINT" />
   </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkinfowithstudent">
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkinfowithstudent" >
     insert into V_StudentWorkInfoWithStudent (StudentId, StudentName, ClassRoomName, 
       WorkName, StudentWorkId, Score, 
       isScore, ClassRoomWorkId, ClassRoomStudentId, 
@@ -28,199 +28,87 @@
       #{layouttime,jdbcType=TIMESTAMP}, #{studenttotalcount,jdbcType=INTEGER}, #{submitcount,jdbcType=INTEGER}, 
       #{rank,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkinfowithstudent">
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkinfowithstudent" >
     insert into V_StudentWorkInfoWithStudent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="studentid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentid != null" >
         StudentId,
       </if>
-      <if test="studentname != null">
+      <if test="studentname != null" >
         StudentName,
       </if>
-      <if test="classroomname != null">
+      <if test="classroomname != null" >
         ClassRoomName,
       </if>
-      <if test="workname != null">
+      <if test="workname != null" >
         WorkName,
       </if>
-      <if test="studentworkid != null">
+      <if test="studentworkid != null" >
         StudentWorkId,
       </if>
-      <if test="score != null">
+      <if test="score != null" >
         Score,
       </if>
-      <if test="isscore != null">
+      <if test="isscore != null" >
         isScore,
       </if>
-      <if test="classroomworkid != null">
+      <if test="classroomworkid != null" >
         ClassRoomWorkId,
       </if>
-      <if test="classroomstudentid != null">
+      <if test="classroomstudentid != null" >
         ClassRoomStudentId,
       </if>
-      <if test="layouttime != null">
+      <if test="layouttime != null" >
         LayoutTime,
       </if>
-      <if test="studenttotalcount != null">
+      <if test="studenttotalcount != null" >
         StudentTotalCount,
       </if>
-      <if test="submitcount != null">
+      <if test="submitcount != null" >
         SubmitCount,
       </if>
-      <if test="rank != null">
+      <if test="rank != null" >
         Rank,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="studentid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentid != null" >
         #{studentid,jdbcType=INTEGER},
       </if>
-      <if test="studentname != null">
+      <if test="studentname != null" >
         #{studentname,jdbcType=NVARCHAR},
       </if>
-      <if test="classroomname != null">
+      <if test="classroomname != null" >
         #{classroomname,jdbcType=NVARCHAR},
       </if>
-      <if test="workname != null">
+      <if test="workname != null" >
         #{workname,jdbcType=NVARCHAR},
       </if>
-      <if test="studentworkid != null">
+      <if test="studentworkid != null" >
         #{studentworkid,jdbcType=INTEGER},
       </if>
-      <if test="score != null">
+      <if test="score != null" >
         #{score,jdbcType=INTEGER},
       </if>
-      <if test="isscore != null">
+      <if test="isscore != null" >
         #{isscore,jdbcType=BIT},
       </if>
-      <if test="classroomworkid != null">
+      <if test="classroomworkid != null" >
         #{classroomworkid,jdbcType=INTEGER},
       </if>
-      <if test="classroomstudentid != null">
+      <if test="classroomstudentid != null" >
         #{classroomstudentid,jdbcType=INTEGER},
       </if>
-      <if test="layouttime != null">
+      <if test="layouttime != null" >
         #{layouttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="studenttotalcount != null">
+      <if test="studenttotalcount != null" >
         #{studenttotalcount,jdbcType=INTEGER},
       </if>
-      <if test="submitcount != null">
+      <if test="submitcount != null" >
         #{submitcount,jdbcType=INTEGER},
       </if>
-      <if test="rank != null">
-        #{rank,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.view.VStudentworkinfowithstudent">
-    <result column="StudentId" jdbcType="INTEGER" property="studentid" />
-    <result column="StudentName" jdbcType="NVARCHAR" property="studentname" />
-    <result column="ClassRoomName" jdbcType="NVARCHAR" property="classroomname" />
-    <result column="WorkName" jdbcType="NVARCHAR" property="workname" />
-    <result column="StudentWorkId" jdbcType="INTEGER" property="studentworkid" />
-    <result column="Score" jdbcType="INTEGER" property="score" />
-    <result column="isScore" jdbcType="BIT" property="isscore" />
-    <result column="ClassRoomWorkId" jdbcType="INTEGER" property="classroomworkid" />
-    <result column="ClassRoomStudentId" jdbcType="INTEGER" property="classroomstudentid" />
-    <result column="LayoutTime" jdbcType="TIMESTAMP" property="layouttime" />
-    <result column="StudentTotalCount" jdbcType="INTEGER" property="studenttotalcount" />
-    <result column="SubmitCount" jdbcType="INTEGER" property="submitcount" />
-    <result column="Rank" jdbcType="BIGINT" property="rank" />
-  </resultMap>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentworkinfowithstudent">
-    insert into V_StudentWorkInfoWithStudent (StudentId, StudentName, ClassRoomName, 
-      WorkName, StudentWorkId, Score, 
-      isScore, ClassRoomWorkId, ClassRoomStudentId, 
-      LayoutTime, StudentTotalCount, SubmitCount, 
-      Rank)
-    values (#{studentid,jdbcType=INTEGER}, #{studentname,jdbcType=NVARCHAR}, #{classroomname,jdbcType=NVARCHAR}, 
-      #{workname,jdbcType=NVARCHAR}, #{studentworkid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
-      #{isscore,jdbcType=BIT}, #{classroomworkid,jdbcType=INTEGER}, #{classroomstudentid,jdbcType=INTEGER}, 
-      #{layouttime,jdbcType=TIMESTAMP}, #{studenttotalcount,jdbcType=INTEGER}, #{submitcount,jdbcType=INTEGER}, 
-      #{rank,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.view.VStudentworkinfowithstudent">
-    insert into V_StudentWorkInfoWithStudent
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="studentid != null">
-        StudentId,
-      </if>
-      <if test="studentname != null">
-        StudentName,
-      </if>
-      <if test="classroomname != null">
-        ClassRoomName,
-      </if>
-      <if test="workname != null">
-        WorkName,
-      </if>
-      <if test="studentworkid != null">
-        StudentWorkId,
-      </if>
-      <if test="score != null">
-        Score,
-      </if>
-      <if test="isscore != null">
-        isScore,
-      </if>
-      <if test="classroomworkid != null">
-        ClassRoomWorkId,
-      </if>
-      <if test="classroomstudentid != null">
-        ClassRoomStudentId,
-      </if>
-      <if test="layouttime != null">
-        LayoutTime,
-      </if>
-      <if test="studenttotalcount != null">
-        StudentTotalCount,
-      </if>
-      <if test="submitcount != null">
-        SubmitCount,
-      </if>
-      <if test="rank != null">
-        Rank,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="studentid != null">
-        #{studentid,jdbcType=INTEGER},
-      </if>
-      <if test="studentname != null">
-        #{studentname,jdbcType=NVARCHAR},
-      </if>
-      <if test="classroomname != null">
-        #{classroomname,jdbcType=NVARCHAR},
-      </if>
-      <if test="workname != null">
-        #{workname,jdbcType=NVARCHAR},
-      </if>
-      <if test="studentworkid != null">
-        #{studentworkid,jdbcType=INTEGER},
-      </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
-      </if>
-      <if test="isscore != null">
-        #{isscore,jdbcType=BIT},
-      </if>
-      <if test="classroomworkid != null">
-        #{classroomworkid,jdbcType=INTEGER},
-      </if>
-      <if test="classroomstudentid != null">
-        #{classroomstudentid,jdbcType=INTEGER},
-      </if>
-      <if test="layouttime != null">
-        #{layouttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="studenttotalcount != null">
-        #{studenttotalcount,jdbcType=INTEGER},
-      </if>
-      <if test="submitcount != null">
-        #{submitcount,jdbcType=INTEGER},
-      </if>
-      <if test="rank != null">
+      <if test="rank != null" >
         #{rank,jdbcType=BIGINT},
       </if>
     </trim>
