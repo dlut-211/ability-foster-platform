@@ -113,4 +113,13 @@
       </if>
     </trim>
   </insert>
+  <select id="getStudentWorkInfoWithStudent" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWorkInfoWithStudentDto" resultType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentworkinfowithstudent">
+    select * from V_StudentWorkInfoWithStudent where StudentId = #{studentId,jdbcType=INTEGER}
+    order by studentid
+    offset #{startSize,jdbcType=INTEGER} row fetch next #{pageSize,jdbcType=INTEGER}
+    row only
+  </select>
+  <select id="getAllWorkInfoData" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*)from V_StudentWorkInfoWithStudent where StudentId = #{studentId,jdbcType=INTEGER}
+  </select>
 </mapper>

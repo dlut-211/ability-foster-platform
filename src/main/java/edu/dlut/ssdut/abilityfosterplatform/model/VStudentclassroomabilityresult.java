@@ -1,14 +1,25 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="V_studentclassroomabilityresult")
 public class VStudentclassroomabilityresult {
+
+    @Id
+    @Column(name = "studentid")
     private Integer studentid;
-
+    @Column(name = "classroomid")
     private Integer classroomid;
-
+    @Column(name = "classroomname")
     private String classroomname;
-
+    @Column(name = "notpass")
     private String notpass;
-
+    @Column(name = "ispass")
     private String ispass;
 
     public Integer getStudentid() {
