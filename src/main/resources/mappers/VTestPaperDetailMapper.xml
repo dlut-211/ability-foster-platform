@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VTestPaperDetailMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VTestPaperDetail" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="detail_number" property="detailNumber" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="test_paper_id" property="testPaperId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="detail_type" property="detailType" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
+    <result column="name_exp_12" property="nameExp12" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VTestPaperDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_test_paper_detail (id, detail_number, score, 
+      test_paper_id, title, detail_type, 
+      created_by, created_on, modified_by, 
+      modified_on, name_exp_12)
+    values (#{id,jdbcType=INTEGER}, #{detailNumber,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{testPaperId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{detailType,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER}, 
+      #{modifiedOn,jdbcType=TIMESTAMP}, #{nameExp12,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VTestPaperDetail" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_test_paper_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="detailNumber != null" >
+        detail_number,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="testPaperId != null" >
+        test_paper_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="detailType != null" >
+        detail_type,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdOn != null" >
+        created_on,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="modifiedOn != null" >
+        modified_on,
+      </if>
+      <if test="nameExp12 != null" >
+        name_exp_12,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="detailNumber != null" >
+        #{detailNumber,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="testPaperId != null" >
+        #{testPaperId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="detailType != null" >
+        #{detailType,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedOn != null" >
+        #{modifiedOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nameExp12 != null" >
+        #{nameExp12,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

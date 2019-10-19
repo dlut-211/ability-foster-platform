@@ -1,105 +1,30 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
+import lombok.Data;
+
+import javax.persistence.Id;
 import java.util.Date;
 
+@Data
 public class TestPaper {
+
+    @Id
     private Integer id;
 
     private String name;
 
-    private Integer classroomid;
+    private Integer classroomId;
 
-    private Integer testpapertype;
-
-    private Integer createdby;
-
-    private Date createdon;
-
-    private Integer modifiedby;
-
-    private Date modifiedon;
+    private Integer testPaperType;
 
     private Integer status;
 
-    private byte[] versionnumber;
+    private Integer createdBy;
 
-    public Integer getId() {
-        return id;
-    }
+    private Date createdOn;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private Integer modifiedBy;
 
-    public String getName() {
-        return name;
-    }
+    private Date modifiedOn;
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getClassroomid() {
-        return classroomid;
-    }
-
-    public void setClassroomid(Integer classroomid) {
-        this.classroomid = classroomid;
-    }
-
-    public Integer getTestpapertype() {
-        return testpapertype;
-    }
-
-    public void setTestpapertype(Integer testpapertype) {
-        this.testpapertype = testpapertype;
-    }
-
-    public Integer getCreatedby() {
-        return createdby;
-    }
-
-    public void setCreatedby(Integer createdby) {
-        this.createdby = createdby;
-    }
-
-    public Date getCreatedon() {
-        return createdon;
-    }
-
-    public void setCreatedon(Date createdon) {
-        this.createdon = createdon;
-    }
-
-    public Integer getModifiedby() {
-        return modifiedby;
-    }
-
-    public void setModifiedby(Integer modifiedby) {
-        this.modifiedby = modifiedby;
-    }
-
-    public Date getModifiedon() {
-        return modifiedon;
-    }
-
-    public void setModifiedon(Date modifiedon) {
-        this.modifiedon = modifiedon;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public byte[] getVersionnumber() {
-        return versionnumber;
-    }
-
-    public void setVersionnumber(byte[] versionnumber) {
-        this.versionnumber = versionnumber;
-    }
 }

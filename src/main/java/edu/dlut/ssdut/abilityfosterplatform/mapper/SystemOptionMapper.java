@@ -13,7 +13,5 @@ public interface SystemOptionMapper {
 
     int updateByPrimaryKeySelective(SystemOption record);
 
-    int updateByPrimaryKeyWithBLOBs(SystemOption record);
-
     int updateByPrimaryKey(SystemOption record);
 }

@@ -13,7 +13,5 @@ public interface WorkKnowledgeMapper {
 
     int updateByPrimaryKeySelective(WorkKnowledge record);
 
-    int updateByPrimaryKeyWithBLOBs(WorkKnowledge record);
-
     int updateByPrimaryKey(WorkKnowledge record);
 }

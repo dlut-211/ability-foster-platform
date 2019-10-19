@@ -1,115 +1,32 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
+import lombok.Data;
+
+import javax.persistence.Id;
 import java.util.Date;
 
+@Data
 public class SystemOption {
+
+    @Id
     private Integer id;
 
-    private String optioncode;
+    private String optionCode;
 
-    private String optionvalue;
+    private String optionValue;
 
-    private String optiontype;
+    private String optionType;
 
-    private String optiontypename;
+    private String optionTypeName;
 
-    private Integer showorder;
+    private Integer showOrder;
 
-    private Integer createdby;
+    private Integer createdBy;
 
-    private Date createdon;
+    private Date createdOn;
 
-    private Integer modifiedby;
+    private Integer modifiedBy;
 
-    private Date modifiedon;
+    private Date modifiedOn;
 
-    private byte[] versionnumber;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getOptioncode() {
-        return optioncode;
-    }
-
-    public void setOptioncode(String optioncode) {
-        this.optioncode = optioncode == null ? null : optioncode.trim();
-    }
-
-    public String getOptionvalue() {
-        return optionvalue;
-    }
-
-    public void setOptionvalue(String optionvalue) {
-        this.optionvalue = optionvalue == null ? null : optionvalue.trim();
-    }
-
-    public String getOptiontype() {
-        return optiontype;
-    }
-
-    public void setOptiontype(String optiontype) {
-        this.optiontype = optiontype == null ? null : optiontype.trim();
-    }
-
-    public String getOptiontypename() {
-        return optiontypename;
-    }
-
-    public void setOptiontypename(String optiontypename) {
-        this.optiontypename = optiontypename == null ? null : optiontypename.trim();
-    }
-
-    public Integer getShoworder() {
-        return showorder;
-    }
-
-    public void setShoworder(Integer showorder) {
-        this.showorder = showorder;
-    }
-
-    public Integer getCreatedby() {
-        return createdby;
-    }
-
-    public void setCreatedby(Integer createdby) {
-        this.createdby = createdby;
-    }
-
-    public Date getCreatedon() {
-        return createdon;
-    }
-
-    public void setCreatedon(Date createdon) {
-        this.createdon = createdon;
-    }
-
-    public Integer getModifiedby() {
-        return modifiedby;
-    }
-
-    public void setModifiedby(Integer modifiedby) {
-        this.modifiedby = modifiedby;
-    }
-
-    public Date getModifiedon() {
-        return modifiedon;
-    }
-
-    public void setModifiedon(Date modifiedon) {
-        this.modifiedon = modifiedon;
-    }
-
-    public byte[] getVersionnumber() {
-        return versionnumber;
-    }
-
-    public void setVersionnumber(byte[] versionnumber) {
-        this.versionnumber = versionnumber;
-    }
 }

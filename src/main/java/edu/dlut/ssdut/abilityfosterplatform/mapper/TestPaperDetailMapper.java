@@ -13,7 +13,5 @@ public interface TestPaperDetailMapper {
 
     int updateByPrimaryKeySelective(TestPaperDetail record);
 
-    int updateByPrimaryKeyWithBLOBs(TestPaperDetail record);
-
     int updateByPrimaryKey(TestPaperDetail record);
 }

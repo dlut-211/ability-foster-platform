@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentTestPaperMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentTestPaper" >
+    <result column="student_number" property="studentNumber" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="test_paper_id" property="testPaperId" jdbcType="INTEGER" />
+    <result column="detail_type" property="detailType" jdbcType="INTEGER" />
+    <result column="detail_number" property="detailNumber" jdbcType="INTEGER" />
+    <result column="detail_score" property="detailScore" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentTestPaper" >
+    insert into v_student_test_paper (student_number, student_name, test_paper_id, 
+      detail_type, detail_number, detail_score, 
+      score)
+    values (#{studentNumber,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{testPaperId,jdbcType=INTEGER}, 
+      #{detailType,jdbcType=INTEGER}, #{detailNumber,jdbcType=INTEGER}, #{detailScore,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentTestPaper" >
+    insert into v_student_test_paper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentNumber != null" >
+        student_number,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="testPaperId != null" >
+        test_paper_id,
+      </if>
+      <if test="detailType != null" >
+        detail_type,
+      </if>
+      <if test="detailNumber != null" >
+        detail_number,
+      </if>
+      <if test="detailScore != null" >
+        detail_score,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentNumber != null" >
+        #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="testPaperId != null" >
+        #{testPaperId,jdbcType=INTEGER},
+      </if>
+      <if test="detailType != null" >
+        #{detailType,jdbcType=INTEGER},
+      </if>
+      <if test="detailNumber != null" >
+        #{detailNumber,jdbcType=INTEGER},
+      </if>
+      <if test="detailScore != null" >
+        #{detailScore,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -13,7 +13,5 @@ public interface KnowledgeMapper {
 
     int updateByPrimaryKeySelective(Knowledge record);
 
-    int updateByPrimaryKeyWithBLOBs(Knowledge record);
-
     int updateByPrimaryKey(Knowledge record);
 }

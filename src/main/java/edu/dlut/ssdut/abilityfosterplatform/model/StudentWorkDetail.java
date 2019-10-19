@@ -1,136 +1,37 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
+import lombok.Data;
+
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Data
 public class StudentWorkDetail {
+
+    @Id
     private Integer id;
 
-    private Date submittime;
+    private Date submitTime;
 
-    private Integer usetime;
+    private String workPath;
 
-    private String workpath;
+    private Integer useTime;
 
-    private Integer casepasscount;
+    private Integer casePassedCount;
 
     private BigDecimal complexity;
 
-    private Integer coderownumber;
+    private Integer lineOfCode;
 
-    private Integer studentworkid;
+    private Integer studentWorkId;
 
-    private Integer createdby;
+    private Integer createdBy;
 
-    private Date createdon;
+    private Date createdOn;
 
-    private Integer modifiedby;
+    private Integer modifiedBy;
 
-    private Date modifiedon;
+    private Date modifiedOn;
 
-    private byte[] versionnumber;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Date getSubmittime() {
-        return submittime;
-    }
-
-    public void setSubmittime(Date submittime) {
-        this.submittime = submittime;
-    }
-
-    public Integer getUsetime() {
-        return usetime;
-    }
-
-    public void setUsetime(Integer usetime) {
-        this.usetime = usetime;
-    }
-
-    public String getWorkpath() {
-        return workpath;
-    }
-
-    public void setWorkpath(String workpath) {
-        this.workpath = workpath == null ? null : workpath.trim();
-    }
-
-    public Integer getCasepasscount() {
-        return casepasscount;
-    }
-
-    public void setCasepasscount(Integer casepasscount) {
-        this.casepasscount = casepasscount;
-    }
-
-    public BigDecimal getComplexity() {
-        return complexity;
-    }
-
-    public void setComplexity(BigDecimal complexity) {
-        this.complexity = complexity;
-    }
-
-    public Integer getCoderownumber() {
-        return coderownumber;
-    }
-
-    public void setCoderownumber(Integer coderownumber) {
-        this.coderownumber = coderownumber;
-    }
-
-    public Integer getStudentworkid() {
-        return studentworkid;
-    }
-
-    public void setStudentworkid(Integer studentworkid) {
-        this.studentworkid = studentworkid;
-    }
-
-    public Integer getCreatedby() {
-        return createdby;
-    }
-
-    public void setCreatedby(Integer createdby) {
-        this.createdby = createdby;
-    }
-
-    public Date getCreatedon() {
-        return createdon;
-    }
-
-    public void setCreatedon(Date createdon) {
-        this.createdon = createdon;
-    }
-
-    public Integer getModifiedby() {
-        return modifiedby;
-    }
-
-    public void setModifiedby(Integer modifiedby) {
-        this.modifiedby = modifiedby;
-    }
-
-    public Date getModifiedon() {
-        return modifiedon;
-    }
-
-    public void setModifiedon(Date modifiedon) {
-        this.modifiedon = modifiedon;
-    }
-
-    public byte[] getVersionnumber() {
-        return versionnumber;
-    }
-
-    public void setVersionnumber(byte[] versionnumber) {
-        this.versionnumber = versionnumber;
-    }
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentClassroomPassAbilityMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentClassroomPassAbility" >
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="classroom_id" property="classroomId" jdbcType="INTEGER" />
+    <result column="classroom_name" property="classroomName" jdbcType="VARCHAR" />
+    <result column="ability_id" property="abilityId" jdbcType="INTEGER" />
+    <result column="ability_name" property="abilityName" jdbcType="VARCHAR" />
+    <result column="is_pass" property="isPass" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentClassroomPassAbility" >
+    insert into v_student_classroom_pass_ability (student_id, classroom_id, classroom_name, 
+      ability_id, ability_name, is_pass
+      )
+    values (#{studentId,jdbcType=INTEGER}, #{classroomId,jdbcType=INTEGER}, #{classroomName,jdbcType=VARCHAR}, 
+      #{abilityId,jdbcType=INTEGER}, #{abilityName,jdbcType=VARCHAR}, #{isPass,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentClassroomPassAbility" >
+    insert into v_student_classroom_pass_ability
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="classroomId != null" >
+        classroom_id,
+      </if>
+      <if test="classroomName != null" >
+        classroom_name,
+      </if>
+      <if test="abilityId != null" >
+        ability_id,
+      </if>
+      <if test="abilityName != null" >
+        ability_name,
+      </if>
+      <if test="isPass != null" >
+        is_pass,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null" >
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomName != null" >
+        #{classroomName,jdbcType=VARCHAR},
+      </if>
+      <if test="abilityId != null" >
+        #{abilityId,jdbcType=INTEGER},
+      </if>
+      <if test="abilityName != null" >
+        #{abilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="isPass != null" >
+        #{isPass,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VStudentWorkMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VStudentWork" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="classroom_student_id" property="classroomStudentId" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="work_message" property="workMessage" jdbcType="VARCHAR" />
+    <result column="classroom_work_id" property="classroomWorkId" jdbcType="INTEGER" />
+    <result column="student_number" property="studentNumber" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="submit_time" property="submitTime" jdbcType="TIMESTAMP" />
+    <result column="use_time" property="useTime" jdbcType="INTEGER" />
+    <result column="submit_count" property="submitCount" jdbcType="BIGINT" />
+    <result column="is_submit" property="isSubmit" jdbcType="INTEGER" />
+    <result column="work_path" property="workPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentWork" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_student_work (id, classroom_student_id, score, 
+      work_message, classroom_work_id, student_number, 
+      student_name, submit_time, use_time, 
+      submit_count, is_submit, work_path
+      )
+    values (#{id,jdbcType=INTEGER}, #{classroomStudentId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{workMessage,jdbcType=VARCHAR}, #{classroomWorkId,jdbcType=INTEGER}, #{studentNumber,jdbcType=VARCHAR}, 
+      #{studentName,jdbcType=VARCHAR}, #{submitTime,jdbcType=TIMESTAMP}, #{useTime,jdbcType=INTEGER}, 
+      #{submitCount,jdbcType=BIGINT}, #{isSubmit,jdbcType=INTEGER}, #{workPath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VStudentWork" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_student_work
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="classroomStudentId != null" >
+        classroom_student_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="workMessage != null" >
+        work_message,
+      </if>
+      <if test="classroomWorkId != null" >
+        classroom_work_id,
+      </if>
+      <if test="studentNumber != null" >
+        student_number,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="submitTime != null" >
+        submit_time,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+      <if test="submitCount != null" >
+        submit_count,
+      </if>
+      <if test="isSubmit != null" >
+        is_submit,
+      </if>
+      <if test="workPath != null" >
+        work_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="classroomStudentId != null" >
+        #{classroomStudentId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="workMessage != null" >
+        #{workMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="classroomWorkId != null" >
+        #{classroomWorkId,jdbcType=INTEGER},
+      </if>
+      <if test="studentNumber != null" >
+        #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTime != null" >
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=INTEGER},
+      </if>
+      <if test="submitCount != null" >
+        #{submitCount,jdbcType=BIGINT},
+      </if>
+      <if test="isSubmit != null" >
+        #{isSubmit,jdbcType=INTEGER},
+      </if>
+      <if test="workPath != null" >
+        #{workPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

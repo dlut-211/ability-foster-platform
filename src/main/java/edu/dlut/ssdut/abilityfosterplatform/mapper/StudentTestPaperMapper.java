@@ -13,7 +13,5 @@ public interface StudentTestPaperMapper {
 
     int updateByPrimaryKeySelective(StudentTestPaper record);
 
-    int updateByPrimaryKeyWithBLOBs(StudentTestPaper record);
-
     int updateByPrimaryKey(StudentTestPaper record);
 }

@@ -13,7 +13,5 @@ public interface TestPaperDetailKnowledgeMapper {
 
     int updateByPrimaryKeySelective(TestPaperDetailKnowledge record);
 
-    int updateByPrimaryKeyWithBLOBs(TestPaperDetailKnowledge record);
-
     int updateByPrimaryKey(TestPaperDetailKnowledge record);
 }

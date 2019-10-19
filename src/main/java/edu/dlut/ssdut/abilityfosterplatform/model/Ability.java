@@ -2,31 +2,26 @@ package edu.dlut.ssdut.abilityfosterplatform.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
 @Data
-@Entity
 public class Ability {
+
     @Id
     private Integer id;
 
     private String name;
 
-    private Integer createdby;
+    private Integer createdBy;
 
-    private Date createdon;
+    private Date createdOn;
 
-    private Integer modifiedby;
+    private Integer modifiedBy;
 
-    private Date modifiedon;
+    private Date modifiedOn;
 
-    private Integer subjectid;
+    private Integer subjectId;
 
-    private String describe;
-
-    private byte[] versionnumber;
-
-
+    private String description;
 }

@@ -2,195 +2,165 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.CourseMapper" >
   <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Course" >
-    <id column="Id" property="id" jdbcType="INTEGER" />
-    <result column="Code" property="code" jdbcType="NVARCHAR" />
-    <result column="Describe" property="describe" jdbcType="NVARCHAR" />
-    <result column="Name" property="name" jdbcType="NVARCHAR" />
-    <result column="Syllabus" property="syllabus" jdbcType="NVARCHAR" />
-    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
-    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
-    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
-    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
-    <result column="SyllabusPath" property="syllabuspath" jdbcType="NVARCHAR" />
-    <result column="SubjectId" property="subjectid" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Course" extends="BaseResultMap" >
-    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="syllabus" property="syllabus" jdbcType="VARCHAR" />
+    <result column="syllabus_path" property="syllabusPath" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, Code, Describe, Name, Syllabus, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, 
-    SyllabusPath, SubjectId
+    id, code, name, syllabus, syllabus_path, description, subject_id, created_by, created_on, 
+    modified_by, modified_on
   </sql>
-  <sql id="Blob_Column_List" >
-    VersionNumber
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from Course
-    where Id = #{id,jdbcType=INTEGER}
+    from course
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from Course
-    where Id = #{id,jdbcType=INTEGER}
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Course" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into Course (Code, Describe, Name, 
-      Syllabus, CreatedBy, CreatedOn, 
-      ModifiedBy, ModifiedOn, SyllabusPath, 
-      SubjectId, VersionNumber)
-    values (#{code,jdbcType=NVARCHAR}, #{describe,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, 
-      #{syllabus,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
-      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{syllabuspath,jdbcType=NVARCHAR}, 
-      #{subjectid,jdbcType=INTEGER}, #{versionnumber,jdbcType=BINARY})
+    insert into course (id, code, name, 
+      syllabus, syllabus_path, description, 
+      subject_id, created_by, created_on, 
+      modified_by, modified_on)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{syllabus,jdbcType=VARCHAR}, #{syllabusPath,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{subjectId,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, 
+      #{modifiedBy,jdbcType=INTEGER}, #{modifiedOn,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Course" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into Course
+    insert into course
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
       <if test="code != null" >
-        Code,
-      </if>
-      <if test="describe != null" >
-        Describe,
+        code,
       </if>
       <if test="name != null" >
-        Name,
+        name,
       </if>
       <if test="syllabus != null" >
-        Syllabus,
+        syllabus,
       </if>
-      <if test="createdby != null" >
-        CreatedBy,
+      <if test="syllabusPath != null" >
+        syllabus_path,
       </if>
-      <if test="createdon != null" >
-        CreatedOn,
+      <if test="description != null" >
+        description,
       </if>
-      <if test="modifiedby != null" >
-        ModifiedBy,
+      <if test="subjectId != null" >
+        subject_id,
       </if>
-      <if test="modifiedon != null" >
-        ModifiedOn,
+      <if test="createdBy != null" >
+        created_by,
       </if>
-      <if test="syllabuspath != null" >
-        SyllabusPath,
+      <if test="createdOn != null" >
+        created_on,
       </if>
-      <if test="subjectid != null" >
-        SubjectId,
+      <if test="modifiedBy != null" >
+        modified_by,
       </if>
-      <if test="versionnumber != null" >
-        VersionNumber,
+      <if test="modifiedOn != null" >
+        modified_on,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
       <if test="code != null" >
-        #{code,jdbcType=NVARCHAR},
-      </if>
-      <if test="describe != null" >
-        #{describe,jdbcType=NVARCHAR},
+        #{code,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        #{name,jdbcType=NVARCHAR},
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="syllabus != null" >
-        #{syllabus,jdbcType=NVARCHAR},
+        #{syllabus,jdbcType=VARCHAR},
       </if>
-      <if test="createdby != null" >
-        #{createdby,jdbcType=INTEGER},
+      <if test="syllabusPath != null" >
+        #{syllabusPath,jdbcType=VARCHAR},
       </if>
-      <if test="createdon != null" >
-        #{createdon,jdbcType=TIMESTAMP},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
-      <if test="modifiedby != null" >
-        #{modifiedby,jdbcType=INTEGER},
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=INTEGER},
       </if>
-      <if test="modifiedon != null" >
-        #{modifiedon,jdbcType=TIMESTAMP},
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
       </if>
-      <if test="syllabuspath != null" >
-        #{syllabuspath,jdbcType=NVARCHAR},
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
       </if>
-      <if test="subjectid != null" >
-        #{subjectid,jdbcType=INTEGER},
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
       </if>
-      <if test="versionnumber != null" >
-        #{versionnumber,jdbcType=BINARY},
+      <if test="modifiedOn != null" >
+        #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Course" >
-    update Course
+    update course
     <set >
       <if test="code != null" >
-        Code = #{code,jdbcType=NVARCHAR},
-      </if>
-      <if test="describe != null" >
-        Describe = #{describe,jdbcType=NVARCHAR},
+        code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        Name = #{name,jdbcType=NVARCHAR},
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="syllabus != null" >
-        Syllabus = #{syllabus,jdbcType=NVARCHAR},
+        syllabus = #{syllabus,jdbcType=VARCHAR},
       </if>
-      <if test="createdby != null" >
-        CreatedBy = #{createdby,jdbcType=INTEGER},
+      <if test="syllabusPath != null" >
+        syllabus_path = #{syllabusPath,jdbcType=VARCHAR},
       </if>
-      <if test="createdon != null" >
-        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
-      <if test="modifiedby != null" >
-        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      <if test="subjectId != null" >
+        subject_id = #{subjectId,jdbcType=INTEGER},
       </if>
-      <if test="modifiedon != null" >
-        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
       </if>
-      <if test="syllabuspath != null" >
-        SyllabusPath = #{syllabuspath,jdbcType=NVARCHAR},
+      <if test="createdOn != null" >
+        created_on = #{createdOn,jdbcType=TIMESTAMP},
       </if>
-      <if test="subjectid != null" >
-        SubjectId = #{subjectid,jdbcType=INTEGER},
+      <if test="modifiedBy != null" >
+        modified_by = #{modifiedBy,jdbcType=INTEGER},
       </if>
-      <if test="versionnumber != null" >
-        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      <if test="modifiedOn != null" >
+        modified_on = #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Course" >
-    update Course
-    set Code = #{code,jdbcType=NVARCHAR},
-      Describe = #{describe,jdbcType=NVARCHAR},
-      Name = #{name,jdbcType=NVARCHAR},
-      Syllabus = #{syllabus,jdbcType=NVARCHAR},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      SyllabusPath = #{syllabuspath,jdbcType=NVARCHAR},
-      SubjectId = #{subjectid,jdbcType=INTEGER},
-      VersionNumber = #{versionnumber,jdbcType=BINARY}
-    where Id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Course" >
-    update Course
-    set Code = #{code,jdbcType=NVARCHAR},
-      Describe = #{describe,jdbcType=NVARCHAR},
-      Name = #{name,jdbcType=NVARCHAR},
-      Syllabus = #{syllabus,jdbcType=NVARCHAR},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      SyllabusPath = #{syllabuspath,jdbcType=NVARCHAR},
-      SubjectId = #{subjectid,jdbcType=INTEGER}
-    where Id = #{id,jdbcType=INTEGER}
+    update course
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      syllabus = #{syllabus,jdbcType=VARCHAR},
+      syllabus_path = #{syllabusPath,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      subject_id = #{subjectId,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_on = #{createdOn,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=INTEGER},
+      modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

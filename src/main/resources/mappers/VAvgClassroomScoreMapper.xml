@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VAvgClassroomScoreMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VAvgClassroomScore" >
+    <result column="classroom_id" property="classroomId" jdbcType="INTEGER" />
+    <result column="avg_score" property="avgScore" jdbcType="DECIMAL" />
+    <result column="classroom_name" property="classroomName" jdbcType="VARCHAR" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAvgClassroomScore" >
+    insert into v_avg_classroom_score (classroom_id, avg_score, classroom_name, 
+      student_id)
+    values (#{classroomId,jdbcType=INTEGER}, #{avgScore,jdbcType=DECIMAL}, #{classroomName,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAvgClassroomScore" >
+    insert into v_avg_classroom_score
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classroomId != null" >
+        classroom_id,
+      </if>
+      <if test="avgScore != null" >
+        avg_score,
+      </if>
+      <if test="classroomName != null" >
+        classroom_name,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classroomId != null" >
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="avgScore != null" >
+        #{avgScore,jdbcType=DECIMAL},
+      </if>
+      <if test="classroomName != null" >
+        #{classroomName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

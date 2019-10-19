@@ -13,7 +13,5 @@ public interface CourseMapper {
 
     int updateByPrimaryKeySelective(Course record);
 
-    int updateByPrimaryKeyWithBLOBs(Course record);
-
     int updateByPrimaryKey(Course record);
 }

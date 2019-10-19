@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VCourseTotalInfoMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VCourseTotalInfo" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="created_by_name" property="createdByName" jdbcType="VARCHAR" />
+    <result column="yes_count" property="yesCount" jdbcType="DECIMAL" />
+    <result column="no_count" property="noCount" jdbcType="DECIMAL" />
+    <result column="work_rate" property="workRate" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VCourseTotalInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_course_total_info (id, code, name, 
+      description, created_by_name, yes_count, 
+      no_count, work_rate)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{createdByName,jdbcType=VARCHAR}, #{yesCount,jdbcType=DECIMAL}, 
+      #{noCount,jdbcType=DECIMAL}, #{workRate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VCourseTotalInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_course_total_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createdByName != null" >
+        created_by_name,
+      </if>
+      <if test="yesCount != null" >
+        yes_count,
+      </if>
+      <if test="noCount != null" >
+        no_count,
+      </if>
+      <if test="workRate != null" >
+        work_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdByName != null" >
+        #{createdByName,jdbcType=VARCHAR},
+      </if>
+      <if test="yesCount != null" >
+        #{yesCount,jdbcType=DECIMAL},
+      </if>
+      <if test="noCount != null" >
+        #{noCount,jdbcType=DECIMAL},
+      </if>
+      <if test="workRate != null" >
+        #{workRate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -2,250 +2,213 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StudentMapper" >
   <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.Student" >
-    <id column="Id" property="id" jdbcType="INTEGER" />
-    <result column="ClassName" property="classname" jdbcType="NVARCHAR" />
-    <result column="Email" property="email" jdbcType="NVARCHAR" />
-    <result column="Mobile" property="mobile" jdbcType="NVARCHAR" />
-    <result column="Name" property="name" jdbcType="NVARCHAR" />
-    <result column="Number" property="number" jdbcType="NVARCHAR" />
-    <result column="QQ" property="qq" jdbcType="NVARCHAR" />
-    <result column="Password" property="password" jdbcType="NVARCHAR" />
-    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
-    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
-    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
-    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
-    <result column="Token" property="token" jdbcType="NVARCHAR" />
-    <result column="Status" property="status" jdbcType="INTEGER" />
-    <result column="School" property="school" jdbcType="NVARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.Student" extends="BaseResultMap" >
-    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, ClassName, Email, Mobile, Name, Number, QQ, Password, CreatedBy, CreatedOn, ModifiedBy, 
-    ModifiedOn, Token, Status, School
+    id, class_name, email, mobile, name, number, qq, token, status, created_by, created_on, 
+    modified_by, modified_on, school, password
   </sql>
-  <sql id="Blob_Column_List" >
-    VersionNumber
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from Student
-    where Id = #{id,jdbcType=INTEGER}
+    from student
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from Student
-    where Id = #{id,jdbcType=INTEGER}
+    delete from student
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Student" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into Student (ClassName, Email, Mobile, 
-      Name, Number, QQ, 
-      Password, CreatedBy, CreatedOn, 
-      ModifiedBy, ModifiedOn, Token, 
-      Status, School, VersionNumber
+    insert into student (id, class_name, email, 
+      mobile, name, number, 
+      qq, token, status, 
+      created_by, created_on, modified_by, 
+      modified_on, school, password
       )
-    values (#{classname,jdbcType=NVARCHAR}, #{email,jdbcType=NVARCHAR}, #{mobile,jdbcType=NVARCHAR}, 
-      #{name,jdbcType=NVARCHAR}, #{number,jdbcType=NVARCHAR}, #{qq,jdbcType=NVARCHAR}, 
-      #{password,jdbcType=NVARCHAR}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
-      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{token,jdbcType=NVARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{school,jdbcType=NVARCHAR}, #{versionnumber,jdbcType=BINARY}
+    values (#{id,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER}, 
+      #{modifiedOn,jdbcType=TIMESTAMP}, #{school,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Student" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into Student
+    insert into student
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="classname != null" >
-        ClassName,
+      id,
+      <if test="className != null" >
+        class_name,
       </if>
       <if test="email != null" >
-        Email,
+        email,
       </if>
       <if test="mobile != null" >
-        Mobile,
+        mobile,
       </if>
       <if test="name != null" >
-        Name,
+        name,
       </if>
       <if test="number != null" >
-        Number,
+        number,
       </if>
       <if test="qq != null" >
-        QQ,
-      </if>
-      <if test="password != null" >
-        Password,
-      </if>
-      <if test="createdby != null" >
-        CreatedBy,
-      </if>
-      <if test="createdon != null" >
-        CreatedOn,
-      </if>
-      <if test="modifiedby != null" >
-        ModifiedBy,
-      </if>
-      <if test="modifiedon != null" >
-        ModifiedOn,
+        qq,
       </if>
       <if test="token != null" >
-        Token,
+        token,
       </if>
       <if test="status != null" >
-        Status,
+        status,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdOn != null" >
+        created_on,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="modifiedOn != null" >
+        modified_on,
       </if>
       <if test="school != null" >
-        School,
+        school,
       </if>
-      <if test="versionnumber != null" >
-        VersionNumber,
+      <if test="password != null" >
+        password,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="classname != null" >
-        #{classname,jdbcType=NVARCHAR},
+      #{id,jdbcType=INTEGER},
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        #{email,jdbcType=NVARCHAR},
+        #{email,jdbcType=VARCHAR},
       </if>
       <if test="mobile != null" >
-        #{mobile,jdbcType=NVARCHAR},
+        #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        #{name,jdbcType=NVARCHAR},
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="number != null" >
-        #{number,jdbcType=NVARCHAR},
+        #{number,jdbcType=VARCHAR},
       </if>
       <if test="qq != null" >
-        #{qq,jdbcType=NVARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=NVARCHAR},
-      </if>
-      <if test="createdby != null" >
-        #{createdby,jdbcType=INTEGER},
-      </if>
-      <if test="createdon != null" >
-        #{createdon,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedby != null" >
-        #{modifiedby,jdbcType=INTEGER},
-      </if>
-      <if test="modifiedon != null" >
-        #{modifiedon,jdbcType=TIMESTAMP},
+        #{qq,jdbcType=VARCHAR},
       </if>
       <if test="token != null" >
-        #{token,jdbcType=NVARCHAR},
+        #{token,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="school != null" >
-        #{school,jdbcType=NVARCHAR},
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
       </if>
-      <if test="versionnumber != null" >
-        #{versionnumber,jdbcType=BINARY},
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedOn != null" >
+        #{modifiedOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Student" >
-    update Student
+    update student
     <set >
-      <if test="classname != null" >
-        ClassName = #{classname,jdbcType=NVARCHAR},
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        Email = #{email,jdbcType=NVARCHAR},
+        email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="mobile != null" >
-        Mobile = #{mobile,jdbcType=NVARCHAR},
+        mobile = #{mobile,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        Name = #{name,jdbcType=NVARCHAR},
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="number != null" >
-        Number = #{number,jdbcType=NVARCHAR},
+        number = #{number,jdbcType=VARCHAR},
       </if>
       <if test="qq != null" >
-        QQ = #{qq,jdbcType=NVARCHAR},
-      </if>
-      <if test="password != null" >
-        Password = #{password,jdbcType=NVARCHAR},
-      </if>
-      <if test="createdby != null" >
-        CreatedBy = #{createdby,jdbcType=INTEGER},
-      </if>
-      <if test="createdon != null" >
-        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedby != null" >
-        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      </if>
-      <if test="modifiedon != null" >
-        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+        qq = #{qq,jdbcType=VARCHAR},
       </if>
       <if test="token != null" >
-        Token = #{token,jdbcType=NVARCHAR},
+        token = #{token,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
-        Status = #{status,jdbcType=INTEGER},
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdOn != null" >
+        created_on = #{createdOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by = #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedOn != null" >
+        modified_on = #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
       <if test="school != null" >
-        School = #{school,jdbcType=NVARCHAR},
+        school = #{school,jdbcType=VARCHAR},
       </if>
-      <if test="versionnumber != null" >
-        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
       </if>
     </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Student" >
-    update Student
-    set ClassName = #{classname,jdbcType=NVARCHAR},
-      Email = #{email,jdbcType=NVARCHAR},
-      Mobile = #{mobile,jdbcType=NVARCHAR},
-      Name = #{name,jdbcType=NVARCHAR},
-      Number = #{number,jdbcType=NVARCHAR},
-      QQ = #{qq,jdbcType=NVARCHAR},
-      Password = #{password,jdbcType=NVARCHAR},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      Token = #{token,jdbcType=NVARCHAR},
-      Status = #{status,jdbcType=INTEGER},
-      School = #{school,jdbcType=NVARCHAR},
-      VersionNumber = #{versionnumber,jdbcType=BINARY}
-    where Id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Student" >
-    update Student
-    set ClassName = #{classname,jdbcType=NVARCHAR},
-      Email = #{email,jdbcType=NVARCHAR},
-      Mobile = #{mobile,jdbcType=NVARCHAR},
-      Name = #{name,jdbcType=NVARCHAR},
-      Number = #{number,jdbcType=NVARCHAR},
-      QQ = #{qq,jdbcType=NVARCHAR},
-      Password = #{password,jdbcType=NVARCHAR},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      Token = #{token,jdbcType=NVARCHAR},
-      Status = #{status,jdbcType=INTEGER},
-      School = #{school,jdbcType=NVARCHAR}
-    where Id = #{id,jdbcType=INTEGER}
+    update student
+    set class_name = #{className,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_on = #{createdOn,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=INTEGER},
+      modified_on = #{modifiedOn,jdbcType=TIMESTAMP},
+      school = #{school,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByAccountAndPassword" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo" resultType="edu.dlut.ssdut.abilityfosterplatform.model.Student">
-    select * from student where number = #{number,jdbcType=NVARCHAR} and password = #{password,jdbcType=NVARCHAR}
-  </select>
 </mapper>

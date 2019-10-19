@@ -2,144 +2,118 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StudentRoleMapper" >
   <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.StudentRole" >
-    <id column="Id" property="id" jdbcType="INTEGER" />
-    <result column="StudentId" property="studentid" jdbcType="INTEGER" />
-    <result column="RoleId" property="roleid" jdbcType="INTEGER" />
-    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
-    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
-    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
-    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.StudentRole" extends="BaseResultMap" >
-    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, StudentId, RoleId, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn
+    id, student_id, role_id, created_by, created_on, modified_by, modified_on
   </sql>
-  <sql id="Blob_Column_List" >
-    VersionNumber
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from StudentRole
-    where Id = #{id,jdbcType=INTEGER}
+    from student_role
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from StudentRole
-    where Id = #{id,jdbcType=INTEGER}
+    delete from student_role
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentRole" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into StudentRole (StudentId, RoleId, CreatedBy, 
-      CreatedOn, ModifiedBy, ModifiedOn, 
-      VersionNumber)
-    values (#{studentid,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{createdby,jdbcType=INTEGER}, 
-      #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, 
-      #{versionnumber,jdbcType=BINARY})
+    insert into student_role (id, student_id, role_id, 
+      created_by, created_on, modified_by, 
+      modified_on)
+    values (#{id,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER}, 
+      #{modifiedOn,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentRole" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into StudentRole
+    insert into student_role
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="studentid != null" >
-        StudentId,
+      id,
+      <if test="studentId != null" >
+        student_id,
       </if>
-      <if test="roleid != null" >
-        RoleId,
+      <if test="roleId != null" >
+        role_id,
       </if>
-      <if test="createdby != null" >
-        CreatedBy,
+      <if test="createdBy != null" >
+        created_by,
       </if>
-      <if test="createdon != null" >
-        CreatedOn,
+      <if test="createdOn != null" >
+        created_on,
       </if>
-      <if test="modifiedby != null" >
-        ModifiedBy,
+      <if test="modifiedBy != null" >
+        modified_by,
       </if>
-      <if test="modifiedon != null" >
-        ModifiedOn,
-      </if>
-      <if test="versionnumber != null" >
-        VersionNumber,
+      <if test="modifiedOn != null" >
+        modified_on,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="studentid != null" >
-        #{studentid,jdbcType=INTEGER},
+      #{id,jdbcType=INTEGER},
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="roleid != null" >
-        #{roleid,jdbcType=INTEGER},
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="createdby != null" >
-        #{createdby,jdbcType=INTEGER},
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
       </if>
-      <if test="createdon != null" >
-        #{createdon,jdbcType=TIMESTAMP},
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
       </if>
-      <if test="modifiedby != null" >
-        #{modifiedby,jdbcType=INTEGER},
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
       </if>
-      <if test="modifiedon != null" >
-        #{modifiedon,jdbcType=TIMESTAMP},
-      </if>
-      <if test="versionnumber != null" >
-        #{versionnumber,jdbcType=BINARY},
+      <if test="modifiedOn != null" >
+        #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentRole" >
-    update StudentRole
+    update student_role
     <set >
-      <if test="studentid != null" >
-        StudentId = #{studentid,jdbcType=INTEGER},
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="roleid != null" >
-        RoleId = #{roleid,jdbcType=INTEGER},
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
       </if>
-      <if test="createdby != null" >
-        CreatedBy = #{createdby,jdbcType=INTEGER},
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
       </if>
-      <if test="createdon != null" >
-        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      <if test="createdOn != null" >
+        created_on = #{createdOn,jdbcType=TIMESTAMP},
       </if>
-      <if test="modifiedby != null" >
-        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      <if test="modifiedBy != null" >
+        modified_by = #{modifiedBy,jdbcType=INTEGER},
       </if>
-      <if test="modifiedon != null" >
-        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      </if>
-      <if test="versionnumber != null" >
-        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      <if test="modifiedOn != null" >
+        modified_on = #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentRole" >
-    update StudentRole
-    set StudentId = #{studentid,jdbcType=INTEGER},
-      RoleId = #{roleid,jdbcType=INTEGER},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      VersionNumber = #{versionnumber,jdbcType=BINARY}
-    where Id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentRole" >
-    update StudentRole
-    set StudentId = #{studentid,jdbcType=INTEGER},
-      RoleId = #{roleid,jdbcType=INTEGER},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP}
-    where Id = #{id,jdbcType=INTEGER}
+    update student_role
+    set student_id = #{studentId,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_on = #{createdOn,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=INTEGER},
+      modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

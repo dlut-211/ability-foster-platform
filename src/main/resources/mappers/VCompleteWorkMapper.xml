@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VCompleteWorkMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VCompleteWork" >
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="classroom_id" property="classroomId" jdbcType="INTEGER" />
+    <result column="chapter_id" property="chapterId" jdbcType="INTEGER" />
+    <result column="chapter_name" property="chapterName" jdbcType="VARCHAR" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="complete_count" property="completeCount" jdbcType="INTEGER" />
+    <result column="student_work_id" property="studentWorkId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VCompleteWork" >
+    insert into v_complete_work (course_id, classroom_id, chapter_id, 
+      chapter_name, student_id, complete_count, 
+      student_work_id)
+    values (#{courseId,jdbcType=INTEGER}, #{classroomId,jdbcType=INTEGER}, #{chapterId,jdbcType=INTEGER}, 
+      #{chapterName,jdbcType=VARCHAR}, #{studentId,jdbcType=INTEGER}, #{completeCount,jdbcType=INTEGER}, 
+      #{studentWorkId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VCompleteWork" >
+    insert into v_complete_work
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="classroomId != null" >
+        classroom_id,
+      </if>
+      <if test="chapterId != null" >
+        chapter_id,
+      </if>
+      <if test="chapterName != null" >
+        chapter_name,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="completeCount != null" >
+        complete_count,
+      </if>
+      <if test="studentWorkId != null" >
+        student_work_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null" >
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="chapterId != null" >
+        #{chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="chapterName != null" >
+        #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="completeCount != null" >
+        #{completeCount,jdbcType=INTEGER},
+      </if>
+      <if test="studentWorkId != null" >
+        #{studentWorkId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

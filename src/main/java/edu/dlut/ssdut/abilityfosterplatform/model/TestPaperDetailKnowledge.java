@@ -6,21 +6,19 @@ import java.util.Date;
 public class TestPaperDetailKnowledge {
     private Integer id;
 
-    private Integer testpaperdetailid;
+    private Integer testPaperDetailId;
 
-    private Integer knowledgeid;
+    private Integer knowledgeId;
 
     private BigDecimal weight;
 
-    private Integer createdby;
+    private Integer createdBy;
 
-    private Date createdon;
+    private Date createdOn;
 
-    private Integer modifiedby;
+    private Integer modifiedBy;
 
-    private Date modifiedon;
-
-    private byte[] versionnumber;
+    private Date modifiedOn;
 
     public Integer getId() {
         return id;
@@ -30,20 +28,20 @@ public class TestPaperDetailKnowledge {
         this.id = id;
     }
 
-    public Integer getTestpaperdetailid() {
-        return testpaperdetailid;
+    public Integer getTestPaperDetailId() {
+        return testPaperDetailId;
     }
 
-    public void setTestpaperdetailid(Integer testpaperdetailid) {
-        this.testpaperdetailid = testpaperdetailid;
+    public void setTestPaperDetailId(Integer testPaperDetailId) {
+        this.testPaperDetailId = testPaperDetailId;
     }
 
-    public Integer getKnowledgeid() {
-        return knowledgeid;
+    public Integer getKnowledgeId() {
+        return knowledgeId;
     }
 
-    public void setKnowledgeid(Integer knowledgeid) {
-        this.knowledgeid = knowledgeid;
+    public void setKnowledgeId(Integer knowledgeId) {
+        this.knowledgeId = knowledgeId;
     }
 
     public BigDecimal getWeight() {
@@ -54,43 +52,35 @@ public class TestPaperDetailKnowledge {
         this.weight = weight;
     }
 
-    public Integer getCreatedby() {
-        return createdby;
+    public Integer getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreatedby(Integer createdby) {
-        this.createdby = createdby;
+    public void setCreatedBy(Integer createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public Date getCreatedon() {
-        return createdon;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public void setCreatedon(Date createdon) {
-        this.createdon = createdon;
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 
-    public Integer getModifiedby() {
-        return modifiedby;
+    public Integer getModifiedBy() {
+        return modifiedBy;
     }
 
-    public void setModifiedby(Integer modifiedby) {
-        this.modifiedby = modifiedby;
+    public void setModifiedBy(Integer modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 
-    public Date getModifiedon() {
-        return modifiedon;
+    public Date getModifiedOn() {
+        return modifiedOn;
     }
 
-    public void setModifiedon(Date modifiedon) {
-        this.modifiedon = modifiedon;
-    }
-
-    public byte[] getVersionnumber() {
-        return versionnumber;
-    }
-
-    public void setVersionnumber(byte[] versionnumber) {
-        this.versionnumber = versionnumber;
+    public void setModifiedOn(Date modifiedOn) {
+        this.modifiedOn = modifiedOn;
     }
 }

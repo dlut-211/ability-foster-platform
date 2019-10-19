@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VAvgKnowledgeScoreMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VAvgKnowledgeScore" >
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="classroom_id" property="classroomId" jdbcType="INTEGER" />
+    <result column="knowledge_id" property="knowledgeId" jdbcType="INTEGER" />
+    <result column="knowledge_name" property="knowledgeName" jdbcType="VARCHAR" />
+    <result column="work_knowledge_id" property="workKnowledgeId" jdbcType="INTEGER" />
+    <result column="avg_score" property="avgScore" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAvgKnowledgeScore" >
+    insert into v_avg_knowledge_score (course_id, classroom_id, knowledge_id, 
+      knowledge_name, work_knowledge_id, avg_score
+      )
+    values (#{courseId,jdbcType=INTEGER}, #{classroomId,jdbcType=INTEGER}, #{knowledgeId,jdbcType=INTEGER}, 
+      #{knowledgeName,jdbcType=VARCHAR}, #{workKnowledgeId,jdbcType=INTEGER}, #{avgScore,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAvgKnowledgeScore" >
+    insert into v_avg_knowledge_score
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="classroomId != null" >
+        classroom_id,
+      </if>
+      <if test="knowledgeId != null" >
+        knowledge_id,
+      </if>
+      <if test="knowledgeName != null" >
+        knowledge_name,
+      </if>
+      <if test="workKnowledgeId != null" >
+        work_knowledge_id,
+      </if>
+      <if test="avgScore != null" >
+        avg_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null" >
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeId != null" >
+        #{knowledgeId,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeName != null" >
+        #{knowledgeName,jdbcType=VARCHAR},
+      </if>
+      <if test="workKnowledgeId != null" >
+        #{workKnowledgeId,jdbcType=INTEGER},
+      </if>
+      <if test="avgScore != null" >
+        #{avgScore,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

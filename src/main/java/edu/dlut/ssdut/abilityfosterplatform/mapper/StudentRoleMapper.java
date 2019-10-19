@@ -13,7 +13,5 @@ public interface StudentRoleMapper {
 
     int updateByPrimaryKeySelective(StudentRole record);
 
-    int updateByPrimaryKeyWithBLOBs(StudentRole record);
-
     int updateByPrimaryKey(StudentRole record);
 }

@@ -2,171 +2,143 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.TestPaperMapper" >
   <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.TestPaper" >
-    <id column="Id" property="id" jdbcType="INTEGER" />
-    <result column="Name" property="name" jdbcType="NVARCHAR" />
-    <result column="ClassRoomId" property="classroomid" jdbcType="INTEGER" />
-    <result column="TestPaperType" property="testpapertype" jdbcType="INTEGER" />
-    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
-    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
-    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
-    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
-    <result column="Status" property="status" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.TestPaper" extends="BaseResultMap" >
-    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="classroom_id" property="classroomId" jdbcType="INTEGER" />
+    <result column="test_paper_type" property="testPaperType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, Name, ClassRoomId, TestPaperType, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, 
-    Status
+    id, name, classroom_id, test_paper_type, status, created_by, created_on, modified_by, 
+    modified_on
   </sql>
-  <sql id="Blob_Column_List" >
-    VersionNumber
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from TestPaper
-    where Id = #{id,jdbcType=INTEGER}
+    from test_paper
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from TestPaper
-    where Id = #{id,jdbcType=INTEGER}
+    delete from test_paper
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TestPaper" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into TestPaper (Name, ClassRoomId, TestPaperType, 
-      CreatedBy, CreatedOn, ModifiedBy, 
-      ModifiedOn, Status, VersionNumber
+    insert into test_paper (id, name, classroom_id, 
+      test_paper_type, status, created_by, 
+      created_on, modified_by, modified_on
       )
-    values (#{name,jdbcType=NVARCHAR}, #{classroomid,jdbcType=INTEGER}, #{testpapertype,jdbcType=INTEGER}, 
-      #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, #{modifiedby,jdbcType=INTEGER}, 
-      #{modifiedon,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{versionnumber,jdbcType=BINARY}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{classroomId,jdbcType=INTEGER}, 
+      #{testPaperType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, 
+      #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER}, #{modifiedOn,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TestPaper" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into TestPaper
+    insert into test_paper
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
       <if test="name != null" >
-        Name,
+        name,
       </if>
-      <if test="classroomid != null" >
-        ClassRoomId,
+      <if test="classroomId != null" >
+        classroom_id,
       </if>
-      <if test="testpapertype != null" >
-        TestPaperType,
-      </if>
-      <if test="createdby != null" >
-        CreatedBy,
-      </if>
-      <if test="createdon != null" >
-        CreatedOn,
-      </if>
-      <if test="modifiedby != null" >
-        ModifiedBy,
-      </if>
-      <if test="modifiedon != null" >
-        ModifiedOn,
+      <if test="testPaperType != null" >
+        test_paper_type,
       </if>
       <if test="status != null" >
-        Status,
+        status,
       </if>
-      <if test="versionnumber != null" >
-        VersionNumber,
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdOn != null" >
+        created_on,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="modifiedOn != null" >
+        modified_on,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
       <if test="name != null" >
-        #{name,jdbcType=NVARCHAR},
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="classroomid != null" >
-        #{classroomid,jdbcType=INTEGER},
+      <if test="classroomId != null" >
+        #{classroomId,jdbcType=INTEGER},
       </if>
-      <if test="testpapertype != null" >
-        #{testpapertype,jdbcType=INTEGER},
-      </if>
-      <if test="createdby != null" >
-        #{createdby,jdbcType=INTEGER},
-      </if>
-      <if test="createdon != null" >
-        #{createdon,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedby != null" >
-        #{modifiedby,jdbcType=INTEGER},
-      </if>
-      <if test="modifiedon != null" >
-        #{modifiedon,jdbcType=TIMESTAMP},
+      <if test="testPaperType != null" >
+        #{testPaperType,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="versionnumber != null" >
-        #{versionnumber,jdbcType=BINARY},
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedOn != null" >
+        #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TestPaper" >
-    update TestPaper
+    update test_paper
     <set >
       <if test="name != null" >
-        Name = #{name,jdbcType=NVARCHAR},
+        name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="classroomid != null" >
-        ClassRoomId = #{classroomid,jdbcType=INTEGER},
+      <if test="classroomId != null" >
+        classroom_id = #{classroomId,jdbcType=INTEGER},
       </if>
-      <if test="testpapertype != null" >
-        TestPaperType = #{testpapertype,jdbcType=INTEGER},
-      </if>
-      <if test="createdby != null" >
-        CreatedBy = #{createdby,jdbcType=INTEGER},
-      </if>
-      <if test="createdon != null" >
-        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedby != null" >
-        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      </if>
-      <if test="modifiedon != null" >
-        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      <if test="testPaperType != null" >
+        test_paper_type = #{testPaperType,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
-        Status = #{status,jdbcType=INTEGER},
+        status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="versionnumber != null" >
-        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdOn != null" >
+        created_on = #{createdOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by = #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedOn != null" >
+        modified_on = #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TestPaper" >
-    update TestPaper
-    set Name = #{name,jdbcType=NVARCHAR},
-      ClassRoomId = #{classroomid,jdbcType=INTEGER},
-      TestPaperType = #{testpapertype,jdbcType=INTEGER},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      Status = #{status,jdbcType=INTEGER},
-      VersionNumber = #{versionnumber,jdbcType=BINARY}
-    where Id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.TestPaper" >
-    update TestPaper
-    set Name = #{name,jdbcType=NVARCHAR},
-      ClassRoomId = #{classroomid,jdbcType=INTEGER},
-      TestPaperType = #{testpapertype,jdbcType=INTEGER},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      Status = #{status,jdbcType=INTEGER}
-    where Id = #{id,jdbcType=INTEGER}
+    update test_paper
+    set name = #{name,jdbcType=VARCHAR},
+      classroom_id = #{classroomId,jdbcType=INTEGER},
+      test_paper_type = #{testPaperType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_on = #{createdOn,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=INTEGER},
+      modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

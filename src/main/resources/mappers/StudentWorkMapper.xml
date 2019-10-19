@@ -2,183 +2,154 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StudentWorkMapper" >
   <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
-    <id column="Id" property="id" jdbcType="INTEGER" />
-    <result column="ClassRoomStudentId" property="classroomstudentid" jdbcType="INTEGER" />
-    <result column="Score" property="score" jdbcType="INTEGER" />
-    <result column="WorkMessage" property="workmessage" jdbcType="NVARCHAR" />
-    <result column="ClassRoomWorkId" property="classroomworkid" jdbcType="INTEGER" />
-    <result column="CreatedBy" property="createdby" jdbcType="INTEGER" />
-    <result column="CreatedOn" property="createdon" jdbcType="TIMESTAMP" />
-    <result column="ModifiedBy" property="modifiedby" jdbcType="INTEGER" />
-    <result column="ModifiedOn" property="modifiedon" jdbcType="TIMESTAMP" />
-    <result column="isScore" property="isscore" jdbcType="BIT" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" extends="BaseResultMap" >
-    <result column="VersionNumber" property="versionnumber" jdbcType="BINARY" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="classroom_student_id" property="classroomStudentId" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="work_message" property="workMessage" jdbcType="VARCHAR" />
+    <result column="classroom_work_id" property="classroomWorkId" jdbcType="INTEGER" />
+    <result column="is_scored" property="isScored" jdbcType="BIT" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Id, ClassRoomStudentId, Score, WorkMessage, ClassRoomWorkId, CreatedBy, CreatedOn, 
-    ModifiedBy, ModifiedOn, isScore
+    id, classroom_student_id, score, work_message, classroom_work_id, is_scored, created_by, 
+    created_on, modified_by, modified_on
   </sql>
-  <sql id="Blob_Column_List" >
-    VersionNumber
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from StudentWork
-    where Id = #{id,jdbcType=INTEGER}
+    from student_work
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from StudentWork
-    where Id = #{id,jdbcType=INTEGER}
+    delete from student_work
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into StudentWork (ClassRoomStudentId, Score, WorkMessage, 
-      ClassRoomWorkId, CreatedBy, CreatedOn, 
-      ModifiedBy, ModifiedOn, isScore, 
-      VersionNumber)
-    values (#{classroomstudentid,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{workmessage,jdbcType=NVARCHAR}, 
-      #{classroomworkid,jdbcType=INTEGER}, #{createdby,jdbcType=INTEGER}, #{createdon,jdbcType=TIMESTAMP}, 
-      #{modifiedby,jdbcType=INTEGER}, #{modifiedon,jdbcType=TIMESTAMP}, #{isscore,jdbcType=BIT}, 
-      #{versionnumber,jdbcType=BINARY})
+    insert into student_work (id, classroom_student_id, score, 
+      work_message, classroom_work_id, is_scored, 
+      created_by, created_on, modified_by, 
+      modified_on)
+    values (#{id,jdbcType=INTEGER}, #{classroomStudentId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{workMessage,jdbcType=VARCHAR}, #{classroomWorkId,jdbcType=INTEGER}, #{isScored,jdbcType=BIT}, 
+      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER}, 
+      #{modifiedOn,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT SCOPE_IDENTITY()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into StudentWork
+    insert into student_work
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="classroomstudentid != null" >
-        ClassRoomStudentId,
+      id,
+      <if test="classroomStudentId != null" >
+        classroom_student_id,
       </if>
       <if test="score != null" >
-        Score,
+        score,
       </if>
-      <if test="workmessage != null" >
-        WorkMessage,
+      <if test="workMessage != null" >
+        work_message,
       </if>
-      <if test="classroomworkid != null" >
-        ClassRoomWorkId,
+      <if test="classroomWorkId != null" >
+        classroom_work_id,
       </if>
-      <if test="createdby != null" >
-        CreatedBy,
+      <if test="isScored != null" >
+        is_scored,
       </if>
-      <if test="createdon != null" >
-        CreatedOn,
+      <if test="createdBy != null" >
+        created_by,
       </if>
-      <if test="modifiedby != null" >
-        ModifiedBy,
+      <if test="createdOn != null" >
+        created_on,
       </if>
-      <if test="modifiedon != null" >
-        ModifiedOn,
+      <if test="modifiedBy != null" >
+        modified_by,
       </if>
-      <if test="isscore != null" >
-        isScore,
-      </if>
-      <if test="versionnumber != null" >
-        VersionNumber,
+      <if test="modifiedOn != null" >
+        modified_on,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="classroomstudentid != null" >
-        #{classroomstudentid,jdbcType=INTEGER},
+      #{id,jdbcType=INTEGER},
+      <if test="classroomStudentId != null" >
+        #{classroomStudentId,jdbcType=INTEGER},
       </if>
       <if test="score != null" >
         #{score,jdbcType=INTEGER},
       </if>
-      <if test="workmessage != null" >
-        #{workmessage,jdbcType=NVARCHAR},
+      <if test="workMessage != null" >
+        #{workMessage,jdbcType=VARCHAR},
       </if>
-      <if test="classroomworkid != null" >
-        #{classroomworkid,jdbcType=INTEGER},
+      <if test="classroomWorkId != null" >
+        #{classroomWorkId,jdbcType=INTEGER},
       </if>
-      <if test="createdby != null" >
-        #{createdby,jdbcType=INTEGER},
+      <if test="isScored != null" >
+        #{isScored,jdbcType=BIT},
       </if>
-      <if test="createdon != null" >
-        #{createdon,jdbcType=TIMESTAMP},
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
       </if>
-      <if test="modifiedby != null" >
-        #{modifiedby,jdbcType=INTEGER},
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
       </if>
-      <if test="modifiedon != null" >
-        #{modifiedon,jdbcType=TIMESTAMP},
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
       </if>
-      <if test="isscore != null" >
-        #{isscore,jdbcType=BIT},
-      </if>
-      <if test="versionnumber != null" >
-        #{versionnumber,jdbcType=BINARY},
+      <if test="modifiedOn != null" >
+        #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
-    update StudentWork
+    update student_work
     <set >
-      <if test="classroomstudentid != null" >
-        ClassRoomStudentId = #{classroomstudentid,jdbcType=INTEGER},
+      <if test="classroomStudentId != null" >
+        classroom_student_id = #{classroomStudentId,jdbcType=INTEGER},
       </if>
       <if test="score != null" >
-        Score = #{score,jdbcType=INTEGER},
+        score = #{score,jdbcType=INTEGER},
       </if>
-      <if test="workmessage != null" >
-        WorkMessage = #{workmessage,jdbcType=NVARCHAR},
+      <if test="workMessage != null" >
+        work_message = #{workMessage,jdbcType=VARCHAR},
       </if>
-      <if test="classroomworkid != null" >
-        ClassRoomWorkId = #{classroomworkid,jdbcType=INTEGER},
+      <if test="classroomWorkId != null" >
+        classroom_work_id = #{classroomWorkId,jdbcType=INTEGER},
       </if>
-      <if test="createdby != null" >
-        CreatedBy = #{createdby,jdbcType=INTEGER},
+      <if test="isScored != null" >
+        is_scored = #{isScored,jdbcType=BIT},
       </if>
-      <if test="createdon != null" >
-        CreatedOn = #{createdon,jdbcType=TIMESTAMP},
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
       </if>
-      <if test="modifiedby != null" >
-        ModifiedBy = #{modifiedby,jdbcType=INTEGER},
+      <if test="createdOn != null" >
+        created_on = #{createdOn,jdbcType=TIMESTAMP},
       </if>
-      <if test="modifiedon != null" >
-        ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
+      <if test="modifiedBy != null" >
+        modified_by = #{modifiedBy,jdbcType=INTEGER},
       </if>
-      <if test="isscore != null" >
-        isScore = #{isscore,jdbcType=BIT},
-      </if>
-      <if test="versionnumber != null" >
-        VersionNumber = #{versionnumber,jdbcType=BINARY},
+      <if test="modifiedOn != null" >
+        modified_on = #{modifiedOn,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
-    update StudentWork
-    set ClassRoomStudentId = #{classroomstudentid,jdbcType=INTEGER},
-      Score = #{score,jdbcType=INTEGER},
-      WorkMessage = #{workmessage,jdbcType=NVARCHAR},
-      ClassRoomWorkId = #{classroomworkid,jdbcType=INTEGER},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      isScore = #{isscore,jdbcType=BIT},
-      VersionNumber = #{versionnumber,jdbcType=BINARY}
-    where Id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
-    update StudentWork
-    set ClassRoomStudentId = #{classroomstudentid,jdbcType=INTEGER},
-      Score = #{score,jdbcType=INTEGER},
-      WorkMessage = #{workmessage,jdbcType=NVARCHAR},
-      ClassRoomWorkId = #{classroomworkid,jdbcType=INTEGER},
-      CreatedBy = #{createdby,jdbcType=INTEGER},
-      CreatedOn = #{createdon,jdbcType=TIMESTAMP},
-      ModifiedBy = #{modifiedby,jdbcType=INTEGER},
-      ModifiedOn = #{modifiedon,jdbcType=TIMESTAMP},
-      isScore = #{isscore,jdbcType=BIT}
-    where Id = #{id,jdbcType=INTEGER}
+    update student_work
+    set classroom_student_id = #{classroomStudentId,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      work_message = #{workMessage,jdbcType=VARCHAR},
+      classroom_work_id = #{classroomWorkId,jdbcType=INTEGER},
+      is_scored = #{isScored,jdbcType=BIT},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_on = #{createdOn,jdbcType=TIMESTAMP},
+      modified_by = #{modifiedBy,jdbcType=INTEGER},
+      modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

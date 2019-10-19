@@ -1,11 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.mapper;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public interface AbilityMapper {
-
     int deleteByPrimaryKey(Integer id);
 
     int insert(Ability record);
@@ -16,8 +13,5 @@ public interface AbilityMapper {
 
     int updateByPrimaryKeySelective(Ability record);
 
-    int updateByPrimaryKeyWithBLOBs(Ability record);
-
     int updateByPrimaryKey(Ability record);
-
 }

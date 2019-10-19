@@ -13,7 +13,5 @@ public interface StudentWorkDetailMapper {
 
     int updateByPrimaryKeySelective(StudentWorkDetail record);
 
-    int updateByPrimaryKeyWithBLOBs(StudentWorkDetail record);
-
     int updateByPrimaryKey(StudentWorkDetail record);
 }

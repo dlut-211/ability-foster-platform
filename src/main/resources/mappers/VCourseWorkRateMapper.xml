@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VCourseWorkRateMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VCourseWorkRate" >
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="work_rate" property="workRate" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VCourseWorkRate" >
+    insert into v_course_work_rate (course_id, work_rate)
+    values (#{courseId,jdbcType=INTEGER}, #{workRate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VCourseWorkRate" >
+    insert into v_course_work_rate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="workRate != null" >
+        work_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="workRate != null" >
+        #{workRate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

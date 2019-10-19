@@ -1,115 +1,32 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
+import lombok.Data;
+
+import javax.persistence.Id;
 import java.util.Date;
 
+@Data
 public class TestPaperDetail {
+
+    @Id
     private Integer id;
 
-    private Integer detailnumber;
+    private Integer detailNumber;
 
     private Integer score;
 
-    private Integer testpaperid;
+    private Integer testPaperId;
 
     private String title;
 
-    private Integer detailtype;
+    private Integer detailType;
 
-    private Integer createdby;
+    private Integer createdBy;
 
-    private Date createdon;
+    private Date createdOn;
 
-    private Integer modifiedby;
+    private Integer modifiedBy;
 
-    private Date modifiedon;
+    private Date modifiedOn;
 
-    private byte[] versionnumber;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getDetailnumber() {
-        return detailnumber;
-    }
-
-    public void setDetailnumber(Integer detailnumber) {
-        this.detailnumber = detailnumber;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Integer getTestpaperid() {
-        return testpaperid;
-    }
-
-    public void setTestpaperid(Integer testpaperid) {
-        this.testpaperid = testpaperid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
-
-    public Integer getDetailtype() {
-        return detailtype;
-    }
-
-    public void setDetailtype(Integer detailtype) {
-        this.detailtype = detailtype;
-    }
-
-    public Integer getCreatedby() {
-        return createdby;
-    }
-
-    public void setCreatedby(Integer createdby) {
-        this.createdby = createdby;
-    }
-
-    public Date getCreatedon() {
-        return createdon;
-    }
-
-    public void setCreatedon(Date createdon) {
-        this.createdon = createdon;
-    }
-
-    public Integer getModifiedby() {
-        return modifiedby;
-    }
-
-    public void setModifiedby(Integer modifiedby) {
-        this.modifiedby = modifiedby;
-    }
-
-    public Date getModifiedon() {
-        return modifiedon;
-    }
-
-    public void setModifiedon(Date modifiedon) {
-        this.modifiedon = modifiedon;
-    }
-
-    public byte[] getVersionnumber() {
-        return versionnumber;
-    }
-
-    public void setVersionnumber(byte[] versionnumber) {
-        this.versionnumber = versionnumber;
-    }
 }

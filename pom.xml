@@ -37,9 +37,8 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId>
-            <scope>runtime</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -76,7 +75,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <!-- mybatis generator 自动生成代码插件 -->
-            <!-- mybatis generator 自动生成代码插件 -->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -87,10 +85,12 @@
                     <verbose>true</verbose>
                 </configuration>
                 <!-- 配置数据库链接及mybatis generator core依赖 生成mapper时使用 -->
+                <!-- 注意 mysql-connector-java的版本, 5.1.36之后可能会出现数据库连接失败的问题 -->
                 <dependencies>
                     <dependency>
-                        <groupId>com.microsoft.sqlserver</groupId>
-                        <artifactId>mssql-jdbc</artifactId>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.36</version>
                     </dependency>
                     <dependency>
                         <groupId>org.mybatis.generator</groupId>
