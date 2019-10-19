@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Description:
  **/
 public interface AbilityRepository extends JpaRepository<Ability, Integer> {
-    Page<Ability> findAbilitiesBySubjectid(Integer subjectId, Pageable pageable);
+    Page<Ability> findAbilitiesBySubjectId(Integer subjectId, Pageable pageable);
 }

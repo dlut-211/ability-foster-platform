@@ -7,10 +7,10 @@ spring:
     # 驱动
     # 数据库连接已过时，com.mysql.jdbc.Driver被建议替换为com.mysql.cj.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://114.115.184.18:3306/ces_dev
+    url: jdbc:mysql://114.115.184.18:3306/ces_dev?serverTimezone=UTC&characterEncoding=utf-8
     # 注意修改数据库连接信息
-    username: dev
-    password: 123456
+    username: root
+    password: root
   # redis
   redis:
     host: localhost # Redis服务器地址

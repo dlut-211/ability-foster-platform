@@ -20,7 +20,7 @@ public class AbilityRepositoryTest {
     @Test
     public void findAbilitiesBySubjectId() {
         PageRequest request = PageRequest.of(0, 5);
-        Page<Ability> page = abilityRepository.findAbilitiesBySubjectid(3, request);
+        Page<Ability> page = abilityRepository.findAbilitiesBySubjectId(3, request);
         System.out.println("总数据条数 " + page.getTotalElements());
         System.out.println("总页数 " + page.getTotalPages());
         for (Ability ability : page.getContent()) {
