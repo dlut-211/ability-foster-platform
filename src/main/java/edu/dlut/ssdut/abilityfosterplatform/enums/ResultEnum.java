@@ -12,7 +12,11 @@ public enum ResultEnum {
 
     SUCCESS(0, "成功"),
 
-    ERROR(1, "失败")
+    ERROR(1, "失败"),
+
+    ADD_TEST_PAPER_FAIL(10, "添加试卷失败"),
+
+    ADD_TEST_PAPER_DETAIL_FAIL(11, "添加试卷详情失败")
 
     ;
     private Integer code;
