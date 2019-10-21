@@ -2,33 +2,36 @@ package edu.dlut.ssdut.abilityfosterplatform.model;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-
 @Data
+@Entity
+@Table(name = "v_classroom_student_info")
 public class VStudentWork {
 
-    private Integer id;
+    @Column(name = "studentId")
+    private Integer studentId;
 
-    private Integer classroomStudentId;
+    @Id
+    @Column(name = "code")
+    private String code;
 
-    private Integer score;
+    @Column(name = "name")
+    private String name;
 
-    private String workMessage;
+    @Column(name = "termType")
+    private Integer termType;
 
-    private Integer classroomWorkId;
+    @Column(name = "beginDate")
+    private Date beginDate;
 
-    private String studentNumber;
+    @Column(name = "endDate")
+    private Date endDate;
 
-    private String studentName;
-
-    private Date submitTime;
-
-    private Integer useTime;
-
-    private Long submitCount;
-
-    private Integer isSubmit;
-
-    private String workPath;
+    @Column(name = "status")
+    private Integer status;
 
 }
