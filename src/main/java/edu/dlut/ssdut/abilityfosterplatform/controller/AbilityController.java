@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 /**
- * @Author: raymond
- * @Date 2019/10/16 13:14
+ * @Author: lhd
+ * @Date 2019/10/22 10:24
  * @Description: 能力点 控制层
  **/
 @Api(tags = "AbilityController")
@@ -51,5 +51,20 @@ public class AbilityController {
         ability.setModifiedBy(1);
         ability.setModifiedOn(new Date());
         return ResultVOUtil.success(abilityService.updateByPrimaryKeySelective(ability));
+    }
+
+    @ApiOperation("添加条目")
+    @PostMapping("/add")
+    public ResultVO addSystemOption(Ability ability) {
+        ability.setCreatedOn(new Date());
+        ability.setCreatedBy(1);
+        return  ResultVOUtil.success(abilityRepository.saveAndFlush(ability));
+    }
+
+    @ApiOperation("删除条目")
+    @DeleteMapping("/remove")
+    public ResultVO removeSystemOption(@RequestParam(value ="id") Integer id) {
+        abilityRepository.deleteById(id);
+        return ResultVOUtil.success();
     }
 }
