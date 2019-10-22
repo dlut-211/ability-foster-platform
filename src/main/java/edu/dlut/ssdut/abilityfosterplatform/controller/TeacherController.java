@@ -21,7 +21,7 @@ import java.util.Date;
 
 @Api(tags = "TeacherController")
 @RestController
-@RequestMapping("/api/teachercontroller")
+@RequestMapping("/api/teacher")
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
@@ -29,32 +29,32 @@ public class TeacherController {
     private TeacherRepository teacherRepository;
 
     @ApiOperation("获取教师列表")
-    @GetMapping("/getTeacherList")
-    public ResultVO getTeacherList(@RequestParam(value ="page",defaultValue = "1") Integer page, @RequestParam(value ="limit",defaultValue = "10") Integer limit, @RequestParam(value ="name",defaultValue = "")String name, @RequestParam(value ="number",defaultValue = "")String number) {
+    @GetMapping("/list")
+    public ResultVO getTeacherList(@RequestParam(value ="page",defaultValue = "1") Integer page, @RequestParam(value ="limit",defaultValue = "10") Integer limit, @RequestParam(value ="name",defaultValue = "")String name, @RequestParam(value ="number",defaultValue = "")String number,@RequestParam(value ="status",defaultValue = "1")Integer status) {
         PageRequest request = PageRequest.of(page-1, limit);
         Page<Teacher> teacherPage;
         if (name.isEmpty() && number.isEmpty())
         {
-            teacherPage =  teacherRepository.findAll(request);
+            teacherPage =  teacherRepository.findTeachersByStatusEquals(status,request);
         }else if (!name.isEmpty() && number.isEmpty())
         {
-            teacherPage =  teacherRepository.findTeachersByNameContains(name,request);
+            teacherPage =  teacherRepository.findTeachersByNameContainsAndStatusEquals(name,status,request);
         }
         else if (!number.isEmpty() && name.isEmpty()){
-            teacherPage =  teacherRepository.findTeachersByNumberEquals(number,request);
+            teacherPage =  teacherRepository.findTeachersByNumberEqualsAndStatusEquals(number,status,request);
         }else{
-            teacherPage =  teacherRepository.findTeachersByNameContainsAndNumberEquals(name,number,request);
+            teacherPage =  teacherRepository.findTeachersByNameContainsAndNumberEqualsAndStatusEquals(name,number,status,request);
         }
         return ResultVOUtil.success( teacherPage);
     }
 
     @ApiOperation("添加教师")
-    @PostMapping("/addTeacher")
+    @PostMapping("/add")
     public ResultVO addTeacher(Teacher teacher) {
-        teacher.setEmail("123456@qq.com");
+        teacher.setEmail("");
         teacher.setToken("111");
         teacher.setStatus(1);
-        teacher.setPassword("123ZYC");
+        teacher.setPassword(teacher.getNumber());
         teacher.setCreatedBy(1);
         teacher.setCreatedOn(new Date());
 //        return ResultVOUtil.success(systemOptionService.insertSelective(systemOption));
@@ -62,7 +62,7 @@ public class TeacherController {
     }
 
     @ApiOperation("编辑教师")
-    @PutMapping("/editTeacher")
+    @PutMapping("/edit")
     public ResultVO editTeacher(Teacher teacher) {
         teacher.setModifiedBy(1);
         teacher.setModifiedOn(new Date());
@@ -70,9 +70,17 @@ public class TeacherController {
     }
 
     @ApiOperation("删除教师")
-    @DeleteMapping("/removeTeacher")
+    @DeleteMapping("/remove")
     public ResultVO removeTeacher(Integer id) {
         return ResultVOUtil.success(teacherService.deleteByPrimaryKey(id));
+    }
+
+    @ApiOperation("禁用教师")
+    @GetMapping("/disable")
+    public ResultVO disableTeacher(Integer id) {
+        Teacher teacher = teacherRepository.getOne(id);
+        teacher.setStatus(2);
+        return ResultVOUtil.success(teacherService.updateByPrimaryKeySelective(teacher));
     }
 
     @RequestMapping("/selectByAccountAndPassword")
