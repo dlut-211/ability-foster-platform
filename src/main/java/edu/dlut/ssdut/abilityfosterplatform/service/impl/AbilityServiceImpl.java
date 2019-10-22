@@ -21,4 +21,10 @@ public class AbilityServiceImpl implements AbilityService {
     public Ability selectByPrimaryKey(Integer id) {
         return abilityMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public int updateByPrimaryKeySelective(Ability record) {
+        abilityMapper.updateByPrimaryKeySelective(record);
+        return 0;
+    }
 }

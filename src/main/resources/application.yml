@@ -26,7 +26,6 @@ spring:
     timeout: 3000ms # 连接超时时间（毫秒）
   jpa:
     show-sql: true
-
 # 自定义redis key
 redis:
   key:

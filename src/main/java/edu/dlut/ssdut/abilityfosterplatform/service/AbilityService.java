@@ -9,4 +9,6 @@ import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
  **/
 public interface AbilityService {
     Ability selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(Ability record);
 }
