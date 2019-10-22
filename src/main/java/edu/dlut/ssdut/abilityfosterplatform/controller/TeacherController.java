@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.LoginInfoDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
 import edu.dlut.ssdut.abilityfosterplatform.repository.SystemOptionRepository;
@@ -13,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -71,5 +73,11 @@ public class TeacherController {
     @DeleteMapping("/removeTeacher")
     public ResultVO removeTeacher(Integer id) {
         return ResultVOUtil.success(teacherService.deleteByPrimaryKey(id));
+    }
+
+    @RequestMapping("/selectByAccountAndPassword")
+    public ResultVO selectByAccountAndPassword(LoginInfoDTO loginInfo){
+        loginInfo.setPassword(DigestUtils.md5DigestAsHex(loginInfo.getPassword().getBytes()));
+        return ResultVOUtil.success(teacherService.selectByAccountAndPassword(loginInfo));
     }
 }
