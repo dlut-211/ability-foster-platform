@@ -1,7 +1,10 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.VCharterWorkDto;
 import edu.dlut.ssdut.abilityfosterplatform.dto.VStudentWorkInfoDto;
+import edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkZjk;
 import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWork;
+import edu.dlut.ssdut.abilityfosterplatform.service.VChapterWorkService;
 import edu.dlut.ssdut.abilityfosterplatform.service.VStudentWorkService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
@@ -23,6 +26,9 @@ public class VStudentWorkController {
     @Autowired
     private VStudentWorkService vStudentWorkService;
 
+    @Autowired
+    private VChapterWorkService vChapterWorkService;
+
     @ApiOperation("学生首页——通过学生Id获取所选课程信息")
     @GetMapping("/selectClassRoomCountById")
     public ResultVO VStudentWorkInfoPage(VStudentWorkInfoDto vStudentWorkInfoDto){
@@ -30,6 +36,14 @@ public class VStudentWorkController {
                 vStudentWorkInfoDto.getPageSize(),
                 Sort.Direction.DESC,"beginDate");
         Page<VStudentWork> page = vStudentWorkService.VStudentWorkInfoPage(vStudentWorkInfoDto.getStudentId(),request);
+        return ResultVOUtil.success(page);
+    }
+
+    @ApiOperation("学生页面—我的课堂—章节作业")
+    @GetMapping("/chapterWorkList")
+    public ResultVO VChapterWorkPage(VCharterWorkDto vCharterWorkDto){
+        PageRequest request = PageRequest.of(vCharterWorkDto.getNowPage()-1,vCharterWorkDto.getPageSize());
+        Page<VChapterWorkZjk> page = vChapterWorkService.VChapterWorkPage(vCharterWorkDto.getClassroomId(),vCharterWorkDto.getStudentId(),request);
         return ResultVOUtil.success(page);
     }
 }
