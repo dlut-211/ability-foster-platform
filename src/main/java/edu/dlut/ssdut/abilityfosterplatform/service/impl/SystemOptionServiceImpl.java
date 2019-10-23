@@ -20,21 +20,21 @@ import java.util.List;
 
 @Service
 public class SystemOptionServiceImpl implements SystemOptionService{
+
     @Autowired
     private SystemOptionMapper systemOptionMapper;
+
     @Autowired
     private SystemOptionRepository systemOptionRepository;
 
     @Override
     public int insert(SystemOption record) {
-        systemOptionMapper.insert(record);
-        return 0;
+        return systemOptionMapper.insert(record);
     }
 
     @Override
     public int insertSelective(SystemOption record) {
-        systemOptionMapper.insertSelective(record);
-        return 0;
+        return systemOptionMapper.insertSelective(record);
     }
 
     @Override
