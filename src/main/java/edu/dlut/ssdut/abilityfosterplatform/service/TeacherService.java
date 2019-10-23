@@ -1,9 +1,12 @@
-package edu.dlut.ssdut.abilityfosterplatform.mapper;
+package edu.dlut.ssdut.abilityfosterplatform.service;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo;
+import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
 
-public interface TeacherMapper {
+import java.util.List;
+
+public interface TeacherService {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Teacher record);
