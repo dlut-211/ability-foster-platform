@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.PGetSubjectAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.AbilityMapper;
@@ -29,6 +30,11 @@ public class AbilityServiceImpl implements AbilityService {
     @Override
     public List<SubjectWorkAbilityScoreDTO> ProceduregetSubjectWorkAbilityScore(Integer subjectId, Integer studentId) {
         return abilityMapper.ProceduregetSubjectWorkAbilityScore(subjectId,studentId);
+    }
+
+    @Override
+    public List<PGetSubjectAbilityScoreDTO> ProcedureGetSubjectAbilityScore(Integer subjectId, Integer studentId) {
+        return abilityMapper.ProcedureGetSubjectAbilityScore(subjectId,studentId);
     }
 
     @Override
