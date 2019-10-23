@@ -3,6 +3,7 @@ package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 import edu.dlut.ssdut.abilityfosterplatform.dto.CourseDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.CourseMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import edu.dlut.ssdut.abilityfosterplatform.repository.CourseRepository;
@@ -31,6 +32,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private SystemOptionRepository systemOptionRepository;
+
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Value("${uploadFile.resourceHandler}")
     private String resourceHandler;
@@ -100,6 +104,11 @@ public class CourseServiceImpl implements CourseService {
     public List<SystemOption> getAllSubjectList() {
         List<SystemOption> systemOptionList = systemOptionRepository.findAll();
         return systemOptionList;
+    }
+
+    @Override
+    public int updateCourseById(Course record) {
+        return courseMapper.updateByPrimaryKey(record);
     }
 
 

@@ -1,6 +1,7 @@
 package edu.dlut.ssdut.abilityfosterplatform.service;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.CourseDTO;
+import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,5 +21,8 @@ public interface CourseService {
 
     /** 获取所有的学科列表 **/
     List<SystemOption> getAllSubjectList();
+
+    /** 通过Id更新课程 **/
+    int updateCourseById(Course record);
 
 }
