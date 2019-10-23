@@ -6,10 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TeacherRepository extends JpaRepository<Teacher,Integer> {
-    Page<Teacher> findAll(Pageable pageable);
-    Page<Teacher> findTeachersByNameContains(String name,Pageable pageable);
-    Page<Teacher> findTeachersByNumberEquals(String number,Pageable pageable);
-    Page<Teacher> findTeachersByNameContainsAndNumberEquals(String name,String number,Pageable pageable);
     Teacher findTeacherByNumberAndPassword(String number,String password);
-
+    Page<Teacher> findTeachersByStatusEquals(Integer status,Pageable pageable);
+    Page<Teacher> findTeachersByNameContainsAndStatusEquals(String name,Integer status,Pageable pageable);
+    Page<Teacher> findTeachersByNumberEqualsAndStatusEquals(String number,Integer status,Pageable pageable);
+    Page<Teacher> findTeachersByNameContainsAndNumberEqualsAndStatusEquals(String name,String number,Integer status,Pageable pageable);
 }
