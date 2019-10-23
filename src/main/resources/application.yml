@@ -24,7 +24,10 @@ spring:
         max-idle: 8 # 连接池中的最大空闲连接
         min-idle: 0 # 连接池中的最小空闲连接
     timeout: 3000ms # 连接超时时间（毫秒）
+<<<<<<< HEAD
 
+=======
+>>>>>>> 592701bbe98506b8e27d8676b4a27a3660357ae2
 # 自定义redis key
 redis:
   key:
@@ -41,8 +44,11 @@ mybatis:
   configuration:
     # 开启驼峰映射
     map-underscore-to-camel-case: true
+<<<<<<< HEAD
 
 #自己修改要保存的文件夹根目录
 uploadFile:
   resourceHandler: /uploadFiles/**
   location: F:/UploadFiles/
+=======
+>>>>>>> 592701bbe98506b8e27d8676b4a27a3660357ae2
