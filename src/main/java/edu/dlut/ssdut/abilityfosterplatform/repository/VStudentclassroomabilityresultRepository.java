@@ -6,10 +6,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface VStudentclassroomabilityresultRepository extends JpaRepository<VStudentClassroomAbilityResult, Integer> {
-    @Query(value = "select @rownum\\:=@rownum+1 as id,v_student_classroom_ability_result.*" +
-            "FROM `v_student_classroom_ability_result`,(select @rownum\\:=0) temp\n"+
-            "where student_id=?1",
-            nativeQuery = true)
-    Page<VStudentClassroomAbilityResult> findVStudentClassroomAbilityResultData(Integer studentId,Pageable pageable);
+/**
+ * @Author: raymond
+ * @Date 2019/10/22 21:30
+ * @Description:
+ **/
+public interface VStudentClassroomAbilityResultRepository extends JpaRepository<VStudentClassroomAbilityResult, Integer> {
+    @Query(value = "select v_student_classroom_ability_result.classroom_id, v_student_classroom_ability_result.classroom_name,v_student_classroom_ability_result.student_id, v_student_classroom_ability_result.name_exp_4, v_student_classroom_ability_result.name_exp_5, @rownum\\:=@rownum+1 as id\n" +
+            "FROM v_student_classroom_ability_result, (select @rownum\\:=0) temp\n"+
+            "where student_id=?1"
+            , nativeQuery = true)
+    Page<VStudentClassroomAbilityResult> findVStudentClassroomAbilityResults(Integer studentId,Pageable pageable);
 }
