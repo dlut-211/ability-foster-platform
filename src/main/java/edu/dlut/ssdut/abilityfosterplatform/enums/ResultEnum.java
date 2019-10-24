@@ -16,7 +16,9 @@ public enum ResultEnum {
 
     ADD_TEST_PAPER_FAIL(10, "添加试卷失败"),
 
-    ADD_TEST_PAPER_DETAIL_FAIL(11, "添加试卷详情失败")
+    ADD_TEST_PAPER_DETAIL_FAIL(11, "添加试卷详情失败"),
+
+    SYSTEM_OPTION_NOT_FOUND(12, "SystemOption未找到")
 
     ;
     private Integer code;

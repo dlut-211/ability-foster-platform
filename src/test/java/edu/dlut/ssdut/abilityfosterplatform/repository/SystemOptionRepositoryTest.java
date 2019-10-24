@@ -10,16 +10,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-
-import static org.junit.Assert.*;
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SystemOptionRepositoryTest {
 
     @Autowired
+    private SystemOptionRepository systemOptionRepository;
+
     private SystemOptionRepository repository;
 
     @Test
@@ -33,14 +30,14 @@ public class SystemOptionRepositoryTest {
         Assert.assertNotNull(result);
     }
 
-//    @Test
-//    public void findSystemOptionsById() {
-//        PageRequest request = PageRequest.of(1, 2);
-//        Page<SystemOption> page = repository.findAll(request);
-//        System.out.println("总数据条数 " + page.getTotalElements());
-//        System.out.println("总页数 " + page.getTotalPages());
-//        for (SystemOption ability : page.getContent()) {
-//        System.out.println(ability);
-//        }
-//    }
+    @Test
+    public void findSystemOptionsById() {
+        PageRequest request = PageRequest.of(1, 2);
+        Page<SystemOption> page = repository.findAll(request);
+        System.out.println("总数据条数 " + page.getTotalElements());
+        System.out.println("总页数 " + page.getTotalPages());
+        for (SystemOption ability : page.getContent()) {
+        System.out.println(ability);
+        }
+    }
 }

@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 public interface VChapterWorkRepository extends JpaRepository<VChapterWorkZjk, Integer> {
     @Query(value = "SELECT @rownum\\:=@rownum+1 as id, v.*\n" +

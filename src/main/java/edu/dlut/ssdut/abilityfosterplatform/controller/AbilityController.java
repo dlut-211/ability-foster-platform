@@ -1,5 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.StudentAbilityNameAndMaxDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
@@ -15,7 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * @Author: lhd
@@ -42,12 +45,12 @@ public class AbilityController {
     @GetMapping("/SubjectAbility")
     public ResultVO selectBySubjectId(@RequestParam(value= "subjectId") Integer subjectId, @RequestParam(value ="page",defaultValue = "1") Integer page, @RequestParam(value ="limit",defaultValue = "10")Integer limit, @RequestParam(value ="name",defaultValue = "")String name) {
         PageRequest request = PageRequest.of(page-1, limit);
-        return ResultVOUtil.success(abilityRepository.findAbilitiesBySubjectIdEqualsAndAndNameContains(subjectId,name,request));
+        return ResultVOUtil.success(abilityRepository.findAbilitiesBySubjectIdEqualsAndNameContains(subjectId,name,request));
     }
 
     @ApiOperation("编辑条目")
     @PutMapping("/edit")
-    public ResultVO editSystemOption(Ability ability) {
+    public ResultVO editAbility(Ability ability) {
         ability.setModifiedBy(1);
         ability.setModifiedOn(new Date());
         return ResultVOUtil.success(abilityService.updateByPrimaryKeySelective(ability));
@@ -55,7 +58,7 @@ public class AbilityController {
 
     @ApiOperation("添加条目")
     @PostMapping("/add")
-    public ResultVO addSystemOption(Ability ability) {
+    public ResultVO addAbility(Ability ability) {
         ability.setCreatedOn(new Date());
         ability.setCreatedBy(1);
         return  ResultVOUtil.success(abilityRepository.saveAndFlush(ability));
@@ -63,8 +66,79 @@ public class AbilityController {
 
     @ApiOperation("删除条目")
     @DeleteMapping("/remove")
-    public ResultVO removeSystemOption(@RequestParam(value ="id") Integer id) {
+    public ResultVO removeAbility(@RequestParam(value ="id") Integer id) {
         abilityRepository.deleteById(id);
         return ResultVOUtil.success();
     }
+    @ApiOperation("能力点图")
+    @RequestMapping("/gettestabilitydata")
+    public ResultVO getAbilityData(Integer subjectId,Integer studentId){
+        List<SubjectTestAbilityScoreDTO> testAbilityList = abilityService.ProceduregetSubjectTestAbilityScore(subjectId, studentId);
+        List<SubjectWorkAbilityScoreDTO> workAbilityList = abilityService.ProceduregetSubjectWorkAbilityScore(subjectId, studentId);
+        List<StudentAbilityNameAndMaxDTO> studentAbilityNameAndMaxDTOS = new ArrayList<StudentAbilityNameAndMaxDTO>();
+        List<StudentAbilityNameAndMaxDTO> realStudentAbilityNameAndMaxDTOS= new ArrayList<StudentAbilityNameAndMaxDTO>();
+        if(testAbilityList!=null&& workAbilityList!=null){
+            for (int i = 0; i < testAbilityList.size(); i++)
+            {
+                if (testAbilityList.get(i).getAbilityname()!=null) {
+                    StudentAbilityNameAndMaxDTO mode = new StudentAbilityNameAndMaxDTO();
+                    StudentAbilityNameAndMaxDTO realMode = new StudentAbilityNameAndMaxDTO();
+                    mode.setName(testAbilityList.get(i).getAbilityname());
+                    realMode.setName(testAbilityList.get(i).getAbilityname());
+                    if (String.valueOf(testAbilityList.get(i).getAbilityscoresum())==null){
+                        mode.setMax(0);
+                    }
+                    else{
+                        mode.setMax(testAbilityList.get(i).getAbilityscoresum());
+                    }
+                    if (String.valueOf(testAbilityList.get(i).getAbilityscore())==null){
+                        realMode.setMax(0);
+                    }
+                    else
+                        realMode.setMax(testAbilityList.get(i).getAbilityscore());
+                    studentAbilityNameAndMaxDTOS.add(mode);
+                    realStudentAbilityNameAndMaxDTOS.add(realMode);
+                }
+            }
+            for (SubjectWorkAbilityScoreDTO subjectWorkAbilityScoreDTO : workAbilityList) {
+                int flag=0;
+                int realFlag=0;
+                for (StudentAbilityNameAndMaxDTO item : studentAbilityNameAndMaxDTOS) {
+                    if (item.getName().equals(subjectWorkAbilityScoreDTO.getAbilityname())) {
+                        flag=1;
+                        item.setMax(item.getMax()+subjectWorkAbilityScoreDTO.getAbilityscoresum());
+                        break;
+                    }
+                }
+                for (StudentAbilityNameAndMaxDTO item : realStudentAbilityNameAndMaxDTOS) {
+                    if (item.getName().equals(subjectWorkAbilityScoreDTO.getAbilityname())) {
+                        realFlag=1;
+                        item.setMax(item.getMax()+subjectWorkAbilityScoreDTO.getAbilityscore());
+                    }
+                }
+                if (flag==0){
+                    StudentAbilityNameAndMaxDTO mode = new StudentAbilityNameAndMaxDTO();
+                    mode.setName(subjectWorkAbilityScoreDTO.getAbilityname());
+                    mode.setMax(subjectWorkAbilityScoreDTO.getAbilityscoresum());
+                    studentAbilityNameAndMaxDTOS.add(mode);
+                }
+                if (realFlag==0){
+                    StudentAbilityNameAndMaxDTO realMode = new StudentAbilityNameAndMaxDTO();
+                    realMode.setName(subjectWorkAbilityScoreDTO.getAbilityname());
+                    realMode.setMax(subjectWorkAbilityScoreDTO.getAbilityscore());
+                    realStudentAbilityNameAndMaxDTOS.add(realMode);
+                }
+            }
+        }
+        Map<String, Object> map = new HashMap<String,Object>();
+        map.put("studentAbilityNameAndMaxDTOS", studentAbilityNameAndMaxDTOS);
+        map.put("realStudentAbilityNameAndMaxDTOS", realStudentAbilityNameAndMaxDTOS);
+        return ResultVOUtil.success(map);
+    }
+
+//    @RequestMapping("/getworkabilitydata")
+//    public ResultVO getWorkAbilityData(Integer subjectId,Integer studentId){
+//        List<SubjectWorkAbilityScoreDTO> workAbilityList = abilityService.ProceduregetSubjectWorkAbilityScore(subjectId, studentId);
+//        return ResultVOUtil.success(workAbilityList);
+//    }
 }

@@ -1,9 +1,11 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.VCharterWorkDto;
+import edu.dlut.ssdut.abilityfosterplatform.dto.VStudentWorkChapterDto;
 import edu.dlut.ssdut.abilityfosterplatform.dto.VStudentWorkInfoDto;
 import edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkZjk;
 import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWork;
+import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWorkChapter;
 import edu.dlut.ssdut.abilityfosterplatform.service.VChapterWorkService;
 import edu.dlut.ssdut.abilityfosterplatform.service.VStudentWorkService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
@@ -34,7 +36,7 @@ public class VStudentWorkController {
     public ResultVO VStudentWorkInfoPage(VStudentWorkInfoDto vStudentWorkInfoDto){
         PageRequest request=PageRequest.of(vStudentWorkInfoDto.getNowPage()-1,
                 vStudentWorkInfoDto.getPageSize(),
-                Sort.Direction.DESC,"beginDate");
+                Sort.Direction.DESC,"begin_date");
         Page<VStudentWork> page = vStudentWorkService.VStudentWorkInfoPage(vStudentWorkInfoDto.getStudentId(),request);
         return ResultVOUtil.success(page);
     }
@@ -44,6 +46,15 @@ public class VStudentWorkController {
     public ResultVO VChapterWorkPage(VCharterWorkDto vCharterWorkDto){
         PageRequest request = PageRequest.of(vCharterWorkDto.getNowPage()-1,vCharterWorkDto.getPageSize());
         Page<VChapterWorkZjk> page = vChapterWorkService.VChapterWorkPage(vCharterWorkDto.getClassroomId(),vCharterWorkDto.getStudentId(),request);
+        return ResultVOUtil.success(page);
+    }
+
+    @ApiOperation("学生页面—查看作业")
+    @GetMapping("/studentworkbychapter")
+    public ResultVO findVStudentWorkChapters(VStudentWorkChapterDto vStudentWorkChapterDto){
+        PageRequest request = PageRequest.of(vStudentWorkChapterDto.getNowPage()-1,vStudentWorkChapterDto.getPageSize());
+        Page<VStudentWorkChapter> page = vChapterWorkService.VStudentWorkChapterPage(vStudentWorkChapterDto.getStudentId(),
+                vStudentWorkChapterDto.getChapterId(),vStudentWorkChapterDto.getClassroomId(),request);
         return ResultVOUtil.success(page);
     }
 }

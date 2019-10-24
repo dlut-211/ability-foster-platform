@@ -15,5 +15,4 @@ public interface SystemOptionRepository extends JpaRepository<SystemOption, Inte
     Page<SystemOption> findSystemOptionsByOptionValueContains(String optionValue,Pageable pageable);
 
     Page<SystemOption> findSystemOptionsByOptionValueContainsAndOptionCodeEquals(String optionValue,String optionCode,Pageable pageable);
-
 }

@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.mapper;
 
+import edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo;
 import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
 
 public interface TeacherMapper {
@@ -14,4 +15,6 @@ public interface TeacherMapper {
     int updateByPrimaryKeySelective(Teacher record);
 
     int updateByPrimaryKey(Teacher record);
+
+    Teacher selectByAccountAndPassword(LoginInfo loginInfo);
 }

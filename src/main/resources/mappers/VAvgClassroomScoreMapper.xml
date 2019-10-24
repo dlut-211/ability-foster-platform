@@ -44,4 +44,7 @@
       </if>
     </trim>
   </insert>
+  <select id="selectNameAndScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.NameAndAvgScoreDTO">
+    select classroom_name,avg_score from v_avg_classroom_score where student_id=#{studentId,jdbcType=INTEGER} order by classroom_id
+  </select>
 </mapper>
