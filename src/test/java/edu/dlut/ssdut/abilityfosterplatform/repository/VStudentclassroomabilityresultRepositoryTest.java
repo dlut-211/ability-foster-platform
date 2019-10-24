@@ -9,19 +9,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VStudentclassroomabilityresultRepositoryTest {
+public class VStudentClassroomAbilityResultRepositoryTest {
 
     @Autowired
-    private VStudentclassroomabilityresultRepository repository;
+    private VStudentClassroomAbilityResultRepository repository;
 
     @Test
-    public void findVStudentclassroomabilityresults() {
+    public void findVStudentClassroomAbilityResults() {
         PageRequest request = PageRequest.of(0, 5);
-        Page<VStudentClassroomAbilityResult> page = repository.findVStudentClassroomAbilityResultData(5001,request);
+        Page<VStudentClassroomAbilityResult> page = repository.findVStudentClassroomAbilityResults(request);
         page.getContent().forEach(System.out::println);
     }
 }
