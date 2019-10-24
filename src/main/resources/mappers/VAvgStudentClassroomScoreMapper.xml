@@ -44,4 +44,7 @@
       </if>
     </trim>
   </insert>
+  <select id="selectAVgScore" parameterType="java.lang.Integer" resultType="java.lang.Float">
+    select avg_score from  v_avg_student_classroom_score where student_id=#{studentId,jdbcType=INTEGER} order by classroom_id
+  </select>
 </mapper>

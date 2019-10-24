@@ -19,7 +19,7 @@ public class VStudentClassroomAbilityResultRepositoryTest {
     @Test
     public void findVStudentClassroomAbilityResults() {
         PageRequest request = PageRequest.of(0, 5);
-        Page<VStudentClassroomAbilityResult> page = repository.findVStudentClassroomAbilityResults(request);
+        Page<VStudentClassroomAbilityResult> page = repository.findVStudentClassroomAbilityResults(5001,request);
         page.getContent().forEach(System.out::println);
     }
 }

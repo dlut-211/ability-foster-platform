@@ -45,12 +45,12 @@ public class AbilityController {
     @GetMapping("/SubjectAbility")
     public ResultVO selectBySubjectId(@RequestParam(value= "subjectId") Integer subjectId, @RequestParam(value ="page",defaultValue = "1") Integer page, @RequestParam(value ="limit",defaultValue = "10")Integer limit, @RequestParam(value ="name",defaultValue = "")String name) {
         PageRequest request = PageRequest.of(page-1, limit);
-        return ResultVOUtil.success(abilityRepository.findAbilitiesBySubjectIdEqualsAndAndNameContains(subjectId,name,request));
+        return ResultVOUtil.success(abilityRepository.findAbilitiesBySubjectIdEqualsAndNameContains(subjectId,name,request));
     }
 
     @ApiOperation("编辑条目")
     @PutMapping("/edit")
-    public ResultVO editSystemOption(Ability ability) {
+    public ResultVO editAbility(Ability ability) {
         ability.setModifiedBy(1);
         ability.setModifiedOn(new Date());
         return ResultVOUtil.success(abilityService.updateByPrimaryKeySelective(ability));
@@ -58,7 +58,7 @@ public class AbilityController {
 
     @ApiOperation("添加条目")
     @PostMapping("/add")
-    public ResultVO addSystemOption(Ability ability) {
+    public ResultVO addAbility(Ability ability) {
         ability.setCreatedOn(new Date());
         ability.setCreatedBy(1);
         return  ResultVOUtil.success(abilityRepository.saveAndFlush(ability));
@@ -66,7 +66,7 @@ public class AbilityController {
 
     @ApiOperation("删除条目")
     @DeleteMapping("/remove")
-    public ResultVO removeSystemOption(@RequestParam(value ="id") Integer id) {
+    public ResultVO removeAbility(@RequestParam(value ="id") Integer id) {
         abilityRepository.deleteById(id);
         return ResultVOUtil.success();
     }

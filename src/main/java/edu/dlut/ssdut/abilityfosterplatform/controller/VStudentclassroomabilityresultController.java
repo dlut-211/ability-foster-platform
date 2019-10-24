@@ -21,6 +21,7 @@ public class VStudentclassroomabilityresultController {
 
     @RequestMapping("/pageresult")
     public ResultVO VStudentclassroomabilityresultPage(VStudentWorkInfoDto vsdto) {
+        System.out.println("hahah");
         PageRequest request = PageRequest.of(vsdto.getNowPage() - 1, vsdto.getPageSize());
         Page<VStudentClassroomAbilityResult> page = vsrs.VStudentclassroomabilityresultPage(vsdto.getStudentId(),request);
         return ResultVOUtil.success(page);

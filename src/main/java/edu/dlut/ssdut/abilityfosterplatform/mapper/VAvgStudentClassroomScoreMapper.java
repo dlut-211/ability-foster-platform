@@ -10,4 +10,6 @@ public interface VAvgStudentClassroomScoreMapper {
     int insertSelective(VAvgStudentClassroomScore record);
 
     List<VAvgStudentClassroomScore> findAll();
+
+    List<Float>selectAVgScore(Integer studentId);
 }

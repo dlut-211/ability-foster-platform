@@ -35,4 +35,7 @@ public class VAvgStudentClassroomScoreController {
         Page<VAvgStudentClassroomScore> vAvgStudentClassroomScorePage = vAvgStudentClassroomScoreService.findVAvgStudentClassroomScores(request);
         return ResultVOUtil.success(vAvgStudentClassroomScorePage);
     }
+//    @GetMapping("")
+//    @ApiOperation("展示课程平均成绩与个人成绩")
+//    public ResultVO
 }

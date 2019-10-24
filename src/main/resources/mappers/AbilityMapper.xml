@@ -133,4 +133,7 @@
     <select id="ProceduregetSubjectWorkAbilityScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO" statementType="CALLABLE">
       {CALL [P_getSubjectWorkAbilityScore](#{subjectId,mode=IN,jdbcType=VARCHAR},#{studentId,mode=IN,jdbcType=VARCHAR})}
   </select>
+<select id="procedureGetSubjectAbilityScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.PGetSubjectAbilityScoreDTO" statementType="CALLABLE">
+      {CALL [p_getSubjectability_score](#{subjectId,mode=IN,jdbcType=VARCHAR},#{studentId,mode=IN,jdbcType=VARCHAR})}
+  </select>
 </mapper>
