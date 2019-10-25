@@ -2,6 +2,8 @@ package edu.dlut.ssdut.abilityfosterplatform.mapper;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.Classroom;
 
+import java.util.List;
+
 public interface ClassroomMapper {
     int deleteByPrimaryKey(Integer id);
 

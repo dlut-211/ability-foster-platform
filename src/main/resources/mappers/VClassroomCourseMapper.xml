@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VClassroomCourseMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VClassroomCourse" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="begin_date" property="beginDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="term_type" property="termType" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="daily_performance_weight" property="dailyPerformanceWeight" jdbcType="DECIMAL" />
+    <result column="test_performance_weight" property="testPerformanceWeight" jdbcType="DECIMAL" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="syllabus" property="syllabus" jdbcType="VARCHAR" />
+    <result column="syllabus_path" property="syllabusPath" jdbcType="VARCHAR" />
+    <result column="coursename" property="coursename" jdbcType="VARCHAR" />
+    <result column="course_code" property="courseCode" jdbcType="VARCHAR" />
+    <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VClassroomCourse" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_classroom_course (id, course_id, begin_date, 
+      end_date, term_type, name, 
+      created_on, created_by, modified_by, 
+      modified_on, status, daily_performance_weight, 
+      test_performance_weight, description, syllabus, 
+      syllabus_path, coursename, course_code, 
+      subject_id)
+    values (#{id,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{beginDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{termType,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=INTEGER}, #{modifiedBy,jdbcType=INTEGER}, 
+      #{modifiedOn,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{dailyPerformanceWeight,jdbcType=DECIMAL}, 
+      #{testPerformanceWeight,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{syllabus,jdbcType=VARCHAR}, 
+      #{syllabusPath,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, #{courseCode,jdbcType=VARCHAR}, 
+      #{subjectId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VClassroomCourse" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_classroom_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="termType != null" >
+        term_type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="createdOn != null" >
+        created_on,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="modifiedOn != null" >
+        modified_on,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="dailyPerformanceWeight != null" >
+        daily_performance_weight,
+      </if>
+      <if test="testPerformanceWeight != null" >
+        test_performance_weight,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="syllabus != null" >
+        syllabus,
+      </if>
+      <if test="syllabusPath != null" >
+        syllabus_path,
+      </if>
+      <if test="coursename != null" >
+        coursename,
+      </if>
+      <if test="courseCode != null" >
+        course_code,
+      </if>
+      <if test="subjectId != null" >
+        subject_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="termType != null" >
+        #{termType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedOn != null" >
+        #{modifiedOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="dailyPerformanceWeight != null" >
+        #{dailyPerformanceWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="testPerformanceWeight != null" >
+        #{testPerformanceWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="syllabus != null" >
+        #{syllabus,jdbcType=VARCHAR},
+      </if>
+      <if test="syllabusPath != null" >
+        #{syllabusPath,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCode != null" >
+        #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
