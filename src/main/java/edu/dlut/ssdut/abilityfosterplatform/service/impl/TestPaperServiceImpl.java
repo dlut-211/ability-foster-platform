@@ -6,6 +6,7 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDetailKnowledgeDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.enums.TestPaperStatusEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.TestPaperMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetail;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetailKnowledge;
@@ -40,6 +41,9 @@ public class TestPaperServiceImpl implements TestPaperService {
 
     @Autowired
     private TestPaperDetailKnowledgeRepository testPaperDetailKnowledgeRepository;
+
+    @Autowired
+    private TestPaperMapper testPaperMapper;
 
     /**
      * 添加试卷
@@ -92,5 +96,16 @@ public class TestPaperServiceImpl implements TestPaperService {
             }
         }
         return true;
+    }
+
+    @Override
+    /**
+     * @Author YuJunMing
+     * @Date 2019/10/24 23:33
+     * DESCRIPTION:
+     */
+    public TestPaper selectByPrimaryKey(Integer id) {
+        return testPaperMapper.selectByPrimaryKey(id);
+
     }
 }

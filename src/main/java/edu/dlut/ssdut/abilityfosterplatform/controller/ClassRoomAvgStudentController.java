@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.ClassRoomListDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.GetClassRoomListDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.NameAndAvgScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.VAvgClassroomScoreMapper;
@@ -70,9 +71,41 @@ public class ClassRoomAvgStudentController {
                                      @RequestParam(name = "limit", defaultValue = "10") int limit,
                                      HttpServletRequest httpServletRequest) throws ParseException {
 
+        String teacherToken = httpServletRequest.getHeader("Authorization");
 
+        //TODO:要通过当前登录教师的token查找他创建的课程
         GetClassRoomListDTO  getClassRoomListDTO = new GetClassRoomListDTO();
-        getClassRoomListDTO.setList(classRoomService.getClassRoomList(beginDateStart,beginDateEnd,endDateStart,endDateEnd,termType,status,name,page,limit));
+        List<VClassroomList> vClassroomListList =classRoomService.getClassRoomList(beginDateStart,beginDateEnd,endDateStart,endDateEnd,termType,status,name,page,limit);
+        for(int i = 0; i< vClassroomListList.size();i++){
+
+            VClassroomList tempVClassroomList = vClassroomListList.get(i);
+            Integer tmpStatus =tempVClassroomList.getStatus();
+            Integer tmpTermType = tempVClassroomList.getTermType();
+            if(tmpStatus ==4){
+                tempVClassroomList.setStatusName("已结课");
+            }
+            if(tmpStatus ==2){
+                tempVClassroomList.setStatusName("已开课");
+            }
+            if(tmpStatus ==1){
+                tempVClassroomList.setStatusName("未开课");
+            }
+            if(tmpTermType ==1){
+                tempVClassroomList.setTermTypeName("春季学期");
+            }
+            if(tmpTermType ==2){
+                tempVClassroomList.setTermTypeName("夏季学期");
+            }
+            if(tmpTermType ==3){
+                tempVClassroomList.setTermTypeName("冬季学期");
+            }
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            tempVClassroomList.setDateFormat(dateFormat.format(tempVClassroomList.getBeginDate())+" - "+dateFormat.format(tempVClassroomList.getBeginDate())) ;
+
+            vClassroomListList.set(i,tempVClassroomList);
+        }
+        getClassRoomListDTO.setList(vClassroomListList);
 
         getClassRoomListDTO.setTotal(classRoomService.getClassRoomListCount(beginDateStart,beginDateEnd,endDateStart,endDateEnd,termType,status,name,page,limit));
         return ResultVOUtil.success(getClassRoomListDTO);

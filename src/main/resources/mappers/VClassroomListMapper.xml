@@ -19,8 +19,7 @@
     <result column="description" property="courseDescribe" jdbcType="VARCHAR" />
     <result column="createdByName" property="createdByName" jdbcType="VARCHAR" />
   </resultMap>
-<!--查找课程-->
-  <select id="getClassRoomList" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.ClassRoomListDTO">
+  <select id="getClassRoomList" resultMap="BaseResultMap">
     select  *
     from    v_all_classroom_list
     where   name like CONCAT('%',#{name},'%')

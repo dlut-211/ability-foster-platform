@@ -166,4 +166,9 @@
       modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getTeacherIdByToken" resultType="java.lang.Integer">
+    select Id
+    from Teacher
+    where token = #{string}
+  </select>
 </mapper>
