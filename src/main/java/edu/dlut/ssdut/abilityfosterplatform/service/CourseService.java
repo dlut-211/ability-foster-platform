@@ -17,7 +17,7 @@ public interface CourseService {
     Page<CourseDTO> findByParams(String code, String name, Pageable pageable, HttpServletRequest request);
 
     /** 上传文件 **/
-    Map<String,String> uploadFile(MultipartFile file, HttpServletRequest request);
+    Map<String, String> uploadFile(MultipartFile file, HttpServletRequest request);
 
     /** 获取所有的学科列表 **/
     List<SystemOption> getAllSubjectList();

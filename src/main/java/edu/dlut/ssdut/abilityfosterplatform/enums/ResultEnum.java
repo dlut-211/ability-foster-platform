@@ -22,6 +22,10 @@ public enum ResultEnum {
 
     KNOWLEDGE_ID_IS_NULL(5, "知识点ID为空"),
 
+    WORK_ID_IS_NULL(6, "作业ID为空"),
+
+    CHAPTER_ID_IS_NULL(7, "章节ID为空"),
+
     ADD_TEST_PAPER_FAIL(10, "添加试卷失败"),
 
     ADD_TEST_PAPER_DETAIL_FAIL(11, "添加试卷详情失败"),
@@ -36,7 +40,17 @@ public enum ResultEnum {
 
     KNOWLEDGE_EXISTS(16, "知识点已存在"),
 
-    KNOWLEDGE_EDIT_FAIL(17, "编辑知识点失败")
+    KNOWLEDGE_EDIT_FAIL(17, "编辑知识点失败"),
+
+    WORK_NOT_FOUND(18, "作业未找到"),
+
+    CHAPTER_WORK_LIST_EMPTY(19, "当前章节作业列表不存在"),
+
+    WORK_KNOWLEDGE_IS_EMPTY(20, "该作业下已不存在只知识点"),
+
+    CHAPTER_WORK_EXISTS(21 , "章节下存在同名作业"),
+
+    CHAPTER_WORK_EMPTY(22, "章节作业为空")
 
     ;
     private Integer code;
