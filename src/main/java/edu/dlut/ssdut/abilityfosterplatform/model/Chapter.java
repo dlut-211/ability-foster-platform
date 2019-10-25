@@ -32,10 +32,10 @@ public class Chapter {
 
     private Integer createdBy;
 
-    private Date createdOn;
+    private Date createdOn = new Date();
 
     private Integer modifiedBy;
 
-    private Date modifiedOn;
+    private Date modifiedOn = new Date();
 
 }

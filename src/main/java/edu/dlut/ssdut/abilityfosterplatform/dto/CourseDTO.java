@@ -1,6 +1,5 @@
 package edu.dlut.ssdut.abilityfosterplatform.dto;
 
-import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import lombok.AllArgsConstructor;
 import lombok.Data;

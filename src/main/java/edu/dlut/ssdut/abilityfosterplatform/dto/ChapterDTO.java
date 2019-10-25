@@ -38,4 +38,5 @@ public class ChapterDTO {
     private Date modifiedOn;
 
     private CourseDTO courseDTO;
+
 }
