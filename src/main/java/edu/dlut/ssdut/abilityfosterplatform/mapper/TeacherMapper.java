@@ -17,4 +17,6 @@ public interface TeacherMapper {
     int updateByPrimaryKey(Teacher record);
 
     Teacher selectByAccountAndPassword(LoginInfo loginInfo);
+
+    Integer getTeacherIdByToken(String string);
 }

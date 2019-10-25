@@ -21,6 +21,12 @@
     from student_test_paper
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <insert id="insertStudentTestPaper" >
+    insert into student_test_paper(classroom_student_id,test_paper_detail_id,score,created_by,created_on) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.classRoomStudentId},#{item.testPaperId},#{item.score},#{item.creatBy},#{item.CreatedBy})
+    </foreach>
+  </insert>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from student_test_paper
     where id = #{id,jdbcType=INTEGER}

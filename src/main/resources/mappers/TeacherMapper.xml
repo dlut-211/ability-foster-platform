@@ -18,6 +18,16 @@
     id, email, name, number, token, status, password, created_by, created_on, modified_by, 
     modified_on
   </sql>
+  <select id="getTeacherIdByToken" resultType="java.lang.Integer">
+    select Id
+    from Teacher
+    where token = #{string}
+  </select>
+  <select id="testPaperId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  select test_paper_type
+  from test_paper
+  where id = #{testPaperId}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

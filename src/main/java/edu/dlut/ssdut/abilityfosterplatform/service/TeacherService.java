@@ -22,4 +22,7 @@ public interface TeacherService {
 
     Teacher selectByAccountAndPassword(LoginInfoDTO loginInfoDTO);
 
+    Integer getTeacherIdByToken(String string);
+
+
 }

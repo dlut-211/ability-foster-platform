@@ -6,6 +6,7 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDetailKnowledgeDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.enums.TestPaperStatusEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.TestPaperMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetail;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetailKnowledge;
@@ -18,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -41,6 +43,8 @@ public class TestPaperServiceImpl implements TestPaperService {
     @Autowired
     private TestPaperDetailKnowledgeRepository testPaperDetailKnowledgeRepository;
 
+    @Autowired
+    private TestPaperMapper testPaperMapper;
     /**
      * 添加试卷
      * @param testPaperDTO
@@ -69,6 +73,17 @@ public class TestPaperServiceImpl implements TestPaperService {
             testPaperInserted = addTestPaperDetailDTO(testPaperDTO.getB(), addTestPaperId);
         }
         return testPaperInserted;
+    }
+
+    @Override
+    /**
+     * @Author YuJunMing
+     * @Date 2019/10/24 23:33
+     * DESCRIPTION:
+     */
+    public TestPaper selectByPrimaryKey(Integer id) {
+      return testPaperMapper.selectByPrimaryKey(id);
+
     }
 
     private Boolean addTestPaperDetailDTO(List<TestPaperDetailDTO> testPaperDetailDTOList, Integer testPaperId) {

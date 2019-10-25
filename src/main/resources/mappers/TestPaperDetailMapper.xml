@@ -17,6 +17,16 @@
     id, detail_number, score, test_paper_id, title, detail_type, created_by, created_on, 
     modified_by, modified_on
   </sql>
+  <select id="getTestPaperDetailOrder" resultMap="BaseResultMap">
+    select id,detail_number,score
+    from test_paper_detail
+      where detail_type = #{detailType} and test_paper_id = #{testPaperId}
+  </select>
+  <select id="getQuestionsNumber" resultType="java.lang.Integer">
+    select count(id)
+    from test_paper_detail
+    where test_paper_id = #{testPaperId} And detail_type =1
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

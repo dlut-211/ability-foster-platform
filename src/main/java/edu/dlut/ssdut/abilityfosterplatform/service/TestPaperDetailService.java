@@ -1,10 +1,11 @@
-package edu.dlut.ssdut.abilityfosterplatform.mapper;
+package edu.dlut.ssdut.abilityfosterplatform.service;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetail;
 
 import java.util.List;
 
-public interface TestPaperDetailMapper {
+public interface TestPaperDetailService {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(TestPaperDetail record);
@@ -15,11 +16,11 @@ public interface TestPaperDetailMapper {
 
     int updateByPrimaryKeySelective(TestPaperDetail record);
 
-    int updateByPrimaryKey(TestPaperDetail record);
+    int updateByPrimaryKeyWithBLOBs(TestPaperDetail record);
 
-    List<TestPaperDetail> getTestPaperDetailOrder(Integer detailType, Integer testPaperId);
+    int updateByPrimaryKey(TestPaperDetail record);
 
     int getQuestionsNumber(Integer testPaperId);
 
-
+    List<TestPaperDetail> getTestPaperDetailOrder(Integer detailType, Integer testPaperId);
 }

@@ -2,6 +2,7 @@ package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.LoginInfoDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperIdDto;
 import edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo;
 import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
 import edu.dlut.ssdut.abilityfosterplatform.repository.TeacherRepository;
@@ -17,7 +18,11 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Api(tags = "TeacherController")
@@ -31,6 +36,8 @@ public class TeacherController {
     @Autowired
     private TeacherRepository teacherRepository;
 
+
+
     @ApiOperation("教师登录")
     @RequestMapping(value = "/selectByAccountAndPassword", method = RequestMethod.GET)
     public ResultVO selectByAccountAndPassword(LoginInfo loginInfo, HttpServletRequest request) {
@@ -39,9 +46,11 @@ public class TeacherController {
         request.getSession().setAttribute("username", teacher.getName());
         return ResultVOUtil.success(teacher);
     }
-
+   
     @ApiOperation("获取教师列表")
     @GetMapping("/list")
+
+
     public ResultVO getTeacherList(@RequestParam(value ="page",defaultValue = "1") Integer page, @RequestParam(value ="limit",defaultValue = "10") Integer limit, @RequestParam(value ="name",defaultValue = "")String name, @RequestParam(value ="number",defaultValue = "")String number,@RequestParam(value ="status",defaultValue = "1")Integer status) {
         PageRequest request = PageRequest.of(page-1, limit);
         Page<Teacher> teacherPage;

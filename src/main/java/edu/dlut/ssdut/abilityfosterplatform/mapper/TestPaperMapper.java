@@ -14,4 +14,5 @@ public interface TestPaperMapper {
     int updateByPrimaryKeySelective(TestPaper record);
 
     int updateByPrimaryKey(TestPaper record);
+
 }
