@@ -2,6 +2,7 @@ package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.PGetSubjectAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTotalScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.AbilityMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
@@ -23,18 +24,18 @@ public class AbilityServiceImpl implements AbilityService {
     private AbilityMapper abilityMapper;
 
     @Override
-    public List<SubjectTestAbilityScoreDTO> ProceduregetSubjectTestAbilityScore(Integer subjectId, Integer studentId) {
-        return abilityMapper.ProceduregetSubjectTestAbilityScore(subjectId,studentId);
+    public List<SubjectTestAbilityScoreDTO> ProcedureGetSubjectTestAbilityScore(Integer subjectId, Integer studentId) {
+        return abilityMapper.ProcedureGetSubjectTestAbilityScore(subjectId,studentId);
     }
 
     @Override
-    public List<SubjectWorkAbilityScoreDTO> ProceduregetSubjectWorkAbilityScore(Integer subjectId, Integer studentId) {
-        return abilityMapper.ProceduregetSubjectWorkAbilityScore(subjectId,studentId);
+    public List<SubjectWorkAbilityScoreDTO> ProcedureGetSubjectWorkAbilityScore(Integer subjectId, Integer studentId) {
+        return abilityMapper.ProcedureGetSubjectWorkAbilityScore(subjectId,studentId);
     }
 
     @Override
-    public List<PGetSubjectAbilityScoreDTO> ProcedureGetSubjectAbilityScore(Integer subjectId, Integer studentId) {
-        return abilityMapper.ProcedureGetSubjectAbilityScore(subjectId,studentId);
+    public List<SubjectTotalScoreDTO> ProcedureGetSubjectTotalScore(Integer subjectId, Integer studentId, Integer startNode, Integer limitSize) {
+        return abilityMapper.ProcedureGetSubjectTotalScore(subjectId,studentId, startNode, limitSize);
     }
 
     @Override

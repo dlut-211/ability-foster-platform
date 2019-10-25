@@ -2,6 +2,7 @@ package edu.dlut.ssdut.abilityfosterplatform.service;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.PGetSubjectAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTotalScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
 
@@ -17,10 +18,10 @@ public interface AbilityService {
 
     int updateByPrimaryKeySelective(Ability record);
 
-    List<SubjectTestAbilityScoreDTO> ProceduregetSubjectTestAbilityScore(Integer subjectId, Integer studentId);
+    List<SubjectTestAbilityScoreDTO> ProcedureGetSubjectTestAbilityScore(Integer subjectId, Integer studentId);
 
-    List<SubjectWorkAbilityScoreDTO> ProceduregetSubjectWorkAbilityScore(Integer subjectId, Integer studentId);
+    List<SubjectWorkAbilityScoreDTO> ProcedureGetSubjectWorkAbilityScore(Integer subjectId, Integer studentId);
 
-    List<PGetSubjectAbilityScoreDTO> ProcedureGetSubjectAbilityScore(Integer subjectId, Integer studentId);
+    List<SubjectTotalScoreDTO> ProcedureGetSubjectTotalScore(Integer subjectId, Integer studentId, Integer startNode, Integer limitSize);
 
 }

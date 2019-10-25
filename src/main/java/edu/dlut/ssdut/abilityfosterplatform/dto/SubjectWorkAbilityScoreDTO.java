@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class SubjectWorkAbilityScoreDTO {
-    private Integer studentid;
-    private String studentnumber;
-    private Integer subjectid;
-    private float abilityscore;
-    private float abilityscoresum;
-    private Integer abilityid;
-    private String abilityname;
+    private Integer studentId;
+    private String studentNumber;
+    private Integer subjectId;
+    private float abilityScore;
+    private float abilityScoreSum;
+    private Integer abilityId;
+    private String abilityName;
 }

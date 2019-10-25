@@ -127,13 +127,13 @@
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select id="ProceduregetSubjectTestAbilityScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO" statementType="CALLABLE">
-      {CALL P_getSubjectTestAbilityScore(#{subjectId,mode=IN,jdbcType=VARCHAR},#{studentId,mode=IN,jdbcType=VARCHAR})}
+    <select id="ProcedureGetSubjectTestAbilityScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO" statementType="CALLABLE">
+      {CALL p_getSubjectTestAbilityScore(#{subjectId,mode=IN,jdbcType=INTEGER},#{studentId,mode=IN,jdbcType=INTEGER})}
   </select>
-    <select id="ProceduregetSubjectWorkAbilityScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO" statementType="CALLABLE">
-      {CALL [P_getSubjectWorkAbilityScore](#{subjectId,mode=IN,jdbcType=VARCHAR},#{studentId,mode=IN,jdbcType=VARCHAR})}
+    <select id="ProcedureGetSubjectWorkAbilityScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO" statementType="CALLABLE">
+      {CALL p_getSubjectWorkAbilityScore(#{subjectId,mode=IN,jdbcType=INTEGER},#{studentId,mode=IN,jdbcType=INTEGER})}
   </select>
-<select id="procedureGetSubjectAbilityScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.PGetSubjectAbilityScoreDTO" statementType="CALLABLE">
-      {CALL [p_getSubjectability_score](#{subjectId,mode=IN,jdbcType=VARCHAR},#{studentId,mode=IN,jdbcType=VARCHAR})}
+    <select id="ProcedureGetSubjectTotalScore" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTotalScoreDTO" statementType="CALLABLE">
+      {CALL p_getSubjectTotalScore(#{subjectId,mode=IN,jdbcType=INTEGER},#{studentId,mode=IN,jdbcType=INTEGER},#{startNode,mode=IN,jdbcType=INTEGER},#{limitSize,mode=IN,jdbcType=INTEGER})}
   </select>
 </mapper>
