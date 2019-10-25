@@ -35,4 +35,6 @@ public class CourseDTO {
 
     private Date createdOn;
 
+    private SystemOption systemOption;
+
 }

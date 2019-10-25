@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,8 @@ public class CourseController {
     @ApiOperation("添加课程信息")
     @RequestMapping(value = "/insertCourse", method = RequestMethod.POST)
     public ResultVO insertCourse(Course course) {
+        course.setCreatedBy(1000);
+        course.setCreatedOn(new Date());
         return ResultVOUtil.success(courseRepository.save(course));
     }
 
