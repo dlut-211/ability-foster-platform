@@ -11,5 +11,4 @@ import lombok.Data;
 @Data
 public class StudentTestPaperDto {
     Integer testPaperDetailId;
-
 }

@@ -21,4 +21,7 @@ public interface ClassroomMapper {
 
     List<Classroom> getClassroomList();
 
+
+    Integer editStatus(String Id,String Status);
+
 }
