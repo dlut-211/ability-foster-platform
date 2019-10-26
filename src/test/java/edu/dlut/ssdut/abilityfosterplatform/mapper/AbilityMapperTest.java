@@ -43,4 +43,9 @@ public class AbilityMapperTest {
     @Test
     public void updateByPrimaryKey() {
     }
+
+    @Test
+    public void ProcedureGetStudentTestPaper() {
+
+    }
 }

@@ -1,9 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.PGetSubjectAbilityScoreDTO;
-import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO;
-import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTotalScoreDTO;
-import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.*;
 import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
 
 import java.util.List;
@@ -23,5 +20,7 @@ public interface AbilityService {
     List<SubjectWorkAbilityScoreDTO> ProcedureGetSubjectWorkAbilityScore(Integer subjectId, Integer studentId);
 
     List<SubjectTotalScoreDTO> ProcedureGetSubjectTotalScore(Integer subjectId, Integer studentId, Integer startNode, Integer limitSize);
+
+    List<PStudentTestPaperDTO> ProcedureGetStudentTestPaper(Integer testPaperId);
 
 }
