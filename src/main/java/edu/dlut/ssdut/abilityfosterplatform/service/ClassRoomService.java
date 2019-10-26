@@ -15,4 +15,7 @@ public interface ClassRoomService {
 
     Integer getClassRoomListCount(String beginDateStart, String beginDateEnd, String endDateStart, String endDateEnd, Integer termType, Integer status, String name, Integer page, Integer limit);
 
+    Classroom selectClassroomByCid(Integer id);
+
+    List<Classroom> getClassroomList();
 }

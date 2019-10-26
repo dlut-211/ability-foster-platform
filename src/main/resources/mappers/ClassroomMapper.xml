@@ -15,11 +15,33 @@
     <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
     <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
     <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
+
+    <association   property="course"    javaType="edu.dlut.ssdut.abilityfosterplatform.model.Course">
+      <id column="c_id" property="id" jdbcType="INTEGER" />
+      <result column="c_name" property="name" jdbcType="VARCHAR" />
+      <result column="code" property="code" jdbcType="VARCHAR" />
+      <result column="description" property="description" jdbcType="VARCHAR" />
+      <result column="syllabus" property="syllabus" jdbcType="VARCHAR" />
+      <result column="syllabusPath" property="syllabusPath" jdbcType="VARCHAR" />
+    </association>
   </resultMap>
   <sql id="Base_Column_List" >
     id, begin_date, course_id, end_date, term_type, name, status, daily_performance_weight, 
     test_performance_weight, created_by, created_on, modified_by, modified_on
   </sql>
+
+  <select id="getClassroomList" resultMap="BaseResultMap">
+            select id, begin_date, course_id, end_date, term_type, name, status, daily_performance_weight,
+  test_performance_weight,created_by, created_on, modified_by, modified_on
+  from classroom
+</select>
+
+  <select id="selectClassroomByCid" resultMap="BaseResultMap">
+    select classroom.id, begin_date, end_date, term_type, classroom.name, status, course_id,daily_performance_weight,
+  test_performance_weight,course.id c_id, course.name c_name, code, course.description,syllabus,syllabus_path
+    from classroom  join course on classroom.course_id= course.id
+    where classroom.id = #{id,jdbcType=INTEGER}
+  </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

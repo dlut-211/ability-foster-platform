@@ -38,4 +38,15 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         return vClassroomListMapper.getClassRoomListCount(beginDateStart,beginDateEnd,endDateStart,endDateEnd,termType,status,name,tmp,limit);
 
     }
+
+    @Override
+    public Classroom selectClassroomByCid(Integer id){
+        return classroomMapper.selectClassroomByCid(id);
+    }
+
+    @Override
+    public List<Classroom> getClassroomList(){
+        return classroomMapper.getClassroomList();
+    }
+
 }
