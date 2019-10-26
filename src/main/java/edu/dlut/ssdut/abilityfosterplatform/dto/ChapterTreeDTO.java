@@ -14,17 +14,17 @@ public class ChapterTreeDTO {
 
     private Integer id;
 
-    private String title;
+    private String name;
 
-    private Integer level;
+    private Integer chapterLevel;
 
     private Integer parentId;
 
     private String description;
 
-    private Boolean expand;
+    private Boolean expand = false;
 
-    private Integer sort;
+    private String sort;
 
     private List<ChapterTreeDTO> children;
 

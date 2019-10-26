@@ -26,7 +26,7 @@ public class Chapter {
 
     private String sort;
 
-    private Integer number;
+    private Integer number = 0;
 
     private String description;
 

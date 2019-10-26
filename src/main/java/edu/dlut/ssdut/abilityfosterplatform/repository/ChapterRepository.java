@@ -11,6 +11,6 @@ public interface ChapterRepository extends JpaRepository<Chapter, Integer> {
 
     List<Chapter> findAllByParentId(Integer parentId);
 
-    List<Chapter> findAllByChapterLevel(Integer chapterLevel);
+    List<Chapter> findAllByChapterLevelAndParentIdAndCourseId(Integer chapterLevel, Integer parentId, Integer courseId);
 
 }

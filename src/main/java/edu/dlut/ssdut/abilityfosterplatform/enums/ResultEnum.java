@@ -54,7 +54,11 @@ public enum ResultEnum {
 
     TEACHER_NOT_FOUND(23, "教师未找到"),
 
-    CHAPTER_NOT_FOUND(24, "章节未找到")
+    CHAPTER_NOT_FOUND(24, "章节未找到"),
+
+    CHAPTER_EXISTS(25, "章节已存在"),
+
+    CHAPTER_PARENT_NOT_EXIST(26, "父章节不存在")
 
     ;
     private Integer code;

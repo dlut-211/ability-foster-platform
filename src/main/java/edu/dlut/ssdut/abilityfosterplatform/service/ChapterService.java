@@ -21,5 +21,5 @@ public interface ChapterService {
 
     Chapter edit(ChapterDTO chapterDTO);
 
-    ChapterTreeDTO getChapterTree(Integer courseId);
+    List<ChapterTreeDTO> getChapterTree(Integer courseId);
 }
