@@ -1,6 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.repository;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * DESCRIPTION:
  **/
 public interface TestPaperRepository extends JpaRepository<TestPaper, Integer> {
+    Page<TestPaper> findTestPapersByClassroomId(Integer classroomId, Pageable pageable);
 }

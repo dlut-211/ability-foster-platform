@@ -50,7 +50,9 @@ public enum ResultEnum {
 
     CHAPTER_WORK_EXISTS(21 , "章节下存在同名作业"),
 
-    CHAPTER_WORK_EMPTY(22, "章节作业为空")
+    CHAPTER_WORK_EMPTY(22, "章节作业为空"),
+
+    TEST_PAPER_NOT_FOUND(31, "试卷未找到")
 
     ;
     private Integer code;

@@ -2,16 +2,16 @@ package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
+import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
 import edu.dlut.ssdut.abilityfosterplatform.service.TestPaperService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @AUTHOR: raymond
@@ -38,4 +38,20 @@ public class TestPaperController {
 
     }
 
+    @ApiOperation("试卷列表")
+    @GetMapping("/list")
+    public ResultVO TestPaperPage(@RequestParam(value = "page") int page,
+                                  @RequestParam(value = "pageSize")int pageSize,
+                                  @RequestParam(value = "classroomId")Integer classroomId){
+        PageRequest request = PageRequest.of(page,pageSize);
+        Page<TestPaper> Testlist = testPaperService.TestPaperPage(classroomId,request);
+        return ResultVOUtil.success(Testlist);
+    }
+
+    @ApiOperation("试卷删除")
+    @DeleteMapping("/remove")
+    public ResultVO removeTestPaper(@RequestParam(value = "testPaperId")Integer testPaperId){
+        testPaperService.remove(testPaperId);
+        return ResultVOUtil.success();
+    }
 }
