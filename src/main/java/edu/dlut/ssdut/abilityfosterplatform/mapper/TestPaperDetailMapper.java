@@ -17,7 +17,8 @@ public interface TestPaperDetailMapper {
 
     int updateByPrimaryKey(TestPaperDetail record);
 
+    int getQuestionsNumber(Integer testPaperId);
+
     List<TestPaperDetail> getTestPaperDetailOrder(Integer detailType, Integer testPaperId);
 
-    int getQuestionsNumber(Integer testPaperId);
 }
