@@ -52,7 +52,15 @@ public enum ResultEnum {
 
     CHAPTER_WORK_EMPTY(22, "章节作业为空"),
 
-    TEST_PAPER_NOT_FOUND(31, "试卷未找到")
+    TEST_PAPER_NOT_FOUND(31, "试卷未找到"),
+
+    TEACHER_NOT_FOUND(23, "教师未找到"),
+
+    CHAPTER_NOT_FOUND(24, "章节未找到"),
+
+    CHAPTER_EXISTS(25, "章节已存在"),
+
+    CHAPTER_PARENT_NOT_EXIST(26, "父章节不存在")
 
     ;
     private Integer code;

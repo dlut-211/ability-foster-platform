@@ -20,4 +20,5 @@ public interface TestPaperDetailMapper {
     int getQuestionsNumber(Integer testPaperId);
 
     List<TestPaperDetail> getTestPaperDetailOrder(Integer detailType, Integer testPaperId);
+
 }

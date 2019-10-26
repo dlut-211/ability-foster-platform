@@ -6,8 +6,10 @@ import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.CourseMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
+import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
 import edu.dlut.ssdut.abilityfosterplatform.repository.CourseRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.SystemOptionRepository;
+import edu.dlut.ssdut.abilityfosterplatform.repository.TeacherRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.CourseService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.Const;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +34,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private SystemOptionRepository systemOptionRepository;
+
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @Autowired
     private CourseMapper courseMapper;
@@ -62,7 +67,12 @@ public class CourseServiceImpl implements CourseService {
             }
             BeanUtils.copyProperties(course, courseDTO);
             courseDTO.setSubjectName(systemOption.getOptionValue());
-            courseDTO.setCreatedByName(Const.getUserName(request));
+            Teacher teacher = teacherRepository.findById(course.getCreatedBy()).orElse(null);
+            if (teacher == null) {
+                throw new PlatformException(ResultEnum.TEACHER_NOT_FOUND);
+            }
+            courseDTO.setCreatedByName(teacher.getName());
+//            courseDTO.setCreatedByName(Const.getUserName(request));
             courseDTOList.add(courseDTO);
         }
         Page<CourseDTO> courseDTOPage = new PageImpl<>(courseDTOList, pageable, courseDTOList.size());

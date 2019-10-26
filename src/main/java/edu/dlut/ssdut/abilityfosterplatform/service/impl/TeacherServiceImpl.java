@@ -58,4 +58,9 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherMapper.selectByAccountAndPassword(loginInfo);
     }
 
+    @Override
+    public Integer getTeacherIdByToken(String string) {
+        return teacherMapper.getTeacherIdByToken(string);
+    }
+
 }

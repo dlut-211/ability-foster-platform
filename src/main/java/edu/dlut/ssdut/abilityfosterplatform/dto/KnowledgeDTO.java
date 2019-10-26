@@ -37,6 +37,8 @@ public class KnowledgeDTO {
     /** selectId 不知暂不知有何作用 设计外键的id均范围其对应的对象 **/
     private Integer selectId;
 
+    private String abilityName;
+
     private Course course;
 
     private Ability ability;

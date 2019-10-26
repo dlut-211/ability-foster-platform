@@ -18,5 +18,5 @@ public interface TestPaperService {
     //试卷删除
     void remove(Integer testPaperId);
 
-
+    TestPaper selectByPrimaryKey(Integer id);
 }

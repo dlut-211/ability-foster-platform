@@ -87,6 +87,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
                 throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
             }
             knowledgeDTO.setSystemOption(subject);
+            knowledgeDTO.setAbilityName(ability.getName());
             knowledgeDTOList.add(knowledgeDTO);
         }
         return knowledgeDTOList;
