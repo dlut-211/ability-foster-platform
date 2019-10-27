@@ -1,19 +1,18 @@
-package edu.dlut.ssdut.abilityfosterplatform.model;
+package edu.dlut.ssdut.abilityfosterplatform.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ * @AUTHOR: raymond
+ * @DATE: 2019/10/27
+ * DESCRIPTION:
+ **/
 @Data
-@Entity
-@Table(name = "v_student_work")
-public class VStudentWork {
+public class VStudentWorkDTO {
 
-    @Id
     private Integer id;
 
     private Integer classroomStudentId;
@@ -31,6 +30,8 @@ public class VStudentWork {
     private Date submitTime;
 
     private Long useTime;
+
+    private String useTimeFormat;
 
     private Integer submitCount;
 
