@@ -14,11 +14,11 @@
     <result column="modified_on" property="modifiedOn" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, classroom_student_id, score, work_message, classroom_work_id, is_scored, created_by, 
+    id, classroom_student_id, score, work_message, classroom_work_id, is_scored, created_by,
     created_on, modified_by, modified_on
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from student_work
     where id = #{id,jdbcType=INTEGER}
@@ -28,16 +28,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into student_work (id, classroom_student_id, score,
-      work_message, classroom_work_id, is_scored, 
-      created_by, created_on, modified_by, 
+      work_message, classroom_work_id, is_scored,
+      created_by, created_on, modified_by,
       modified_on)
-    values (#{id,jdbcType=INTEGER}, #{classroomStudentId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
-      #{workMessage,jdbcType=VARCHAR}, #{classroomWorkId,jdbcType=INTEGER}, #{isScored,jdbcType=BIT}, 
-      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{classroomStudentId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER},
+      #{workMessage,jdbcType=VARCHAR}, #{classroomWorkId,jdbcType=INTEGER}, #{isScored,jdbcType=BIT},
+      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER},
       #{modifiedOn,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" >
@@ -152,4 +149,7 @@
       modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByClassroomWorkId" resultType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWork" parameterType="java.lang.Integer">
+    select * from student_work where classroom_work_id=#{classroomWorkId,jdbcType=INTEGER}
+  </select>
 </mapper>

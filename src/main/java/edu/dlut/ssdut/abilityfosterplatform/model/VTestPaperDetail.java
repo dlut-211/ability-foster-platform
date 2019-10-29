@@ -2,11 +2,16 @@ package edu.dlut.ssdut.abilityfosterplatform.model;
 
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Data
+@Entity
 public class VTestPaperDetail {
 
+    @Id
     private Integer id;
 
     private Integer detailNumber;
@@ -27,6 +32,7 @@ public class VTestPaperDetail {
 
     private Date modifiedOn;
 
+    @Column(name = "name_exp_12")
     private String nameExp12;
 
 }

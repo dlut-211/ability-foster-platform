@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VClassroomListMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="begin_date" property="beginDate" jdbcType="TIMESTAMP" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="term_type" property="termType" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="daily_performance_weight" property="dailyPerformanceWeight" jdbcType="DECIMAL" />
+    <result column="test_performance_weight" property="testPerformaceWeight" jdbcType="DECIMAL" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
+    <result column="code" property="courseCode" jdbcType="VARCHAR" />
+    <result column="courseName" property="courseName" jdbcType="VARCHAR" />
+    <result column="syllabus_path" property="courseSyllabusPath" jdbcType="VARCHAR" />
+    <result column="description" property="courseDescribe" jdbcType="VARCHAR" />
+    <result column="createdByName" property="createdByName" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getClassRoomList" resultMap="BaseResultMap">
+    select  *
+    from    v_all_classroom_list
+    where   name like CONCAT('%',#{name},'%')
+    <if test="beginDateStart != null and  beginDateStart!= ''" >
+      and begin_date between #{beginDateStart} and #{beginDateEnd}
+    </if>
+    <if test="endDateStart != null and  endDateStart!= ''" >
+      and end_date between #{endDateStart} and #{endDateEnd}
+    </if>
+    <if test="status != null and  status!= '' " >
+      and status = #{status}
+    </if>
+    <if test="termType != null and termType!= ''" >
+      and term_type  = #{termType}
+    </if>
+        limit #{tmp},#{limit};
+  </select>
+    <select id="getClassRoomListCount" resultType="java.lang.Integer">
+        select count(id)
+        from    v_all_classroom_list
+        where   name like CONCAT('%',#{name},'%')
+        <if test="beginDateStart != null and  beginDateStart!= ''" >
+            and begin_date between #{beginDateStart} and #{beginDateEnd}
+        </if>
+        <if test="endDateStart != null and  endDateStart!= ''" >
+            and end_date between #{endDateStart} and #{endDateEnd}
+        </if>
+        <if test="status != null and  status!= '' " >
+            and status = #{status}
+        </if>
+        <if test="termType != null and termType!= ''" >
+            and term_type  = #{termType}
+        </if>
+    </select>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_all_classroom_list (id, begin_date, end_date,
+      course_id, term_type, name,
+      status, daily_performance_weight, test_performance_weight,
+      created_by, created_on, code,
+      courseName, syllabus_path, description,
+      createdByName)
+    values (#{id,jdbcType=INTEGER}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP},
+      #{courseId,jdbcType=INTEGER}, #{termType,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{dailyPerformanceWeight,jdbcType=DECIMAL}, #{testPerformanceWeight,jdbcType=DECIMAL},
+      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR},
+      #{coursename,jdbcType=VARCHAR}, #{syllabusPath,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+      #{createdbyname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_all_classroom_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="termType != null" >
+        term_type,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="dailyPerformanceWeight != null" >
+        daily_performance_weight,
+      </if>
+      <if test="testPerformanceWeight != null" >
+        test_performance_weight,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdOn != null" >
+        created_on,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="coursename != null" >
+        courseName,
+      </if>
+      <if test="syllabusPath != null" >
+        syllabus_path,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createdbyname != null" >
+        createdByName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="termType != null" >
+        #{termType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="dailyPerformanceWeight != null" >
+        #{dailyPerformanceWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="testPerformanceWeight != null" >
+        #{testPerformanceWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdOn != null" >
+        #{createdOn,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="syllabusPath != null" >
+        #{syllabusPath,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdbyname != null" >
+        #{createdbyname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

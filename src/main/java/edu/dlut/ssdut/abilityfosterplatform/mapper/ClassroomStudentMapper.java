@@ -2,6 +2,8 @@ package edu.dlut.ssdut.abilityfosterplatform.mapper;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.ClassroomStudent;
 
+import java.util.List;
+
 public interface ClassroomStudentMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface ClassroomStudentMapper {
     int updateByPrimaryKeySelective(ClassroomStudent record);
 
     int updateByPrimaryKey(ClassroomStudent record);
+
+    List<ClassroomStudent>selectByClassroomId(Integer classroomId);
 }

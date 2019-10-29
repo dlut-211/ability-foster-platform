@@ -18,7 +18,7 @@ public class VStudentWorkRepositoryTest {
     private VStudentWorkRepository vStudentWorkRepository;
     @Test
     public void findVStudentWorkByStudentId() {
-        PageRequest request = PageRequest.of(0,5, Sort.Direction.DESC, "beginDate");
+        PageRequest request = PageRequest.of(0,5, Sort.Direction.DESC, "begin_date");
         Page<VStudentWork> page = vStudentWorkRepository.findVStudentWorkByStudentId(5001,request);
         page.getContent().forEach(System.out::println);
     }

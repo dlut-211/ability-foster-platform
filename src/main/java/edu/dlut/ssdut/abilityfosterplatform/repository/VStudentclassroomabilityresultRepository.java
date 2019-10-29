@@ -13,6 +13,8 @@ import org.springframework.data.jpa.repository.Query;
  **/
 public interface VStudentClassroomAbilityResultRepository extends JpaRepository<VStudentClassroomAbilityResult, Integer> {
     @Query(value = "select v_student_classroom_ability_result.classroom_id, v_student_classroom_ability_result.classroom_name,v_student_classroom_ability_result.student_id, v_student_classroom_ability_result.name_exp_4, v_student_classroom_ability_result.name_exp_5, @rownum\\:=@rownum+1 as id\n" +
-            "FROM v_student_classroom_ability_result, (select @rownum\\:=0) temp", nativeQuery = true)
-    Page<VStudentClassroomAbilityResult> findVStudentClassroomAbilityResults(Pageable pageable);
+            "FROM v_student_classroom_ability_result, (select @rownum\\:=0) temp\n"+
+            "where student_id=?1"
+            , nativeQuery = true)
+    Page<VStudentClassroomAbilityResult> findVStudentClassroomAbilityResults(Integer studentId,Pageable pageable);
 }
