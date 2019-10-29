@@ -15,4 +15,21 @@ public interface ClassRoomService {
 
     Integer getClassRoomListCount(String beginDateStart, String beginDateEnd, String endDateStart, String endDateEnd, Integer termType, Integer status, String name, Integer page, Integer limit);
 
+    Integer editStatus(String Id,String Status);
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(Classroom record);
+
+    int insertSelective(Classroom record);
+
+    Classroom selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(Classroom record);
+
+    int updateByPrimaryKey(Classroom record);
+
+    Classroom selectClassroomByCid(Integer id);
+
+    List<Classroom> getClassroomList();
 }

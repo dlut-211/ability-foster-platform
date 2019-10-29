@@ -211,4 +211,27 @@
       password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <insert id="insertStudentList">
+    <selectKey keyProperty="studentId" order="AFTER" resultType="java.lang.Integer" >
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into student(class_name,email,mobile,name,number,status,created_by,created_on,school) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.className},#{item.email},#{item.mobile},#{item.name},#{item.studentId},#{item.status},#{item.createdBy},#{item.creatOn},#{item.school})
+    </foreach>
+  </insert>
+
+  <insert id="insertStudent" parameterType="edu.dlut.ssdut.abilityfosterplatform.dto.InsertStudentDTO">
+    <selectKey keyProperty="studentId" order="AFTER" resultType="java.lang.Integer" >
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into student(class_name,email,mobile,name,number,status,created_by,created_on,school) VALUES
+       (#{className},#{email},#{mobile},#{name},#{studentId},#{status},#{createdBy},#{creatOn},#{school})
+  </insert>
+
+  <select id="selectByNumber" resultMap="BaseResultMap">
+    select  *
+    from  student
+    where number =#{number}
+  </select>
 </mapper>

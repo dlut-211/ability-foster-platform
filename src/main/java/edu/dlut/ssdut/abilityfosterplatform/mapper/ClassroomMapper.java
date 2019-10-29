@@ -16,4 +16,12 @@ public interface ClassroomMapper {
     int updateByPrimaryKeySelective(Classroom record);
 
     int updateByPrimaryKey(Classroom record);
+
+    Classroom selectClassroomByCid(Integer id);
+
+    List<Classroom> getClassroomList();
+
+
+    Integer editStatus(String Id,String Status);
+
 }

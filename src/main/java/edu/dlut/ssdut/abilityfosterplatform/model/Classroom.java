@@ -36,4 +36,6 @@ public class Classroom {
 
     private Date modifiedOn;
 
+    private Course course;
+
 }

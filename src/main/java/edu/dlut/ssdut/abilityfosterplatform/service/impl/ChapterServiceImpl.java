@@ -130,7 +130,7 @@ public class ChapterServiceImpl implements ChapterService {
             throw new PlatformException(ResultEnum.CHAPTER_PARENT_NOT_EXIST);
         }
         // TODO Sort编号未定
-        if (ObjectUtils.isEmpty(chapterDTO.getParentId())) {
+        if (ObjectUtils.isEmpty(chapterDTO.getParentId()) || ObjectUtils.isEmpty(chapterDTO.getChapterLevel())) {
             chapter.setChapterLevel(1);
         }
         chapter.setCreatedOn(new Date());

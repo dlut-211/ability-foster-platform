@@ -116,4 +116,35 @@
       modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <insert id="insertStudentList">
+<!--    <selectKey keyProperty="number" order="AFTER" resultType="java.lang.Integer">-->
+<!--      select LAST_INSERT_ID()-->
+<!--    </selectKey>-->
+    insert into classroom_student(classroom_id,student_id,created_by,created_on) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.classroomId},#{item.studentId},#{item.createdBy},#{item.creatOn})
+    </foreach>
+  </insert>
+  <select id="getClassroomStudentList" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.ClassRoomStudentListDTO">
+  select classroom_student.id as id ,classroom_id as classRoomId,student.number as studentNumber,student.name as studentName,student.school as studentSchool, student.class_name as studentClassName
+  from classroom_student join student on student.id=classroom_student.student_id
+  where classroom_id = #{classRoomId}
+    <if test="studentNumber != null and  studentNumber!= ''" >
+      and    student.number like CONCAT('%',#{studentNumber},'%')
+    </if>
+    <if test="studentName != null and  studentName!= ''" >
+      and student.name like CONCAT('%',#{studentName},'%')
+    </if>
+    <if test="studentSchool != null and  studentSchool!= '' " >
+      and student.school like CONCAT('%',#{studentSchool},'%')
+    </if>
+    <if test="studentClassName != null and studentClassName!= ''" >
+      and student.class_name like CONCAT('%',#{studentClassName},'%')
+    </if>
+    limit #{tmp},#{limit};
+  </select>
+  <select id="selectByClassroomId" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.model.ClassroomStudent">
+      select * from classroom_student where classroom_id=#{classroomId,jdbcType=INTEGER}
+  </select>
 </mapper>
+

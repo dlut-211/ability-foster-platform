@@ -37,11 +37,11 @@ public class ChapterServiceImplTest {
     @Test
     public void add() {
         ChapterDTO chapterDTO = new ChapterDTO();
-        chapterDTO.setChapterLevel(2);
+        chapterDTO.setChapterLevel(1);
         chapterDTO.setCourseId(99);
         chapterDTO.setName("测试用例-节");
         chapterDTO.setDescription("测试用例");
-        chapterDTO.setParentId(177);
+        chapterDTO.setParentId(null);
         Chapter result = chapterService.add(chapterDTO);
         System.out.println(result);
     }
