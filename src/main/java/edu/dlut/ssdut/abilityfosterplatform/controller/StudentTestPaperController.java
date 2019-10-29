@@ -64,7 +64,6 @@ public class StudentTestPaperController {
         data.put("total",count);
         data.put("list",list);
 
-
         return ResultVOUtil.success(data);
     }
 

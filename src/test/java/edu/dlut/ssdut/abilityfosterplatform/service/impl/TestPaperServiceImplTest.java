@@ -33,12 +33,17 @@ public class TestPaperServiceImplTest {
         testPaperDetailDTO.setKnowledgeList(Arrays.asList(testPaperDetailKnowledgeDTO));
         TestPaperDTO testPaperDTO = new TestPaperDTO();
 
-        testPaperDTO.setName("Introduction to Algebra");
+        testPaperDTO.setName("知识产权");
         testPaperDTO.setClassroomId(2);
         testPaperDTO.setTestPaperType(1);
         testPaperDTO.setA(Arrays.asList(testPaperDetailDTO));
 
         Boolean result = testPaperService.addTestPaper(testPaperDTO);
         System.out.println(result);
+    }
+
+    @Test
+    public void remove() {
+        testPaperService.remove(41);
     }
 }

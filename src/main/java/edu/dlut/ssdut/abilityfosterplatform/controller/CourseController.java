@@ -84,4 +84,23 @@ public class CourseController {
         List<SystemOption> allSubjectList = courseService.getAllSubjectList();
         return ResultVOUtil.success(allSubjectList);
     }
+
+    /**
+     * @Author YuJunMing
+     * @Date 2019/10/26 10:14
+     * DESCRIPTION:在课堂界面查询课程
+     */
+    @ApiOperation("在课堂界面查询课程")
+    @GetMapping("/list")
+    public ResultVO getList(@RequestParam(value = "Code", required = false, defaultValue = "") String code,
+                         @RequestParam(value = "Name", required = false, defaultValue = "") String name,
+                         @RequestParam(name = "page", defaultValue = "1") int page,
+                         @RequestParam(name = "limit", defaultValue = "5") int limit,
+                         HttpServletRequest httpServletRequest){
+
+        PageRequest request =  PageRequest.of(page - 1, limit);
+        Page<CourseDTO> coursePage = courseService.findByParams(code, name, request, httpServletRequest);
+        return ResultVOUtil.success(coursePage);
+    }
+
 }

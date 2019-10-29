@@ -1,32 +1,42 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
+
 @Data
 @Entity
+@Table(name = "v_student_work")
 public class VStudentWork {
 
     @Id
     private Integer id;
 
-    private Integer studentId;
+    private Integer classroomStudentId;
 
-    private String code;
+    private Integer score;
 
-    private String name;
+    private String workMessage;
 
-    private Integer termType;
+    private Integer classroomWorkId;
 
-    private Date beginDate;
+    private String studentNumber;
 
-    private Date endDate;
+    private String studentName;
 
-    private Integer status;
+    private Date submitTime;
 
-    private Integer classroomId;
+    private Long useTime;
+
+    private Integer submitCount;
+
+    private Integer isSubmit;
+
+    @JsonIgnore
+    private String workPath;
 
 }

@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperListDetailDTO;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.TestPaperDetailMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetail;
 import edu.dlut.ssdut.abilityfosterplatform.service.TestPaperDetailService;
@@ -57,6 +58,17 @@ public class TestPaperDetailServiceImpl implements TestPaperDetailService {
     @Override
     public List<TestPaperDetail> getTestPaperDetailOrder(Integer detailType, Integer testPaperId) {
         return testPaperDetailMapper.getTestPaperDetailOrder(detailType,testPaperId);
+    }
+
+    @Override
+      public List<TestPaperListDetailDTO> getTestPaperDetailListA(Integer test_paper_id ) {
+        return testPaperDetailMapper.getTestPaperDetailListA(test_paper_id);
+
+    }
+    @Override
+    public List<TestPaperListDetailDTO> getTestPaperDetailListB(Integer test_paper_id ) {
+        return testPaperDetailMapper.getTestPaperDetailListB(test_paper_id);
+
     }
 
 

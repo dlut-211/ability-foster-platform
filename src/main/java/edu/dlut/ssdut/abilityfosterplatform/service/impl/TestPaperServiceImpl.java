@@ -17,8 +17,11 @@ import edu.dlut.ssdut.abilityfosterplatform.service.TestPaperService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -75,6 +78,44 @@ public class TestPaperServiceImpl implements TestPaperService {
         return testPaperInserted;
     }
 
+    /*
+        试卷列表
+     */
+
+    @Override
+    public Page<TestPaper> TestPaperPage(Integer classroomId, Pageable pageable){
+        return testPaperRepository.findTestPapersByClassroomId(classroomId, pageable);
+    }
+
+    /*
+        试卷删除
+     */
+    @Override
+    public void remove(Integer testPaperId) {
+        //1、按照testPaperId查询testPaper
+        TestPaper testPaper = testPaperRepository.findById(testPaperId).orElse(null);
+        if(ObjectUtils.isEmpty(testPaper)){
+            throw new PlatformException(ResultEnum.TEST_PAPER_NOT_FOUND);
+        }
+        //2、查询所有外键为testPaperId的testPaperDetail
+        List<TestPaperDetail> testPaperDetailList = testPaperDetailRepository.findAllByTestPaperId(testPaperId);
+        if(!CollectionUtils.isEmpty(testPaperDetailList)){
+            for (TestPaperDetail testPaperDetail : testPaperDetailList){
+                //2.1 逐个删除
+                //3、查询所有外键为TestPaperDetailId的testPaperDatailKnowledge
+                List<TestPaperDetailKnowledge> testPaperDetailKnowledgeList = testPaperDetailKnowledgeRepository.findAllByTestPaperDetailId(testPaperDetail.getId());
+                if(!CollectionUtils.isEmpty(testPaperDetailKnowledgeList)){
+                    //3.1删除
+                    for (TestPaperDetailKnowledge testPaperDetailKnowledge : testPaperDetailKnowledgeList){
+                        testPaperDetailKnowledgeRepository.delete(testPaperDetailKnowledge);
+                    }
+                }
+                testPaperDetailRepository.delete(testPaperDetail);
+            }
+        }
+        testPaperRepository.delete(testPaper);
+    }
+
     private Boolean addTestPaperDetailDTO(List<TestPaperDetailDTO> testPaperDetailDTOList, Integer testPaperId) {
         // 2.3 遍历试题列表
         for (TestPaperDetailDTO testPaperDetailDTO : testPaperDetailDTOList) {
@@ -97,6 +138,7 @@ public class TestPaperServiceImpl implements TestPaperService {
         }
         return true;
     }
+
 
     @Override
     /**

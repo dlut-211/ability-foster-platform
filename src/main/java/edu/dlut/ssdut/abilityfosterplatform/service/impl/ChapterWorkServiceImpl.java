@@ -146,7 +146,7 @@ public class ChapterWorkServiceImpl implements ChapterWorkService {
         // 3 查询同一章节下的作业
         List<Work> workList = workRepository.findAllByChapterId(chapterId);
         if (CollectionUtils.isEmpty(workList)) {
-            throw new PlatformException(ResultEnum.CHAPTER_WORK_EMPTY);
+            return chapterWorkDTO;
         }
         // 4 如果同一章节下的作业不为空的话
         for (Work work : workList) {

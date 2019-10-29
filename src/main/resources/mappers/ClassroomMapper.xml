@@ -20,6 +20,24 @@
     id, begin_date, course_id, end_date, term_type, name, status, daily_performance_weight, 
     test_performance_weight, created_by, created_on, modified_by, modified_on
   </sql>
+  <update id="editStatus" >
+    update classroom
+    set status = #{Status,jdbcType=INTEGER}
+    where id = #{Id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getClassroomList" resultMap="BaseResultMap">
+            select id, begin_date, course_id, end_date, term_type, name, status, daily_performance_weight,
+  test_performance_weight,created_by, created_on, modified_by, modified_on
+  from classroom
+</select>
+
+  <select id="selectClassroomByCid" resultMap="BaseResultMap">
+    select classroom.id, begin_date, end_date, term_type, classroom.name, status, course_id,daily_performance_weight,
+  test_performance_weight,course.id c_id, course.name c_name, code, course.description,syllabus,syllabus_path
+    from classroom  join course on classroom.course_id= course.id
+    where classroom.id = #{id,jdbcType=INTEGER}
+  </select>
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -35,16 +53,14 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into classroom (id, begin_date, course_id, 
+    insert into classroom (begin_date, course_id,
       end_date, term_type, name, 
       status, daily_performance_weight, test_performance_weight, 
-      created_by, created_on, modified_by, 
-      modified_on)
-    values (#{id,jdbcType=INTEGER}, #{beginDate,jdbcType=TIMESTAMP}, #{courseId,jdbcType=INTEGER}, 
+      created_by, created_on)
+    values (#{beginDate,jdbcType=TIMESTAMP}, #{courseId,jdbcType=INTEGER},
       #{endDate,jdbcType=TIMESTAMP}, #{termType,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{dailyPerformanceWeight,jdbcType=DECIMAL}, #{testPerformanceWeight,jdbcType=DECIMAL}, 
-      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=INTEGER}, 
-      #{modifiedOn,jdbcType=TIMESTAMP})
+      #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Classroom" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
