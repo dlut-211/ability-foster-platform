@@ -85,6 +85,18 @@ public class TestPaperController {
         testPaperService.remove(testPaperId);
         return ResultVOUtil.success();
     }
+
+    @ApiOperation("试卷编辑")
+    @PutMapping("/edit")
+    public ResultVO editTestPaper(@RequestBody TestPaperDTO testPaperDTO){
+        Boolean result = testPaperService.editTestPaper(testPaperDTO);
+        if(result){
+            return ResultVOUtil.success();
+        }else {
+            return ResultVOUtil.error(ResultEnum.EDIT_TEST_PAPER_FAIL.getCode(),ResultEnum.EDIT_TEST_PAPER_FAIL.getMessage());
+        }
+    }
+
     /**
      * @Method getTemplate
      * @Author YuJunMing

@@ -33,9 +33,9 @@ public class TestPaperServiceImplTest {
         testPaperDetailDTO.setKnowledgeList(Arrays.asList(testPaperDetailKnowledgeDTO));
         TestPaperDTO testPaperDTO = new TestPaperDTO();
 
-        testPaperDTO.setName("知识产权");
-        testPaperDTO.setClassroomId(2);
-        testPaperDTO.setTestPaperType(1);
+        testPaperDTO.setName("软件测试");
+        testPaperDTO.setClassroomId(7);
+        testPaperDTO.setTestPaperType(2);
         testPaperDTO.setA(Arrays.asList(testPaperDetailDTO));
 
         Boolean result = testPaperService.addTestPaper(testPaperDTO);
@@ -43,7 +43,27 @@ public class TestPaperServiceImplTest {
     }
 
     @Test
+    public void editTestPaper(){
+        TestPaperDetailKnowledgeDTO testPaperDetailKnowledgeDTO = new TestPaperDetailKnowledgeDTO(30, BigDecimal.ONE);
+        TestPaperDetailDTO testPaperDetailDTO = new TestPaperDetailDTO();
+        testPaperDetailDTO.setTitle("One");
+        testPaperDetailDTO.setDetailNumber(2);
+        testPaperDetailDTO.setDetailType(1);
+        testPaperDetailDTO.setScore(10);
+        testPaperDetailDTO.setKnowledgeList(Arrays.asList(testPaperDetailKnowledgeDTO));
+        TestPaperDTO testPaperDTO = new TestPaperDTO();
+        testPaperDTO.setId(46);
+        testPaperDTO.setName("知识产权--1");
+        testPaperDTO.setClassroomId(2);
+        testPaperDTO.setTestPaperType(1);
+        testPaperDTO.setA(Arrays.asList(testPaperDetailDTO));
+
+        Boolean result = testPaperService.editTestPaper(testPaperDTO);
+        System.out.println(result);
+    }
+
+    @Test
     public void remove() {
-        testPaperService.remove(41);
+        testPaperService.remove(40);
     }
 }

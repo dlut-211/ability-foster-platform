@@ -18,4 +18,6 @@ public interface TestPaperDetailRepository extends JpaRepository<TestPaperDetail
 
     List<TestPaperDetail> findAllByTestPaperId(Integer testPaperId);
 
+    TestPaperDetail findByTestPaperId(Integer testPaperId);
+
 }

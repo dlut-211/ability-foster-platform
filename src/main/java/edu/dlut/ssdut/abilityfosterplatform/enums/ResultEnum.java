@@ -54,6 +54,8 @@ public enum ResultEnum {
 
     TEST_PAPER_NOT_FOUND(31, "试卷未找到"),
 
+    EDIT_TEST_PAPER_FAIL(32,"试卷修改失败"),
+
     TEACHER_NOT_FOUND(23, "教师未找到"),
 
     CHAPTER_NOT_FOUND(24, "章节未找到"),

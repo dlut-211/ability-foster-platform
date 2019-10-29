@@ -18,5 +18,8 @@ public interface TestPaperService {
     //试卷删除
     void remove(Integer testPaperId);
 
+    //试卷编辑
+    Boolean editTestPaper(TestPaperDTO testPaperDTO);
+
     TestPaper selectByPrimaryKey(Integer id);
 }

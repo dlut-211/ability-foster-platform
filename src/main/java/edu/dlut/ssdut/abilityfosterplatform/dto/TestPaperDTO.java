@@ -20,6 +20,9 @@ import java.util.List;
 @DynamicUpdate
 public class TestPaperDTO {
 
+    /** TestPaper 表中的 Id    **/
+    private  Integer id;
+
     /** TestPaper 表中的 Name **/
     private String name;
 

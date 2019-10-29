@@ -12,4 +12,5 @@ import java.util.List;
  **/
 public interface TestPaperDetailKnowledgeRepository extends JpaRepository<TestPaperDetailKnowledge, Integer> {
     List<TestPaperDetailKnowledge> findAllByTestPaperDetailId(Integer testPaperDetailId);
+    TestPaperDetailKnowledge findByTestPaperDetailId(Integer testPaperDetailId);
 }

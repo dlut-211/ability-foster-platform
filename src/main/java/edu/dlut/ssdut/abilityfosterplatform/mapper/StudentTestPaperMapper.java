@@ -19,5 +19,4 @@ public interface StudentTestPaperMapper {
     int updateByPrimaryKey(StudentTestPaper record);
     
     Integer insertStudentTestPaper(List<TestPaperIdDto> testPaperIdDtoList);
-
 }

@@ -15,6 +15,8 @@ import java.util.List;
 @Data
 public class TestPaperDetailDTO {
 
+    private Integer id;
+
     /**  **/
     private Integer  detailNumber;
 

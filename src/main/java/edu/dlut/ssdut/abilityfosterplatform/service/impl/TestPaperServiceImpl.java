@@ -116,6 +116,76 @@ public class TestPaperServiceImpl implements TestPaperService {
         testPaperRepository.delete(testPaper);
     }
 
+    @Transactional
+    @Override
+    public Boolean editTestPaper(TestPaperDTO testPaperDTO) {
+        //1、编辑试卷（试卷名称、试卷类型）
+        //1、1首先查询出该试卷
+        TestPaper testPaper = testPaperRepository.findById(testPaperDTO.getId()).orElse(null);
+        if (ObjectUtils.isEmpty(testPaper)){
+            throw new PlatformException(ResultEnum.TEST_PAPER_NOT_FOUND);
+        }
+        List<TestPaperDetail> testPaperDetailList = testPaperDetailRepository.findAllByTestPaperId(testPaperDTO.getId());
+        for (TestPaperDetail testPaperDetail : testPaperDetailList) {
+            List<TestPaperDetailKnowledge> testPaperDetailKnowledgeList = testPaperDetailKnowledgeRepository.findAllByTestPaperDetailId(testPaperDetail.getId());
+            for (TestPaperDetailKnowledge testPaperDetailKnowledge : testPaperDetailKnowledgeList) {
+                testPaperDetailKnowledgeRepository.delete(testPaperDetailKnowledge);
+            }
+            testPaperDetailRepository.delete(testPaperDetail);
+        }
+
+        Boolean testPaperEdited = false;
+        if (!CollectionUtils.isEmpty(testPaperDTO.getA())) {
+            testPaperEdited = addTestPaperDetailDTO(testPaperDTO.getA(), testPaperDTO.getId());
+        }
+        if (testPaperEdited && !(CollectionUtils.isEmpty(testPaperDTO.getB()))) {
+            testPaperEdited = addTestPaperDetailDTO(testPaperDTO.getB(), testPaperDTO.getId());
+        }
+
+
+//        //2、编辑试卷试题（试卷标题、分数）
+//        Integer editTestPaperId = editedTestPaper.getId();
+//        //2、1为试卷试题编辑加入的试卷id 作为外键
+//        Boolean testPaperEdited = false;
+//        if (!CollectionUtils.isEmpty(testPaperDTO.getA())){
+//            testPaperEdited = editTestPaperDetail(testPaperDTO.getA(),editTestPaperId);
+//        }
+//        if (testPaperEdited && !(CollectionUtils.isEmpty(testPaperDTO.getB()))){
+//            testPaperEdited = editTestPaperDetail(testPaperDTO.getB(),editTestPaperId);
+//        }
+
+        BeanUtils.copyProperties(testPaperDTO, testPaper);
+        testPaper.setStatus(1);
+        TestPaper editedTestPaper = testPaperRepository.save(testPaper);
+        if (ObjectUtils.isEmpty(editedTestPaper)){
+            throw new PlatformException(ResultEnum.EDIT_TEST_PAPER_FAIL);
+        }
+        return testPaperEdited;
+    }
+
+//    private Boolean editTestPaperDetail(List<TestPaperDetailDTO> testPaperDetailDTOList,Integer testPaperId){
+//        List<TestPaperDetail> testPaperDetailList = testPaperDetailRepository.findAllByTestPaperId(testPaperId);
+//        //2、2 遍历试题列表
+//        for (TestPaperDetailDTO testPaperDetailDTO : testPaperDetailDTOList){
+//            //2、2、1根据testPaperId查询出试题列表
+//
+//            for (TestPaperDetail testPaperDetail : testPaperDetailList) {
+//                BeanUtils.copyProperties(testPaperDetailDTO,testPaperDetail);
+//                testPaperDetailRepository.save(testPaperDetail);
+//            }
+//            //2、2、2 编辑试卷试题知识点（知识点、权重）
+//            if (editedTestPaperDatail == null){
+//                throw new PlatformException(ResultEnum.EDIT_TEST_PAPER_FAIL);
+//            }
+//            for (TestPaperDetailKnowledgeDTO testPaperDetailKnowledgeDTO : testPaperDetailDTO.getKnowledgeList()){
+//                TestPaperDetailKnowledge testPaperDetailKnowledge = testPaperDetailKnowledgeRepository.findByTestPaperDetailId(editedTestPaperDatail.getId());
+//                BeanUtils.copyProperties(testPaperDetailKnowledgeDTO,testPaperDetailKnowledge);
+//                testPaperDetailKnowledgeRepository.save(testPaperDetailKnowledge);
+//            }
+//        }
+//        return true;
+//    }
+
     private Boolean addTestPaperDetailDTO(List<TestPaperDetailDTO> testPaperDetailDTOList, Integer testPaperId) {
         // 2.3 遍历试题列表
         for (TestPaperDetailDTO testPaperDetailDTO : testPaperDetailDTOList) {

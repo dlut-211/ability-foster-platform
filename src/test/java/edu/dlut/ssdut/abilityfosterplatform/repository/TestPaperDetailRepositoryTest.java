@@ -17,4 +17,9 @@ public class TestPaperDetailRepositoryTest {
     public void getCountByTestPaperId() {
         System.out.println(testPaperDetailRepository.getCountByTestPaperId(39));
     }
+
+    @Test
+    public void findByTestPaperId() {
+        System.out.println(testPaperDetailRepository.findByTestPaperId(39));
+    }
 }
