@@ -20,4 +20,10 @@ public class StudentTestPaperServiceImpl implements StudentTestPaperService {
     public Integer insertStudentTestPaper(List<TestPaperIdDto> testPaperIdDtoList) {
         return studentTestPaperMapper.insertStudentTestPaper(testPaperIdDtoList);
     }
+
+    @Override
+    public List<StudentTestPaper> selectByTestPaperDetailId(Integer userId,Integer testPaperDetailId,Integer status) {
+
+        return studentTestPaperMapper.selectByTestPaperDetailId(testPaperDetailId);
+    }
 }

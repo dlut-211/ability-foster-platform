@@ -6,7 +6,10 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDetailKnowledgeDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.enums.TestPaperStatusEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.StudentTestPaperMapper;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.TestPaperDetailMapper;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.TestPaperMapper;
+import edu.dlut.ssdut.abilityfosterplatform.model.StudentTestPaper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetail;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetailKnowledge;
@@ -24,6 +27,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,6 +51,9 @@ public class TestPaperServiceImpl implements TestPaperService {
 
     @Autowired
     private TestPaperMapper testPaperMapper;
+
+    @Autowired
+    private StudentTestPaperMapper studentTestPaperMapper;
 
     /**
      * 添加试卷
@@ -78,8 +85,11 @@ public class TestPaperServiceImpl implements TestPaperService {
         return testPaperInserted;
     }
 
-    /*
-        试卷列表
+    /**
+     * 试卷列表
+     * @param classroomId
+     * @param pageable
+     * @return
      */
 
     @Override
@@ -87,9 +97,11 @@ public class TestPaperServiceImpl implements TestPaperService {
         return testPaperRepository.findTestPapersByClassroomId(classroomId, pageable);
     }
 
-    /*
-        试卷删除
+    /**
+     * 删除试卷
+     * @param testPaperId
      */
+    @Transactional
     @Override
     public void remove(Integer testPaperId) {
         //1、按照testPaperId查询testPaper
@@ -116,11 +128,17 @@ public class TestPaperServiceImpl implements TestPaperService {
         testPaperRepository.delete(testPaper);
     }
 
+    /**
+     * 编辑试卷
+     * @param testPaperDTO
+     * @return
+     */
+
     @Transactional
     @Override
     public Boolean editTestPaper(TestPaperDTO testPaperDTO) {
-        //1、编辑试卷（试卷名称、试卷类型）
-        //1、1首先查询出该试卷
+        // 1、编辑试卷（试卷名称、试卷类型）
+        // 1、1首先查询出该试卷
         TestPaper testPaper = testPaperRepository.findById(testPaperDTO.getId()).orElse(null);
         if (ObjectUtils.isEmpty(testPaper)){
             throw new PlatformException(ResultEnum.TEST_PAPER_NOT_FOUND);
@@ -133,7 +151,6 @@ public class TestPaperServiceImpl implements TestPaperService {
             }
             testPaperDetailRepository.delete(testPaperDetail);
         }
-
         Boolean testPaperEdited = false;
         if (!CollectionUtils.isEmpty(testPaperDTO.getA())) {
             testPaperEdited = addTestPaperDetailDTO(testPaperDTO.getA(), testPaperDTO.getId());
@@ -141,18 +158,6 @@ public class TestPaperServiceImpl implements TestPaperService {
         if (testPaperEdited && !(CollectionUtils.isEmpty(testPaperDTO.getB()))) {
             testPaperEdited = addTestPaperDetailDTO(testPaperDTO.getB(), testPaperDTO.getId());
         }
-
-
-//        //2、编辑试卷试题（试卷标题、分数）
-//        Integer editTestPaperId = editedTestPaper.getId();
-//        //2、1为试卷试题编辑加入的试卷id 作为外键
-//        Boolean testPaperEdited = false;
-//        if (!CollectionUtils.isEmpty(testPaperDTO.getA())){
-//            testPaperEdited = editTestPaperDetail(testPaperDTO.getA(),editTestPaperId);
-//        }
-//        if (testPaperEdited && !(CollectionUtils.isEmpty(testPaperDTO.getB()))){
-//            testPaperEdited = editTestPaperDetail(testPaperDTO.getB(),editTestPaperId);
-//        }
 
         BeanUtils.copyProperties(testPaperDTO, testPaper);
         testPaper.setStatus(1);
@@ -162,29 +167,6 @@ public class TestPaperServiceImpl implements TestPaperService {
         }
         return testPaperEdited;
     }
-
-//    private Boolean editTestPaperDetail(List<TestPaperDetailDTO> testPaperDetailDTOList,Integer testPaperId){
-//        List<TestPaperDetail> testPaperDetailList = testPaperDetailRepository.findAllByTestPaperId(testPaperId);
-//        //2、2 遍历试题列表
-//        for (TestPaperDetailDTO testPaperDetailDTO : testPaperDetailDTOList){
-//            //2、2、1根据testPaperId查询出试题列表
-//
-//            for (TestPaperDetail testPaperDetail : testPaperDetailList) {
-//                BeanUtils.copyProperties(testPaperDetailDTO,testPaperDetail);
-//                testPaperDetailRepository.save(testPaperDetail);
-//            }
-//            //2、2、2 编辑试卷试题知识点（知识点、权重）
-//            if (editedTestPaperDatail == null){
-//                throw new PlatformException(ResultEnum.EDIT_TEST_PAPER_FAIL);
-//            }
-//            for (TestPaperDetailKnowledgeDTO testPaperDetailKnowledgeDTO : testPaperDetailDTO.getKnowledgeList()){
-//                TestPaperDetailKnowledge testPaperDetailKnowledge = testPaperDetailKnowledgeRepository.findByTestPaperDetailId(editedTestPaperDatail.getId());
-//                BeanUtils.copyProperties(testPaperDetailKnowledgeDTO,testPaperDetailKnowledge);
-//                testPaperDetailKnowledgeRepository.save(testPaperDetailKnowledge);
-//            }
-//        }
-//        return true;
-//    }
 
     private Boolean addTestPaperDetailDTO(List<TestPaperDetailDTO> testPaperDetailDTOList, Integer testPaperId) {
         // 2.3 遍历试题列表
@@ -209,6 +191,63 @@ public class TestPaperServiceImpl implements TestPaperService {
         return true;
     }
 
+    /**
+     * 布置考试
+     * @param userId
+     * @param status
+     * @param id
+     * @return
+     */
+
+    @Override
+    public Boolean examined(Integer userId, Integer status,Integer id) {
+        TestPaper testPaper = testPaperMapper.selectByPrimaryKey(id);
+        testPaper.setStatus(status);
+        testPaper.setCreatedBy(userId);
+        testPaper.setCreatedOn(new Date());
+        int i = testPaperMapper.updateByPrimaryKey(testPaper);
+        if (i!=1){
+            throw new PlatformException(ResultEnum.EDIT_TEST_PAPER_FAIL);
+        }
+        return true;
+    }
+
+    /**
+     * 撤销考试
+     * @param userId
+     * @param status
+     * @param id
+     * @return
+     */
+    @Transactional
+    @Override
+    public Boolean revokeExamined(Integer userId, Integer status, Integer id) {
+        TestPaper testPaper = testPaperMapper.selectByPrimaryKey(id);
+        if (!ObjectUtils.isEmpty(testPaper)){
+            testPaper.setModifiedBy(userId);
+            testPaper.setModifiedOn(new Date());
+            testPaper.setStatus(status);
+            int i = testPaperMapper.updateByPrimaryKey(testPaper);
+            if (i!=1){
+                throw new PlatformException(ResultEnum.EDIT_TEST_PAPER_FAIL);
+            }
+            else {
+                TestPaperDetail testPaperDetail = testPaperDetailRepository.findByTestPaperId(id);
+                if (!ObjectUtils.isEmpty(testPaperDetail)) {
+                    List<StudentTestPaper> studentTestPaperList = studentTestPaperMapper.selectByTestPaperDetailId(testPaperDetail.getId());
+                    if (studentTestPaperList!=null){
+                        for (StudentTestPaper studentTestPaper : studentTestPaperList) {
+                            int flag=studentTestPaperMapper.deleteByPrimaryKey(studentTestPaper.getId());
+                            if (flag!=1){
+                                throw new PlatformException(ResultEnum.ADD_TEST_PAPER_DETAIL_FAIL);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
     @Override
     /**

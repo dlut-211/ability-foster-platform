@@ -19,4 +19,6 @@ public interface StudentTestPaperMapper {
     int updateByPrimaryKey(StudentTestPaper record);
     
     Integer insertStudentTestPaper(List<TestPaperIdDto> testPaperIdDtoList);
+
+    List<StudentTestPaper>selectByTestPaperDetailId(Integer testPaperDetailId);
 }

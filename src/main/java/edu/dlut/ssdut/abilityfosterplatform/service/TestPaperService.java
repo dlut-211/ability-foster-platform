@@ -15,6 +15,7 @@ public interface TestPaperService {
 
     //试卷列表
     Page<TestPaper> TestPaperPage(Integer classroomId, Pageable pageable);
+
     //试卷删除
     void remove(Integer testPaperId);
 
@@ -22,4 +23,14 @@ public interface TestPaperService {
     Boolean editTestPaper(TestPaperDTO testPaperDTO);
 
     TestPaper selectByPrimaryKey(Integer id);
+
+    /**
+     * 布置考试
+     **/
+    Boolean examined(Integer userId, Integer status, Integer id);
+
+    /**
+     * 撤销考试
+     **/
+    Boolean revokeExamined(Integer userId, Integer status, Integer id);
 }

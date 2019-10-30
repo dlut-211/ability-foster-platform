@@ -128,4 +128,7 @@
       modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByTestPaperDetailId" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.model.StudentTestPaper">
+    select * from student_test_paper where test_paper_detail_id = #{testPaperDetailId,jdbcType=INTEGER}
+  </select>
 </mapper>

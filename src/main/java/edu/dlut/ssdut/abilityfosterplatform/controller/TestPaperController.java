@@ -72,29 +72,55 @@ public class TestPaperController {
     @ApiOperation("试卷列表")
     @GetMapping("/list")
     public ResultVO TestPaperPage(@RequestParam(value = "page") int page,
-                                  @RequestParam(value = "pageSize")int pageSize,
-                                  @RequestParam(value = "classroomId")Integer classroomId){
-        PageRequest request = PageRequest.of(page,pageSize);
-        Page<TestPaper> Testlist = testPaperService.TestPaperPage(classroomId,request);
+                                  @RequestParam(value = "pageSize") int pageSize,
+                                  @RequestParam(value = "classroomId") Integer classroomId) {
+        PageRequest request = PageRequest.of(page, pageSize);
+        Page<TestPaper> Testlist = testPaperService.TestPaperPage(classroomId, request);
         return ResultVOUtil.success(Testlist);
     }
 
     @ApiOperation("试卷删除")
     @DeleteMapping("/remove")
-    public ResultVO removeTestPaper(@RequestParam(value = "testPaperId")Integer testPaperId){
+    public ResultVO removeTestPaper(@RequestParam(value = "testPaperId") Integer testPaperId) {
         testPaperService.remove(testPaperId);
         return ResultVOUtil.success();
     }
 
     @ApiOperation("试卷编辑")
     @PutMapping("/edit")
-    public ResultVO editTestPaper(@RequestBody TestPaperDTO testPaperDTO){
+    public ResultVO editTestPaper(@RequestBody TestPaperDTO testPaperDTO) {
         Boolean result = testPaperService.editTestPaper(testPaperDTO);
-        if(result){
+        if (result) {
             return ResultVOUtil.success();
-        }else {
-            return ResultVOUtil.error(ResultEnum.EDIT_TEST_PAPER_FAIL.getCode(),ResultEnum.EDIT_TEST_PAPER_FAIL.getMessage());
+        } else {
+            return ResultVOUtil.error(ResultEnum.EDIT_TEST_PAPER_FAIL.getCode(), ResultEnum.EDIT_TEST_PAPER_FAIL.getMessage());
         }
+    }
+
+    /**
+     * 布置考试
+     */
+    @ApiOperation("布置考试")
+    @PutMapping("/examined")
+    public ResultVO examined(Integer userId, Integer status, Integer id) {
+        boolean flag = testPaperService.examined(userId, status, id);
+        if (flag) {
+            return ResultVOUtil.success();
+        } else
+            return ResultVOUtil.error(400, "布置失败");
+    }
+
+    /**
+     * 撤销考试
+     */
+    @ApiOperation("撤销考试")
+    @PutMapping("/revokeExamined")
+    public ResultVO revokeExamined(Integer userId, Integer status, Integer id) {
+        boolean flag = testPaperService.revokeExamined(userId, status, id);
+        if (flag) {
+            return ResultVOUtil.success();
+        } else
+            return ResultVOUtil.error(400, "撤销失败");
     }
 
     /**
@@ -144,11 +170,11 @@ public class TestPaperController {
 
         System.out.println(testPaperId.getClass());
         /**找出教师**/
-        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String fileName = file.getOriginalFilename();
         /**通过token找到教师**/
         String token = request.getHeader("Authorization");
-        Integer teacherId=teacherService.getTeacherIdByToken(token);
+        Integer teacherId = teacherService.getTeacherIdByToken(token);
         //判断版本
         boolean isExcel2003 = true;
         if (fileName.matches("^.+\\.(?i)(xlsx)$")) {
@@ -163,30 +189,30 @@ public class TestPaperController {
         }
         Sheet sheet = wb.getSheetAt(0);
 
-        System.out.println("行数"+sheet.getLastRowNum());//获取行数
+        System.out.println("行数" + sheet.getLastRowNum());//获取行数
 
         TestPaperIdDto testPaperIdDto = new TestPaperIdDto();
         testPaperIdDto.setTestPaperId(testPaperId);
         int questionsNumber = testPaperDetailService.getQuestionsNumber(testPaperIdDto.getTestPaperId());   //获取题目数量
         Integer testPaperType = testPaperService.selectByPrimaryKey(testPaperIdDto.getTestPaperId()).getTestPaperType();//试卷类型
-        System.out.println(testPaperType+"类型");
+        System.out.println(testPaperType + "类型");
         List<TestPaperIdDto> testPaperIdDtoList = new LinkedList<>();
 
         List<TestPaperDetail> testPaperDetailListA = new LinkedList<>();
         List<TestPaperDetail> testPaperDetailListB = new LinkedList<>();
 
         /** 里面下题号的顺序 **/
-        if (testPaperType ==1 ) {
-            testPaperDetailListA = testPaperDetailService.getTestPaperDetailOrder(1,testPaperId);
-        }else if(testPaperType ==2){
-            testPaperDetailListA =  testPaperDetailService.getTestPaperDetailOrder(1,testPaperId);
-            testPaperDetailListB =  testPaperDetailService.getTestPaperDetailOrder(2,testPaperId);
+        if (testPaperType == 1) {
+            testPaperDetailListA = testPaperDetailService.getTestPaperDetailOrder(1, testPaperId);
+        } else if (testPaperType == 2) {
+            testPaperDetailListA = testPaperDetailService.getTestPaperDetailOrder(1, testPaperId);
+            testPaperDetailListB = testPaperDetailService.getTestPaperDetailOrder(2, testPaperId);
         }
         System.out.println("-================================================================");
-        for (int i =0 ;i<testPaperDetailListB.size();i++){
+        for (int i = 0; i < testPaperDetailListB.size(); i++) {
             System.out.println(testPaperDetailListB.get(i));
         }
-        if(testPaperType==1) {
+        if (testPaperType == 1) {
             for (int r = 1; r < sheet.getLastRowNum() + 1; r++) {  //对每一行进行增加
                 Row row = sheet.getRow(r);
                 if (row != null) {
@@ -212,14 +238,14 @@ public class TestPaperController {
                     }
                 }
             }
-        }else if(testPaperType==2){
+        } else if (testPaperType == 2) {
             for (int r = 1; r < sheet.getLastRowNum() + 1; r++) {  //对每一行进行增加
                 Row row = sheet.getRow(r);
                 if (row != null) {
                     String classRoomStudentId = ExcelUtil.isNull(row.getCell(1).toString());
                     System.out.println("================================================================");
                     System.out.println(row.getCell(3).toString());
-                    if(row.getCell(3).toString().equals("1.0")||row.getCell(3).toString().equals("A" )||row.getCell(3).toString().equals("a" )){
+                    if (row.getCell(3).toString().equals("1.0") || row.getCell(3).toString().equals("A") || row.getCell(3).toString().equals("a")) {
                         for (int i = 2 + testPaperType; i < 2 + testPaperType + questionsNumber; i++) {
 
                             TestPaperIdDto testPaperIdDto1 = new TestPaperIdDto();
@@ -237,7 +263,7 @@ public class TestPaperController {
                             testPaperIdDtoList.add(testPaperIdDto1);
                         }
 
-                    }else {
+                    } else {
                         for (int i = 2 + testPaperType; i < 2 + testPaperType + questionsNumber; i++) {
 
                             TestPaperIdDto testPaperIdDto1 = new TestPaperIdDto();
@@ -262,9 +288,9 @@ public class TestPaperController {
 
             System.out.print("学生" + testPaperIdDtoList.get(i).getClassRoomStudentId() + "  ");
             System.out.print("成绩" + testPaperIdDtoList.get(i).getScore() + "  ");
-            System.out.print("题号" + testPaperIdDtoList.get(i).getTestPaperId()+ "  ");
-            System.out.print("创建人" + testPaperIdDtoList.get(i).getCreatBy()+ "  ");
-            System.out.print("创建时间" + dateFormat.format(testPaperIdDtoList.get(i).getCreatedBy())+ "  ");
+            System.out.print("题号" + testPaperIdDtoList.get(i).getTestPaperId() + "  ");
+            System.out.print("创建人" + testPaperIdDtoList.get(i).getCreatBy() + "  ");
+            System.out.print("创建时间" + dateFormat.format(testPaperIdDtoList.get(i).getCreatedBy()) + "  ");
             System.out.println(" ");
         }
 
