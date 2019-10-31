@@ -49,7 +49,10 @@ public class StudentTestPaperController {
         for(int i=0;i<count;i++){
             int totalScore = 0;
             list[i] = new HashMap<String,Object>();
+            System.out.println(count);
+            System.out.println(i);
             PStudentTestPaperDTO temp = (PStudentTestPaperDTO)pStudentTestPaperDTOS.toArray()[i];
+            System.out.println(temp);
             list[i].put("studentNumber", temp.getStudentNumber());
             list[i].put("studentName", temp.getStudentName());
             list[i].put("testPaperId", temp.getTestPaperId());
