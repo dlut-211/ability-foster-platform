@@ -95,7 +95,7 @@ public class VClassroomStudentInfoController {
      * DESCRIPTION:下载导入学生的模板
      */
     @ApiOperation("下载学生模板")
-    @RequestMapping("/getTemplate")
+    @RequestMapping("/gettemplate")
     public void getTemplate(HttpServletResponse response, HttpServletRequest request) throws IOException {
         List<List<String>> excelData = new ArrayList<>();
         List<String> head = new ArrayList<>();

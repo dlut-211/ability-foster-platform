@@ -16,5 +16,5 @@ public interface VStudentClassroomAbilityResultRepository extends JpaRepository<
             "FROM v_student_classroom_ability_result, (select @rownum\\:=0) temp\n"+
             "where student_id=?1"
             , nativeQuery = true)
-    Page<VStudentClassroomAbilityResult> findVStudentClassroomAbilityResults(Integer studentId,Pageable pageable);
+    Page<VStudentClassroomAbilityResult> findVStudentClassroomAbilityResults(Integer studentId, Pageable pageable);
 }
