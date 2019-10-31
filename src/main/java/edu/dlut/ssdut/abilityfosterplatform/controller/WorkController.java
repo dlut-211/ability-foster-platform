@@ -8,6 +8,7 @@ import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,9 @@ public class WorkController {
 
     @Autowired
     private ChapterWorkService chapterWorkService;
+
+    @Autowired
+    private Environment env;
 
     @ApiOperation("获取章节作业列表")
     @GetMapping("/list")

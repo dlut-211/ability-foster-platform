@@ -29,14 +29,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 @Api(tags = "VClassroomStudentInfoController")
 @RestController
@@ -87,7 +85,6 @@ public class VClassroomStudentInfoController {
                 vStudentWorkChapterDto.getChapterId(),vStudentWorkChapterDto.getClassroomId(),request);
         return ResultVOUtil.success(page);
     }
-
 
     /**
      * @Author YuJunMing
@@ -175,7 +172,32 @@ public class VClassroomStudentInfoController {
                          @RequestParam(value = "StudentClassName", required = false, defaultValue = "") String studentClassName,
                          @RequestParam(name = "page", defaultValue = "1") int page,
                          @RequestParam(name = "limit", defaultValue = "10") int limit,
+
+
+
+
+
+
+
+
+
+
+
                          HttpServletRequest httpServletRequest){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         return ResultVOUtil.success( classroomStudentService.getClassroomStudentList(classRoomId,studentNumber,studentName,studentSchool,studentClassName,page,limit));
     }
