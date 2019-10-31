@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -22,7 +24,7 @@ public class VChapterWorkRepositoryTest {
     @Test
     public void findVChapterWorkZjks() {
         PageRequest request = PageRequest.of(0, 5);
-        Page<VChapterWorkZjk> page = repository.findVChapterWorkZjks(18, 5001, request);
-        page.getContent().forEach(System.out::println);
+        List<VChapterWorkZjk> page = repository.findVChapterWorkZjks(18, 5001,0,5);
+        //page.getContent().forEach(System.out::println);
     }
 }
