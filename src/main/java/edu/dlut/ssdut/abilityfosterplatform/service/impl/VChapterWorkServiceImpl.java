@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
+import edu.dlut.ssdut.abilityfosterplatform.mapper.VChapterWorkZjkMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkZjk;
 import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWorkChapter;
 import edu.dlut.ssdut.abilityfosterplatform.repository.VChapterWorkRepository;
@@ -10,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VChapterWorkServiceImpl implements VChapterWorkService {
 
@@ -18,11 +21,11 @@ public class VChapterWorkServiceImpl implements VChapterWorkService {
     @Autowired
     private VStudentWorkChapterRepository vStudentWorkChapterRepository;
 
+
     @Override
-    public Page<VChapterWorkZjk> VChapterWorkPage(Integer classroomId,
-                                                  Integer studentId,
-                                                  Pageable pageable){
-        return vChapterWorkRepository.findVChapterWorkZjks(classroomId, studentId, pageable);
+    public List<VChapterWorkZjk> VChapterWorkPage(Integer classroomId,
+                                                  Integer studentId, Integer startSize, Integer pageSize){
+        return vChapterWorkRepository.findVChapterWorkZjks(classroomId, studentId,startSize,pageSize);
 
     }
     @Override

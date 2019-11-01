@@ -73,8 +73,15 @@ public class VClassroomStudentInfoController {
     @GetMapping("/chapterWorkList")
     public ResultVO VChapterWorkPage(VCharterWorkDto vCharterWorkDto){
         PageRequest request = PageRequest.of(vCharterWorkDto.getNowPage()-1,vCharterWorkDto.getPageSize());
-        Page<VChapterWorkZjk> page = vChapterWorkService.VChapterWorkPage(vCharterWorkDto.getClassroomId(),vCharterWorkDto.getStudentId(),request);
-        return ResultVOUtil.success(page);
+        int startSize=(vCharterWorkDto.getNowPage()-1)*vCharterWorkDto.getPageSize();
+        List<VChapterWorkZjk> page = vChapterWorkService.VChapterWorkPage(vCharterWorkDto.getClassroomId(),vCharterWorkDto.getStudentId(),
+                startSize,vCharterWorkDto.getPageSize());
+        List<VChapterWorkZjk> page1 = vChapterWorkService.VChapterWorkPage(vCharterWorkDto.getClassroomId(),vCharterWorkDto.getStudentId(),
+                0,99999);
+        Map<String,Object>map=new HashMap<>();
+        map.put("content", page);
+        map.put("totalRecode", page1.size());
+        return ResultVOUtil.success(map);
     }
 
     @ApiOperation("学生页面—查看作业")
