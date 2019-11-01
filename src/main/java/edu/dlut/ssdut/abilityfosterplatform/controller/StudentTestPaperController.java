@@ -1,7 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.PStudentTestPaperDTO;
-import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetail;
 import edu.dlut.ssdut.abilityfosterplatform.repository.TestPaperDetailRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.VStudentTestPaperRepository;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
@@ -9,7 +8,6 @@ import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

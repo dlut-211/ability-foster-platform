@@ -129,7 +129,7 @@ public class TestPaperController {
      * @Date 2019/10/24 23:27
      */
     @ApiOperation("下载成绩模板")
-    @RequestMapping("/getTemplate")
+    @RequestMapping("/gettemplate")
     public void getTemplate(@RequestBody TestPaperIdDto testPaperIdDto, HttpServletResponse response) throws IOException {
 
         Integer testPaperType = testPaperService.selectByPrimaryKey(testPaperIdDto.getTestPaperId()).getTestPaperType();

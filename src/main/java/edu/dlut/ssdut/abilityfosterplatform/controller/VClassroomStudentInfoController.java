@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.management.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -99,7 +98,7 @@ public class VClassroomStudentInfoController {
      * DESCRIPTION:下载导入学生的模板
      */
     @ApiOperation("下载学生模板")
-    @RequestMapping("/getTemplate")
+    @RequestMapping("/gettemplate")
     public void getTemplate(HttpServletResponse response, HttpServletRequest request) throws IOException {
         List<List<String>> excelData = new ArrayList<>();
         List<String> head = new ArrayList<>();
@@ -179,33 +178,7 @@ public class VClassroomStudentInfoController {
                          @RequestParam(value = "StudentClassName", required = false, defaultValue = "") String studentClassName,
                          @RequestParam(name = "page", defaultValue = "1") int page,
                          @RequestParam(name = "limit", defaultValue = "10") int limit,
-
-
-
-
-
-
-
-
-
-
-
                          HttpServletRequest httpServletRequest){
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         return ResultVOUtil.success( classroomStudentService.getClassroomStudentList(classRoomId,studentNumber,studentName,studentSchool,studentClassName,page,limit));
     }
 
