@@ -31,7 +31,6 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-
     @ApiOperation("添加课程信息")
     @RequestMapping(value = "/insertCourse", method = RequestMethod.POST)
     public ResultVO insertCourse(Course course) {
@@ -71,10 +70,15 @@ public class CourseController {
         return ResultVOUtil.success(courseService.updateCourseById(course));
     }
 
+    /**
+     * 删除课程信息 - Raymond
+     * @param id
+     * @return
+     */
     @ApiOperation("删除课程信息")
     @RequestMapping(value = "/deleteCourse", method = RequestMethod.DELETE)
     public ResultVO deleteCourse(@RequestParam("id") Integer id) {
-        courseRepository.deleteById(id);
+        courseService.deleteCourse(id);
         return ResultVOUtil.success("删除成功");
     }
 

@@ -2,11 +2,13 @@ package edu.dlut.ssdut.abilityfosterplatform.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
+@Entity
 public class Classroom {
 
     @Id
@@ -30,12 +32,10 @@ public class Classroom {
 
     private Integer createdBy;
 
-    private Date createdOn;
+    private Date createdOn = new Date();
 
     private Integer modifiedBy;
 
-    private Date modifiedOn;
-
-    private Course course;
+    private Date modifiedOn = new Date();
 
 }

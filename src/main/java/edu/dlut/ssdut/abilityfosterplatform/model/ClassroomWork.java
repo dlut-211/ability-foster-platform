@@ -2,10 +2,12 @@ package edu.dlut.ssdut.abilityfosterplatform.model;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
 
 @Data
+@Entity
 public class ClassroomWork {
 
     @Id
@@ -28,4 +30,5 @@ public class ClassroomWork {
     private Integer modifiedBy;
 
     private Date modifiedOn;
+
 }

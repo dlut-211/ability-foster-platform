@@ -52,6 +52,8 @@ public enum ResultEnum {
 
     CHAPTER_WORK_EMPTY(22, "章节作业为空"),
 
+    COURSE_BEING_USED(23, "课程正被引用"),
+
     TEST_PAPER_NOT_FOUND(31, "试卷未找到"),
 
     EDIT_TEST_PAPER_FAIL(32,"试卷修改失败"),
