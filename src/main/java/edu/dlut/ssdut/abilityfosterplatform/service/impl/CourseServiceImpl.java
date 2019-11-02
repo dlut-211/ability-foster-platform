@@ -1,15 +1,12 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.CourseDTO;
+import edu.dlut.ssdut.abilityfosterplatform.enums.ClassroomStatusEnum;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.CourseMapper;
-import edu.dlut.ssdut.abilityfosterplatform.model.Course;
-import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
-import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
-import edu.dlut.ssdut.abilityfosterplatform.repository.CourseRepository;
-import edu.dlut.ssdut.abilityfosterplatform.repository.SystemOptionRepository;
-import edu.dlut.ssdut.abilityfosterplatform.repository.TeacherRepository;
+import edu.dlut.ssdut.abilityfosterplatform.model.*;
+import edu.dlut.ssdut.abilityfosterplatform.repository.*;
 import edu.dlut.ssdut.abilityfosterplatform.service.CourseService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.Const;
 import org.springframework.beans.BeanUtils;
@@ -19,6 +16,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +37,21 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private TeacherRepository teacherRepository;
+
+    @Autowired
+    private ChapterRepository chapterRepository;
+
+    @Autowired
+    private WorkKnowledgeRepository workKnowledgeRepository;
+
+    @Autowired
+    private WorkRepository workRepository;
+
+    @Autowired
+    private ClassroomRepository classroomRepository;
+
+    @Autowired
+    private KnowledgeRepository knowledgeRepository;
 
     @Autowired
     private CourseMapper courseMapper;
@@ -121,5 +136,47 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.updateByPrimaryKey(record);
     }
 
+    /**
+     * 删除课程
+     * @param courseId
+     */
+    @Transactional
+    @Override
+    public void deleteCourse(Integer courseId) {
+        Course course = courseRepository.findById(courseId).orElse(null);
+        if (ObjectUtils.isEmpty(course)) {
+            throw new PlatformException(ResultEnum.COURSE_NOT_FOUND);
+        }
+        List<Classroom> classroomList = classroomRepository.findAllByCourseId(courseId);
+
+        if (!CollectionUtils.isEmpty(classroomList)) {
+            throw new PlatformException(ResultEnum.COURSE_BEING_USED);
+        }
+        // 1 如果课程未被引用
+        // 2 删除章节
+        List<Chapter> chapterList = chapterRepository.findByCourseId(courseId);
+        if (!CollectionUtils.isEmpty(chapterList)) {
+            for (Chapter chapter : chapterList) {
+                // 3 删除章节作业
+                List<Work> workList = workRepository.findAllByChapterId(chapter.getId());
+                if (!CollectionUtils.isEmpty(workList)) {
+                    for (Work work : workList) {
+                        List<WorkKnowledge> workKnowledgeList = workKnowledgeRepository.findAllByWorkId(work.getId());
+                        if (!CollectionUtils.isEmpty(workKnowledgeList)) {
+                            workKnowledgeRepository.deleteInBatch(workKnowledgeList);
+                        }
+                        workRepository.delete(work);
+                    }
+                }
+                chapterRepository.delete(chapter);
+            }
+        }
+        // 4 删除知识点
+        List<Knowledge> knowledgeList = knowledgeRepository.findAllByCourseId(courseId);
+        if (!CollectionUtils.isEmpty(knowledgeList)) {
+            knowledgeRepository.deleteInBatch(knowledgeList);
+        }
+        courseRepository.delete(course);
+    }
 
 }

@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperABDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperIdDto;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
@@ -30,10 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @AUTHOR: raymond
@@ -75,8 +73,8 @@ public class TestPaperController {
                                   @RequestParam(value = "pageSize") int pageSize,
                                   @RequestParam(value = "classroomId") Integer classroomId) {
         PageRequest request = PageRequest.of(page-1, pageSize);
-        Page<TestPaper> Testlist = testPaperService.TestPaperPage(classroomId, request);
-        return ResultVOUtil.success(Testlist);
+        Map testList = testPaperService.TestPaperPage(classroomId, request);
+        return ResultVOUtil.success(testList);
     }
 
     @ApiOperation("试卷删除")
