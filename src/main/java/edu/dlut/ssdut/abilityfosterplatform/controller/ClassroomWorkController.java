@@ -64,7 +64,7 @@ public class ClassroomWorkController {
             return ResultVOUtil.error(400,"出现未知错误，请重试");
         }
     }
-    @GetMapping("/revokelayoutwork")
+    @GetMapping("/revokelayout")
     public ResultVO revokeLayoutWork(Integer classroomWorkId, Integer userId){
         int i= studentWorkService.revokeLayoutWork(classroomWorkId, userId);
         if (i==0){

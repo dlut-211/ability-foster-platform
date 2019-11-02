@@ -20,7 +20,7 @@ public class ChapterController {
     @Autowired
     private ChapterService chapterService;
 
-    @ApiOperation("获取课程章节列表")
+    @ApiOperation("获取课程主章节列表")
     @GetMapping(value = "/findChapterByCourseId" )
     public ResultVO findChapterByCourseId(@RequestParam("id") Integer id) {
         List<ChapterDTO> chapterDTOList = chapterService.findByCourseId(id);
@@ -32,6 +32,13 @@ public class ChapterController {
         }
 
         return ResultVOUtil.success(chapterDTOList1);
+    }
+
+    @ApiOperation("获取课程章节")
+    @GetMapping(value = "/courselist" )
+    public ResultVO courseList(@RequestParam("id")Integer id){
+        List<ChapterDTO> chapterDTOList = chapterService.findByCourseId(id);
+        return ResultVOUtil.success(chapterDTOList);
     }
 
     @ApiOperation("获取章节树")
