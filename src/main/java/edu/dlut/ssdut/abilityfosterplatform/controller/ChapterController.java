@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Api(tags = "ChapterController")
@@ -23,7 +24,14 @@ public class ChapterController {
     @GetMapping(value = "/findChapterByCourseId" )
     public ResultVO findChapterByCourseId(@RequestParam("id") Integer id) {
         List<ChapterDTO> chapterDTOList = chapterService.findByCourseId(id);
-        return ResultVOUtil.success(chapterDTOList);
+        List<ChapterDTO> chapterDTOList1=new ArrayList<>();
+        for (int i = 0; i < chapterDTOList.size(); i++) {
+            if(chapterDTOList.get(i).getChapterLevel()==1){
+                chapterDTOList1.add(chapterDTOList.get(i)) ;
+            }
+        }
+
+        return ResultVOUtil.success(chapterDTOList1);
     }
 
     @ApiOperation("获取章节树")
