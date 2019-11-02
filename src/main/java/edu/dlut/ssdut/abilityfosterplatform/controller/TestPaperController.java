@@ -166,7 +166,7 @@ public class TestPaperController {
      * DESCRIPTION:
      */
     @RequestMapping(value = "/importstp", method = RequestMethod.POST)
-    public ResultVO importResult(@RequestParam("file") MultipartFile file, @RequestParam(value = "testPaperId") Integer testPaperId, HttpServletRequest request) throws Exception {
+    public ResultVO importResult(@RequestParam("file") MultipartFile file, @RequestParam(value = "filesname") String filesname,@RequestParam(value = "testPaperId") Integer testPaperId, HttpServletRequest request) throws Exception {
 
         System.out.println(testPaperId.getClass());
         /**找出教师**/

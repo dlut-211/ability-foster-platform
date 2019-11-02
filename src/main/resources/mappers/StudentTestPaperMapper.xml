@@ -15,6 +15,12 @@
     id, classroom_student_id, test_paper_detail_id, score, created_by, created_on, modified_by, 
     modified_on
   </sql>
+  <insert id="insertStudentTestPaper" >
+    insert into student_test_paper(classroom_student_id,test_paper_detail_id,score,created_by,created_on) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.classRoomStudentId},#{item.testPaperId},#{item.score},#{item.creatBy},#{item.CreatedBy})
+    </foreach>
+  </insert>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
