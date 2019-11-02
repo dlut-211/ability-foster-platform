@@ -92,7 +92,6 @@ public class VClassroomStudentInfoController {
         return ResultVOUtil.success(page);
     }
 
-
     /**
      * @Author YuJunMing
      * @Date 2019/10/25 20:16
@@ -180,7 +179,6 @@ public class VClassroomStudentInfoController {
                          @RequestParam(name = "page", defaultValue = "1") int page,
                          @RequestParam(name = "limit", defaultValue = "10") int limit,
                          HttpServletRequest httpServletRequest){
-
         return ResultVOUtil.success( classroomStudentService.getClassroomStudentList(classRoomId,studentNumber,studentName,studentSchool,studentClassName,page,limit));
     }
 

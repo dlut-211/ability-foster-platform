@@ -74,7 +74,7 @@ public class TestPaperController {
     public ResultVO TestPaperPage(@RequestParam(value = "page") int page,
                                   @RequestParam(value = "pageSize") int pageSize,
                                   @RequestParam(value = "classroomId") Integer classroomId) {
-        PageRequest request = PageRequest.of(page, pageSize);
+        PageRequest request = PageRequest.of(page-1, pageSize);
         Page<TestPaper> Testlist = testPaperService.TestPaperPage(classroomId, request);
         return ResultVOUtil.success(Testlist);
     }
@@ -129,7 +129,7 @@ public class TestPaperController {
      * @Date 2019/10/24 23:27
      */
     @ApiOperation("下载成绩模板")
-    @RequestMapping("/getTemplate")
+    @RequestMapping("/gettemplate")
     public void getTemplate(@RequestBody TestPaperIdDto testPaperIdDto, HttpServletResponse response) throws IOException {
 
         Integer testPaperType = testPaperService.selectByPrimaryKey(testPaperIdDto.getTestPaperId()).getTestPaperType();
