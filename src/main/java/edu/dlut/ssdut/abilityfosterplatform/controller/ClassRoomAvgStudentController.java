@@ -1,6 +1,5 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.ClassRoomListDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.GetClassRoomListDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.NameAndAvgScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.VAvgClassroomScoreMapper;
@@ -54,6 +53,7 @@ public class ClassRoomAvgStudentController {
             System.out.println(aFloat);
         }
         for (int i = 0; i < classroomAvgScore.size(); i++) {
+            System.out.println("课程平均分"+classroomAvgScore.get(i).getAvgScore());
             classroomAvgScore.get(i).setMyAvgScore(studentAvgScoreList.get(i));
         }
         return ResultVOUtil.success(classroomAvgScore);

@@ -127,10 +127,10 @@ public class TestPaperController {
      * @Date 2019/10/24 23:27
      */
     @ApiOperation("下载成绩模板")
-    @RequestMapping("/getTemplate")
-    public void getTemplate(@RequestBody TestPaperIdDto testPaperIdDto, HttpServletResponse response) throws IOException {
+    @RequestMapping("/gettemplate")
+    public void getTemplate(@RequestParam("testPaperId") Integer testPaperId, HttpServletResponse response) throws IOException {
 
-        Integer testPaperType = testPaperService.selectByPrimaryKey(testPaperIdDto.getTestPaperId()).getTestPaperType();
+        Integer testPaperType = testPaperService.selectByPrimaryKey(testPaperId).getTestPaperType();
         System.out.println(testPaperType);
         List<List<String>> excelData = new ArrayList<>();
         List<String> head = new ArrayList<>();
@@ -146,7 +146,7 @@ public class TestPaperController {
             head.add("试卷类型");
         }
 
-        int tmp = testPaperDetailService.getQuestionsNumber(testPaperIdDto.getTestPaperId());
+        int tmp = testPaperDetailService.getQuestionsNumber(testPaperId);
         for (int i = 0; i < tmp; i++) {
             head.add("第" + (i + 1) + "题");
         }
@@ -163,7 +163,7 @@ public class TestPaperController {
      * @Date 2019/10/25 7:45
      * DESCRIPTION:
      */
-    @RequestMapping(value = "/import", method = RequestMethod.POST)
+    @RequestMapping(value = "/importstp", method = RequestMethod.POST)
     public ResultVO importResult(@RequestParam("file") MultipartFile file, @RequestParam(value = "testPaperId") Integer testPaperId, HttpServletRequest request) throws Exception {
 
         System.out.println(testPaperId.getClass());

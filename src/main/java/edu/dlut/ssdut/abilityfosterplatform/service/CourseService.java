@@ -25,4 +25,6 @@ public interface CourseService {
     /** 通过Id更新课程 **/
     int updateCourseById(Course record);
 
+    void deleteCourse(Integer courseId);
+
 }

@@ -4,8 +4,6 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.StudentAbilityNameAndMaxDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTestAbilityScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectTotalScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SubjectWorkAbilityScoreDTO;
-import edu.dlut.ssdut.abilityfosterplatform.mapper.AbilityMapper;
-import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
 import edu.dlut.ssdut.abilityfosterplatform.service.AbilityService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;

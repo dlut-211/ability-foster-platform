@@ -1,14 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDTO;
-import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
-import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
-import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author YuJunMing

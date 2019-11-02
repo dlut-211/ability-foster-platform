@@ -24,7 +24,7 @@ public interface VStudentTestPaperRepository extends JpaRepository<PStudentTestP
             "\t\t\t\t(SELECT count(*) \n" +
             "\t\t\t\t\t\tFROM ( SELECT student_number,student_name,test_paper_id,detail_type,detail_number,score  \n" +
             "\t\t\t\t\t\t\t\t\tFROM v_student_test_paper \n" +
-            "\t\t\t\t\t\t\t\t\tWHERE test_paper_id = 39) as A\n" +
+            "\t\t\t\t\t\t\t\t\tWHERE test_paper_id = ?) as A\n" +
             "\t\tGROUP BY student_number,student_name,test_paper_id,detail_type) as B",nativeQuery = true)
     int getCountStudentTestPaper(Integer testPaperId);
 
