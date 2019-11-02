@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperABDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDetailDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDetailKnowledgeDTO;
@@ -17,6 +18,7 @@ import edu.dlut.ssdut.abilityfosterplatform.repository.TestPaperDetailKnowledgeR
 import edu.dlut.ssdut.abilityfosterplatform.repository.TestPaperDetailRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.TestPaperRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.TestPaperService;
+import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @AUTHOR: raymond
@@ -93,8 +94,32 @@ public class TestPaperServiceImpl implements TestPaperService {
      */
 
     @Override
-    public Page<TestPaper> TestPaperPage(Integer classroomId, Pageable pageable){
-        return testPaperRepository.findTestPapersByClassroomId(classroomId, pageable);
+    public Map<String, Object> TestPaperPage(Integer classroomId, Pageable pageable){
+        List<TestPaperABDTO> testPaperABDTOS = new ArrayList<>();
+        Page<TestPaper> TestPapers = testPaperRepository.findTestPapersByClassroomId(classroomId,pageable);
+        for (TestPaper testPaper : TestPapers){
+            TestPaperABDTO testPaperABDTO =new TestPaperABDTO();
+            List<TestPaperDetail> testPaperDetailList= testPaperDetailRepository.findAllByTestPaperId(testPaper.getId());
+            //BeanUtils.copyProperties(testPaperABDTO,testPaperDetailList);
+            testPaperABDTO.setId(testPaper.getId());
+            testPaperABDTO.setName(testPaper.getName());
+            testPaperABDTO.setClassroomId(testPaper.getClassroomId());
+            testPaperABDTO.setTestPaperType(testPaper.getTestPaperType());
+            testPaperABDTO.setStatus(testPaper.getStatus());
+            if (testPaperDetailList.size()==1){
+                testPaperABDTO.setA(testPaperDetailList.get(0));
+            }
+            else if (testPaperDetailList.size()==2){
+                testPaperABDTO.setA(testPaperDetailList.get(0));
+                testPaperABDTO.setB(testPaperDetailList.get(1));
+            }
+            testPaperABDTOS.add(testPaperABDTO);
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("content",testPaperABDTOS);
+        map.put("numberOfElements",TestPapers.getTotalElements());
+        return map;
+
     }
 
     /**
