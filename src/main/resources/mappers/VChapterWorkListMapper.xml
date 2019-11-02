@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VChapterWorkListMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkList">
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="chapter_id" jdbcType="INTEGER" property="chapterId" />
+    <result column="chapter_name" jdbcType="VARCHAR" property="chapterName" />
+    <result column="classroom_id" jdbcType="INTEGER" property="classroomId" />
+    <result column="work_id" jdbcType="INTEGER" property="workId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="work_name" jdbcType="VARCHAR" property="workName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="id" jdbcType="INTEGER" property="id" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkList">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_chapter_work_list (course_id, chapter_id, chapter_name, 
+      classroom_id, work_id, status, 
+      work_name, description, id
+      )
+    values (#{courseId,jdbcType=INTEGER}, #{chapterId,jdbcType=INTEGER}, #{chapterName,jdbcType=VARCHAR}, 
+      #{classroomId,jdbcType=INTEGER}, #{workId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{workName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkList">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into v_chapter_work_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="chapterId != null">
+        chapter_id,
+      </if>
+      <if test="chapterName != null">
+        chapter_name,
+      </if>
+      <if test="classroomId != null">
+        classroom_id,
+      </if>
+      <if test="workId != null">
+        work_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="workName != null">
+        work_name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      id,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="chapterId != null">
+        #{chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="chapterName != null">
+        #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="classroomId != null">
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="workId != null">
+        #{workId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="workName != null">
+        #{workName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      #{id,jdbcType=INTEGER},
+    </trim>
+  </insert>
+  <select id="selectChapterWorkList" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkList">
+    select * from v_chapter_work_list where classroom_id=#{classroomId,jdbcType=INTEGER} and chapter_id=#{chapterId,jdbcType=INTEGER}
+  </select>
+</mapper>
