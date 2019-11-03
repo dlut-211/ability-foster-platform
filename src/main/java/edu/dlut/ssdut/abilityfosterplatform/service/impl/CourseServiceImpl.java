@@ -72,25 +72,25 @@ public class CourseServiceImpl implements CourseService {
      */
     @Override
     public Page<CourseDTO> findByParams(String code, String name, Pageable pageable, HttpServletRequest request) {
-        List<Course> courseList = courseRepository.findByCodeContainingAndNameContaining(code, name);
+        Page<Course> coursePage = courseRepository.findByCodeContainingAndNameContaining(code, name, pageable);
         List<CourseDTO> courseDTOList = new ArrayList<>();
-        for (Course course : courseList) {
-            CourseDTO courseDTO = new CourseDTO();
-            SystemOption systemOption = systemOptionRepository.findById(course.getSubjectId()).orElse(null);
-            if (systemOption == null) {
-                throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
+        if (!CollectionUtils.isEmpty(coursePage.getContent())) {
+            for (Course course : coursePage.getContent()) {
+                CourseDTO courseDTO = new CourseDTO();
+                BeanUtils.copyProperties(course, courseDTO);
+                SystemOption systemOption = systemOptionRepository.findById(course.getSubjectId()).orElse(null);
+                if (!ObjectUtils.isEmpty(systemOption)) {
+                    courseDTO.setSubjectName(systemOption.getOptionValue());
+                }
+
+                Teacher teacher = teacherRepository.findById(course.getCreatedBy()).orElse(null);
+                if (!ObjectUtils.isEmpty(teacher)) {
+                    courseDTO.setCreatedByName(teacher.getName());
+                }
+                courseDTOList.add(courseDTO);
             }
-            BeanUtils.copyProperties(course, courseDTO);
-            courseDTO.setSubjectName(systemOption.getOptionValue());
-            Teacher teacher = teacherRepository.findById(course.getCreatedBy()).orElse(null);
-            if (teacher == null) {
-                throw new PlatformException(ResultEnum.TEACHER_NOT_FOUND);
-            }
-            courseDTO.setCreatedByName(teacher.getName());
-//            courseDTO.setCreatedByName(Const.getUserName(request));
-            courseDTOList.add(courseDTO);
         }
-        Page<CourseDTO> courseDTOPage = new PageImpl<>(courseDTOList, pageable, courseDTOList.size());
+        Page<CourseDTO> courseDTOPage = new PageImpl<>(courseDTOList, pageable, coursePage.getTotalElements());
         return courseDTOPage;
     }
 
