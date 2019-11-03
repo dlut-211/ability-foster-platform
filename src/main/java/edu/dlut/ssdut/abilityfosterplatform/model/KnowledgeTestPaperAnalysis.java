@@ -9,7 +9,7 @@ public class KnowledgeTestPaperAnalysis {
     /** 知识点名字 **/
     String knowledgeName;
 
-    /**    >80%   **/
+    /**    >=80%   **/
     double level_1;
 
     /**80% ~ 40%  **/

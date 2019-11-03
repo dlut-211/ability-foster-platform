@@ -84,9 +84,10 @@
     </trim>
   </insert>
   <select id="selectByPaperId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select *
+    select classroom_student_id,test_paper_detail_id,sum(score) as score,detail_number,sum(score_sum) as score_sum,test_paper_id,knowledge_id,weight,name
     FROM v_knowledge_test_paper_score
     where test_paper_id=#{paperID,jdbcType=INTEGER}
+	group by knowledge_id,classroom_student_id
     order by (knowledge_id)
   </select>
 </mapper>
