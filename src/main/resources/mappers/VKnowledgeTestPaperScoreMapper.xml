@@ -86,7 +86,7 @@
   <select id="selectByPaperId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select *
     FROM v_knowledge_test_paper_score
-    where test_paper_id=39
+    where test_paper_id=#{paperID,jdbcType=INTEGER}
     order by (knowledge_id)
   </select>
 </mapper>

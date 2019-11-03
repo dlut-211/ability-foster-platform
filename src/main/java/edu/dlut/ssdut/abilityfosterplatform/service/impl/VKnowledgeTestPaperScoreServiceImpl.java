@@ -19,6 +19,7 @@ public class VKnowledgeTestPaperScoreServiceImpl implements  VKnowledgeTestPaper
         ArrayList<KnowledgeTestPaperAnalysis> knowledgeTestPaperAnalysisList=new ArrayList<>();
         ArrayList<VKnowledgeTestPaperScore> vKnowledgeTestPaperScoreArrayList=vKnowledgeTestPaperScoreMapper.selectByPaperId(paperId);
 
+        if(vKnowledgeTestPaperScoreArrayList.size()==0)return null;
         String nameTmp=vKnowledgeTestPaperScoreArrayList.get(0).getName();
         int knowledgeID=vKnowledgeTestPaperScoreArrayList.get(0).getKnowledgeId();
         int level1=0;
@@ -49,7 +50,7 @@ public class VKnowledgeTestPaperScoreServiceImpl implements  VKnowledgeTestPaper
 
 
             //sumScore=sumScore+vKnowledgeTestPaperScore.getScoreSum();
-            if(vKnowledgeTestPaperScore.getScore()>vKnowledgeTestPaperScore.getScoreSum()*0.8)
+            if(vKnowledgeTestPaperScore.getScore()>=vKnowledgeTestPaperScore.getScoreSum()*0.8)
             {
                 level1++;
             }
