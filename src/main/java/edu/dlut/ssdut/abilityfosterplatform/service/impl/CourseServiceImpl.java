@@ -105,20 +105,25 @@ public class CourseServiceImpl implements CourseService {
         Map<String, String> map = new HashMap<>();
         // 获取上传的文件名加后缀
         String fileName = file.getOriginalFilename();
-        map.put("fileName", fileName);
-        if (fileName != null && fileName != "") {
-            // 新的文件名
-            fileName = new Date().getTime() + "_" + new Random().nextInt(1000) + fileName;
+        String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+        System.out.println("fileType"+fileType);
+        if (fileType.equals(".zip")||fileType.equals(".war")||fileType.equals(".rar")) {
+            map.put("fileName", fileName);
+            if (fileName != null && fileName != "") {
+                // 新的文件名
+                fileName = new Date().getTime() + "_" + new Random().nextInt(1000) + fileName;
+            }
+            String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+            url = url + resourceHandler.substring(0, resourceHandler.lastIndexOf("/") + 1) + fileName;
+            try {
+                file.transferTo(new File(uploadFileLocation, fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            map.put("path", url);
+            return map;
         }
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        url = url + resourceHandler.substring(0, resourceHandler.lastIndexOf("/") + 1) + fileName;
-        try {
-            file.transferTo(new File(uploadFileLocation, fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        map.put("path", url);
-        return map;
+        else return null;
     }
 
     /**

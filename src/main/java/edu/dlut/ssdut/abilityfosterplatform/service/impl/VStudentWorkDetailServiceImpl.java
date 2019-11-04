@@ -2,6 +2,8 @@ package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import edu.dlut.ssdut.abilityfosterplatform.converter.TimeFormatConverter;
 import edu.dlut.ssdut.abilityfosterplatform.dto.VStudentWorkDetailDTO;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.StudentWorkDetailMapper;
+import edu.dlut.ssdut.abilityfosterplatform.model.StudentWorkDetail;
 import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWorkDetail;
 import edu.dlut.ssdut.abilityfosterplatform.repository.VStudentWorkDetailRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.VStudentWorkDetailService;
@@ -26,6 +28,8 @@ public class VStudentWorkDetailServiceImpl implements VStudentWorkDetailService 
     @Autowired
     private VStudentWorkDetailRepository vStudentWorkDetailRepository;
 
+    @Autowired
+    private StudentWorkDetailMapper studentWorkDetailMapper;
     /**
      * 按照学生作业ID获取学生作业详情列表
      * @param studentWorkId
@@ -48,5 +52,10 @@ public class VStudentWorkDetailServiceImpl implements VStudentWorkDetailService 
             vStudentWorkDetailDTOList.add(vStudentWorkDetailDTO);
         }
         return vStudentWorkDetailDTOList;
+    }
+
+    @Override
+    public Integer insert(StudentWorkDetail studentWorkDetail) {
+        return studentWorkDetailMapper.insert(studentWorkDetail);
     }
 }

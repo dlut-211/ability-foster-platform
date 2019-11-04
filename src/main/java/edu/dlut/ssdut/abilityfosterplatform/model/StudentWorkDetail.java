@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.Entity;
