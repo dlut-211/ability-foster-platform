@@ -34,7 +34,7 @@ public class KnowledgeController {
     public ResultVO getKnowledgePage(@RequestParam(value = "courseId", defaultValue = "") Integer courseId,
                                      @RequestParam(value = "page", defaultValue = "1") Integer page,
                                      @RequestParam(value = "limit", defaultValue = "10") Integer limit) {
-        PageRequest request = PageRequest.of(page, limit);
+        PageRequest request = PageRequest.of(page - 1, limit);
         return ResultVOUtil.success(knowledgeService.findKnowledgeDTOByPage(courseId, request));
     }
 

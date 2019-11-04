@@ -20,6 +20,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
@@ -55,43 +56,9 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     @Override
     public List<KnowledgeDTO> findKnowledgeDTOList(Integer courseId) {
         List<Knowledge> knowledgeList = knowledgeRepository.findAllByCourseId(courseId);
-        List<KnowledgeDTO> knowledgeDTOList = new ArrayList<>();
-        for (Knowledge knowledge : knowledgeList) {
-            // 1 拷贝KnowledgeDTO与Knowledge的共有属性
-            KnowledgeDTO knowledgeDTO = new KnowledgeDTO();
-            BeanUtils.copyProperties(knowledge, knowledgeDTO);
-            knowledgeDTO.setSelectId(knowledge.getId());
-            // 2 返回各外键所关联的对象
-            if (ObjectUtils.isEmpty(knowledge.getAbilityId())) {
-                throw new PlatformException(ResultEnum.ABILITY_ID_IS_NULL);
-            }
-            if ( ObjectUtils.isEmpty(knowledge.getCourseId())) {
-                throw new PlatformException(ResultEnum.COURSE_ID_IS_NULL);
-            }
-            Ability ability = abilityRepository.findById(knowledge.getAbilityId()).orElse(null);
-            if (ObjectUtils.isEmpty(ability)) {
-                throw new PlatformException(ResultEnum.ABILITY_NOT_FOUND);
-            }
-            knowledgeDTO.setAbility(ability);
-            Course course = courseRepository.findById(knowledge.getCourseId()).orElse(null);
-            if (ObjectUtils.isEmpty(course)) {
-                throw new PlatformException(ResultEnum.COURSE_NOT_FOUND);
-            }
-            knowledgeDTO.setCourse(course);
-            if (ObjectUtils.isEmpty(course.getSubjectId())) {
-                throw new PlatformException(ResultEnum.SUBJECT_ID_IS_NULL);
-            }
-            /** 因为历史遗留问题 有人将学科Subject在数据库中设置为了SystemOption **/
-            SystemOption subject = systemOptionRepository.findById(course.getSubjectId()).orElse(null);
-            if (ObjectUtils.isEmpty(subject)) {
-                throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
-            }
-            knowledgeDTO.setSystemOption(subject);
-            knowledgeDTO.setAbilityName(ability.getName());
-            knowledgeDTOList.add(knowledgeDTO);
-        }
-        return knowledgeDTOList;
+        return knowledgeList2KnowledgeList(knowledgeList);
     }
+
 
     /**
      * 查询课程下的知识点列表 - 分页
@@ -102,9 +69,56 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     @Transactional
     @Override
     public Page<KnowledgeDTO> findKnowledgeDTOByPage(Integer courseId, Pageable pageable) {
-        List<KnowledgeDTO> knowledgeDTOList = this.findKnowledgeDTOList(courseId);
-        Page<KnowledgeDTO> knowledgeDTOPage = new PageImpl<>(knowledgeDTOList, pageable, knowledgeDTOList.size());
+        Page<Knowledge> knowledgePage = knowledgeRepository.findAllByCourseId(courseId, pageable);
+        List<KnowledgeDTO> knowledgeDTOList = knowledgeList2KnowledgeList(knowledgePage.getContent());
+        Page<KnowledgeDTO> knowledgeDTOPage = new PageImpl<>(knowledgeDTOList, pageable, knowledgePage.getTotalElements());
         return knowledgeDTOPage;
+    }
+
+    /**
+     * 将 knowledgeList转化为knowledgeDTOList
+     * @param content
+     * @return
+     */
+    private List<KnowledgeDTO> knowledgeList2KnowledgeList(List<Knowledge> content) {
+        List<KnowledgeDTO> knowledgeDTOList = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(content)) {
+            for (Knowledge knowledge : content) {
+                // 1 拷贝 KnowledgeDTO 与 Knowledge 的共有属性
+                KnowledgeDTO knowledgeDTO = new KnowledgeDTO();
+                BeanUtils.copyProperties(knowledge, knowledgeDTO);
+                knowledgeDTO.setSelectId(knowledge.getId());
+                // 2 返回各外键所关联的对象
+                if (ObjectUtils.isEmpty(knowledge.getAbilityId())) {
+                    throw new PlatformException(ResultEnum.ABILITY_ID_IS_NULL);
+                }
+                if ( ObjectUtils.isEmpty(knowledge.getCourseId())) {
+                    throw new PlatformException(ResultEnum.COURSE_ID_IS_NULL);
+                }
+                Ability ability = abilityRepository.findById(knowledge.getAbilityId()).orElse(null);
+                if (ObjectUtils.isEmpty(ability)) {
+                    throw new PlatformException(ResultEnum.ABILITY_NOT_FOUND);
+                }
+                knowledgeDTO.setAbility(ability);
+                Course course = courseRepository.findById(knowledge.getCourseId()).orElse(null);
+                if (ObjectUtils.isEmpty(course)) {
+                    throw new PlatformException(ResultEnum.COURSE_NOT_FOUND);
+                }
+                knowledgeDTO.setCourse(course);
+                if (ObjectUtils.isEmpty(course.getSubjectId())) {
+                    throw new PlatformException(ResultEnum.SUBJECT_ID_IS_NULL);
+                }
+                /** 因为历史遗留问题 有人将学科Subject在数据库中设置为了SystemOption **/
+                SystemOption subject = systemOptionRepository.findById(course.getSubjectId()).orElse(null);
+                if (ObjectUtils.isEmpty(subject)) {
+                    throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
+                }
+                knowledgeDTO.setSystemOption(subject);
+                knowledgeDTO.setAbilityName(ability.getName());
+                knowledgeDTOList.add(knowledgeDTO);
+            }
+        }
+        return knowledgeDTOList;
     }
 
     /**
