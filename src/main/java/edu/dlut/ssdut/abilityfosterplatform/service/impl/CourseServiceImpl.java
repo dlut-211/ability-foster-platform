@@ -159,7 +159,7 @@ public class CourseServiceImpl implements CourseService {
         }
         // 1 如果课程未被引用
         // 2 删除章节
-        List<Chapter> chapterList = chapterRepository.findByCourseId(courseId);
+        List<Chapter> chapterList = chapterRepository.findByCourseIdOrderBySort(courseId);
         if (!CollectionUtils.isEmpty(chapterList)) {
             for (Chapter chapter : chapterList) {
                 // 3 删除章节作业
