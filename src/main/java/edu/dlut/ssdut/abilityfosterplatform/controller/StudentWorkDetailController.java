@@ -8,7 +8,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 /**
  * @AUTHOR: raymond
  * @DATE: 2019/10/27
@@ -24,8 +28,12 @@ public class StudentWorkDetailController {
 
     @ApiOperation("按照学生作业ID获取学生作业列表")
     @GetMapping("/list")
-    public ResultVO list(@RequestParam("studentWorkId") Integer studentWorkId) {
-        return ResultVOUtil.success(vStudentWorkDetailService.findAllByStudentWorkId(studentWorkId));
+    public ResultVO list(@RequestParam("studentWorkId") Integer studentWorkId,
+                         @RequestParam(value = "page", defaultValue = "1") Integer page,
+                         @RequestParam(value = "limit", defaultValue = "10") Integer limit
+                         ) {
+        PageRequest request = PageRequest.of(page - 1, limit);
+        return ResultVOUtil.success(vStudentWorkDetailService.findAllByStudentWorkId(studentWorkId, request));
     }
 
     @ApiOperation("增加学生作业细节")

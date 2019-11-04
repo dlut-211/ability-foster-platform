@@ -9,6 +9,9 @@ import edu.dlut.ssdut.abilityfosterplatform.repository.VStudentWorkDetailReposit
 import edu.dlut.ssdut.abilityfosterplatform.service.VStudentWorkDetailService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -37,21 +40,21 @@ public class VStudentWorkDetailServiceImpl implements VStudentWorkDetailService 
      */
     @Transactional
     @Override
-    public List<VStudentWorkDetailDTO> findAllByStudentWorkId(Integer studentWorkId) {
+    public Page<VStudentWorkDetailDTO> findAllByStudentWorkId(Integer studentWorkId, Pageable pageable) {
+        Page<VStudentWorkDetail> vStudentWorkDetailPage = vStudentWorkDetailRepository.findAllByStudentWorkId(studentWorkId, pageable);
         List<VStudentWorkDetailDTO> vStudentWorkDetailDTOList = new ArrayList<>();
-        List<VStudentWorkDetail> vStudentWorkDetailList = vStudentWorkDetailRepository.findAllByStudentWorkId(studentWorkId);
-        if (CollectionUtils.isEmpty(vStudentWorkDetailList)) {
-            return vStudentWorkDetailDTOList;
-        }
-        for (VStudentWorkDetail vStudentWorkDetail : vStudentWorkDetailList) {
-            VStudentWorkDetailDTO vStudentWorkDetailDTO = new VStudentWorkDetailDTO();
-            BeanUtils.copyProperties(vStudentWorkDetail, vStudentWorkDetailDTO);
-            if (!ObjectUtils.isEmpty(vStudentWorkDetail.getUseTime())) {
-                vStudentWorkDetailDTO.setUseTimeFormat(TimeFormatConverter.second2DHMS(vStudentWorkDetail.getUseTime()));
+        if (!CollectionUtils.isEmpty(vStudentWorkDetailPage.getContent())) {
+            for (VStudentWorkDetail vStudentWorkDetail : vStudentWorkDetailPage.getContent()) {
+                VStudentWorkDetailDTO vStudentWorkDetailDTO = new VStudentWorkDetailDTO();
+                BeanUtils.copyProperties(vStudentWorkDetail, vStudentWorkDetailDTO);
+                if (!ObjectUtils.isEmpty(vStudentWorkDetail.getUseTime())) {
+                    vStudentWorkDetailDTO.setUseTimeFormat(TimeFormatConverter.second2DHMS(vStudentWorkDetail.getUseTime()));
+                }
+                vStudentWorkDetailDTOList.add(vStudentWorkDetailDTO);
             }
-            vStudentWorkDetailDTOList.add(vStudentWorkDetailDTO);
         }
-        return vStudentWorkDetailDTOList;
+        Page<VStudentWorkDetailDTO> page = new PageImpl<>(vStudentWorkDetailDTOList, pageable, vStudentWorkDetailPage.getTotalElements());
+        return page;
     }
 
     @Override
