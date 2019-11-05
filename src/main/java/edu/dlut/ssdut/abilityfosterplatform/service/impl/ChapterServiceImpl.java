@@ -52,7 +52,7 @@ public class ChapterServiceImpl implements ChapterService {
     @Transactional
     @Override
     public List<ChapterDTO> findByCourseId(Integer id) {
-        List<Chapter> chapterList = chapterRepository.findByCourseId(id);
+        List<Chapter> chapterList = chapterRepository.findByCourseIdOrderBySort(id);
         List<ChapterDTO> chapterDTOList = new ArrayList<>();
         CourseDTO courseDTO = findById(id);
         for (Chapter chapter : chapterList) {
@@ -164,7 +164,7 @@ public class ChapterServiceImpl implements ChapterService {
     public List<ChapterTreeDTO> getChapterTree(Integer courseId) {
         // TODO 需要改成递归形式
         // 1 获取当前课程下的章节列表
-        List<Chapter> chapterList = chapterRepository.findByCourseId(courseId);
+        List<Chapter> chapterList = chapterRepository.findByCourseIdOrderBySort(courseId);
         if (CollectionUtils.isEmpty(chapterList)) {
             return null;
         }

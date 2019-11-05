@@ -43,7 +43,11 @@ public class CourseController {
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public ResultVO uploadFile(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) {
         Map<String, String> map = courseService.uploadFile(file, request);
-        return ResultVOUtil.success(map);
+        if (map!=null) {
+            return ResultVOUtil.success(map);
+        }
+        else
+            return ResultVOUtil.error(400, "上传失败");
     }
 
     @ApiOperation("通过课程编号、课程名称以及分页查询课程信息列表")

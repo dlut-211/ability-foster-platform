@@ -25,6 +25,11 @@ spring:
         min-idle: 0 # 连接池中的最小空闲连接
     timeout: 3000ms # 连接超时时间（毫秒）
 
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+
 mybatis:
   # classpath 在这里代表 src 目录
   mapper-locations: classpath:mappers/*.xml

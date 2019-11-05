@@ -1,8 +1,9 @@
 package edu.dlut.ssdut.abilityfosterplatform.service;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.VStudentWorkDetailDTO;
-
-import java.util.List;
+import edu.dlut.ssdut.abilityfosterplatform.model.StudentWorkDetail;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @AUTHOR: raymond
@@ -10,5 +11,6 @@ import java.util.List;
  * DESCRIPTION:
  **/
 public interface VStudentWorkDetailService {
-    List<VStudentWorkDetailDTO> findAllByStudentWorkId(Integer studentWorkId);
+    Integer insert(StudentWorkDetail studentWorkDetail);
+    Page<VStudentWorkDetailDTO> findAllByStudentWorkId(Integer studentWorkId, Pageable pageable);
 }

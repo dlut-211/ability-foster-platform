@@ -34,7 +34,7 @@ public class KnowledgeServiceImplTest {
 
     @Test
     public void findKnowledgeDTOByPage() {
-        PageRequest request = PageRequest.of(0, 10);
+        PageRequest request = PageRequest.of(0, 5);
         Page<KnowledgeDTO> knowledgeDTOPage = knowledgeService.findKnowledgeDTOByPage(2, request);
         knowledgeDTOPage.getContent().forEach(System.out::println);
     }

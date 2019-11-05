@@ -20,6 +20,8 @@ public class StudentWorkDTO {
 
     private float avgScore;
 
+    private Integer total;
+
     List<VStudentWorkDTO> vStudentWorkDTOList;
 
 }

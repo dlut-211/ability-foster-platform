@@ -1,6 +1,5 @@
 package edu.dlut.ssdut.abilityfosterplatform.dto;
 
-import edu.dlut.ssdut.abilityfosterplatform.model.WorkKnowledge;
 import lombok.Data;
 
 import java.util.Date;

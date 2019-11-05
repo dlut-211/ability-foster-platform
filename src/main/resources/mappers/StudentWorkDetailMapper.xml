@@ -30,9 +30,6 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentWorkDetail" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-            SELECT LAST_INSERT_ID()
-        </selectKey>
         insert into student_work_detail (id, submit_time, work_path,
         use_time, case_passed_count, complexity,
         line_of_code, student_work_id, created_by,

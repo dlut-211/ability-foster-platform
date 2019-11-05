@@ -15,6 +15,8 @@ public class VStudentWorkChapter {
 
     private Integer courseId;
 
+    private Integer status;
+
     private Integer classroomId;
 
     private String classRoomName;

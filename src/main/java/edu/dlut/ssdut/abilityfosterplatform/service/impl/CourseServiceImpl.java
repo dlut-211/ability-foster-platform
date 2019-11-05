@@ -72,25 +72,25 @@ public class CourseServiceImpl implements CourseService {
      */
     @Override
     public Page<CourseDTO> findByParams(String code, String name, Pageable pageable, HttpServletRequest request) {
-        List<Course> courseList = courseRepository.findByCodeContainingAndNameContaining(code, name);
+        Page<Course> coursePage = courseRepository.findByCodeContainingAndNameContaining(code, name, pageable);
         List<CourseDTO> courseDTOList = new ArrayList<>();
-        for (Course course : courseList) {
-            CourseDTO courseDTO = new CourseDTO();
-            SystemOption systemOption = systemOptionRepository.findById(course.getSubjectId()).orElse(null);
-            if (systemOption == null) {
-                throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
+        if (!CollectionUtils.isEmpty(coursePage.getContent())) {
+            for (Course course : coursePage.getContent()) {
+                CourseDTO courseDTO = new CourseDTO();
+                BeanUtils.copyProperties(course, courseDTO);
+                SystemOption systemOption = systemOptionRepository.findById(course.getSubjectId()).orElse(null);
+                if (!ObjectUtils.isEmpty(systemOption)) {
+                    courseDTO.setSubjectName(systemOption.getOptionValue());
+                }
+
+                Teacher teacher = teacherRepository.findById(course.getCreatedBy()).orElse(null);
+                if (!ObjectUtils.isEmpty(teacher)) {
+                    courseDTO.setCreatedByName(teacher.getName());
+                }
+                courseDTOList.add(courseDTO);
             }
-            BeanUtils.copyProperties(course, courseDTO);
-            courseDTO.setSubjectName(systemOption.getOptionValue());
-            Teacher teacher = teacherRepository.findById(course.getCreatedBy()).orElse(null);
-            if (teacher == null) {
-                throw new PlatformException(ResultEnum.TEACHER_NOT_FOUND);
-            }
-            courseDTO.setCreatedByName(teacher.getName());
-//            courseDTO.setCreatedByName(Const.getUserName(request));
-            courseDTOList.add(courseDTO);
         }
-        Page<CourseDTO> courseDTOPage = new PageImpl<>(courseDTOList, pageable, courseDTOList.size());
+        Page<CourseDTO> courseDTOPage = new PageImpl<>(courseDTOList, pageable, coursePage.getTotalElements());
         return courseDTOPage;
     }
 
@@ -105,20 +105,25 @@ public class CourseServiceImpl implements CourseService {
         Map<String, String> map = new HashMap<>();
         // 获取上传的文件名加后缀
         String fileName = file.getOriginalFilename();
-        map.put("fileName", fileName);
-        if (fileName != null && fileName != "") {
-            // 新的文件名
-            fileName = new Date().getTime() + "_" + new Random().nextInt(1000) + fileName;
+        String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+        System.out.println("fileType"+fileType);
+        if (fileType.equals(".zip")||fileType.equals(".war")||fileType.equals(".rar")) {
+            map.put("fileName", fileName);
+            if (fileName != null && fileName != "") {
+                // 新的文件名
+                fileName = new Date().getTime() + "_" + new Random().nextInt(1000) + fileName;
+            }
+            String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+            url = url + resourceHandler.substring(0, resourceHandler.lastIndexOf("/") + 1) + fileName;
+            try {
+                file.transferTo(new File(uploadFileLocation, fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            map.put("path", url);
+            return map;
         }
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-        url = url + resourceHandler.substring(0, resourceHandler.lastIndexOf("/") + 1) + fileName;
-        try {
-            file.transferTo(new File(uploadFileLocation, fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        map.put("path", url);
-        return map;
+        else return null;
     }
 
     /**
@@ -154,7 +159,7 @@ public class CourseServiceImpl implements CourseService {
         }
         // 1 如果课程未被引用
         // 2 删除章节
-        List<Chapter> chapterList = chapterRepository.findByCourseId(courseId);
+        List<Chapter> chapterList = chapterRepository.findByCourseIdOrderBySort(courseId);
         if (!CollectionUtils.isEmpty(chapterList)) {
             for (Chapter chapter : chapterList) {
                 // 3 删除章节作业

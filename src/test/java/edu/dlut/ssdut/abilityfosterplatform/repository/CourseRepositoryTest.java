@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -17,9 +19,10 @@ public class CourseRepositoryTest {
     private CourseRepository courseRepository;
 
     @Test
-    public void findCoursesByCodeLikeOrNameLike() {
-        List<Course> courseList = courseRepository.findByCodeContainingAndNameContaining("", "结构");
-        courseList.forEach(System.out::println);
+    public void findByParams() {
+        PageRequest request = PageRequest.of(0, 5);
+        Page<Course> page = courseRepository.findByCodeContainingAndNameContaining("", "", request);
+        page.getContent().forEach(System.out::println);
     }
 
 }
