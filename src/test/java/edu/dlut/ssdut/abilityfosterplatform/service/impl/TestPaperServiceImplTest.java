@@ -34,7 +34,7 @@ public class TestPaperServiceImplTest {
         TestPaperDTO testPaperDTO = new TestPaperDTO();
 
         testPaperDTO.setName("软件测试");
-        testPaperDTO.setClassroomId(7);
+        testPaperDTO.setClassroomId(19);
         testPaperDTO.setTestPaperType(2);
         testPaperDTO.setA(Arrays.asList(testPaperDetailDTO));
 

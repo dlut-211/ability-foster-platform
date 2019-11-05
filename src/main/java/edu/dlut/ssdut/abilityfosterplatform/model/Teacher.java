@@ -36,4 +36,8 @@ public class Teacher {
 
     private Date modifiedOn;
 
+    private Integer subjectId;
+
+    private Integer schoolId;
+
 }

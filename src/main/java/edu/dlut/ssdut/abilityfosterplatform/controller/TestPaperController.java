@@ -57,7 +57,7 @@ public class TestPaperController {
 
     @ApiOperation("添加试卷")
     @PostMapping("/add")
-    public ResultVO addTestPaper(@RequestBody TestPaperDTO testPaperDTO) {
+    public ResultVO addTestPaper(TestPaperDTO testPaperDTO) {
         Boolean addResult = testPaperService.addTestPaper(testPaperDTO);
         if (addResult) {
             return ResultVOUtil.success();
@@ -86,7 +86,7 @@ public class TestPaperController {
 
     @ApiOperation("试卷编辑")
     @PutMapping("/edit")
-    public ResultVO editTestPaper(@RequestBody TestPaperDTO testPaperDTO) {
+    public ResultVO editTestPaper(TestPaperDTO testPaperDTO) {
         Boolean result = testPaperService.editTestPaper(testPaperDTO);
         if (result) {
             return ResultVOUtil.success();

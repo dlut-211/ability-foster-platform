@@ -2,22 +2,34 @@ package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.LoginInfoDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.SchoolTeacherDTO;
+import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
+import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
 import edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo;
+import edu.dlut.ssdut.abilityfosterplatform.model.School;
+import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
+import edu.dlut.ssdut.abilityfosterplatform.repository.SchoolRepository;
+import edu.dlut.ssdut.abilityfosterplatform.repository.SystemOptionRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.TeacherRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.TeacherService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Api(tags = "TeacherController")
@@ -30,6 +42,10 @@ public class TeacherController {
 
     @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
+    private SystemOptionRepository systemOptionRepository;
+    @Autowired
+    private SchoolRepository schoolRepository;
 
     @ApiOperation("教师登录")
     @RequestMapping(value = "/selectByAccountAndPassword", method = RequestMethod.GET)
@@ -57,7 +73,24 @@ public class TeacherController {
         }else{
             teacherPage =  teacherRepository.findTeachersByNameContainsAndNumberEqualsAndStatusEquals(name,number,status,request);
         }
-        return ResultVOUtil.success( teacherPage);
+        List<SchoolTeacherDTO> schoolTeacherDTOList = new ArrayList<>();
+        for (Teacher teacher:teacherPage){
+            SchoolTeacherDTO schoolTeacherDTO = new SchoolTeacherDTO();
+//            SystemOption systemOption = systemOptionRepository.findById(teacher.getSubjectId()).orElse(null);
+//            if (ObjectUtils.isEmpty(systemOption)){
+//                throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
+//            }
+            BeanUtils.copyProperties(teacher,schoolTeacherDTO);
+//            schoolTeacherDTO.setSubjectName(systemOption.getOptionValue());
+            School school =schoolRepository.findById(teacher.getSchoolId()).orElse(null);
+            if (ObjectUtils.isEmpty(school)){
+                throw new PlatformException(ResultEnum.ERROR);
+            }
+            schoolTeacherDTO.setSchoolName(school.getName());
+            schoolTeacherDTOList.add(schoolTeacherDTO);
+        }
+        Page<SchoolTeacherDTO> schoolTeacherDTOPage = new PageImpl<>(schoolTeacherDTOList,request,schoolTeacherDTOList.size());
+        return ResultVOUtil.success(schoolTeacherDTOPage);
     }
 
     @ApiOperation("添加教师")
@@ -91,6 +124,15 @@ public class TeacherController {
     public ResultVO disableTeacher(Integer id) {
         Teacher teacher = teacherRepository.getOne(id);
         teacher.setStatus(2);
+        return ResultVOUtil.success(teacherService.updateByPrimaryKeySelective(teacher));
+    }
+
+    @ApiOperation("重置教师密码")
+    @PutMapping("/resetPassWord")
+    public ResultVO resetPassWord(Integer id){
+        Teacher teacher = teacherRepository.getOne(id);
+        teacher.setPassword("123456");
+        teacher.setModifiedOn(new Date());
         return ResultVOUtil.success(teacherService.updateByPrimaryKeySelective(teacher));
     }
 
