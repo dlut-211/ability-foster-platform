@@ -1,8 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.service;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.CourseDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
+import edu.dlut.ssdut.abilityfosterplatform.model.VCourse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +14,7 @@ import java.util.Map;
 public interface CourseService {
 
     /** 通过课程编号、课程名称返回CourseDTO列表及分页信息 **/
-    Page<CourseDTO> findByParams(String code, String name, Pageable pageable, HttpServletRequest request);
+    Page<VCourse> findByParams(String code, String name, Pageable pageable);
 
     /** 上传文件 **/
     Map<String, String> uploadFile(MultipartFile file, HttpServletRequest request);

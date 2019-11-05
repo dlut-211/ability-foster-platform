@@ -58,6 +58,7 @@ public class TestPaperController {
     @ApiOperation("添加试卷")
     @PostMapping("/add")
     public ResultVO addTestPaper(TestPaperDTO testPaperDTO) {
+        System.out.println(testPaperDTO);
         Boolean addResult = testPaperService.addTestPaper(testPaperDTO);
         if (addResult) {
             return ResultVOUtil.success();
