@@ -1,12 +1,14 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.CourseDTO;
+import edu.dlut.ssdut.abilityfosterplatform.enums.ClassroomStatusEnum;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.CourseMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.*;
 import edu.dlut.ssdut.abilityfosterplatform.repository.*;
 import edu.dlut.ssdut.abilityfosterplatform.service.CourseService;
+import edu.dlut.ssdut.abilityfosterplatform.utils.Const;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -70,6 +72,7 @@ public class CourseServiceImpl implements CourseService {
      * @param code
      * @param name
      * @param pageable
+     * @param request
      * @return
      */
     @Override

@@ -33,6 +33,7 @@ public class StudentTestPaperController {
     @Autowired
     private VStudentTestPaperRepository vStudentTestPaperRepository;
 
+
     @ApiOperation("学生考试成绩")
     @GetMapping("/testpaperlist")
     public ResultVO getTestPaperList(@RequestParam(value= "testPaperId") Integer testPaperId){
@@ -57,7 +58,7 @@ public class StudentTestPaperController {
             list[i].put("detailType", temp.getDetailType());
             for(int j = 0;j<length;j++){
                 list[i].put(j+1 ,score[j][i]);
-               totalScore+=score[j][i];
+                totalScore+=score[j][i];
             }
             list[i].put("totalScore",totalScore);
         }

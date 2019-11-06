@@ -1,6 +1,7 @@
 package edu.dlut.ssdut.abilityfosterplatform.utils;
 
 import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -10,7 +11,17 @@ import java.util.List;
  * Excel工具类
  */
 public class ExcelUtil {
-
+    /**
+     * @Author YuJunMing
+     * @Date 2019/10/26 7:54
+     * DESCRIPTION:
+     */
+    public static  String getStringInExcel( Cell cell){
+        if(cell!=null){
+            cell.setCellType(Cell.CELL_TYPE_STRING);
+            return  cell.getStringCellValue();}
+        return "";
+    }
     public static String isNull(String str){
         if(str == null){
             return "0.0";

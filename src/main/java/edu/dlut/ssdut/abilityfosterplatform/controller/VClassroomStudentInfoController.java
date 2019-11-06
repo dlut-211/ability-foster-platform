@@ -143,12 +143,12 @@ public class VClassroomStudentInfoController {
             if (row != null) {
                 InsertStudentDTO insertStudentDTO = new InsertStudentDTO();
 
-                insertStudentDTO.setStudentId(Integer.parseInt(this.getStringInExcel(row.getCell(0))));
-                insertStudentDTO.setName(this.getStringInExcel(row.getCell(1)));
-                insertStudentDTO.setSchool(ExcelUtil.isNull(this.getStringInExcel(row.getCell(2))));
-                insertStudentDTO.setClassName(this.getStringInExcel(row.getCell(3)));
-                insertStudentDTO.setEmail((this.getStringInExcel(row.getCell(4))));
-                insertStudentDTO.setMobile(this.getStringInExcel(row.getCell(5)));
+                insertStudentDTO.setStudentId(Integer.parseInt(ExcelUtil.getStringInExcel(row.getCell(0))));
+                insertStudentDTO.setName(ExcelUtil.getStringInExcel(row.getCell(1)));
+                insertStudentDTO.setSchool(ExcelUtil.isNull(ExcelUtil.getStringInExcel(row.getCell(2))));
+                insertStudentDTO.setClassName(ExcelUtil.getStringInExcel(row.getCell(3)));
+                insertStudentDTO.setEmail((ExcelUtil.getStringInExcel(row.getCell(4))));
+                insertStudentDTO.setMobile(ExcelUtil.getStringInExcel(row.getCell(5)));
 
                 insertStudentDTO.setStatus(0);
                 insertStudentDTO.setClassroomId(classRoomId);
@@ -196,16 +196,5 @@ public class VClassroomStudentInfoController {
         return  ResultVOUtil.error(21,"无此学生");
     }
 
-    /**
-     * @Author YuJunMing
-     * @Date 2019/10/26 7:54
-     * DESCRIPTION:工具类，有空再丢进Utils
-     */
-    public  String getStringInExcel( Cell cell){
-        if(cell!=null){
-            cell.setCellType(Cell.CELL_TYPE_STRING);
-            return  cell.getStringCellValue();}
-        return "";
-    }
 
 }
