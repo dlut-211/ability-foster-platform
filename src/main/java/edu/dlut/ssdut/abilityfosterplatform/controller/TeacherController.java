@@ -58,7 +58,11 @@ public class TeacherController {
 
     @ApiOperation("获取教师列表")
     @GetMapping("/list")
-    public ResultVO getTeacherList(@RequestParam(value ="page",defaultValue = "1") Integer page, @RequestParam(value ="limit",defaultValue = "10") Integer limit, @RequestParam(value ="name",defaultValue = "")String name, @RequestParam(value ="number",defaultValue = "")String number,@RequestParam(value ="status",defaultValue = "1")Integer status) {
+    public ResultVO getTeacherList(@RequestParam(value ="page",defaultValue = "1") Integer page,
+                                   @RequestParam(value ="limit",defaultValue = "10") Integer limit,
+                                   @RequestParam(value ="name",defaultValue = "")String name,
+                                   @RequestParam(value ="number",defaultValue = "")String number,
+                                   @RequestParam(value ="status",defaultValue = "1")Integer status) {
         PageRequest request = PageRequest.of(page-1, limit);
         Page<Teacher> teacherPage;
         if (name.isEmpty() && number.isEmpty())
@@ -74,6 +78,7 @@ public class TeacherController {
             teacherPage =  teacherRepository.findTeachersByNameContainsAndNumberEqualsAndStatusEquals(name,number,status,request);
         }
         List<SchoolTeacherDTO> schoolTeacherDTOList = new ArrayList<>();
+        List<School> schoolList = schoolRepository.findAll();
         for (Teacher teacher:teacherPage){
             SchoolTeacherDTO schoolTeacherDTO = new SchoolTeacherDTO();
 //            SystemOption systemOption = systemOptionRepository.findById(teacher.getSubjectId()).orElse(null);
@@ -81,14 +86,14 @@ public class TeacherController {
 //                throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
 //            }
             BeanUtils.copyProperties(teacher,schoolTeacherDTO);
-//            schoolTeacherDTO.setSubjectName(systemOption.getOptionValue());
-            School school =schoolRepository.findById(teacher.getSchoolId()).orElse(null);
-            if (ObjectUtils.isEmpty(school)){
-                throw new PlatformException(ResultEnum.ERROR);
+            for (School school:schoolList){
+                if (schoolTeacherDTO.getSchoolId().equals(school.getId())){
+                    schoolTeacherDTO.setSchoolName(school.getName());
+                }
             }
-            schoolTeacherDTO.setSchoolName(school.getName());
             schoolTeacherDTOList.add(schoolTeacherDTO);
         }
+
         Page<SchoolTeacherDTO> schoolTeacherDTOPage = new PageImpl<>(schoolTeacherDTOList,request,schoolTeacherDTOList.size());
         return ResultVOUtil.success(schoolTeacherDTOPage);
     }
