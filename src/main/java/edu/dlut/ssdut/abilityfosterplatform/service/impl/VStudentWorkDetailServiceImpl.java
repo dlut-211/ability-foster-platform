@@ -58,4 +58,9 @@ public class VStudentWorkDetailServiceImpl implements VStudentWorkDetailService 
     public Integer insert(StudentWorkDetail studentWorkDetail) {
         return studentWorkDetailMapper.insert(studentWorkDetail);
     }
+
+    @Override
+    public List<StudentWorkDetail> selectByStudentWorkId(Integer studentWorkId) {
+        return studentWorkDetailMapper.selectByStudentWorkId(studentWorkId);
+    }
 }

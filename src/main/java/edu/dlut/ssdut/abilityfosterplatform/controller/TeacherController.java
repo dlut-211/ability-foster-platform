@@ -36,7 +36,8 @@ public class TeacherController {
     public ResultVO selectByAccountAndPassword(LoginInfo loginInfo, HttpServletRequest request) {
         loginInfo.setPassword(DigestUtils.md5DigestAsHex(loginInfo.getPassword().getBytes()));
         Teacher teacher = teacherService.selectByAccountAndPassword(loginInfo);
-        request.getSession().setAttribute("username", teacher.getName());
+        if (teacher!=null)
+            request.getSession().setAttribute("username", teacher.getName());
         return ResultVOUtil.success(teacher);
     }
 

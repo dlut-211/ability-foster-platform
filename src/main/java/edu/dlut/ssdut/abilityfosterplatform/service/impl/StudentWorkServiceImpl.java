@@ -38,7 +38,7 @@ public class StudentWorkServiceImpl implements StudentWorkService {
         } else {
             Classroom classroom = classroomMapper.selectByPrimaryKey(item1.getClassroomId());
             Date date = new Date();
-            if (classroom.getEndDate().compareTo(date) == -1) {
+            if ((classroom.getEndDate().compareTo(date) == -1)||classroom.getStatus()==4) {
                 return 200;
             } else {
                 System.out.println(endTime);

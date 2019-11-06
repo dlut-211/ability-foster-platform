@@ -14,4 +14,6 @@ public interface VStudentWorkDetailService {
     List<VStudentWorkDetailDTO> findAllByStudentWorkId(Integer studentWorkId);
 
     Integer insert(StudentWorkDetail studentWorkDetail);
+
+    List<StudentWorkDetail> selectByStudentWorkId(Integer studentWorkId);
 }
