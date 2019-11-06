@@ -9,9 +9,12 @@ import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
+
 
 /**
  * @AUTHOR: raymond
@@ -30,8 +33,12 @@ public class StudentWorkDetailController {
 
     @ApiOperation("按照学生作业ID获取学生作业列表")
     @GetMapping("/list")
-    public ResultVO list(@RequestParam("studentWorkId") Integer studentWorkId) {
-        return ResultVOUtil.success(vStudentWorkDetailService.findAllByStudentWorkId(studentWorkId));
+    public ResultVO list(@RequestParam("studentWorkId") Integer studentWorkId,
+                         @RequestParam(value = "page", defaultValue = "1") Integer page,
+                         @RequestParam(value = "limit", defaultValue = "10") Integer limit
+                         ) {
+        PageRequest request = PageRequest.of(page - 1, limit);
+        return ResultVOUtil.success(vStudentWorkDetailService.findAllByStudentWorkId(studentWorkId, request));
     }
 
     @ApiOperation("增加学生作业细节")

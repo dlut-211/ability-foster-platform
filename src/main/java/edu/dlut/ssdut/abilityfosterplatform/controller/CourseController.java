@@ -1,8 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.CourseDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
+import edu.dlut.ssdut.abilityfosterplatform.model.VCourse;
 import edu.dlut.ssdut.abilityfosterplatform.repository.CourseRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.CourseService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
@@ -55,10 +55,9 @@ public class CourseController {
     public ResultVO getCourseList(@RequestParam(value = "code", required = false, defaultValue = "") String code,
                                   @RequestParam(value = "name", required = false, defaultValue = "") String name,
                                   @RequestParam(name = "nowPage", defaultValue = "1") int nowPage,
-                                  @RequestParam(name = "pageSize", defaultValue = "10") int pageSize,
-                                  HttpServletRequest httpServletRequest) {
+                                  @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
         PageRequest request =  PageRequest.of(nowPage - 1, pageSize);
-        Page<CourseDTO> coursePage = courseService.findByParams(code, name, request, httpServletRequest);
+        Page<VCourse> coursePage = courseService.findByParams(code, name, request);
         return ResultVOUtil.success(coursePage);
     }
 
@@ -103,11 +102,9 @@ public class CourseController {
     public ResultVO getList(@RequestParam(value = "Code", required = false, defaultValue = "") String code,
                          @RequestParam(value = "Name", required = false, defaultValue = "") String name,
                          @RequestParam(name = "page", defaultValue = "1") int page,
-                         @RequestParam(name = "limit", defaultValue = "5") int limit,
-                         HttpServletRequest httpServletRequest){
-
+                         @RequestParam(name = "limit", defaultValue = "5") int limit){
         PageRequest request =  PageRequest.of(page - 1, limit);
-        Page<CourseDTO> coursePage = courseService.findByParams(code, name, request, httpServletRequest);
+        Page<VCourse> coursePage = courseService.findByParams(code, name, request);
         return ResultVOUtil.success(coursePage);
     }
 

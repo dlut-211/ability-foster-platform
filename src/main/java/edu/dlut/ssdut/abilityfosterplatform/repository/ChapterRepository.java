@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ChapterRepository extends JpaRepository<Chapter, Integer> {
 
-    List<Chapter> findByCourseId(Integer id);
+    List<Chapter> findByCourseIdOrderBySort(Integer id);
 
     List<Chapter> findAllByParentId(Integer parentId);
 

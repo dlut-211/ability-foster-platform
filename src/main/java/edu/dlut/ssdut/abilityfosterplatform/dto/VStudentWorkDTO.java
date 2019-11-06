@@ -29,7 +29,6 @@ public class VStudentWorkDTO {
 
     private String studentName;
 
-    @JsonSerialize(using = Date2LongSerializer.class)
     private Date submitTime;
 
     private Long useTime;
@@ -40,7 +39,6 @@ public class VStudentWorkDTO {
 
     private Integer isSubmit;
 
-    @JsonIgnore
     private String workPath;
 
 }

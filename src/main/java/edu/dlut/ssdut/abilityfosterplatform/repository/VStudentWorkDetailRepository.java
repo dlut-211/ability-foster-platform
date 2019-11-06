@@ -1,6 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.repository;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWorkDetail;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -11,5 +13,5 @@ import java.util.List;
  * DESCRIPTION:
  **/
 public interface VStudentWorkDetailRepository extends JpaRepository<VStudentWorkDetail, Integer> {
-    List<VStudentWorkDetail> findAllByStudentWorkId(Integer studentWorkId);
+    Page<VStudentWorkDetail> findAllByStudentWorkId(Integer studentWorkId, Pageable pageable);
 }

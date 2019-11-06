@@ -66,6 +66,7 @@ public class VStudentWorkServiceImpl implements VStudentWorkService {
             }
             vStudentWorkDTOList.add(vStudentWorkDTO);
         }
+        studentWorkDTO.setTotal(vStudentWorkDTOList.size());
         studentWorkDTO.setVStudentWorkDTOList(vStudentWorkDTOList);
         return studentWorkDTO;
     }

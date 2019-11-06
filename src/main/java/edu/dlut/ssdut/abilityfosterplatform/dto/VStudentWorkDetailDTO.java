@@ -1,10 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.dto;
 
-import edu.dlut.ssdut.abilityfosterplatform.converter.TimeFormatConverter;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.util.Date;
 
 /**
