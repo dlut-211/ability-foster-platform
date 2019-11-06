@@ -3,6 +3,9 @@ server:
   port: 8443
 
 spring:
+  thymeleaf:
+    prefix: classpath:/static/
+    suffix: .html
   datasource:
     # 驱动
     # 数据库连接已过时，com.mysql.jdbc.Driver被建议替换为com.mysql.cj.jdbc.Driver

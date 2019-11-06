@@ -16,6 +16,7 @@ import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -26,6 +27,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -58,6 +60,7 @@ public class TestPaperController {
     @ApiOperation("添加试卷")
     @PostMapping("/add")
     public ResultVO addTestPaper(TestPaperDTO testPaperDTO) {
+        System.out.println(testPaperDTO);
         Boolean addResult = testPaperService.addTestPaper(testPaperDTO);
         if (addResult) {
             return ResultVOUtil.success();
@@ -153,6 +156,7 @@ public class TestPaperController {
 
         excelData.add(head);
 
+
         String sheetName = "成绩";
         String fileName = new String("成绩导入模板.xls".getBytes("GBK"), "ISO-8859-1");
         ExcelUtil.exportExcel(response, excelData, sheetName, fileName, 15);
@@ -206,7 +210,7 @@ public class TestPaperController {
             testPaperDetailListA = testPaperDetailService.getTestPaperDetailOrder(1, testPaperId);
             testPaperDetailListB = testPaperDetailService.getTestPaperDetailOrder(2, testPaperId);
         }
-        System.out.println("-================================================================");
+        System.out.println("================================================================");
         for (int i = 0; i < testPaperDetailListB.size(); i++) {
             System.out.println(testPaperDetailListB.get(i));
         }
@@ -214,15 +218,15 @@ public class TestPaperController {
             for (int r = 1; r < sheet.getLastRowNum() + 1; r++) {  //对每一行进行增加
                 Row row = sheet.getRow(r);
                 if (row != null) {
-                    String classRoomStudentId = ExcelUtil.isNull(row.getCell(1).toString());
-
+                    String classRoomStudentId = ExcelUtil.isNull(ExcelUtil.getStringInExcel(row.getCell(0)));
+                    System.out.println(ExcelUtil.getStringInExcel(row.getCell(0)));
                     for (int i = 2 + testPaperType; i < 2 + testPaperType + questionsNumber; i++) {
 
                         TestPaperIdDto testPaperIdDto1 = new TestPaperIdDto();
                         testPaperIdDto1.setCreatedBy(new Date());
                         testPaperIdDto1.setCreatBy(teacherId);
                         testPaperIdDto1.setTestPaperId(testPaperDetailListA.get(i - 2 - testPaperType).getId());
-                        testPaperIdDto1.setClassRoomStudentId((int) Float.parseFloat(classRoomStudentId));
+                        testPaperIdDto1.setClassRoomStudentId(Integer.parseInt(classRoomStudentId));
                         String rowGetCell = null;
                         if (row.getCell(i) != null) {
                             rowGetCell = row.getCell(i).toString();
@@ -231,8 +235,6 @@ public class TestPaperController {
                         }
                         testPaperIdDto1.setScore(Float.parseFloat(rowGetCell));
                         testPaperIdDtoList.add(testPaperIdDto1);
-
-
                     }
                 }
             }
@@ -240,7 +242,7 @@ public class TestPaperController {
             for (int r = 1; r < sheet.getLastRowNum() + 1; r++) {  //对每一行进行增加
                 Row row = sheet.getRow(r);
                 if (row != null) {
-                    String classRoomStudentId = ExcelUtil.isNull(row.getCell(1).toString());
+                    String classRoomStudentId = ExcelUtil.isNull(ExcelUtil.getStringInExcel(row.getCell(0)));
                     System.out.println("================================================================");
                     System.out.println(row.getCell(3).toString());
                     if (row.getCell(3).toString().equals("1.0") || row.getCell(3).toString().equals("A") || row.getCell(3).toString().equals("a")) {
@@ -250,7 +252,8 @@ public class TestPaperController {
                             testPaperIdDto1.setCreatedBy(new Date());
                             testPaperIdDto1.setCreatBy(teacherId);
                             testPaperIdDto1.setTestPaperId(testPaperDetailListA.get(i - 2 - testPaperType).getId());
-                            testPaperIdDto1.setClassRoomStudentId((int) Float.parseFloat(classRoomStudentId));
+                            System.out.println( (row.getCell(0).toString()));
+                            testPaperIdDto1.setClassRoomStudentId( Integer.parseInt(classRoomStudentId));
                             String rowGetCell = null;
                             if (row.getCell(i) != null) {
                                 rowGetCell = row.getCell(i).toString();
@@ -268,7 +271,7 @@ public class TestPaperController {
                             testPaperIdDto1.setCreatedBy(new Date());
                             testPaperIdDto1.setCreatBy(teacherId);
                             testPaperIdDto1.setTestPaperId(testPaperDetailListB.get(i - 2 - testPaperType).getId());
-                            testPaperIdDto1.setClassRoomStudentId((int) Float.parseFloat(classRoomStudentId));
+                            testPaperIdDto1.setClassRoomStudentId(Integer.parseInt(classRoomStudentId));
                             String rowGetCell = null;
                             if (row.getCell(i) != null) {
                                 rowGetCell = row.getCell(i).toString();
@@ -295,4 +298,7 @@ public class TestPaperController {
 
         return ResultVOUtil.success(studentTestPaperService.insertStudentTestPaper(testPaperIdDtoList));
     }
+
+
+
 }

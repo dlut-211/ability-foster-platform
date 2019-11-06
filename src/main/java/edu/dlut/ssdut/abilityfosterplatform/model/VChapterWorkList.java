@@ -2,6 +2,8 @@ package edu.dlut.ssdut.abilityfosterplatform.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class VChapterWorkList {
 
@@ -18,6 +20,8 @@ public class VChapterWorkList {
     private Integer status;
 
     private String workName;
+
+    private Date layoutTime;
 
     private String description;
 

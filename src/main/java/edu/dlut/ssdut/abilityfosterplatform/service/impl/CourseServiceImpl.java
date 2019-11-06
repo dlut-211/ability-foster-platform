@@ -26,6 +26,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * @Author: raymond
+ * @Date: 2019/11/5 20:00
+ * @Description:
+ **/
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -33,10 +38,10 @@ public class CourseServiceImpl implements CourseService {
     private CourseRepository courseRepository;
 
     @Autowired
-    private SystemOptionRepository systemOptionRepository;
+    private VCourseRepository vCourseRepository;
 
     @Autowired
-    private TeacherRepository teacherRepository;
+    private SystemOptionRepository systemOptionRepository;
 
     @Autowired
     private ChapterRepository chapterRepository;
@@ -71,27 +76,8 @@ public class CourseServiceImpl implements CourseService {
      * @return
      */
     @Override
-    public Page<CourseDTO> findByParams(String code, String name, Pageable pageable, HttpServletRequest request) {
-        Page<Course> coursePage = courseRepository.findByCodeContainingAndNameContaining(code, name, pageable);
-        List<CourseDTO> courseDTOList = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(coursePage.getContent())) {
-            for (Course course : coursePage.getContent()) {
-                CourseDTO courseDTO = new CourseDTO();
-                BeanUtils.copyProperties(course, courseDTO);
-                SystemOption systemOption = systemOptionRepository.findById(course.getSubjectId()).orElse(null);
-                if (!ObjectUtils.isEmpty(systemOption)) {
-                    courseDTO.setSubjectName(systemOption.getOptionValue());
-                }
-
-                Teacher teacher = teacherRepository.findById(course.getCreatedBy()).orElse(null);
-                if (!ObjectUtils.isEmpty(teacher)) {
-                    courseDTO.setCreatedByName(teacher.getName());
-                }
-                courseDTOList.add(courseDTO);
-            }
-        }
-        Page<CourseDTO> courseDTOPage = new PageImpl<>(courseDTOList, pageable, coursePage.getTotalElements());
-        return courseDTOPage;
+    public Page<VCourse> findByParams(String code, String name, Pageable pageable) {
+        return vCourseRepository.findAllByCodeContainingAndNameContaining(code, name, pageable);
     }
 
     /**

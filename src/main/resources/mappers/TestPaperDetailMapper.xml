@@ -28,15 +28,15 @@
     where test_paper_id = #{testPaperId} And detail_type =1
   </select>
   <select id="getTestPaperDetailListA" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperListDetailDTO">
-    SELECT test_paper_detail.detail_number as detailNumber,'A卷' as detailTypeName,detail_type as detailType,test_paper_detail.id as Id,score,test_paper_detail.test_paper_id as testPaperId,test_paper_detail.title as title,GROUP_CONCAT(title,'(',test_paper_detail_knowledge.weight*100,'%)') as knowledgeName
-FROM  test_paper_detail left outer  join   test_paper_detail_knowledge on test_paper_detail_knowledge.test_paper_detail_id=test_paper_detail.id left join knowledge k on test_paper_detail_knowledge.knowledge_id = k.id
+   SELECT test_paper_detail.detail_number as detailNumber,'A卷' as detailTypeName,detail_type as detailType,test_paper_detail.id as Id,score,test_paper_detail.test_paper_id as testPaperId,test_paper_detail.title as title,GROUP_CONCAT(knowledge.name,'(',test_paper_detail_knowledge.weight*100,'%)') as knowledgeName
+FROM  test_paper_detail left outer  join   test_paper_detail_knowledge on test_paper_detail_knowledge.test_paper_detail_id=test_paper_detail.id left join knowledge k on test_paper_detail_knowledge.knowledge_id = k.id left join knowledge on test_paper_detail_knowledge.knowledge_id = knowledge.id
   where test_paper_detail.detail_type =1 and test_paper_id = #{test_paper_id}
     GROUP BY test_paper_detail.id;
   </select>
   <select id="getTestPaperDetailListB" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperListDetailDTO">
-    SELECT test_paper_detail.detail_number as detailNumber,'B卷' as detailTypeName,detail_type as detailType,test_paper_detail.id as Id,score,test_paper_detail.test_paper_id as testPaperId,test_paper_detail.title as title,GROUP_CONCAT(title,'(',test_paper_detail_knowledge.weight*100,'%)') as knowledgeName
-FROM  test_paper_detail left outer  join   test_paper_detail_knowledge on test_paper_detail_knowledge.test_paper_detail_id=test_paper_detail.id left join knowledge k on test_paper_detail_knowledge.knowledge_id = k.id
-  where test_paper_detail.detail_type =2 and test_paper_id = #{test_paper_id}
+ SELECT test_paper_detail.detail_number as detailNumber,'A卷' as detailTypeName,detail_type as detailType,test_paper_detail.id as Id,score,test_paper_detail.test_paper_id as testPaperId,test_paper_detail.title as title,GROUP_CONCAT(knowledge.name,'(',test_paper_detail_knowledge.weight*100,'%)') as knowledgeName
+FROM  test_paper_detail left outer  join   test_paper_detail_knowledge on test_paper_detail_knowledge.test_paper_detail_id=test_paper_detail.id left join knowledge k on test_paper_detail_knowledge.knowledge_id = k.id left join knowledge on test_paper_detail_knowledge.knowledge_id = knowledge.id
+ where test_paper_detail.detail_type =2 and test_paper_id = #{test_paper_id}
     GROUP BY test_paper_detail.id;
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

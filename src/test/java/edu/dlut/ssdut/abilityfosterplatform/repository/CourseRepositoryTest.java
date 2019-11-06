@@ -1,6 +1,7 @@
 package edu.dlut.ssdut.abilityfosterplatform.repository;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
+import edu.dlut.ssdut.abilityfosterplatform.model.VCourse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +15,4 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CourseRepositoryTest {
-
-    @Autowired
-    private CourseRepository courseRepository;
-
-    @Test
-    public void findByParams() {
-        PageRequest request = PageRequest.of(0, 5);
-        Page<Course> page = courseRepository.findByCodeContainingAndNameContaining("", "", request);
-        page.getContent().forEach(System.out::println);
-    }
-
 }
