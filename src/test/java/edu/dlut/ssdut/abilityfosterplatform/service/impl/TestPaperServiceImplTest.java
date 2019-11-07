@@ -3,6 +3,7 @@ package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDetailDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDetailKnowledgeDTO;
+import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
 import edu.dlut.ssdut.abilityfosterplatform.service.TestPaperService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,7 @@ public class TestPaperServiceImplTest {
         testPaperDTO.setTestPaperType(2);
         testPaperDTO.setA(Arrays.asList(testPaperDetailDTO));
 
-        Boolean result = testPaperService.addTestPaper(testPaperDTO);
+        TestPaper result = testPaperService.addTestPaper(testPaperDTO);
         System.out.println(result);
     }
 

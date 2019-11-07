@@ -15,7 +15,7 @@ import java.util.Map;
  * DESCRIPTION:
  **/
 public interface TestPaperService {
-    Boolean addTestPaper(TestPaperDTO testPaperDTO);
+    TestPaper addTestPaper(TestPaperDTO testPaperDTO);
 
     //试卷列表
     Map TestPaperPage(Integer classroomId, Pageable pageable);

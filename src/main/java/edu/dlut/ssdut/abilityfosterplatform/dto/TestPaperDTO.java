@@ -17,11 +17,10 @@ import java.util.List;
  **/
 
 @Data
-@DynamicUpdate
 public class TestPaperDTO {
 
     /** TestPaper 表中的 Id    **/
-    private  Integer id;
+    private Integer id;
 
     /** TestPaper 表中的 Name **/
     private String name;

@@ -63,7 +63,7 @@ public class TestPaperServiceImpl implements TestPaperService {
      */
     @Transactional
     @Override
-    public Boolean addTestPaper(TestPaperDTO testPaperDTO) {
+    public TestPaper addTestPaper(TestPaperDTO testPaperDTO) {
         // 1 添加试卷
         TestPaper testPaper = new TestPaper();
         BeanUtils.copyProperties(testPaperDTO, testPaper);
@@ -74,16 +74,46 @@ public class TestPaperServiceImpl implements TestPaperService {
         if (addedTestPaper == null) {
             throw new PlatformException(ResultEnum.ADD_TEST_PAPER_FAIL);
         }
-        Integer addTestPaperId = addedTestPaper.getId();
+        Integer addedTestPaperId = addedTestPaper.getId();
         // 2.2 为试卷试题添加刚加入的试卷id 作为外键
         Boolean testPaperInserted = false;
         if (!CollectionUtils.isEmpty(testPaperDTO.getA())) {
-           testPaperInserted = addTestPaperDetailDTO(testPaperDTO.getA(), addTestPaperId);
+            testPaperInserted = addTestPaperDetailDTO(testPaperDTO.getA(), addedTestPaperId);
         }
+        // 2.3 如果已成功插入 A 卷才可插入B卷
         if (testPaperInserted && !(CollectionUtils.isEmpty(testPaperDTO.getB()))) {
-            testPaperInserted = addTestPaperDetailDTO(testPaperDTO.getB(), addTestPaperId);
+            addTestPaperDetailDTO(testPaperDTO.getB(), addedTestPaperId);
         }
-        return testPaperInserted;
+        return addedTestPaper;
+    }
+
+    /**
+     * 添加试卷详情
+     * @param testPaperDetailDTOList
+     * @param testPaperId
+     * @return
+     */
+    private Boolean addTestPaperDetailDTO(List<TestPaperDetailDTO> testPaperDetailDTOList, Integer testPaperId) {
+        // 2.3 遍历试题列表
+        for (TestPaperDetailDTO testPaperDetailDTO : testPaperDetailDTOList) {
+            // 2.3.1 逐条插入试题详情
+            TestPaperDetail testPaperDetail = new TestPaperDetail();
+            BeanUtils.copyProperties(testPaperDetailDTO, testPaperDetail);
+            testPaperDetail.setTestPaperId(testPaperId);
+            // 2.3.2 新插入的试题详情
+            TestPaperDetail addedTestPaperDetail = testPaperDetailRepository.save(testPaperDetail);
+            if (ObjectUtils.isEmpty(addedTestPaperDetail)) {
+                throw new PlatformException(ResultEnum.ADD_TEST_PAPER_DETAIL_FAIL);
+            }
+            for (TestPaperDetailKnowledgeDTO testPaperDetailKnowledgeDTO : testPaperDetailDTO.getKnowledgeList()) {
+                // 2.3.2.1 插入知识点列表
+                TestPaperDetailKnowledge testPaperDetailKnowledge = new TestPaperDetailKnowledge();
+                BeanUtils.copyProperties(testPaperDetailKnowledgeDTO, testPaperDetailKnowledge);
+                testPaperDetailKnowledge.setTestPaperDetailId(addedTestPaperDetail.getId());
+                testPaperDetailKnowledgeRepository.save(testPaperDetailKnowledge);
+            }
+        }
+        return true;
     }
 
     /**
@@ -100,7 +130,6 @@ public class TestPaperServiceImpl implements TestPaperService {
         for (TestPaper testPaper : TestPapers){
             TestPaperABDTO testPaperABDTO =new TestPaperABDTO();
             List<TestPaperDetail> testPaperDetailList= testPaperDetailRepository.findAllByTestPaperId(testPaper.getId());
-            //BeanUtils.copyProperties(testPaperABDTO,testPaperDetailList);
             testPaperABDTO.setId(testPaper.getId());
             testPaperABDTO.setName(testPaper.getName());
             testPaperABDTO.setClassroomId(testPaper.getClassroomId());
@@ -119,7 +148,6 @@ public class TestPaperServiceImpl implements TestPaperService {
         map.put("content",testPaperABDTOS);
         map.put("numberOfElements",TestPapers.getTotalElements());
         return map;
-
     }
 
     /**
@@ -193,29 +221,6 @@ public class TestPaperServiceImpl implements TestPaperService {
         return testPaperEdited;
     }
 
-    private Boolean addTestPaperDetailDTO(List<TestPaperDetailDTO> testPaperDetailDTOList, Integer testPaperId) {
-        // 2.3 遍历试题列表
-        for (TestPaperDetailDTO testPaperDetailDTO : testPaperDetailDTOList) {
-            // 2.3.1 逐条插入试题详情
-            TestPaperDetail testPaperDetail = new TestPaperDetail();
-            BeanUtils.copyProperties(testPaperDetailDTO, testPaperDetail);
-            testPaperDetail.setTestPaperId(testPaperId);
-            // 2.3.2 新插入的试题详情
-            TestPaperDetail addedTestPaperDetail = testPaperDetailRepository.save(testPaperDetail);
-            if (addedTestPaperDetail == null) {
-                throw new PlatformException(ResultEnum.ADD_TEST_PAPER_DETAIL_FAIL);
-            }
-            for (TestPaperDetailKnowledgeDTO testPaperDetailKnowledgeDTO : testPaperDetailDTO.getKnowledgeList()) {
-                // 2.3.2.1 插入知识点列表
-                TestPaperDetailKnowledge testPaperDetailKnowledge = new TestPaperDetailKnowledge();
-                BeanUtils.copyProperties(testPaperDetailKnowledgeDTO, testPaperDetailKnowledge);
-                testPaperDetailKnowledge.setTestPaperDetailId(addedTestPaperDetail.getId());
-                testPaperDetailKnowledgeRepository.save(testPaperDetailKnowledge);
-            }
-        }
-        return true;
-    }
-
     /**
      * 布置考试
      * @param userId
@@ -223,7 +228,6 @@ public class TestPaperServiceImpl implements TestPaperService {
      * @param id
      * @return
      */
-
     @Override
     public Boolean examined(Integer userId, Integer status,Integer id) {
         TestPaper testPaper = testPaperMapper.selectByPrimaryKey(id);

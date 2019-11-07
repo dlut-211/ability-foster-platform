@@ -1,10 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperABDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperIdDto;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
-import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaperDetail;
 import edu.dlut.ssdut.abilityfosterplatform.service.StudentTestPaperService;
 import edu.dlut.ssdut.abilityfosterplatform.service.TeacherService;
@@ -16,18 +14,15 @@ import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -59,15 +54,8 @@ public class TestPaperController {
 
     @ApiOperation("添加试卷")
     @PostMapping("/add")
-    public ResultVO addTestPaper(TestPaperDTO testPaperDTO) {
-        System.out.println(testPaperDTO);
-        Boolean addResult = testPaperService.addTestPaper(testPaperDTO);
-        if (addResult) {
-            return ResultVOUtil.success();
-        } else {
-            return ResultVOUtil.error(ResultEnum.ADD_TEST_PAPER_FAIL.getCode(), ResultEnum.ADD_TEST_PAPER_DETAIL_FAIL.getMessage());
-        }
-
+    public ResultVO addTestPaper(@RequestBody TestPaperDTO testPaperDTO) {
+        return ResultVOUtil.success(testPaperService.addTestPaper(testPaperDTO));
     }
 
     @ApiOperation("试卷列表")
@@ -75,7 +63,7 @@ public class TestPaperController {
     public ResultVO TestPaperPage(@RequestParam(value = "page") int page,
                                   @RequestParam(value = "pageSize") int pageSize,
                                   @RequestParam(value = "classroomId") Integer classroomId) {
-        PageRequest request = PageRequest.of(page-1, pageSize);
+        PageRequest request = PageRequest.of(page - 1, pageSize);
         Map testList = testPaperService.TestPaperPage(classroomId, request);
         return ResultVOUtil.success(testList);
     }
