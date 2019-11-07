@@ -33,4 +33,6 @@ public class VCourse {
 
     private String subjectName;
 
+    private Integer subjectId;
+
 }
