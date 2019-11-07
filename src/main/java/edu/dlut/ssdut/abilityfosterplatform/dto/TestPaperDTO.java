@@ -38,7 +38,7 @@ public class TestPaperDTO {
     private List<TestPaperDetailDTO> A;
 
     /** B卷 **/
-    private List<TestPaperDetailDTO> B;
+    private List<TestPaperDetailDTO> B ;
 
     @JsonIgnore
     public TestPaperStatusEnum getTestPaperStatusEnum() {

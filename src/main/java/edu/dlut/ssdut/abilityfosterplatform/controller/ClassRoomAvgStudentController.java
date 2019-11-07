@@ -71,7 +71,7 @@ public class ClassRoomAvgStudentController {
                                      @RequestParam(value = "EndDateStart", required = false, defaultValue = "") String endDateStart,
                                      @RequestParam(value = "EndDateEnd", required = false, defaultValue = "") String endDateEnd,
                                      @RequestParam(value = "TermType", required = false, defaultValue = "") String termType1,
-                                     @RequestParam(value = "Status", required = false, defaultValue = "") String status1,
+                                     @RequestParam(value = "status", required = false, defaultValue = "") String status1,
                                      @RequestParam(value = "Name", required = false, defaultValue = "") String name,
                                      @RequestParam(name = "page", defaultValue = "1") int page,
                                      @RequestParam(name = "limit", defaultValue = "10") int limit,
@@ -90,6 +90,10 @@ public class ClassRoomAvgStudentController {
         }
         String teacherToken = httpServletRequest.getHeader("Authorization");
         //TODO:要通过当前登录教师的token查找他创建的课程，目前是全部展示
+
+        String token = httpServletRequest.getHeader("Authorization");
+        Integer teacherId = teacherService.getTeacherIdByToken(token);
+        System.out.println(teacherId);
 
         GetClassRoomListDTO  getClassRoomListDTO = new GetClassRoomListDTO();
         List<VClassroomList> vClassroomListList =classRoomService.getClassRoomList(beginDateStart,beginDateEnd,endDateStart,endDateEnd,termType,status,name,page,limit);
@@ -170,8 +174,8 @@ public class ClassRoomAvgStudentController {
 
             classroom.setCourseId(Integer.parseInt(params.get("CourseId")));
             classroom.setTermType(Integer.parseInt(params.get("TermType")));
-            classroom.setName(params.get("Name"));
-            classroom.setTestPerformanceWeight(new BigDecimal(params.get("TestPerformaceWeight")));
+            classroom.setName(params.get("name"));
+            classroom.setTestPerformanceWeight(new BigDecimal(params.get("testPerformanceWeight")));
             classroom.setDailyPerformanceWeight(new BigDecimal(params.get("dailyPerformanceWeight")));
             classroom.setStatus(1);
 

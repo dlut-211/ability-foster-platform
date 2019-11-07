@@ -24,14 +24,14 @@ public class ChapterController {
     @GetMapping(value = "/findChapterByCourseId" )
     public ResultVO findChapterByCourseId(@RequestParam("id") Integer id) {
         List<ChapterDTO> chapterDTOList = chapterService.findByCourseId(id);
-        List<ChapterDTO> chapterDTOList1=new ArrayList<>();
-        for (int i = 0; i < chapterDTOList.size(); i++) {
-            if(chapterDTOList.get(i).getChapterLevel()==1){
-                chapterDTOList1.add(chapterDTOList.get(i)) ;
-            }
-        }
+//        List<ChapterDTO> chapterDTOList1=new ArrayList<>();
+//        for (int i = 0; i < chapterDTOList.size(); i++) {
+//            if(chapterDTOList.get(i).getChapterLevel()==1){
+//                chapterDTOList1.add(chapterDTOList.get(i)) ;
+//            }
+//        }
 
-        return ResultVOUtil.success(chapterDTOList1);
+        return ResultVOUtil.success(chapterDTOList);
     }
 
     @ApiOperation("获取课程章节")

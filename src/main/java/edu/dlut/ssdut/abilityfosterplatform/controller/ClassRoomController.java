@@ -15,11 +15,11 @@ public class ClassRoomController {
     @Autowired
     private ClassRoomService classRoomService;
 
-    @ApiOperation("获取课堂列表")
-    @GetMapping("/list")
-    public ResultVO getClassroomList(){
-        return ResultVOUtil.success(classRoomService.getClassroomList());
-    }
+//    @ApiOperation("获取课堂列表")
+//    @GetMapping("/list")
+//    public ResultVO getClassroomList(){
+//        return ResultVOUtil.success(classRoomService.getClassroomList());
+//    }
 
     @ApiOperation("通过id查找课堂信息列表")
     @RequestMapping(value = "/selectClassroomByCid", method = RequestMethod.GET)
