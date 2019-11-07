@@ -5,13 +5,11 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.LoginInfoDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.SchoolTeacherDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
-import edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo;
-import edu.dlut.ssdut.abilityfosterplatform.model.School;
-import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
-import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
+import edu.dlut.ssdut.abilityfosterplatform.model.*;
 import edu.dlut.ssdut.abilityfosterplatform.repository.SchoolRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.SystemOptionRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.TeacherRepository;
+import edu.dlut.ssdut.abilityfosterplatform.repository.VSchoolTeacherRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.TeacherService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
@@ -43,7 +41,7 @@ public class TeacherController {
     @Autowired
     private TeacherRepository teacherRepository;
     @Autowired
-    private SystemOptionRepository systemOptionRepository;
+    private VSchoolTeacherRepository vSchoolTeacherRepository;
     @Autowired
     private SchoolRepository schoolRepository;
 
@@ -65,38 +63,20 @@ public class TeacherController {
                                    @RequestParam(value ="number",defaultValue = "")String number,
                                    @RequestParam(value ="status",defaultValue = "1")Integer status) {
         PageRequest request = PageRequest.of(page-1, limit);
-        Page<Teacher> teacherPage;
+        Page<VSchoolTeacher> teacherPage;
         if (name.isEmpty() && number.isEmpty())
         {
-            teacherPage =  teacherRepository.findTeachersByStatusEquals(status,request);
+            teacherPage = vSchoolTeacherRepository.findVSchoolTeachersByStatusEquals(status,request);
         }else if (!name.isEmpty() && number.isEmpty())
         {
-            teacherPage =  teacherRepository.findTeachersByNameContainsAndStatusEquals(name,status,request);
+            teacherPage = vSchoolTeacherRepository.findVSchoolTeachersByNameContainsAndStatusEquals(name,status,request);
         }
         else if (!number.isEmpty() && name.isEmpty()){
-            teacherPage =  teacherRepository.findTeachersByNumberEqualsAndStatusEquals(number,status,request);
+            teacherPage = vSchoolTeacherRepository.findVSchoolTeachersByNumberEqualsAndStatusEquals(number,status,request);
         }else{
-            teacherPage =  teacherRepository.findTeachersByNameContainsAndNumberEqualsAndStatusEquals(name,number,status,request);
+            teacherPage = vSchoolTeacherRepository.findVSchoolTeachersByNameContainsAndNumberEqualsAndStatusEquals(name,number,status,request);
         }
-        List<SchoolTeacherDTO> schoolTeacherDTOList = new ArrayList<>();
-        List<School> schoolList = schoolRepository.findAll();
-        for (Teacher teacher:teacherPage){
-            SchoolTeacherDTO schoolTeacherDTO = new SchoolTeacherDTO();
-//            SystemOption systemOption = systemOptionRepository.findById(teacher.getSubjectId()).orElse(null);
-//            if (ObjectUtils.isEmpty(systemOption)){
-//                throw new PlatformException(ResultEnum.SYSTEM_OPTION_NOT_FOUND);
-//            }
-            BeanUtils.copyProperties(teacher,schoolTeacherDTO);
-            for (School school:schoolList){
-                if (schoolTeacherDTO.getSchoolId().equals(school.getId())){
-                    schoolTeacherDTO.setSchoolName(school.getName());
-                }
-            }
-            schoolTeacherDTOList.add(schoolTeacherDTO);
-        }
-
-        Page<SchoolTeacherDTO> schoolTeacherDTOPage = new PageImpl<>(schoolTeacherDTOList,request,schoolTeacherDTOList.size());
-        return ResultVOUtil.success(schoolTeacherDTOPage);
+        return ResultVOUtil.success(teacherPage);
     }
 
     @ApiOperation("添加教师")
