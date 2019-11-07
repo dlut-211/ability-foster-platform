@@ -48,6 +48,13 @@ public class AbilityController {
         return ResultVOUtil.success(abilityRepository.findAbilitiesBySubjectIdEqualsAndNameContains(subjectId,name,request));
     }
 
+    @ApiOperation("按学科id查询能力点2")
+    @GetMapping("/SubjectAbility1")
+    public ResultVO selectBySubjectId1(@RequestParam(value= "subjectId") Integer subjectId, @RequestParam(value ="page",defaultValue = "1") Integer page, @RequestParam(value ="limit",defaultValue = "10")Integer limit, @RequestParam(value ="name",defaultValue = "")String name) {
+        PageRequest request = PageRequest.of(page-1, limit);
+        return ResultVOUtil.success(abilityRepository.findAbilitiesBySubjectIdEqualsAndNameEquals(subjectId,name,request));
+    }
+
     @ApiOperation("编辑条目")
     @PutMapping("/edit")
     public ResultVO editAbility(Ability ability) {
@@ -59,6 +66,7 @@ public class AbilityController {
     @ApiOperation("添加条目")
     @PostMapping("/add")
     public ResultVO addAbility(Ability ability) {
+        System.out.println(ability);
         ability.setCreatedOn(new Date());
         ability.setCreatedBy(1);
         return  ResultVOUtil.success(abilityRepository.saveAndFlush(ability));

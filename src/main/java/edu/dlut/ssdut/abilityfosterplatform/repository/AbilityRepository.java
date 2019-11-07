@@ -14,4 +14,6 @@ public interface AbilityRepository extends JpaRepository<Ability, Integer> {
     Page<Ability> findAbilitiesBySubjectId(Integer subjectId, Pageable pageable);
 
     Page<Ability> findAbilitiesBySubjectIdEqualsAndNameContains(Integer subjectId,String name,Pageable pageable);
+
+    Page<Ability> findAbilitiesBySubjectIdEqualsAndNameEquals(Integer subjectId,String name,Pageable pageable);
 }
