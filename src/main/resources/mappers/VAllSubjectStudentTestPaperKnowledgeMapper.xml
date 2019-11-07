@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.VAllSubjectStudentTestPaperKnowledgeMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.VAllSubjectStudentTestPaperKnowledge" >
+    <result column="subject_id" property="subjectId" jdbcType="INTEGER" />
+    <result column="coursename" property="coursename" jdbcType="VARCHAR" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="classroom_name" property="classroomName" jdbcType="VARCHAR" />
+    <result column="test_performance_weight" property="testPerformanceWeight" jdbcType="DECIMAL" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="student_number" property="studentNumber" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="test_paper_detail_id" property="testPaperDetailId" jdbcType="INTEGER" />
+    <result column="detail_number" property="detailNumber" jdbcType="INTEGER" />
+    <result column="detail_type" property="detailType" jdbcType="INTEGER" />
+    <result column="test_paper_detail_score" property="testPaperDetailScore" jdbcType="INTEGER" />
+    <result column="knowledge_id" property="knowledgeId" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="DECIMAL" />
+    <result column="test_title_score" property="testTitleScore" jdbcType="DECIMAL" />
+    <result column="test_title_score_sum" property="testTitleScoreSum" jdbcType="DECIMAL" />
+    <result column="classroom_id" property="classroomId" jdbcType="INTEGER" />
+    <result column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="knowledge_name" property="knowledgeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAllSubjectStudentTestPaperKnowledge" >
+    insert into v_all_subject_student_test_paper_knowledge (subject_id, coursename, course_id, 
+      classroom_name, test_performance_weight, student_id, 
+      student_name, student_number, score, 
+      test_paper_detail_id, detail_number, detail_type, 
+      test_paper_detail_score, knowledge_id, weight, 
+      test_title_score, test_title_score_sum, classroom_id, 
+      sid, knowledge_name)
+    values (#{subjectId,jdbcType=INTEGER}, #{coursename,jdbcType=VARCHAR}, #{courseId,jdbcType=INTEGER}, 
+      #{classroomName,jdbcType=VARCHAR}, #{testPerformanceWeight,jdbcType=DECIMAL}, #{studentId,jdbcType=INTEGER}, 
+      #{studentName,jdbcType=VARCHAR}, #{studentNumber,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
+      #{testPaperDetailId,jdbcType=INTEGER}, #{detailNumber,jdbcType=INTEGER}, #{detailType,jdbcType=INTEGER}, 
+      #{testPaperDetailScore,jdbcType=INTEGER}, #{knowledgeId,jdbcType=INTEGER}, #{weight,jdbcType=DECIMAL}, 
+      #{testTitleScore,jdbcType=DECIMAL}, #{testTitleScoreSum,jdbcType=DECIMAL}, #{classroomId,jdbcType=INTEGER}, 
+      #{sid,jdbcType=INTEGER}, #{knowledgeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.VAllSubjectStudentTestPaperKnowledge" >
+    insert into v_all_subject_student_test_paper_knowledge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subjectId != null" >
+        subject_id,
+      </if>
+      <if test="coursename != null" >
+        coursename,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="classroomName != null" >
+        classroom_name,
+      </if>
+      <if test="testPerformanceWeight != null" >
+        test_performance_weight,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="studentNumber != null" >
+        student_number,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="testPaperDetailId != null" >
+        test_paper_detail_id,
+      </if>
+      <if test="detailNumber != null" >
+        detail_number,
+      </if>
+      <if test="detailType != null" >
+        detail_type,
+      </if>
+      <if test="testPaperDetailScore != null" >
+        test_paper_detail_score,
+      </if>
+      <if test="knowledgeId != null" >
+        knowledge_id,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="testTitleScore != null" >
+        test_title_score,
+      </if>
+      <if test="testTitleScoreSum != null" >
+        test_title_score_sum,
+      </if>
+      <if test="classroomId != null" >
+        classroom_id,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="knowledgeName != null" >
+        knowledge_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subjectId != null" >
+        #{subjectId,jdbcType=INTEGER},
+      </if>
+      <if test="coursename != null" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="classroomName != null" >
+        #{classroomName,jdbcType=VARCHAR},
+      </if>
+      <if test="testPerformanceWeight != null" >
+        #{testPerformanceWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNumber != null" >
+        #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="testPaperDetailId != null" >
+        #{testPaperDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="detailNumber != null" >
+        #{detailNumber,jdbcType=INTEGER},
+      </if>
+      <if test="detailType != null" >
+        #{detailType,jdbcType=INTEGER},
+      </if>
+      <if test="testPaperDetailScore != null" >
+        #{testPaperDetailScore,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeId != null" >
+        #{knowledgeId,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="testTitleScore != null" >
+        #{testTitleScore,jdbcType=DECIMAL},
+      </if>
+      <if test="testTitleScoreSum != null" >
+        #{testTitleScoreSum,jdbcType=DECIMAL},
+      </if>
+      <if test="classroomId != null" >
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeName != null" >
+        #{knowledgeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByStudentId"  parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select subject_id from v_all_subject_student_test_paper_knowledge where student_id=#{studentId,jdbcType=INTEGER}
+  </select>
+</mapper>

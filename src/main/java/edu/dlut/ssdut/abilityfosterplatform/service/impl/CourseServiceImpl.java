@@ -93,7 +93,6 @@ public class CourseServiceImpl implements CourseService {
         String fileName = file.getOriginalFilename();
         String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
         System.out.println("fileType"+fileType);
-        if (fileType.equals(".zip")||fileType.equals(".war")||fileType.equals(".rar")) {
             map.put("fileName", fileName);
             if (fileName != null && fileName != "") {
                 // 新的文件名
@@ -108,8 +107,6 @@ public class CourseServiceImpl implements CourseService {
             }
             map.put("path", url);
             return map;
-        }
-        else return null;
     }
 
     /**

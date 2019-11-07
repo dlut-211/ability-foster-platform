@@ -1,6 +1,7 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.LoginInfoDTO;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.TeacherMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.User;
 import edu.dlut.ssdut.abilityfosterplatform.repository.UserRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.UserService;
