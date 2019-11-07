@@ -15,9 +15,10 @@ import java.util.List;
  * @Description:
  **/
 public interface VStudentTestPaperRepository extends JpaRepository<PStudentTestPaperDTO, Integer> {
-    @Query(value="SELECT  @rownum\\:=@rownum+1 as id, v_student_test_paper.* \n" +
+    @Query(value="SELECT * from (SELECT  @rownum\\:=@rownum+1 as id, v_student_test_paper.* \n" +
             " FROM v_student_test_paper ,(select @rownum\\:=0) temp \n" +
-            "WHERE test_paper_id = ?",nativeQuery = true)
+            "WHERE test_paper_id = ?) as A" +
+            "\tGROUP BY student_number,student_name,test_paper_id,detail_type",nativeQuery = true)
     List<PStudentTestPaperDTO> getVStudentTestPapersByTestPaperId(Integer testPaperId);
 
     @Query(value="\t\t select COUNT(*) from \n" +
