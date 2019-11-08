@@ -80,8 +80,8 @@ public class TestPaperController {
     }
 
     @ApiOperation("试卷编辑")
-    @PutMapping("/edit")
-    public ResultVO editTestPaper(TestPaperDTO testPaperDTO) {
+    @PostMapping("/edit")
+    public ResultVO editTestPaper(@RequestBody TestPaperDTO testPaperDTO) {
         Boolean result = testPaperService.editTestPaper(testPaperDTO);
         if (result) {
             return ResultVOUtil.success();
