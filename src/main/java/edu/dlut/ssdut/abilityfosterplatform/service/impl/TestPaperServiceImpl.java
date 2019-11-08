@@ -336,14 +336,16 @@ public class TestPaperServiceImpl implements TestPaperService {
                 throw new PlatformException(ResultEnum.EDIT_TEST_PAPER_FAIL);
             }
             else {
-                TestPaperDetail testPaperDetail = testPaperDetailRepository.findByTestPaperId(id);
-                if (!ObjectUtils.isEmpty(testPaperDetail)) {
-                    List<StudentTestPaper> studentTestPaperList = studentTestPaperMapper.selectByTestPaperDetailId(testPaperDetail.getId());
-                    if (studentTestPaperList!=null){
-                        for (StudentTestPaper studentTestPaper : studentTestPaperList) {
-                            int flag=studentTestPaperMapper.deleteByPrimaryKey(studentTestPaper.getId());
-                            if (flag!=1){
+                List<TestPaperDetail> testPaperDetailList = testPaperDetailRepository.findByTestPaperId(id);
+                if (!ObjectUtils.isEmpty(testPaperDetailList)) {
+                    for (TestPaperDetail testPaperDetail : testPaperDetailList){
+                        List<StudentTestPaper> studentTestPaperList = studentTestPaperMapper.selectByTestPaperDetailId(testPaperDetail.getId());
+                        if (studentTestPaperList != null) {
+                            for (StudentTestPaper studentTestPaper : studentTestPaperList) {
+                                int flag = studentTestPaperMapper.deleteByPrimaryKey(studentTestPaper.getId());
+                                if (flag != 1) {
                                 throw new PlatformException(ResultEnum.ADD_TEST_PAPER_DETAIL_FAIL);
+                                }
                             }
                         }
                     }
