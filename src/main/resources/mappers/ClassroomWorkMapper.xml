@@ -17,6 +17,19 @@
     id, classroom_id, work_id, status, end_time, layout_time, created_by, created_on, 
     modified_by, modified_on
   </sql>
+  <insert id="insertClassroomWorkList">
+    insert into classroom_work(classroom_id,work_id,status,created_by,created_on) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.classroomId},#{item.workId},#{item.status},#{item.createdBy},#{item.createdOn})
+    </foreach>
+  </insert>
+
+  <select id="getClassroomWork" resultMap="BaseResultMap">
+    select  w.id as work_id
+    from course join chapter c on course.id = c.course_id  join work w on c.id=w.chapter_id
+    where course.id=#{courseId}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

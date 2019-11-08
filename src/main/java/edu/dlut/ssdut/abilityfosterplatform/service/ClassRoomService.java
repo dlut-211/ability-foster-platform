@@ -3,7 +3,10 @@ package edu.dlut.ssdut.abilityfosterplatform.service;
 import edu.dlut.ssdut.abilityfosterplatform.model.Classroom;
 import edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
+
 /**
  * @Author YuJunMing
  * @Date 2019/10/25 11:50
@@ -32,4 +35,7 @@ public interface ClassRoomService {
     Classroom selectClassroomByCid(Integer id);
 
     List<Classroom> getClassroomList();
+
+    int addClassRoom(Map<String, String> params, Integer teacherId) throws ParseException;
+
 }

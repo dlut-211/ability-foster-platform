@@ -5,6 +5,7 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.NameAndAvgScoreDTO;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.VAvgClassroomScoreMapper;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.VAvgStudentClassroomScoreMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Classroom;
+import edu.dlut.ssdut.abilityfosterplatform.model.ClassroomWork;
 import edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList;
 import edu.dlut.ssdut.abilityfosterplatform.service.ClassRoomService;
 import edu.dlut.ssdut.abilityfosterplatform.service.TeacherService;
@@ -43,6 +44,7 @@ public class ClassRoomAvgStudentController {
 
     @Autowired
     private TeacherService teacherService;
+
     @GetMapping("/classRoomAvgScore")
     @ApiOperation("获取学生个人成绩与课程平均分")
     public ResultVO getclassRoomAvgScore(Integer studentId){
@@ -159,31 +161,11 @@ public class ClassRoomAvgStudentController {
         @PostMapping("/add")
     public ResultVO addClassRoom(@RequestParam Map<String, String> params , HttpServletRequest request) throws ParseException {
             String token = request.getHeader("Authorization");
-            if(token!=null){Integer teacherId=teacherService.getTeacherIdByToken(token);}
-            Classroom classroom = new Classroom();
+            Integer teacherId = 0;
 
-            String TimeStart = params.get("BeginDate").replace("Z", " UTC");
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
-            Date callbackTimeStart = format.parse(TimeStart);    //Fri Dec 28 00:00:00 GMT+08:00 2018
-            classroom.setBeginDate(callbackTimeStart);
+            if(token!=null){ teacherId=teacherService.getTeacherIdByToken(token);}
 
-             TimeStart = params.get("EndDate").replace("Z", " UTC");
-             format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
-            callbackTimeStart = format.parse(TimeStart);
-            classroom.setEndDate(callbackTimeStart);
-
-            classroom.setCourseId(Integer.parseInt(params.get("CourseId")));
-            classroom.setTermType(Integer.parseInt(params.get("TermType")));
-            classroom.setName(params.get("name"));
-            classroom.setTestPerformanceWeight(new BigDecimal(params.get("testPerformanceWeight")));
-            classroom.setDailyPerformanceWeight(new BigDecimal(params.get("dailyPerformanceWeight")));
-            classroom.setStatus(1);
-
-            classroom.setCreatedBy(1000);//如果传token了就可以直接用teacherId
-            classroom.setCreatedOn(new Date());
-            System.out.println(classroom);
-
-            return ResultVOUtil.success(classRoomService.insert(classroom));
+            return ResultVOUtil.success(classRoomService.addClassRoom( params,teacherId));
         }
 
     /**

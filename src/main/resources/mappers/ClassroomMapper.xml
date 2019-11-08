@@ -50,7 +50,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Classroom" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into classroom (begin_date, course_id,
@@ -63,7 +63,7 @@
       #{createdBy,jdbcType=INTEGER}, #{createdOn,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.Classroom" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into classroom

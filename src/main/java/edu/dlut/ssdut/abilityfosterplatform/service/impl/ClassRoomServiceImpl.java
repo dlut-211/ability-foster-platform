@@ -1,14 +1,22 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import edu.dlut.ssdut.abilityfosterplatform.mapper.ClassroomMapper;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.ClassroomWorkMapper;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.VClassroomListMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Classroom;
+import edu.dlut.ssdut.abilityfosterplatform.model.ClassroomWork;
 import edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList;
 import edu.dlut.ssdut.abilityfosterplatform.service.ClassRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
 /**
  * @Author YuJunMing
  * @Date 2019/10/25 11:50
@@ -20,6 +28,8 @@ public class ClassRoomServiceImpl implements ClassRoomService {
     private ClassroomMapper classroomMapper;
     @Autowired
     private VClassroomListMapper vClassroomListMapper;
+    @Autowired
+    private ClassroomWorkMapper classroomWorkMapper;
 
 
 /**
@@ -59,7 +69,9 @@ public class ClassRoomServiceImpl implements ClassRoomService {
 
     @Override
     public int insert(Classroom record) {
-        return classroomMapper.insert(record);
+
+         classroomMapper.insert(record);
+         return record.getId();
     }
 
     @Override
@@ -90,6 +102,53 @@ public class ClassRoomServiceImpl implements ClassRoomService {
     @Override
     public List<Classroom> getClassroomList(){
         return classroomMapper.getClassroomList();
+    }
+
+    @Override
+    public int addClassRoom(Map<String, String> params, Integer teacherId) throws ParseException {
+        Classroom classroom = new Classroom();
+
+        String TimeStart = params.get("BeginDate").replace("Z", " UTC");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
+        Date callbackTimeStart = format.parse(TimeStart);    //Fri Dec 28 00:00:00 GMT+08:00 2018
+        classroom.setBeginDate(callbackTimeStart);
+
+        TimeStart = params.get("EndDate").replace("Z", " UTC");
+        format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
+        callbackTimeStart = format.parse(TimeStart);
+        classroom.setEndDate(callbackTimeStart);
+
+        classroom.setCourseId(Integer.parseInt(params.get("CourseId")));
+        classroom.setTermType(Integer.parseInt(params.get("TermType")));
+        classroom.setName(params.get("name"));
+        classroom.setTestPerformanceWeight(new BigDecimal(params.get("testPerformanceWeight")));
+        classroom.setDailyPerformanceWeight(new BigDecimal(params.get("dailyPerformanceWeight")));
+        classroom.setStatus(1);
+
+        classroom.setCreatedBy(teacherId);//如果传token了就可以直接用teacherId
+        classroom.setCreatedOn(new Date());
+        System.out.println(classroom);
+
+
+        classroomMapper.insert(classroom);
+
+        Integer classRoomId =   classroom.getId();
+
+        List<ClassroomWork> classroomWorkList =  classroomWorkMapper.getClassroomWork(classroom.getCourseId());
+        for (int i = 0; i <classroomWorkList.size() ; i++) {
+            classroomWorkList.get(i).setClassroomId(classRoomId);
+            classroomWorkList.get(i).setStatus(0);//需要知道布置作业对应的状态字典
+            classroomWorkList.get(i).setCreatedOn(new Date());
+            classroomWorkList.get(i).setCreatedBy(teacherId);
+        }
+
+
+        for (int i = 0; i <classroomWorkList.size() ; i++) {
+            System.out.println(classroomWorkList.get(i));
+        }
+
+        classroomWorkMapper.insertClassroomWorkList(classroomWorkList);
+        return classRoomId;
     }
 
 }
