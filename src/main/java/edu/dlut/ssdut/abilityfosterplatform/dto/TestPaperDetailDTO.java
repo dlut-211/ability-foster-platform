@@ -29,9 +29,7 @@ public class TestPaperDetailDTO {
     /** 试卷详情类型 1 A卷 2 B卷 **/
     private Integer detailType;
 
-
-
-    /**  **/
+    /** 试卷详情知识点 **/
     private List<TestPaperDetailKnowledgeDTO> knowledgeList;
 
     public TestPaperDetailTypeEnum getTestPaperDetailTypeEnum() {

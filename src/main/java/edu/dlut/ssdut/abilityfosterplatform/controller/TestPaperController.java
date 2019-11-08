@@ -65,12 +65,11 @@ public class TestPaperController {
 
     @ApiOperation("试卷列表")
     @GetMapping("/list")
-    public ResultVO TestPaperPage(@RequestParam(value = "page") int page,
-                                  @RequestParam(value = "pageSize") int pageSize,
+    public ResultVO TestPaperPage(@RequestParam(value = "page", defaultValue = "1") int page,
+                                  @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                   @RequestParam(value = "classroomId") Integer classroomId) {
         PageRequest request = PageRequest.of(page - 1, pageSize);
-        Map testList = testPaperService.TestPaperPage(classroomId, request);
-        return ResultVOUtil.success(testList);
+        return ResultVOUtil.success(testPaperService.getTestPaperPage(classroomId, request));
     }
 
     @ApiOperation("试卷删除")

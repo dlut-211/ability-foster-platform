@@ -1,12 +1,10 @@
 package edu.dlut.ssdut.abilityfosterplatform.service;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperABDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TestPaperDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.TestPaper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +17,8 @@ public interface TestPaperService {
 
     //试卷列表
     Map TestPaperPage(Integer classroomId, Pageable pageable);
+
+    Page<TestPaperDTO> getTestPaperPage(Integer classroomId, Pageable pageable);
 
     //试卷删除
     void remove(Integer testPaperId);

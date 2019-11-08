@@ -24,10 +24,4 @@ public class TestPaperRepositoryTest {
         Assert.assertNotNull(testPaper);
     }
 
-    @Test
-    public void findTestPapersByClassroomId(){
-        PageRequest request = PageRequest.of(0,10);
-        Page<TestPaper> page = testPaperRepository.findTestPapersByClassroomId(2,request);
-        page.getContent().forEach(System.out::println);
-    }
 }

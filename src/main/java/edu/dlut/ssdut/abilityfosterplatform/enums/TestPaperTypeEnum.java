@@ -12,7 +12,7 @@ public enum TestPaperTypeEnum implements CodeEnum {
 
     A(1,"A卷"),
 
-    B(2,"B卷")
+    AB(2,"AB卷")
 
     ;
 

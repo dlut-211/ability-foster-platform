@@ -40,14 +40,4 @@ public class TestPaperDTO {
     /** B卷 **/
     private List<TestPaperDetailDTO> B ;
 
-    @JsonIgnore
-    public TestPaperStatusEnum getTestPaperStatusEnum() {
-        return EnumUtil.getByCode(status, TestPaperStatusEnum.class);
-    }
-
-    @JsonIgnore
-    public TestPaperTypeEnum getTestPaperTypeEnum() {
-        return EnumUtil.getByCode(testPaperType, TestPaperTypeEnum.class);
-    }
-
 }

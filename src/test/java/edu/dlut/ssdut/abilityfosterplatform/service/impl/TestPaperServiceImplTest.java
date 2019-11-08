@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
@@ -66,5 +68,12 @@ public class TestPaperServiceImplTest {
     @Test
     public void remove() {
         testPaperService.remove(40);
+    }
+
+    @Test
+    public void list() {
+        PageRequest request = PageRequest.of(0, 5);
+        Page<TestPaperDTO> testPaperDTOPage = testPaperService.getTestPaperPage(27, request);
+        testPaperDTOPage.getContent().forEach(System.out::println);
     }
 }

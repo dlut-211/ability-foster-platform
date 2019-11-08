@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * DESCRIPTION:
  **/
 public interface TestPaperRepository extends JpaRepository<TestPaper, Integer> {
-    Page<TestPaper> findTestPapersByClassroomId(Integer classroomId, Pageable pageable);
+    Page<TestPaper> findAllByClassroomId(Integer classroomId, Pageable pageable);
 }

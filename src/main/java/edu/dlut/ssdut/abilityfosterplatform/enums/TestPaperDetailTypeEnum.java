@@ -12,7 +12,7 @@ public enum TestPaperDetailTypeEnum implements CodeEnum {
 
     A(1,"A卷"),
 
-    AB(2,"AB卷")
+    B(2,"B卷")
 
     ;
 
