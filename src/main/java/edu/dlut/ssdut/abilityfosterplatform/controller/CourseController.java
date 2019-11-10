@@ -42,6 +42,9 @@ public class CourseController {
     @ApiOperation("上传文件")
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public ResultVO uploadFile(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) {
+        if(file.isEmpty()){
+            return ResultVOUtil.error(400, "请选择上传文件");
+        }
         Map<String, String> map = courseService.uploadFile(file, request);
         if (map!=null) {
             return ResultVOUtil.success(map);
