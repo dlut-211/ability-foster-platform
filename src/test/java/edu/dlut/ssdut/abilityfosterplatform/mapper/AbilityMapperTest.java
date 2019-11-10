@@ -29,7 +29,7 @@ public class AbilityMapperTest {
 
     @Test
     public void selectByPrimaryKey() {
-        System.out.println(mapper.selectByPrimaryKey(61).toString());
+        System.out.println(mapper.selectByPrimaryKey(5).toString());
     }
 
     @Test
