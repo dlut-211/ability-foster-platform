@@ -71,9 +71,9 @@ public class CourseController {
     }
 
     @ApiOperation("修改课程信息")
-    @RequestMapping(value = "/updateCourse", method = RequestMethod.PUT)
-    public ResultVO updateCourse(Course course) {
-        return ResultVOUtil.success(courseService.updateCourseById(course));
+    @PostMapping(value = "/updateCourse")
+    public ResultVO updateCourse(VCourse vCourse) {
+        return ResultVOUtil.success(courseService.updateCourse(vCourse));
     }
 
     /**

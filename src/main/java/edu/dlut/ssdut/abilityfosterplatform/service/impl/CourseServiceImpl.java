@@ -1,19 +1,14 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.CourseDTO;
-import edu.dlut.ssdut.abilityfosterplatform.enums.ClassroomStatusEnum;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
-import edu.dlut.ssdut.abilityfosterplatform.mapper.CourseMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.*;
 import edu.dlut.ssdut.abilityfosterplatform.repository.*;
 import edu.dlut.ssdut.abilityfosterplatform.service.CourseService;
-import edu.dlut.ssdut.abilityfosterplatform.utils.Const;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -59,9 +53,6 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private KnowledgeRepository knowledgeRepository;
 
-    @Autowired
-    private CourseMapper courseMapper;
-
     @Value("${uploadFile.resourceHandler}")
     private String resourceHandler;
 
@@ -75,7 +66,6 @@ public class CourseServiceImpl implements CourseService {
      * @param code
      * @param name
      * @param pageable
-     * @param request
      * @return
      */
     @Override
@@ -85,7 +75,6 @@ public class CourseServiceImpl implements CourseService {
 
     /**
      * 上传文件
-     * @param file
      * @param request
      * @return
      */
@@ -93,58 +82,35 @@ public class CourseServiceImpl implements CourseService {
     public Map<String,String> uploadFile(MultipartFile uploadFile, HttpServletRequest request) {
         Map<String, String> map = new HashMap<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
-        //构建文件上传所要保存的"文件夹路径"--这里是相对路径，保存到项目根路径的文件夹下
+        // 构建文件上传所要保存的"文件夹路径"--这里是相对路径，保存到项目根路径的文件夹下
         String realPath = new String("src/main/resources/" + UPLOAD_PATH_PREFIX);
-        //存放上传文件的文件夹
+        // 存放上传文件的文件夹
         String format = sdf.format(new Date());
-//存放上传文件的文件夹
+        // 存放上传文件的文件夹
         File file = new File(realPath + format);
         if(!file.isDirectory()){
-            //递归生成文件夹
+            // 递归生成文件夹
             file.mkdirs();
         }
-        //获取原始的名字  original:最初的，起始的  方法是得到原来的文件名在客户机的文件系统名称
+        // 获取原始的名字  original:最初的，起始的  方法是得到原来的文件名在客户机的文件系统名称
         String fileName = uploadFile.getOriginalFilename();
         map.put("fileName", fileName);
         if (fileName != null && fileName != "") {
             // 新的文件名
             fileName = new Date().getTime() + "_" + new Random().nextInt(1000) + fileName;
-            System.out.println(fileName);
         }
-// String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf("."),oldName.length());
-        System.out.println("真实的文件名"+fileName);
         try {
             //构建真实的文件路径
             File newFile = new File(file.getAbsolutePath() + File.separator + fileName);
-            //转存文件到指定路径，如果文件名重复的话，将会覆盖掉之前的文件,这里是把文件上传到 “绝对路径”
+            // 转存文件到指定路径，如果文件名重复的话，将会覆盖掉之前的文件,这里是把文件上传到 “绝对路径”
             uploadFile.transferTo(newFile);
             String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/uploadFile/" + format + fileName;
-            System.out.println("文件路径"+filePath);
             map.put("path", filePath);
             return map;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return map;
-//        Map<String, String> map = new HashMap<>();
-//        // 获取上传的文件名加后缀
-//        String fileName = file.getOriginalFilename();
-//        String fileType = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-//        System.out.println("fileType"+fileType);
-//            map.put("fileName", fileName);
-//            if (fileName != null && fileName != "") {
-//                // 新的文件名
-//                fileName = new Date().getTime() + "_" + new Random().nextInt(1000) + fileName;
-//            }
-//            String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
-//            url = url + resourceHandler.substring(0, resourceHandler.lastIndexOf("/") + 1) + fileName;
-//            try {
-//                file.transferTo(new File(uploadFileLocation, fileName));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            map.put("path", url);
-//            return map;
     }
 
     /**
@@ -157,10 +123,22 @@ public class CourseServiceImpl implements CourseService {
         return systemOptionList;
     }
 
+    /**
+     * 修改试图中所显示的数据
+     * @param vCourse
+     * @return
+     */
     @Override
-    public int updateCourseById(Course record) {
-        return courseMapper.updateByPrimaryKey(record);
+    public Course updateCourse(VCourse vCourse) {
+        Course course = courseRepository.findById(vCourse.getId()).orElse(null);
+        Date createdOn = course.getCreatedOn();
+        BeanUtils.copyProperties(vCourse, course);
+        course.setCreatedOn(createdOn);
+        // TODO 需要修改为当前登录的用户
+        course.setCreatedBy(1000);
+        return courseRepository.save(course);
     }
+
 
     /**
      * 删除课程

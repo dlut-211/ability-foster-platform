@@ -22,8 +22,7 @@ public interface CourseService {
     /** 获取所有的学科列表 **/
     List<SystemOption> getAllSubjectList();
 
-    /** 通过Id更新课程 **/
-    int updateCourseById(Course record);
+    Course updateCourse(VCourse vCourse);
 
     void deleteCourse(Integer courseId);
 
