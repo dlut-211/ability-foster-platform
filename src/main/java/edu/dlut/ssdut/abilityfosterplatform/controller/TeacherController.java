@@ -85,7 +85,8 @@ public class TeacherController {
         teacher.setEmail("");
         teacher.setToken("111");
         teacher.setStatus(1);
-        teacher.setPassword(teacher.getNumber());
+        String s = "123456";
+        teacher.setPassword(DigestUtils.md5DigestAsHex(s.getBytes()));
         teacher.setCreatedBy(1);
         teacher.setCreatedOn(new Date());
         return  ResultVOUtil.success(teacherRepository.saveAndFlush(teacher));
@@ -117,8 +118,9 @@ public class TeacherController {
     @PutMapping("/resetPassWord")
     public ResultVO resetPassWord(Integer id){
         Teacher teacher = teacherRepository.getOne(id);
-        teacher.setPassword("123456");
+        String s = "123456";
         teacher.setModifiedOn(new Date());
+        teacher.setPassword(DigestUtils.md5DigestAsHex(s.getBytes()));
         return ResultVOUtil.success(teacherService.updateByPrimaryKeySelective(teacher));
     }
 

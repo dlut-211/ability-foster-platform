@@ -51,6 +51,9 @@ public class ClassroomWorkController {
         if (i == 200) {
             return ResultVOUtil.error(400, "此课程已结课,布置失败");
         }
+        else if (i==400){
+            return ResultVOUtil.error(400, "课程未开课，布置失败");
+        }
         else if (i == 300) {
             return ResultVOUtil.error(400, "布置失败，请先导入学生");
         }
