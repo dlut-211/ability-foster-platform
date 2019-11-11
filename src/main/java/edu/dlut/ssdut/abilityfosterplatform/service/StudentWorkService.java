@@ -8,4 +8,6 @@ public interface StudentWorkService {
     int layoutWork(Integer userId, Integer classRoomWorkId, Date endTime);
 
     int revokeLayoutWork(Integer classroomWorkId, Integer userId);
+
+    int updateByPrimaryKey(StudentWork record);
 }

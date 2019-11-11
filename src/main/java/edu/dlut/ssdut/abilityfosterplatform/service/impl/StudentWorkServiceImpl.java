@@ -52,7 +52,7 @@ public class StudentWorkServiceImpl implements StudentWorkService {
                 } else {
                     int i = 0;
                     item1.setStatus(2);
-                    item1.setLayoutTime(endTime);
+                    item1.setLayoutTime(new Date());
                     item1.setModifiedBy(userId);
                     item1.setModifiedOn(endTime);
                     item1.setEndTime(endTime);
@@ -111,6 +111,13 @@ public class StudentWorkServiceImpl implements StudentWorkService {
                 System.out.println("第二个删除的i"+i);
             }
         }
+        return i;
+    }
+
+    @Override
+    public int updateByPrimaryKey(StudentWork record) {
+        record.setModifiedOn(new Date());
+        int i = studentWorkMapper.updateByPrimaryKey(record);
         return i;
     }
 }
