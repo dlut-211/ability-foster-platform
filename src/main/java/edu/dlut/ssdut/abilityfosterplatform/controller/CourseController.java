@@ -58,92 +58,51 @@ public class CourseController {
         else
             return ResultVOUtil.error(400, "上传失败");
     }
+
+
     @RequestMapping(value = "/testDownload", method = RequestMethod.GET)
-    public void Download(HttpServletResponse res,String filename) throws IOException {
-     //String filename = "1573460185791_40920191103.doc";
-        if (filename != null) {
-            FileInputStream is = null;
-            BufferedInputStream bs = null;
-            OutputStream os = null;
-            try {
-                File file = new File("src/main/resources/static/uploadFile/"+filename);
-                if (file.exists()) {
-                    //设置Headers
-                    res.setHeader("Content-Type","application/octet-stream");
-                    //设置下载的文件的名称-该方式已解决中文乱码问题
-                    res.setHeader("Content-Disposition","attachment;filename=" +  new String( filename.getBytes("gb2312"), "ISO8859-1" ));
-                    is = new FileInputStream(file);
-                    bs =new BufferedInputStream(is);
-                    os = res.getOutputStream();
-                    byte[] buffer = new byte[1024];
-                    int len = 0;
-                    while((len = bs.read(buffer)) != -1){
-                        os.write(buffer,0,len);
-                    }
-                }else{
-                   System.out.println("ccccccccc");
-                 //   res.sendRedirect("/imgUpload/imgList?error="+error);
-                }
-            }catch(IOException ex){
-                ex.printStackTrace();
-            }finally {
-                try{
-                    if(is != null){
-                        is.close();
-                    }
-                    if( bs != null ){
-                        bs.close();
-                    }
-                    if( os != null){
-                        os.flush();
-                        os.close();
-                    }
-                }catch (IOException e){
+    public void Download(HttpServletResponse res,String fileName) throws IOException {
+      // fileName = "1573460185791_40920191103.doc";
+        InputStream f = this.getClass().getResourceAsStream("/static/uploadFile1573460185791_40920191103.doc");
+        File file = new File("src/main/resources/static/uploadFile/" + fileName);
+        System.out.println("下载的文件名" + file.getAbsolutePath() + "-----------------");
+        Resource resource = new ClassPathResource("/static/uploadFile1573460185791_40920191103.doc");
+        File sourceFile = resource.getFile();
+        System.out.println("-----下载的文件名" + sourceFile.getAbsolutePath());
+        res.setHeader("content-type", "application/octet-stream");
+        res.setContentType("multipart/form-data");
+        res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        res.setContentType("multipart/form-data");
+        res.setContentType("application/x-msdownload;charset=utf-8");
+        res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        res.setContentType("multipart/form-data");
+        res.addHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes("UTF-8"), "iso-8859-1"));
+        res.setHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1"));
+        byte[] buff = new byte[1024];
+        BufferedInputStream bis = null;
+        OutputStream os = null;
+        try {
+            os = res.getOutputStream();
+            bis = new BufferedInputStream(new FileInputStream(new File(file.getAbsolutePath())));
+            int i = bis.read(buff);
+            while (i != -1) {
+                os.write(buff, 0, buff.length);
+                os.flush();
+                i = bis.read(buff);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bis != null) {
+                try {
+                    bis.close();
+                    System.out.println("success");
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
-
-        //InputStream f= this.getClass().getResourceAsStream("/static/uploadFile1573460185791_40920191103.doc");
-      //  File file = new File("src/main/resources/static/uploadFile/"+fileName);
-     //   System.out.println("下载的文件名"+file.getAbsolutePath()+"-----------------");
-      //  Resource resource = new ClassPathResource("/static/uploadFile1573460185791_40920191103.doc");
-    //    File sourceFile =  resource.getFile();
-    //    System.out.println("-----下载的文件名"+sourceFile.getAbsolutePath());
-     //   res.setHeader("content-type", "application/octet-stream");
-       // res.setContentType("multipart/form-data");
-     //   res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-      //  res.setContentType("multipart/form-data");
-     //   res.setContentType("application/x-msdownload;charset=utf-8");
-      //  res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-     //   res.setContentType("multipart/form-data");
-      // res.addHeader("Content-Disposition","attachment;fileName=" +new String(fileName.getBytes("UTF-8"),"iso-8859-1"));
-//      res.setHeader("Content-Disposition", "attachment;fileName="+ new String(fileName.getBytes("UTF-8"),"ISO-8859-1"));
-//        byte[] buff = new byte[1024];
-//        BufferedInputStream bis = null;
-//        OutputStream os = null;
-//        try {
-//            os = res.getOutputStream();
-//            bis = new BufferedInputStream(new FileInputStream(new File(file.getAbsolutePath())));
-//            int i = bis.read(buff);
-//            while (i != -1) {
-//                os.write(buff, 0, buff.length);
-//                os.flush();
-//                i = bis.read(buff);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (bis != null) {
-//                try {
-//                    bis.close();
-//                    System.out.println("success");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
 
 
 
