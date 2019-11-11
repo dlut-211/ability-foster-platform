@@ -81,7 +81,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Map<String,String> uploadFile(MultipartFile uploadFile, HttpServletRequest request) {
         Map<String, String> map = new HashMap<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         // 构建文件上传所要保存的"文件夹路径"--这里是相对路径，保存到项目根路径的文件夹下
         String realPath = new String("src/main/resources/" + UPLOAD_PATH_PREFIX);
         // 存放上传文件的文件夹
