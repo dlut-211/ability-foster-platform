@@ -22,6 +22,16 @@ public class TestResultAnalysis {
     {
         Integer i=Integer.valueOf(paperId);
         System.out.println(paperId);
-        return vKnowledgeTestPaperScoreService.getPaperAnalysis(i);
+        ArrayList<KnowledgeTestPaperAnalysis> knowledgeTestPaperAnalysisArrayList=vKnowledgeTestPaperScoreService.getPaperAnalysis(i);
+        if(knowledgeTestPaperAnalysisArrayList==null) return null;
+        for(KnowledgeTestPaperAnalysis knowledgeTestPaperAnalysis:knowledgeTestPaperAnalysisArrayList)
+        {
+            if(knowledgeTestPaperAnalysis.getKnowledgeName().length()>3)
+            {
+                String tmp=knowledgeTestPaperAnalysis.getKnowledgeName().substring(0,3)+"...";
+                knowledgeTestPaperAnalysis.setKnowledgeName(tmp);
+            }
+        }
+        return knowledgeTestPaperAnalysisArrayList;
     }
 }
