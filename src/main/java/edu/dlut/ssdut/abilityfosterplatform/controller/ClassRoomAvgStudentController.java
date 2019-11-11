@@ -133,6 +133,7 @@ public class ClassRoomAvgStudentController {
         getClassRoomListDTO.setTotal(classRoomService.getClassRoomListCount(beginDateStart,beginDateEnd,endDateStart,endDateEnd,termType,status,name,page,limit));
         return ResultVOUtil.success(getClassRoomListDTO);
     }
+
     /**
      * @Author YuJunMing
      * @Date 2019/10/26 8:19
@@ -194,7 +195,7 @@ public class ClassRoomAvgStudentController {
         classroom.setCourseId(Integer.parseInt(params.get("CourseId")));
         classroom.setTermType(Integer.parseInt(params.get("TermType")));
         classroom.setName(params.get("Name"));
-        classroom.setTestPerformanceWeight(new BigDecimal(params.get("TestPerformaceWeight")));
+        classroom.setTestPerformanceWeight(new BigDecimal(params.get("testPerformanceWeight")));
         classroom.setDailyPerformanceWeight(new BigDecimal(params.get("dailyPerformanceWeight")));
 
         return ResultVOUtil.success(classRoomService.updateByPrimaryKeySelective(classroom));
