@@ -105,6 +105,7 @@ public class ChapterWorkServiceImpl implements ChapterWorkService {
     @Transactional
     @Override
     public Work add(ChapterWorkDTO chapterWorkDTO) {
+        System.out.println(chapterWorkDTO);
         Work work = new Work();
         BeanUtils.copyProperties(chapterWorkDTO, work);
         work.setCreatedBy(1000);
@@ -115,6 +116,7 @@ public class ChapterWorkServiceImpl implements ChapterWorkService {
                 throw new PlatformException(ResultEnum.CHAPTER_WORK_EXISTS);
             }
         }
+
         Work result = workRepository.save(work);
         for (Integer workKnowledgeId : chapterWorkDTO.getKnowledgeIdList()) {
             WorkKnowledge workKnowledge = new WorkKnowledge();
@@ -141,7 +143,6 @@ public class ChapterWorkServiceImpl implements ChapterWorkService {
         List<WorkDTO> workDTOList = new ArrayList<>();
         // 2 knowledgeIdList
         List<Integer> knowledgeIdList = new ArrayList<>();
-
         List<Integer> workIdList = new ArrayList<>();
         // 3 查询同一章节下的作业
         List<Work> workList = workRepository.findAllByChapterId(chapterId);
@@ -155,7 +156,7 @@ public class ChapterWorkServiceImpl implements ChapterWorkService {
             BeanUtils.copyProperties(work, workDTO);
             // 4.2 同一个作业包含多个知识点
             List<WorkKnowledge> workKnowledgeList = workKnowledgeRepository.findAllByWorkId(work.getId());
-            knowledgeIdList = workKnowledgeList.stream().map(e -> e.getId()).collect(Collectors.toList());
+            knowledgeIdList = workKnowledgeList.stream().map(e -> e.getKnowledgeId()).collect(Collectors.toList());
             workDTO.setKnowledgeIdList(knowledgeIdList);
             workDTOList.add(workDTO);
             workIdList.add(work.getId());

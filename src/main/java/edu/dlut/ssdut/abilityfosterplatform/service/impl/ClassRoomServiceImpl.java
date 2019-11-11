@@ -137,7 +137,7 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         List<ClassroomWork> classroomWorkList =  classroomWorkMapper.getClassroomWork(classroom.getCourseId());
         for (int i = 0; i <classroomWorkList.size() ; i++) {
             classroomWorkList.get(i).setClassroomId(classRoomId);
-            classroomWorkList.get(i).setStatus(0);//需要知道布置作业对应的状态字典
+            classroomWorkList.get(i).setStatus(1);//需要知道布置作业对应的状态字典
             classroomWorkList.get(i).setCreatedOn(new Date());
             classroomWorkList.get(i).setCreatedBy(teacherId);
         }

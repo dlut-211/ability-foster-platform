@@ -142,10 +142,12 @@ public class ClassRoomAvgStudentController {
     @PutMapping("/editstatus")
     public ResultVO editStatus(@RequestParam Map<String, String> params , HttpServletRequest request){
         System.out.println(request.getHeader("Authorization"));
-        if(classRoomService.editStatus(params.get("Id"),params.get("Status")) >0){
-            if (params.get("Status").equals("2")){
+//        System.out.println("fasdjuiklfjasdiopfjsdiofhjasdiohdo"+params.get("status"));
+        if(classRoomService.editStatus(params.get("id"),params.get("status")) >0){
+            if (params.get("status").equals("2")){
+
                 return ResultVOUtil.success("开课成功");
-            }else if (params.get("Status").equals("4")){
+            }else if (params.get("status").equals("4")){
                 return ResultVOUtil.success("结课成功");
             }
         }
