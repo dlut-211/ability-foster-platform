@@ -45,6 +45,8 @@ public class StudentTestPaperController {
             score[j] = vStudentTestPaperRepository.getScoreByDAndDetailNumberAndTestPaperId(j+1,testPaperId);
         }
         Map[] list = new Map[count];
+        System.out.println(length);
+        System.out.println(count);
         for(int i=0;i<count;i++){
             int totalScore = 0;
             list[i] = new HashMap<String,Object>();

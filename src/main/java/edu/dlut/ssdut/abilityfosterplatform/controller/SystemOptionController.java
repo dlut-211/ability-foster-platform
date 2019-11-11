@@ -42,9 +42,9 @@ public class SystemOptionController {
             systemOptionPage = systemOptionRepository.findSystemOptionsByOptionValueContains(OptionValue,request);
         }
         else if (!OptionCode.isEmpty() && OptionValue.isEmpty()){
-            systemOptionPage = systemOptionRepository.findSystemOptionsByOptionCodeEquals(OptionCode,request);
+            systemOptionPage = systemOptionRepository.findSystemOptionsByOptionCodeContains(OptionCode,request);
         }else{
-            systemOptionPage = systemOptionRepository.findSystemOptionsByOptionValueContainsAndOptionCodeEquals(OptionValue,OptionCode,request);
+            systemOptionPage = systemOptionRepository.findSystemOptionsByOptionValueContainsAndOptionCodeContains(OptionValue,OptionCode,request);
         }
         return ResultVOUtil.success(systemOptionPage);
     }

@@ -10,9 +10,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public interface SystemOptionRepository extends JpaRepository<SystemOption, Integer> {
     Page<SystemOption> findAll(Pageable pageable);
 
-    Page<SystemOption> findSystemOptionsByOptionCodeEquals(String optionCode,Pageable pageable);
+    Page<SystemOption> findSystemOptionsByOptionCodeContains(String optionCode,Pageable pageable);
 
     Page<SystemOption> findSystemOptionsByOptionValueContains(String optionValue,Pageable pageable);
 
-    Page<SystemOption> findSystemOptionsByOptionValueContainsAndOptionCodeEquals(String optionValue,String optionCode,Pageable pageable);
+    Page<SystemOption> findSystemOptionsByOptionValueContainsAndOptionCodeContains(String optionValue,String optionCode,Pageable pageable);
 }
