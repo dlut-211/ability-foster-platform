@@ -38,11 +38,12 @@ public class StudentServiceImpl implements StudentService {
             Student student = studentMapper.selectByNumber(insertStudentDTOList.get(i).getStudentId().toString());
             if(student==null){
             studentMapper.insertStudent(insertStudentDTOList.get(i));
-            }else {
-                InsertStudentDTO insertStudentDTO =   insertStudentDTOList.get(i);
-                insertStudentDTO.setStudentId(student.getId());
-                insertStudentDTOList.set(i,insertStudentDTO);
             }
+//            else {
+//                InsertStudentDTO insertStudentDTO =   insertStudentDTOList.get(i);
+//                insertStudentDTO.setStudentId(student.getId());
+//                insertStudentDTOList.set(i,insertStudentDTO);
+//            }
         }
         if(classroomStudentMapper.insertStudentList(insertStudentDTOList)!=0){
                 return 1;

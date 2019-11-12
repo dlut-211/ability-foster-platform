@@ -45,7 +45,7 @@ public class StudentWorkDetailController {
     @PostMapping("/add")
     public ResultVO add(StudentWorkDetail studentWorkDetail){
         List<StudentWorkDetail> swd = vStudentWorkDetailService.selectByStudentWorkId(studentWorkDetail.getStudentWorkId());
-        if (swd==null){
+        if (swd.size()==0){
             int i=vStudentWorkDetailService.insert(studentWorkDetail);
             System.out.println(studentWorkDetail);
             if (i==1)

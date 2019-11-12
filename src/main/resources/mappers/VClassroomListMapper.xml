@@ -10,7 +10,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="daily_performance_weight" property="dailyPerformanceWeight" jdbcType="DECIMAL" />
-    <result column="test_performance_weight" property="testPerformaceWeight" jdbcType="DECIMAL" />
+    <result column="test_performance_weight" property="testPerformanceWeight" jdbcType="DECIMAL" />
     <result column="created_by" property="createdBy" jdbcType="INTEGER" />
     <result column="created_on" property="createdOn" jdbcType="TIMESTAMP" />
     <result column="code" property="courseCode" jdbcType="VARCHAR" />

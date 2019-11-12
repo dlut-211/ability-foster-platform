@@ -10,12 +10,18 @@ import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +58,55 @@ public class CourseController {
         else
             return ResultVOUtil.error(400, "上传失败");
     }
+
+
+    @RequestMapping(value = "/testDownload", method = RequestMethod.GET)
+    public void Download(HttpServletResponse res,String fileName) throws IOException {
+      // fileName = "1573460185791_40920191103.doc";
+        InputStream f = this.getClass().getResourceAsStream("/static/uploadFile1573460185791_40920191103.doc");
+        File file = new File("src/main/resources/static/uploadFile/" + fileName);
+        System.out.println("下载的文件名" + file.getAbsolutePath() + "-----------------");
+        Resource resource = new ClassPathResource("/static/uploadFile1573460185791_40920191103.doc");
+        File sourceFile = resource.getFile();
+        System.out.println("-----下载的文件名" + sourceFile.getAbsolutePath());
+        res.setHeader("content-type", "application/octet-stream");
+        res.setContentType("multipart/form-data");
+        res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        res.setContentType("multipart/form-data");
+        res.setContentType("application/x-msdownload;charset=utf-8");
+        res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        res.setContentType("multipart/form-data");
+        res.addHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes("UTF-8"), "iso-8859-1"));
+        res.setHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1"));
+        byte[] buff = new byte[1024];
+        BufferedInputStream bis = null;
+        OutputStream os = null;
+        try {
+            os = res.getOutputStream();
+            bis = new BufferedInputStream(new FileInputStream(new File(file.getAbsolutePath())));
+            int i = bis.read(buff);
+            while (i != -1) {
+                os.write(buff, 0, buff.length);
+                os.flush();
+                i = bis.read(buff);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bis != null) {
+                try {
+                    bis.close();
+                    System.out.println("success");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+
+
 
     @ApiOperation("通过课程编号、课程名称以及分页查询课程信息列表")
     @GetMapping("/getCourseList")

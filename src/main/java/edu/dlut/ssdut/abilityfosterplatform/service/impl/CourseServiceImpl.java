@@ -87,11 +87,12 @@ public class CourseServiceImpl implements CourseService {
         // 存放上传文件的文件夹
         String format = sdf.format(new Date());
         // 存放上传文件的文件夹
-        File file = new File(realPath + format);
+        File file = new File(realPath);
         if(!file.isDirectory()){
             // 递归生成文件夹
             file.mkdirs();
         }
+        System.out.println("文件的绝对路经"+file.getAbsolutePath());
         // 获取原始的名字  original:最初的，起始的  方法是得到原来的文件名在客户机的文件系统名称
         String fileName = uploadFile.getOriginalFilename();
         map.put("fileName", fileName);
@@ -103,6 +104,7 @@ public class CourseServiceImpl implements CourseService {
             //构建真实的文件路径
             File newFile = new File(file.getAbsolutePath() + File.separator + fileName);
             // 转存文件到指定路径，如果文件名重复的话，将会覆盖掉之前的文件,这里是把文件上传到 “绝对路径”
+            System.out.println("新文件的绝对路经"+newFile.getAbsolutePath());
             uploadFile.transferTo(newFile);
             String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/uploadFile/" + format + fileName;
             map.put("path", filePath);
@@ -112,6 +114,7 @@ public class CourseServiceImpl implements CourseService {
         }
         return map;
     }
+
 
     /**
      * 获取所有的学科列表
