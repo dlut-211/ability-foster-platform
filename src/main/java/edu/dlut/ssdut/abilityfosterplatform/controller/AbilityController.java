@@ -69,7 +69,12 @@ public class AbilityController {
         System.out.println(ability);
         ability.setCreatedOn(new Date());
         ability.setCreatedBy(1);
+        List<Ability> abilityList = abilityRepository.findAbilitiesByNameEquals(ability.getName());
+        if (abilityList.isEmpty()){
         return  ResultVOUtil.success(abilityRepository.saveAndFlush(ability));
+        }else{
+            return ResultVOUtil.error(800,"该能力点已存在");
+        }
     }
 
     @ApiOperation("删除条目")

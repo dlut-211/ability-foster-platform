@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * @Author: wdz
  * @Date: 2019/11/3 18:54
@@ -13,5 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SchoolRepository extends JpaRepository<School,Integer> {
     Page<School> findAll(Pageable pageable);
     Page<School> findSchoolsByNameContains(String name,Pageable pageable);
+    List<School> findSchoolsByNameEquals(String name);
 
 }

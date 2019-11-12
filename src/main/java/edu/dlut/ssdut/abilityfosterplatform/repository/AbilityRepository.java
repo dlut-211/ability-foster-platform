@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 /**
  * @Author: raymond
  * @Date 2019/10/16 21:47
@@ -16,4 +18,6 @@ public interface AbilityRepository extends JpaRepository<Ability, Integer> {
     Page<Ability> findAbilitiesBySubjectIdEqualsAndNameContains(Integer subjectId,String name,Pageable pageable);
 
     Page<Ability> findAbilitiesBySubjectIdEqualsAndNameEquals(Integer subjectId,String name,Pageable pageable);
+
+    List<Ability> findAbilitiesByNameEquals(String name);
 }

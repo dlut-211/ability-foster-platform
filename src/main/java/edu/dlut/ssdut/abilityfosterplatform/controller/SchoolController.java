@@ -33,8 +33,13 @@ public class SchoolController {
     @PostMapping("/add")
     public ResultVO addSchool(String name){
         School school = new School();
+        List<School> schoolList = schoolRepository.findSchoolsByNameEquals(name);
+        if(schoolList.isEmpty()){
         school.setName(name);
         return ResultVOUtil.success(schoolRepository.saveAndFlush(school));
+        }else {
+            return ResultVOUtil.error(800,"该学校已存在！");
+        }
     }
 
     @ApiOperation("删除学校")
