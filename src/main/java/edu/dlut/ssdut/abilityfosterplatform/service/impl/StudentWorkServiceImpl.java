@@ -40,7 +40,11 @@ public class StudentWorkServiceImpl implements StudentWorkService {
             Date date = new Date();
             if ((classroom.getEndDate().compareTo(date) == -1)||classroom.getStatus()==4) {
                 return 200;
-            } else {
+            }
+            else if (classroom.getStatus()==1){
+                return 400;
+            }
+            else {
                 System.out.println(endTime);
                 List<ClassroomStudent> classroomStudentList = classroomStudentMapper.selectByClassroomId(item1.getClassroomId());
                 if (classroomStudentList == null) {
