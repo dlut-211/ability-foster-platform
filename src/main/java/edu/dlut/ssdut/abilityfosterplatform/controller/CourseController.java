@@ -60,48 +60,41 @@ public class CourseController {
     }
 
 
-    @RequestMapping(value = "/testDownload", method = RequestMethod.GET)
-    public void Download(HttpServletResponse res,String fileName) throws IOException {
-      // fileName = "1573460185791_40920191103.doc";
-        InputStream f = this.getClass().getResourceAsStream("/static/uploadFile1573460185791_40920191103.doc");
+    @RequestMapping(value = "/fileDownload", method = RequestMethod.GET)
+    public void Download(HttpServletResponse response,String fileName) throws IOException {
         File file = new File("src/main/resources/static/uploadFile/" + fileName);
-        System.out.println("下载的文件名" + file.getAbsolutePath() + "-----------------");
-        Resource resource = new ClassPathResource("/static/uploadFile1573460185791_40920191103.doc");
-        File sourceFile = resource.getFile();
-        System.out.println("-----下载的文件名" + sourceFile.getAbsolutePath());
-        res.setHeader("content-type", "application/octet-stream");
-        res.setContentType("multipart/form-data");
-        res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-        res.setContentType("multipart/form-data");
-        res.setContentType("application/x-msdownload;charset=utf-8");
-        res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-        res.setContentType("multipart/form-data");
-        res.addHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes("UTF-8"), "iso-8859-1"));
-        res.setHeader("Content-Disposition", "attachment;fileName=" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1"));
-        byte[] buff = new byte[1024];
-        BufferedInputStream bis = null;
-        OutputStream os = null;
-        try {
-            os = res.getOutputStream();
-            bis = new BufferedInputStream(new FileInputStream(new File(file.getAbsolutePath())));
-            int i = bis.read(buff);
-            while (i != -1) {
-                os.write(buff, 0, buff.length);
-                os.flush();
-                i = bis.read(buff);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close();
-                    System.out.println("success");
-                } catch (IOException e) {
-                    e.printStackTrace();
+        if(file.exists()) {  //判断文件父目录是否存在
+            System.out.println("aaa");
+            response.setHeader("content-type", "application/octet-stream");
+            response.setContentType("application/octet-stream");
+            response.setHeader("Content-Disposition", "attachment;filename=" + fileName);  //3.设置content-disposition响应头控制浏览器以下载的形式打开文件
+
+            byte[] buff = new byte[1024];    //5.创建数据缓冲区
+            BufferedInputStream bis = null;
+            OutputStream os = null;
+            try {
+                os = response.getOutputStream(); //6.通过response对象获取OutputStream流
+                bis = new BufferedInputStream(new FileInputStream(file));     //4.根据文件路径获取要下载的文件输入流
+                int i = bis.read(buff);         //7.将FileInputStream流写入到buffer缓冲区
+                while (i != -1) {
+                    os.write(buff, 0, buff.length); //8.使用将OutputStream缓冲区的数据输出到客户端浏览器
+                    os.flush();
+                    i = bis.read(buff);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (bis != null) {
+                    try {
+                        bis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
+
+
     }
 
 

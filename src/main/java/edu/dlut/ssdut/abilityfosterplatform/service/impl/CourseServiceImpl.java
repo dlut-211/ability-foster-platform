@@ -85,7 +85,7 @@ public class CourseServiceImpl implements CourseService {
         // 构建文件上传所要保存的"文件夹路径"--这里是相对路径，保存到项目根路径的文件夹下
         String realPath = new String("src/main/resources/" + UPLOAD_PATH_PREFIX);
         // 存放上传文件的文件夹
-        String format = sdf.format(new Date());
+     //   String format = sdf.format(new Date());
         // 存放上传文件的文件夹
         File file = new File(realPath);
         if(!file.isDirectory()){
@@ -95,18 +95,19 @@ public class CourseServiceImpl implements CourseService {
         System.out.println("文件的绝对路经"+file.getAbsolutePath());
         // 获取原始的名字  original:最初的，起始的  方法是得到原来的文件名在客户机的文件系统名称
         String fileName = uploadFile.getOriginalFilename();
-        map.put("fileName", fileName);
+
         if (fileName != null && fileName != "") {
             // 新的文件名
             fileName = new Date().getTime() + "_" + new Random().nextInt(1000) + fileName;
         }
+        map.put("fileName", fileName);
         try {
             //构建真实的文件路径
             File newFile = new File(file.getAbsolutePath() + File.separator + fileName);
             // 转存文件到指定路径，如果文件名重复的话，将会覆盖掉之前的文件,这里是把文件上传到 “绝对路径”
-            System.out.println("新文件的绝对路经"+newFile.getAbsolutePath());
+            System.out.println("新文件的绝对路经"+request.getScheme()+newFile.getAbsolutePath());
             uploadFile.transferTo(newFile);
-            String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/uploadFile/" + format + fileName;
+            String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/uploadFile/" +  fileName;
             map.put("path", filePath);
             return map;
         } catch (Exception e) {
