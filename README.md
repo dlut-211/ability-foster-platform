@@ -55,6 +55,9 @@
     $ git merge origin/[branch_name]
     
     $ git push
+ 
+ ### 回退版本
+    $ git reset --hard 版本号
 
 ## ☑ TODO
 
