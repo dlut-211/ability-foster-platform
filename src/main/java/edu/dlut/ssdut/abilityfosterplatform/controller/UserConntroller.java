@@ -1,6 +1,7 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.LoginInfoDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.UpdatePasswordDTO;
 import edu.dlut.ssdut.abilityfosterplatform.service.UserService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
@@ -20,5 +21,18 @@ public class UserConntroller {
     public ResultVO selectByAccountAndPassword(LoginInfoDTO loginInfoDTO){
         loginInfoDTO.setPassword(DigestUtils.md5DigestAsHex(loginInfoDTO.getPassword().getBytes()));
         return ResultVOUtil.success(userService.selectByAccountAndPassword(loginInfoDTO));
+    }
+    @RequestMapping("editpassword")
+    public ResultVO editPassword(UpdatePasswordDTO updatePasswordDTO){
+        int i = userService.updatePassword(updatePasswordDTO);
+        if (i==0){
+            return ResultVOUtil.error(0, "修改失败，请重试");
+        }
+        else if(i==400){
+            return ResultVOUtil.error(400, "原始密码错误，请重试");
+        }
+        else {
+            return ResultVOUtil.success();
+        }
     }
 }
