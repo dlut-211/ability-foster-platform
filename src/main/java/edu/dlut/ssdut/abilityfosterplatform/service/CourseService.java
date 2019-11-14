@@ -24,6 +24,6 @@ public interface CourseService {
 
     Course updateCourse(VCourse vCourse);
 
-    void deleteCourse(Integer courseId);
+    Integer deleteCourse(Integer courseId);
 
 }

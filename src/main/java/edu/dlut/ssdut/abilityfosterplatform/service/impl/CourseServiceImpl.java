@@ -10,21 +10,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
+import sun.security.pkcs11.wrapper.Constants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.lang.invoke.ConstantCallSite;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * @Author: raymond
  * @Date: 2019/11/5 20:00
- * @Description:
+ * @Description: 课程相关业务逻辑层
  **/
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -63,10 +66,10 @@ public class CourseServiceImpl implements CourseService {
     public final static String UPLOAD_PATH_PREFIX = "static/uploadFile/";
     /**
      * 通过课程编号、课程名称返回CourseDTO列表及分页信息
-     * @param code
-     * @param name
-     * @param pageable
-     * @return
+     * @param code 课程编号
+     * @param name 课程名
+     * @param pageable 分页信息
+     * @return 分页列表
      */
     @Override
     public Page<VCourse> findByParams(String code, String name, Pageable pageable) {
@@ -123,8 +126,7 @@ public class CourseServiceImpl implements CourseService {
      */
     @Override
     public List<SystemOption> getAllSubjectList() {
-        List<SystemOption> systemOptionList = systemOptionRepository.findAll();
-        return systemOptionList;
+        return systemOptionRepository.findAll();
     }
 
     /**
@@ -150,15 +152,13 @@ public class CourseServiceImpl implements CourseService {
      */
     @Transactional
     @Override
-    public void deleteCourse(Integer courseId) {
+    public Integer deleteCourse(Integer courseId) {
         Course course = courseRepository.findById(courseId).orElse(null);
-        if (ObjectUtils.isEmpty(course)) {
-            throw new PlatformException(ResultEnum.COURSE_NOT_FOUND);
-        }
+
         List<Classroom> classroomList = classroomRepository.findAllByCourseId(courseId);
 
         if (!CollectionUtils.isEmpty(classroomList)) {
-            throw new PlatformException(ResultEnum.COURSE_BEING_USED);
+            return ResultEnum.COURSE_BEING_USED.getCode();
         }
         // 1 如果课程未被引用
         // 2 删除章节
@@ -185,6 +185,7 @@ public class CourseServiceImpl implements CourseService {
             knowledgeRepository.deleteInBatch(knowledgeList);
         }
         courseRepository.delete(course);
+        return ResultEnum.SUCCESS.getCode();
     }
 
 }

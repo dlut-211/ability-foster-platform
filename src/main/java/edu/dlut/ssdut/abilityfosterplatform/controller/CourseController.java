@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import edu.dlut.ssdut.abilityfosterplatform.model.VCourse;
@@ -14,6 +15,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -97,10 +99,6 @@ public class CourseController {
 
     }
 
-
-
-
-
     @ApiOperation("通过课程编号、课程名称以及分页查询课程信息列表")
     @GetMapping("/getCourseList")
     public ResultVO getCourseList(@RequestParam(value = "code", required = false, defaultValue = "") String code,
@@ -132,8 +130,13 @@ public class CourseController {
     @ApiOperation("删除课程信息")
     @RequestMapping(value = "/deleteCourse", method = RequestMethod.DELETE)
     public ResultVO deleteCourse(@RequestParam("id") Integer id) {
-        courseService.deleteCourse(id);
-        return ResultVOUtil.success("删除成功");
+        Integer result = courseService.deleteCourse(id);
+        if (result.equals(ResultEnum.SUCCESS.getCode())) {
+            return ResultVOUtil.success("删除成功");
+        } else {
+            return ResultVOUtil.error(result, "删除失败-课程正在被引用");
+        }
+
     }
 
     @ApiOperation("查询所有学科信息")
