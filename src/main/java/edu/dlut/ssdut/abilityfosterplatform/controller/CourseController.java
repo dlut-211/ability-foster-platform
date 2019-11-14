@@ -61,7 +61,7 @@ public class CourseController {
             return ResultVOUtil.error(400, "上传失败");
     }
 
-
+    @ApiOperation("下载文件")
     @RequestMapping(value = "/fileDownload", method = RequestMethod.GET)
     public void Download(HttpServletResponse response,String fileName) throws IOException {
         File file = new File("src/main/resources/static/uploadFile/" + fileName);
