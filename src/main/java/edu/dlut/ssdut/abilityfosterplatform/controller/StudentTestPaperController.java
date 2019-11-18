@@ -37,6 +37,8 @@ public class StudentTestPaperController {
     @ApiOperation("学生考试成绩")
     @GetMapping("/testpaperlist")
     public ResultVO getTestPaperList(@RequestParam(value= "testPaperId") Integer testPaperId){
+        System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+
         int length = testPaperDetailRepository.getCountByTestPaperId(testPaperId);//每条记录题个数
         int count = vStudentTestPaperRepository.getCountStudentTestPaper(testPaperId);//记录条数
         List<PStudentTestPaperDTO> pStudentTestPaperDTOS = vStudentTestPaperRepository.getVStudentTestPapersByTestPaperId(testPaperId);

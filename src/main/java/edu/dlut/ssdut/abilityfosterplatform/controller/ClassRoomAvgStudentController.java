@@ -74,7 +74,7 @@ public class ClassRoomAvgStudentController {
                                      @RequestParam(value = "EndDateEnd", required = false, defaultValue = "") String endDateEnd,
                                      @RequestParam(value = "TermType", required = false, defaultValue = "") String termType1,
                                      @RequestParam(value = "status", required = false, defaultValue = "") String status1,
-                                     @RequestParam(value = "Name", required = false, defaultValue = "") String name,
+                                     @RequestParam(value = "name", required = false, defaultValue = "") String name,
                                      @RequestParam(name = "page", defaultValue = "1") int page,
                                      @RequestParam(name = "limit", defaultValue = "10") int limit,
                                      HttpServletRequest httpServletRequest) throws ParseException {

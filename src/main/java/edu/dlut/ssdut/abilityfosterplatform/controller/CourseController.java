@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
@@ -10,7 +11,11 @@ import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.util.IOUtils;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.Constants;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -27,6 +32,16 @@ import java.io.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
+import static com.mysql.cj.conf.PropertyKey.logger;
 
 @Api(tags = "CourseController")
 @RestController
@@ -101,10 +116,12 @@ public class CourseController {
 
     @ApiOperation("通过课程编号、课程名称以及分页查询课程信息列表")
     @GetMapping("/getCourseList")
-    public ResultVO getCourseList(@RequestParam(value = "code", required = false, defaultValue = "") String code,
-                                  @RequestParam(value = "name", required = false, defaultValue = "") String name,
-                                  @RequestParam(name = "nowPage", defaultValue = "1") int nowPage,
-                                  @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
+    public ResultVO getCourseList(@RequestParam(value = "Code", required = false, defaultValue = "") String code,
+                                  @RequestParam(value = "Name", required = false, defaultValue = "") String name,
+//                                  @RequestParam(name = "nowPage", defaultValue = "1") int nowPage,
+//                                  @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
+                                  @RequestParam(name = "page", defaultValue = "1") int nowPage,
+                                 @RequestParam(name = "limit", defaultValue = "10") int pageSize) {
         PageRequest request =  PageRequest.of(nowPage - 1, pageSize);
         Page<VCourse> coursePage = courseService.findByParams(code, name, request);
         return ResultVOUtil.success(coursePage);
@@ -161,5 +178,45 @@ public class CourseController {
         Page<VCourse> coursePage = courseService.findByParams(code, name, request);
         return ResultVOUtil.success(coursePage);
     }
+
+//    /**
+//     * @Author YuJunMing
+//     * @Date 2019/11/12 12:31
+//     * DESCRIPTION:
+//     */
+//    //TODO:待完成
+//    @ApiOperation("下载doc")
+//    @RequestMapping("/testDownload1")
+//    public void testDownload(HttpServletRequest request,HttpServletResponse response) {
+//
+//        FileInputStream fis = null;
+//        XWPFDocument document;
+//        try {
+//            //获取文件路径
+//            String filepath = "C:\\Users\\yu\\Desktop\\郁骏铭2019.10.28进度.doc";
+//            File file = new File(filepath);
+//            String filename = file.getName();
+//            fis = new FileInputStream(file);
+//            //设置文件名及后缀
+//            response.setHeader("Content-Disposition", "attachment; filename=" + new String(filename.getBytes(), "ISO-8859-1"));
+//
+//                document = new XWPFDocument(OPCPackage.open(fis));
+//                document.write(response.getOutputStream());
+//
+//        } catch (FileNotFoundException e) {
+//        } catch (IOException e) {
+//        }  catch (org.apache.poi.openxml4j.exceptions.InvalidFormatException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (fis != null) {
+//                try {
+//                    fis.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//    }
 
 }
