@@ -225,8 +225,8 @@
     <selectKey keyProperty="studentId" order="AFTER" resultType="java.lang.Integer" >
       select LAST_INSERT_ID()
     </selectKey>
-    insert into student(class_name,email,mobile,name,number,status,created_by,created_on,school) VALUES
-       (#{className},#{email},#{mobile},#{name},#{studentId},#{status},#{createdBy},#{creatOn},#{school})
+    insert into student(class_name,email,mobile,name,number,status,created_by,created_on,school,password) VALUES
+       (#{className},#{email},#{mobile},#{name},#{studentId},#{status},#{createdBy},#{creatOn},#{school},#{password})
   </insert>
 
   <select id="selectByNumber" resultMap="BaseResultMap">

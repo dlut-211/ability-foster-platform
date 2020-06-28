@@ -10,7 +10,7 @@ spring:
     # 驱动
     # 数据库连接已过时，com.mysql.jdbc.Driver被建议替换为com.mysql.cj.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://114.115.184.18:3306/ces_dev?serverTimezone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://47.99.65.198:3306/ces_dev?serverTimezone=UTC&characterEncoding=utf-8
     # 注意修改数据库连接信息
     username: root
     password: root
@@ -41,8 +41,10 @@ mybatis:
   configuration:
     # 开启驼峰映射
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #自己修改要保存的文件夹根目录
 uploadFile:
   resourceHandler: /uploadFiles/**
   location: F:/UploadFiles/
+

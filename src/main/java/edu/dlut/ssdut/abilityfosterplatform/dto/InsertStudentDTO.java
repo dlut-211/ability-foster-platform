@@ -32,4 +32,7 @@ public class InsertStudentDTO {
     private Integer status;
 
     private String school;
+
+    private String password;
+
 }

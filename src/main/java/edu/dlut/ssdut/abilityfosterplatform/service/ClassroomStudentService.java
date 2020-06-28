@@ -27,4 +27,6 @@ public interface ClassroomStudentService {
     Integer insertStudentList(List<InsertStudentDTO> insertStudentDTOS);
 
     List<ClassRoomStudentListDTO> getClassroomStudentList(Integer classRoomId, String studentNumber, String studentName, String studentSchool, String studentClassName, int page, int limit);
+
+    int selectStudentCount(Integer classRoomId, String studentNumber, String studentName, String studentSchool, String studentClassName);
 }

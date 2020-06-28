@@ -37,7 +37,9 @@ public class StudentServiceImpl implements StudentService {
         for(int i =0;i<insertStudentDTOList.size();i++){
             Student student = studentMapper.selectByNumber(insertStudentDTOList.get(i).getStudentId().toString());
             if(student==null){
-            studentMapper.insertStudent(insertStudentDTOList.get(i));
+                Integer studentId = insertStudentDTOList.get(i).getStudentId();
+                studentMapper.insertStudent(insertStudentDTOList.get(i));
+                insertStudentDTOList.get(i).setStudentId(studentId);
             }
 //            else {
 //                InsertStudentDTO insertStudentDTO =   insertStudentDTOList.get(i);

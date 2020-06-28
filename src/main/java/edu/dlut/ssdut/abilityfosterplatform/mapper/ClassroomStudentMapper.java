@@ -26,5 +26,6 @@ public interface ClassroomStudentMapper {
 
     List<ClassroomStudent>selectByClassroomId(Integer classroomId);
 
+    int selectStudentCount(Integer classRoomId, String studentNumber, String studentName, String studentSchool, String studentClassName);
 }
 

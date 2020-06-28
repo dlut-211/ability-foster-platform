@@ -1,9 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
-import edu.dlut.ssdut.abilityfosterplatform.dto.InsertStudentDTO;
-import edu.dlut.ssdut.abilityfosterplatform.dto.VCharterWorkDto;
-import edu.dlut.ssdut.abilityfosterplatform.dto.VStudentWorkChapterDto;
-import edu.dlut.ssdut.abilityfosterplatform.dto.VStudentWorkInfoDto;
+import edu.dlut.ssdut.abilityfosterplatform.dto.*;
 import edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkZjk;
 import edu.dlut.ssdut.abilityfosterplatform.model.VClassroomStudentInfo;
 import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWork;
@@ -25,6 +22,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -154,7 +152,9 @@ public class VClassroomStudentInfoController {
                 insertStudentDTO.setClassroomId(classRoomId);
                 insertStudentDTO.setCreatedBy(teacherId);
                 insertStudentDTO.setCreatOn(new Date());
+                insertStudentDTO.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
                 insertStudentDTOList.add(insertStudentDTO);
+
             }
         }
         for (int i=0;i<insertStudentDTOList.size();i++){
@@ -179,7 +179,10 @@ public class VClassroomStudentInfoController {
                          @RequestParam(name = "page", defaultValue = "1") int page,
                          @RequestParam(name = "limit", defaultValue = "10") int limit,
                          HttpServletRequest httpServletRequest){
-        return ResultVOUtil.success( classroomStudentService.getClassroomStudentList(classRoomId,studentNumber,studentName,studentSchool,studentClassName,page,limit));
+        GetClassRoomStudentListDTO getClassRoomStudentListDTO = new GetClassRoomStudentListDTO();
+        getClassRoomStudentListDTO.setList(classroomStudentService.getClassroomStudentList(classRoomId, studentNumber, studentName, studentSchool, studentClassName, page, limit));
+        getClassRoomStudentListDTO.setTotal(classroomStudentService.selectStudentCount(classRoomId, studentNumber, studentName, studentSchool, studentClassName));
+        return ResultVOUtil.success(getClassRoomStudentListDTO);
     }
 
     /**

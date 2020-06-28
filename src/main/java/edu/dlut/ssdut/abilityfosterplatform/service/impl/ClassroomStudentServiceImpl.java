@@ -62,5 +62,10 @@ public class ClassroomStudentServiceImpl implements ClassroomStudentService {
         return classroomStudentMapper.getClassroomStudentList(classRoomId,studentNumber,studentName,studentSchool,studentClassName,tmp,limit);
     }
 
+    @Override
+    public int selectStudentCount(Integer classRoomId, String studentNumber, String studentName, String studentSchool, String studentClassName) {
+        return classroomStudentMapper.selectStudentCount(classRoomId, studentNumber,studentName, studentSchool, studentClassName);
+    }
+
 
 }
