@@ -24,4 +24,5 @@ public interface TeacherService {
 
     Integer getTeacherIdByToken(String string);
 
+    void updateToken(String token);
 }

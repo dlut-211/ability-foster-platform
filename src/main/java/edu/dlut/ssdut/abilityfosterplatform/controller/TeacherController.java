@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @Api(tags = "TeacherController")
@@ -50,8 +51,13 @@ public class TeacherController {
     public ResultVO selectByAccountAndPassword(LoginInfo loginInfo, HttpServletRequest request) {
         loginInfo.setPassword(DigestUtils.md5DigestAsHex(loginInfo.getPassword().getBytes()));
         Teacher teacher = teacherService.selectByAccountAndPassword(loginInfo);
-        if (teacher!=null)
+        if (teacher!=null){
             request.getSession().setAttribute("username", teacher.getName());
+            //更新token
+            String token = UUID.randomUUID().toString().replace("-", "");
+            teacherService.updateToken(token);
+        }
+
         return ResultVOUtil.success(teacher);
     }
 

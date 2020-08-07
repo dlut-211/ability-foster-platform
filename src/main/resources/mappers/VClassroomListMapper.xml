@@ -35,6 +35,7 @@
     <if test="termType != null and termType!= ''" >
       and term_type  = #{termType}
     </if>
+    order by  created_on DESC
         limit #{tmp},#{limit};
   </select>
     <select id="getClassRoomListCount" resultType="java.lang.Integer">

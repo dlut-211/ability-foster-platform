@@ -26,11 +26,11 @@ public class TestResultAnalysis {
         if(knowledgeTestPaperAnalysisArrayList==null) return null;
         for(KnowledgeTestPaperAnalysis knowledgeTestPaperAnalysis:knowledgeTestPaperAnalysisArrayList)
         {
-            if(knowledgeTestPaperAnalysis.getKnowledgeName().length()>3)
-            {
-                String tmp=knowledgeTestPaperAnalysis.getKnowledgeName().substring(0,3)+"...";
-                knowledgeTestPaperAnalysis.setKnowledgeName(tmp);
-            }
+//            if(knowledgeTestPaperAnalysis.getKnowledgeName().length()>3)
+//            {
+//                String tmp=knowledgeTestPaperAnalysis.getKnowledgeName().substring(0,3)+"...";
+//                knowledgeTestPaperAnalysis.setKnowledgeName(tmp);
+//            }
         }
         return knowledgeTestPaperAnalysisArrayList;
     }

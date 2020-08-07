@@ -188,6 +188,9 @@
       school_id = #{schoolId,jdbcType=INTEGER},
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateToken">
+    update teacher set token=#{token}
+  </update>
   <select id="getTeacherIdByToken" resultType="java.lang.Integer">
     select Id
     from Teacher

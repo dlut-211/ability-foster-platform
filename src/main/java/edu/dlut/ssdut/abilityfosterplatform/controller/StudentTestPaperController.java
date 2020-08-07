@@ -38,10 +38,10 @@ public class StudentTestPaperController {
     @GetMapping("/testpaperlist")
     public ResultVO getTestPaperList(@RequestParam(value= "testPaperId") Integer testPaperId){
         System.out.println("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
-
         int length = testPaperDetailRepository.getCountByTestPaperId(testPaperId);//每条记录题个数
         int count = vStudentTestPaperRepository.getCountStudentTestPaper(testPaperId);//记录条数
         List<PStudentTestPaperDTO> pStudentTestPaperDTOS = vStudentTestPaperRepository.getVStudentTestPapersByTestPaperId(testPaperId);
+        System.out.println(pStudentTestPaperDTOS);
         int[][] score = new int[length][count];
         for(int j=0;j<length;j++){
             score[j] = vStudentTestPaperRepository.getScoreByDAndDetailNumberAndTestPaperId(j+1,testPaperId);

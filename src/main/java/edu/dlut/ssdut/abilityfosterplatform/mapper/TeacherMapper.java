@@ -2,6 +2,7 @@ package edu.dlut.ssdut.abilityfosterplatform.mapper;
 
 import edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo;
 import edu.dlut.ssdut.abilityfosterplatform.model.Teacher;
+import org.apache.ibatis.annotations.Param;
 
 public interface TeacherMapper {
     int deleteByPrimaryKey(Integer id);
@@ -19,4 +20,6 @@ public interface TeacherMapper {
     Teacher selectByAccountAndPassword(LoginInfo loginInfo);
 
     Integer getTeacherIdByToken(String string);
+
+    void updateToken(@Param("token") String token);
 }

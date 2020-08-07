@@ -9,6 +9,7 @@ import edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList;
 import edu.dlut.ssdut.abilityfosterplatform.service.ClassRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -146,8 +147,8 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         for (int i = 0; i <classroomWorkList.size() ; i++) {
             System.out.println(classroomWorkList.get(i));
         }
-
-        classroomWorkMapper.insertClassroomWorkList(classroomWorkList);
+        if(!CollectionUtils.isEmpty(classroomWorkList))
+            classroomWorkMapper.insertClassroomWorkList(classroomWorkList);
         return classRoomId;
     }
 

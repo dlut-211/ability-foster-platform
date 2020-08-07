@@ -100,7 +100,6 @@ public class ClassRoomAvgStudentController {
         GetClassRoomListDTO  getClassRoomListDTO = new GetClassRoomListDTO();
         List<VClassroomList> vClassroomListList =classRoomService.getClassRoomList(beginDateStart,beginDateEnd,endDateStart,endDateEnd,termType,status,name,page,limit);
         for(int i = 0; i< vClassroomListList.size();i++){
-
             VClassroomList tempVClassroomList = vClassroomListList.get(i);
             Integer tmpStatus =tempVClassroomList.getStatus();
             Integer tmpTermType = tempVClassroomList.getTermType();
@@ -124,7 +123,7 @@ public class ClassRoomAvgStudentController {
             }
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            tempVClassroomList.setDateFormat(dateFormat.format(tempVClassroomList.getBeginDate())+" - "+dateFormat.format(tempVClassroomList.getBeginDate())) ;
+            tempVClassroomList.setDateFormat(dateFormat.format(tempVClassroomList.getBeginDate())+" - "+dateFormat.format(tempVClassroomList.getEndDate())) ;
 
             vClassroomListList.set(i,tempVClassroomList);
         }

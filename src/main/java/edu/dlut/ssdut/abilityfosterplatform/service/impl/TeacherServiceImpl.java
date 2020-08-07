@@ -63,4 +63,9 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherMapper.getTeacherIdByToken(string);
     }
 
+    @Override
+    public void updateToken(String token) {
+        teacherMapper.updateToken(token);
+    }
+
 }
