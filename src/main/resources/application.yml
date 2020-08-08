@@ -45,6 +45,6 @@ mybatis:
 
 #自己修改要保存的文件夹根目录
 uploadFile:
-  resourceHandler: /uploadFiles/**
-  location: F:/UploadFiles/
+  resourceHandler: /uploadFile/**
+  location: C:/Users/JK Zhu/Desktop/新建文件夹/ability-foster-platform/src/main/resources/static/uploadFile/
 

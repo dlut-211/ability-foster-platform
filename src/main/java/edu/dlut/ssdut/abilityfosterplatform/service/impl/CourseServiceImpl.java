@@ -61,6 +61,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Value("${uploadFile.location}")
     private String uploadFileLocation;
+    @Value("${server.port}")
+    private String serverPort;
 
 
     public final static String UPLOAD_PATH_PREFIX = "static/uploadFile/";
@@ -110,7 +112,7 @@ public class CourseServiceImpl implements CourseService {
             // 转存文件到指定路径，如果文件名重复的话，将会覆盖掉之前的文件,这里是把文件上传到 “绝对路径”
             System.out.println("新文件的绝对路经"+request.getScheme()+newFile.getAbsolutePath());
             uploadFile.transferTo(newFile);
-            String filePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/uploadFile/" +  fileName;
+            String filePath = request.getScheme() + "://" + request.getServerName() + ":" + serverPort + "/uploadFile/" +  fileName;
             map.put("path", filePath);
             return map;
         } catch (Exception e) {

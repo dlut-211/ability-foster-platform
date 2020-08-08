@@ -110,8 +110,6 @@ public class CourseController {
                 }
             }
         }
-
-
     }
 
     @ApiOperation("通过课程编号、课程名称以及分页查询课程信息列表")
