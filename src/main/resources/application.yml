@@ -10,7 +10,7 @@ spring:
     # 驱动
     # 数据库连接已过时，com.mysql.jdbc.Driver被建议替换为com.mysql.cj.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.99.65.198:3306/ces_dev?serverTimezone=UTC&characterEncoding=utf-8
+    url: jdbc:mysql://47.99.65.198:3306/ces_dev?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     # 注意修改数据库连接信息
     username: root
     password: root

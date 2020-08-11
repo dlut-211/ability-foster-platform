@@ -21,5 +21,5 @@ public interface TeacherMapper {
 
     Integer getTeacherIdByToken(String string);
 
-    void updateToken(@Param("token") String token);
+    void updateToken(int id, String token);
 }

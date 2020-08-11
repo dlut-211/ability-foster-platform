@@ -1,6 +1,7 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.LoginInfoDTO;
+import edu.dlut.ssdut.abilityfosterplatform.model.Student;
 import edu.dlut.ssdut.abilityfosterplatform.service.StudentService;
 import edu.dlut.ssdut.abilityfosterplatform.service.StudentSubjectService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
@@ -25,7 +26,11 @@ public class StudentController {
     @RequestMapping("selectByAccountAndPassword")
     public ResultVO selectByAccountAndPassword(LoginInfoDTO loginInfoDTO){
         loginInfoDTO.setPassword(DigestUtils.md5DigestAsHex(loginInfoDTO.getPassword().getBytes()));
-        return ResultVOUtil.success(studentService.selectByAccountAndPassword(loginInfoDTO));
+        Student student = studentService.selectByAccountAndPassword(loginInfoDTO);
+        if (student != null) {
+            return ResultVOUtil.success(student);
+        }
+        return ResultVOUtil.error(101, "账号或密码错误");
     }
     @GetMapping("/selectByStudentId")
     public ResultVO selectByStudentId(Integer studentId){

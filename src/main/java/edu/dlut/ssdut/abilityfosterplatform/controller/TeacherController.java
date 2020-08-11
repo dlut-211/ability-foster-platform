@@ -15,6 +15,12 @@ import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,10 +31,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @Api(tags = "TeacherController")
@@ -49,16 +52,30 @@ public class TeacherController {
     @ApiOperation("教师登录")
     @RequestMapping(value = "/selectByAccountAndPassword", method = RequestMethod.GET)
     public ResultVO selectByAccountAndPassword(LoginInfo loginInfo, HttpServletRequest request) {
+
         loginInfo.setPassword(DigestUtils.md5DigestAsHex(loginInfo.getPassword().getBytes()));
+//        Subject subject = SecurityUtils.getSubject();
+//        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginInfo.getNumber(), loginInfo.getPassword());
+//        try {
+//            subject.login(usernamePasswordToken);
+//        } catch (UnknownAccountException e) {
+//            Map<String, String> map = new HashMap<>();
+//            map.put("msg", "账号错误");
+//            return ResultVOUtil.error(101, "账号错误");
+//        } catch (IncorrectCredentialsException e) {
+//            return ResultVOUtil.error(102, "密码错误");
+//        }
+//        System.out.println("返回来的实体"+subject.getPrincipal());
         Teacher teacher = teacherService.selectByAccountAndPassword(loginInfo);
         if (teacher!=null){
             request.getSession().setAttribute("username", teacher.getName());
             //更新token
             String token = UUID.randomUUID().toString().replace("-", "");
-            teacherService.updateToken(token);
+            teacherService.updateToken(teacher.getId(),token);
+            teacher.setToken(token);
+            return ResultVOUtil.success(teacher);
         }
-
-        return ResultVOUtil.success(teacher);
+        return ResultVOUtil.error(101,"账号或密码错误");
     }
 
     @ApiOperation("获取教师列表")

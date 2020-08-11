@@ -64,8 +64,8 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void updateToken(String token) {
-        teacherMapper.updateToken(token);
+    public void updateToken(int id,String token) {
+        teacherMapper.updateToken(id,token);
     }
 
 }

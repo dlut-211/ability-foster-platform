@@ -27,7 +27,7 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectByAccountAndPassword" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.LoginInfo" resultType="edu.dlut.ssdut.abilityfosterplatform.model.Teacher">
-    select * from teacher where number = #{number,jdbcType=NVARCHAR} and password = #{password,jdbcType=NVARCHAR}
+    select * from teacher where number = #{number,jdbcType=NVARCHAR} and password=#{password,jdbcType=NVARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from teacher
@@ -189,7 +189,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateToken">
-    update teacher set token=#{token}
+    update teacher set token=#{token} where id=#{id}
   </update>
   <select id="getTeacherIdByToken" resultType="java.lang.Integer">
     select Id
