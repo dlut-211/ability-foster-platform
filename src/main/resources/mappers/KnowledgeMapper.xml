@@ -127,4 +127,10 @@
       modified_on = #{modifiedOn,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="courseAKTree" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.CourseAKDTO">
+    select c.name as pName, a.name as aName, k.*
+    from course c,knowledge k,ability a
+    where k.course_id = c.id and k.ability_id = a.id and c.id = #{courseId};
+  </select>
 </mapper>

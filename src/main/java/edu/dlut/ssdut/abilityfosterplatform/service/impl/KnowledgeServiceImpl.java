@@ -1,9 +1,12 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.CourseAKDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeAbilityDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.TreeDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.Knowledge;
@@ -23,7 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -46,6 +51,9 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 
     @Autowired
     private SystemOptionRepository systemOptionRepository;
+
+    @Resource
+    KnowledgeMapper knowledgeMapper;
 
     /**
      * 查询课程下的知识点列表 - 不分页
@@ -182,6 +190,45 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         // 2 均不重复的话则插入知识点
         Knowledge result = knowledgeRepository.save(knowledge);
         return result;
+    }
+
+    @Override
+    public TreeDTO courseAKTree(Integer courseId) {
+        List<CourseAKDTO> courseAKDTOS = knowledgeMapper.courseAKTree(36);
+        HashMap<Integer, CourseAKDTO> map = new HashMap<>();
+        for (CourseAKDTO akdto : courseAKDTOS) {
+            map.put(akdto.getAbilityId(), akdto);
+        }
+        // 将能力点放入课程
+        TreeDTO root = new TreeDTO();
+        root.setName(courseAKDTOS.get(0).getPName());
+        root.setChildren(new ArrayList<>());
+        List<TreeDTO> children = root.getChildren();
+        map.forEach((k,v)->{
+            TreeDTO aRoot = new TreeDTO();
+            aRoot.setId(v.getId());
+            aRoot.setCourseId(v.getCourseId());
+            aRoot.setAbilityId(k);
+            aRoot.setName(v.getAName());
+            children.add(aRoot);
+        });
+
+        // 将知识点放入能力点
+        for (TreeDTO dto : children) {
+            dto.setChildren(new ArrayList<>());
+            List<TreeDTO> children1 = dto.getChildren();
+            for (CourseAKDTO akdto : courseAKDTOS) {
+                if (akdto.getAbilityId() == dto.getAbilityId()) {
+                    TreeDTO kRoot = new TreeDTO();
+                    kRoot.setId(akdto.getId());
+                    kRoot.setCourseId(akdto.getCourseId());
+                    kRoot.setAbilityId(akdto.getAbilityId());
+                    kRoot.setName(akdto.getName());
+                    children1.add(kRoot);
+                }
+            }
+        }
+        return root;
     }
 
 }

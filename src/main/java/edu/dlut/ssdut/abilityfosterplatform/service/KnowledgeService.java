@@ -1,7 +1,9 @@
 package edu.dlut.ssdut.abilityfosterplatform.service;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.CourseAKDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeAbilityDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.TreeDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.Knowledge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,5 +26,7 @@ public interface KnowledgeService {
     Knowledge edit(KnowledgeAbilityDTO knowledgeAbilityDTO);
 
     Knowledge add(KnowledgeAbilityDTO knowledgeAbilityDTO);
+
+    TreeDTO courseAKTree(Integer courseId);
 
 }

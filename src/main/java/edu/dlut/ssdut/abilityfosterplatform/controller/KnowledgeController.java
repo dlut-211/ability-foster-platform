@@ -1,6 +1,8 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.CourseAKDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeAbilityDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.TreeDTO;
 import edu.dlut.ssdut.abilityfosterplatform.service.KnowledgeService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
@@ -9,6 +11,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: raymond
@@ -55,5 +59,12 @@ public class KnowledgeController {
     public ResultVO removeKnowledge(@RequestParam("id") Integer id) {
         knowledgeService.remove(id);
         return ResultVOUtil.success();
+    }
+
+    @ApiOperation("树形图")
+    @GetMapping("/courseAKTree")
+    public ResultVO courseAKTree(@RequestParam("courseId") Integer courseId) {
+        TreeDTO tree = knowledgeService.courseAKTree(courseId);
+        return ResultVOUtil.success(tree);
     }
 }
