@@ -1,6 +1,7 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
 import edu.dlut.ssdut.abilityfosterplatform.dto.*;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.VClassroomStudentInfoMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.VChapterWorkZjk;
 import edu.dlut.ssdut.abilityfosterplatform.model.VClassroomStudentInfo;
 import edu.dlut.ssdut.abilityfosterplatform.model.VStudentWork;
@@ -56,14 +57,20 @@ public class VClassroomStudentInfoController {
     @Autowired
     private ClassroomStudentService classroomStudentService;
 
+
     @ApiOperation("学生首页——通过学生Id获取所选课程信息")
     @GetMapping("/selectClassRoomCountById")
     public ResultVO VStudentWorkInfoPage(VStudentWorkInfoDto vStudentWorkInfoDto){
-        PageRequest request=PageRequest.of(vStudentWorkInfoDto.getNowPage()-1,
+        PageRequest request = PageRequest.of(vStudentWorkInfoDto.getNowPage() - 1,
                 vStudentWorkInfoDto.getPageSize(),
-                Sort.Direction.DESC,"begin_date");
+                Sort.Direction.DESC, "begin_date");
         Page<VClassroomStudentInfo> page = vClassroomStudentInfoService.VStudentWorkInfoPage(vStudentWorkInfoDto.getStudentId(),request);
         return ResultVOUtil.success(page);
+    }
+    @GetMapping("/getAllClassRoom")
+    public ResultVO getAllClassRoom(int studentId) {
+        List<VClassroomStudentInfo> allClassroomByStudentId = vClassroomStudentInfoService.getAllClassroomByStudentId(studentId);
+        return ResultVOUtil.success(allClassroomByStudentId);
     }
 
     @ApiOperation("学生页面—我的课堂—章节作业")

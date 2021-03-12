@@ -5,16 +5,9 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
-
-/**
- * @AUTHOR: raymond
- * @DATE: 2019/10/26
- * DESCRIPTION:
- **/
 @Data
 @Entity
 public class VClassroomStudentInfo {
-
     @Id
     private Integer id;
 
@@ -33,4 +26,5 @@ public class VClassroomStudentInfo {
     private Integer status;
 
     private Integer classroomId;
+
 }

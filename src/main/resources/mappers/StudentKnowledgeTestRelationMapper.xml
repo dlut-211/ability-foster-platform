@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StudentKnowledgeTestRelationMapper" >
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="knowledge_test_id" property="knowledgeTestId" jdbcType="BIGINT" />
+    <result column="is_correct" property="isCorrect" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, student_id, knowledge_test_id, is_correct
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_knowledge_test_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="getByStudentId"
+          resultType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
+    select * from student_knowledge_test_relation where student_id = #{studentId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from student_knowledge_test_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+    insert into student_knowledge_test_relation (id, student_id, knowledge_test_id, 
+      is_correct)
+    values (#{id,jdbcType=BIGINT}, #{studentId,jdbcType=INTEGER}, #{knowledgeTestId,jdbcType=BIGINT}, 
+      #{isCorrect,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into student_knowledge_test_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="knowledgeTestId != null" >
+        knowledge_test_id,
+      </if>
+      <if test="isCorrect != null" >
+        is_correct,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=BIGINT},
+      <if test="studentId != null" >
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeTestId != null" >
+        #{knowledgeTestId,jdbcType=BIGINT},
+      </if>
+      <if test="isCorrect != null" >
+        #{isCorrect,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+    update student_knowledge_test_relation
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="knowledgeTestId != null" >
+        knowledge_test_id = #{knowledgeTestId,jdbcType=BIGINT},
+      </if>
+      <if test="isCorrect != null" >
+        is_correct = #{isCorrect,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+    update student_knowledge_test_relation
+    set student_id = #{studentId,jdbcType=INTEGER},
+      knowledge_test_id = #{knowledgeTestId,jdbcType=BIGINT},
+      is_correct = #{isCorrect,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

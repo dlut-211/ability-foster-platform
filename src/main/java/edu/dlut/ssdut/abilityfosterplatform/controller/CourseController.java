@@ -1,8 +1,9 @@
 package edu.dlut.ssdut.abilityfosterplatform.controller;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeTestMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
+import edu.dlut.ssdut.abilityfosterplatform.model.KnowledgeTest;
 import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
 import edu.dlut.ssdut.abilityfosterplatform.model.VCourse;
 import edu.dlut.ssdut.abilityfosterplatform.repository.CourseRepository;
@@ -11,21 +12,12 @@ import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.util.IOUtils;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.Constants;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -33,15 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
-import static com.mysql.cj.conf.PropertyKey.logger;
 
 @Api(tags = "CourseController")
 @RestController
@@ -53,6 +37,9 @@ public class CourseController {
 
     @Autowired
     private CourseService courseService;
+
+    @Autowired
+    private KnowledgeTestMapper knowledgeTestMapper;
 
     @ApiOperation("添加课程信息")
     @RequestMapping(value = "/insertCourse", method = RequestMethod.POST)
@@ -177,6 +164,14 @@ public class CourseController {
         return ResultVOUtil.success(coursePage);
     }
 
+    /**
+     * 添加课堂测试
+     */
+    @RequestMapping("/addKnowledgeTest")
+    public ResultVO addKnowledgeTest(KnowledgeTest knowledgeTest) {
+        knowledgeTestMapper.insert(knowledgeTest);
+        return ResultVOUtil.success();
+    }
 //    /**
 //     * @Author YuJunMing
 //     * @Date 2019/11/12 12:31
