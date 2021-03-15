@@ -2,10 +2,10 @@ package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import edu.dlut.ssdut.abilityfosterplatform.mapper.ClassroomMapper;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.ClassroomWorkMapper;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeTestMapper;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.VClassroomListMapper;
-import edu.dlut.ssdut.abilityfosterplatform.model.Classroom;
-import edu.dlut.ssdut.abilityfosterplatform.model.ClassroomWork;
-import edu.dlut.ssdut.abilityfosterplatform.model.VClassroomList;
+import edu.dlut.ssdut.abilityfosterplatform.model.*;
+import edu.dlut.ssdut.abilityfosterplatform.repository.KnowledgeTestRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.ClassRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +31,8 @@ public class ClassRoomServiceImpl implements ClassRoomService {
     private VClassroomListMapper vClassroomListMapper;
     @Autowired
     private ClassroomWorkMapper classroomWorkMapper;
+    @Autowired
+    private KnowledgeTestRepository knowledgeTestRepository;
 
 
 /**
@@ -143,6 +145,13 @@ public class ClassRoomServiceImpl implements ClassRoomService {
             classroomWorkList.get(i).setCreatedBy(teacherId);
         }
 
+        List<KnowledgeTest> knowledgeTestIds = knowledgeTestRepository.findAllByCourseId(classroom.getCourseId());
+        ClassroomTestRelation classroomTestRelation = new ClassroomTestRelation();
+        for (int i = 0; i < knowledgeTestIds.size(); i++) {
+            classroomTestRelation.setClassroomId(classRoomId);
+//            classroomTestRelation.setKnowledgeTestId(knowledgeTestIds.get(i).getId());
+
+        }
 
         for (int i = 0; i <classroomWorkList.size() ; i++) {
             System.out.println(classroomWorkList.get(i));

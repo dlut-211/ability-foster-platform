@@ -18,4 +18,6 @@ public interface KnowledgeTestMapper {
     int updateByPrimaryKey(KnowledgeTest record);
 
     List<KnowledgeTest> getTestByTestIds(List<Integer> testIds, int chapterId);
+
+    List<KnowledgeTest> findListByCourseIdAndChapterId(int courseId, int chapterId);
 }

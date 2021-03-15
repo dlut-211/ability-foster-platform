@@ -194,21 +194,30 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 
     @Override
     public TreeDTO courseAKTree(Integer courseId) {
-        List<CourseAKDTO> courseAKDTOS = knowledgeMapper.courseAKTree(36);
+        List<CourseAKDTO> courseAKDTOS = knowledgeMapper.courseAKTree(courseId);
+
+        TreeDTO root = new TreeDTO();
+        if (courseAKDTOS.size() == 0) {
+            Course course = courseRepository.findById(courseId).orElse(null);
+            root.setName(course.getName());
+            root.setId(course.getId());
+            return root;
+        }
+        root.setId(courseAKDTOS.get(0).getCourseId());
+        root.setName(courseAKDTOS.get(0).getPName());
+        root.setChildren(new ArrayList<>());
+        List<TreeDTO> children = root.getChildren();
+
         HashMap<Integer, CourseAKDTO> map = new HashMap<>();
         for (CourseAKDTO akdto : courseAKDTOS) {
             map.put(akdto.getAbilityId(), akdto);
         }
         // 将能力点放入课程
-        TreeDTO root = new TreeDTO();
-        root.setName(courseAKDTOS.get(0).getPName());
-        root.setChildren(new ArrayList<>());
-        List<TreeDTO> children = root.getChildren();
         map.forEach((k,v)->{
             TreeDTO aRoot = new TreeDTO();
-            aRoot.setId(v.getId());
-            aRoot.setCourseId(v.getCourseId());
-            aRoot.setAbilityId(k);
+            aRoot.setId(v.getAbilityId());
+//            aRoot.setCourseId(v.getCourseId());
+//            aRoot.setAbilityId(k);
             aRoot.setName(v.getAName());
             children.add(aRoot);
         });
@@ -218,11 +227,11 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             dto.setChildren(new ArrayList<>());
             List<TreeDTO> children1 = dto.getChildren();
             for (CourseAKDTO akdto : courseAKDTOS) {
-                if (akdto.getAbilityId() == dto.getAbilityId()) {
+                if (akdto.getAbilityId() == dto.getId()) {
                     TreeDTO kRoot = new TreeDTO();
                     kRoot.setId(akdto.getId());
                     kRoot.setCourseId(akdto.getCourseId());
-                    kRoot.setAbilityId(akdto.getAbilityId());
+//                    kRoot.setAbilityId(akdto.getAbilityId());
                     kRoot.setName(akdto.getName());
                     children1.add(kRoot);
                 }
