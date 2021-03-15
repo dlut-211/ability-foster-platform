@@ -1,9 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
-import org.springframework.data.annotation.Id;
-
 public class KnowledgeTest {
-    @Id
     private Long id;
 
     private String name;
@@ -21,6 +18,8 @@ public class KnowledgeTest {
     private Integer knowledgeId;
 
     private Integer chapterId;
+
+    private Integer courseId;
 
     public Long getId() {
         return id;
@@ -92,5 +91,13 @@ public class KnowledgeTest {
 
     public void setChapterId(Integer chapterId) {
         this.chapterId = chapterId;
+    }
+
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 }
