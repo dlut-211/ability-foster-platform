@@ -1,85 +1,130 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StudentKnowledgeTestRelationMapper" >
-  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="student_id" property="studentId" jdbcType="INTEGER" />
-    <result column="knowledge_test_id" property="knowledgeTestId" jdbcType="BIGINT" />
-    <result column="is_correct" property="isCorrect" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dlut.ssdut.abilityfosterplatform.mapper.StudentKnowledgeTestRelationMapper">
+  <resultMap id="BaseResultMap" type="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="knowledge_test_id" jdbcType="BIGINT" property="knowledgeTestId" />
+    <result column="is_correct" jdbcType="INTEGER" property="isCorrect" />
+    <result column="classroom_id" jdbcType="INTEGER" property="classroomId" />
+    <result column="ans" jdbcType="VARCHAR" property="ans" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, student_id, knowledge_test_id, is_correct
+  <sql id="Base_Column_List">
+    id, student_id, knowledge_test_id, is_correct, classroom_id, ans
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from student_knowledge_test_relation
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="getByStudentId"
-          resultType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
-    select * from student_knowledge_test_relation where student_id = #{studentId}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from student_knowledge_test_relation
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+  <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
     insert into student_knowledge_test_relation (id, student_id, knowledge_test_id, 
-      is_correct)
+      is_correct, classroom_id, ans
+      )
     values (#{id,jdbcType=BIGINT}, #{studentId,jdbcType=INTEGER}, #{knowledgeTestId,jdbcType=BIGINT}, 
-      #{isCorrect,jdbcType=INTEGER})
+      #{isCorrect,jdbcType=INTEGER}, #{classroomId,jdbcType=INTEGER}, #{ans,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
-    <selectKey resultType="java.lang.Long" keyProperty="id" order="BEFORE" >
+  <insert id="insertSelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into student_knowledge_test_relation
-    <trim prefix="(" suffix=")" suffixOverrides="," >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
       id,
-      <if test="studentId != null" >
+      <if test="studentId != null">
         student_id,
       </if>
-      <if test="knowledgeTestId != null" >
+      <if test="knowledgeTestId != null">
         knowledge_test_id,
       </if>
-      <if test="isCorrect != null" >
+      <if test="isCorrect != null">
         is_correct,
       </if>
+      <if test="classroomId != null">
+        classroom_id,
+      </if>
+      <if test="ans != null">
+        ans,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
       #{id,jdbcType=BIGINT},
-      <if test="studentId != null" >
+      <if test="studentId != null">
         #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="knowledgeTestId != null" >
+      <if test="knowledgeTestId != null">
         #{knowledgeTestId,jdbcType=BIGINT},
       </if>
-      <if test="isCorrect != null" >
+      <if test="isCorrect != null">
         #{isCorrect,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null">
+        #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="ans != null">
+        #{ans,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+  <update id="updateByPrimaryKeySelective" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
     update student_knowledge_test_relation
-    <set >
-      <if test="studentId != null" >
+    <set>
+      <if test="studentId != null">
         student_id = #{studentId,jdbcType=INTEGER},
       </if>
-      <if test="knowledgeTestId != null" >
+      <if test="knowledgeTestId != null">
         knowledge_test_id = #{knowledgeTestId,jdbcType=BIGINT},
       </if>
-      <if test="isCorrect != null" >
+      <if test="isCorrect != null">
         is_correct = #{isCorrect,jdbcType=INTEGER},
+      </if>
+      <if test="classroomId != null">
+        classroom_id = #{classroomId,jdbcType=INTEGER},
+      </if>
+      <if test="ans != null">
+        ans = #{ans,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation" >
+  <update id="updateByPrimaryKey" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
     update student_knowledge_test_relation
     set student_id = #{studentId,jdbcType=INTEGER},
       knowledge_test_id = #{knowledgeTestId,jdbcType=BIGINT},
-      is_correct = #{isCorrect,jdbcType=INTEGER}
+      is_correct = #{isCorrect,jdbcType=INTEGER},
+      classroom_id = #{classroomId,jdbcType=INTEGER},
+      ans = #{ans,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="getByStudentId"
+          resultType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
+    select * from student_knowledge_test_relation where student_id = #{studentId}
+  </select>
+  <select id="getCorrectRateByClassroom" resultType="java.lang.Integer">
+    SELECT ROUND(SUM(case WHEN is_correct = 1 THEN 1 ELSE 0 END) * 100/ COUNT(*)) FROM student_knowledge_test_relation
+    WHERE classroom_id = #{classroomId} AND knowledge_test_id = #{testId}
+  </select>
+  <select id="getTestByClassroomAndStudent"
+          resultType="edu.dlut.ssdut.abilityfosterplatform.dto.StudentTestResultDto">
+    SELECT classroom_test_relation.classroom_id AS classroomId,knowledge_test.id AS knowledgeTestId, knowledge_test.`name` AS `name`,
+           CASE WHEN student_knowledge_test_relation.`is_correct` = 1 THEN '正确' else '失败' END status,
+           knowledge.`name` AS knowledgeName,CONCAT(classroom_test_rate.rate,'%') AS rate
+    FROM knowledge_test LEFT JOIN student_knowledge_test_relation ON knowledge_test.id = student_knowledge_test_relation.knowledge_test_id
+                        LEFT JOIN knowledge ON knowledge.id = knowledge_test.knowledge_id                                                                                                                                                                                                                                                                                     LEFT JOIN classroom_test_relation ON classroom_test_relation.knowledge_test_id = knowledge_test.id LEFT JOIN classroom_test_rate ON classroom_test_relation.classroom_id = classroom_test_rate.classroomId
+    WHERE student_knowledge_test_relation.classroom_id = #{classroomId} AND student_id = #{studentId}
+  </select>
+  <select id="getTestDetali" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.TestDetailDTO">
+    SELECT knowledge_test.*, student_knowledge_test_relation.ans as myAns
+    FROM knowledge_test LEFT JOIN student_knowledge_test_relation ON knowledge_test.id = student_knowledge_test_relation.knowledge_test_id
+    WHERE student_knowledge_test_relation.student_id = #{studentId} AND knowledge_test.id = #{knowledgeTestId}
+  </select>
+
+
 </mapper>

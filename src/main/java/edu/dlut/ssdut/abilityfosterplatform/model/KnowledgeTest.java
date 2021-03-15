@@ -1,7 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.model;
 
 
-
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -32,5 +31,4 @@ public class KnowledgeTest {
     private Integer chapterId;
 
     private Integer courseId;
-
 }

@@ -17,5 +17,5 @@ public interface ClassroomTestRelationMapper {
 
     int updateByPrimaryKey(ClassroomTestRelation record);
 
-    List<Integer> getTestByClassroomId(int classroomId, int status);
+    List<Integer> getTestByClassroomId(int classroomId, int i);
 }

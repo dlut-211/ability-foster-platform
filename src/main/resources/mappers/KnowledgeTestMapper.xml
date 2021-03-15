@@ -11,7 +11,7 @@
     <result column="ans" jdbcType="VARCHAR" property="ans" />
     <result column="knowledge_id" jdbcType="INTEGER" property="knowledgeId" />
     <result column="chapter_id" jdbcType="INTEGER" property="chapterId" />
-    <result column="course_id" javaType="INTEGER" property="courseId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, item1, item2, item3, item4, ans, knowledge_id, chapter_id, course_id
@@ -22,19 +22,13 @@
     from knowledge_test
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="getTestByTestIds" resultType="edu.dlut.ssdut.abilityfosterplatform.model.KnowledgeTest">
-    select * from knowledge_test where chapter_id = #{chapterId} and id in
-    <foreach collection="testIds" item="id" open="(" close=")" separator=",">
-      #{id}
-    </foreach>
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from knowledge_test
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="edu.dlut.ssdut.abilityfosterplatform.model.KnowledgeTest">
     insert into knowledge_test (id, name, item1, 
-      item2, item3, item4, 
+      item2, item3, item4,
       ans, knowledge_id, chapter_id, course_id
       )
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{item1,jdbcType=VARCHAR}, 
@@ -137,7 +131,7 @@
         chapter_id = #{chapterId,jdbcType=INTEGER},
       </if>
       <if test="courseId != null">
-        chapter_id = #{chapterId,jdbcType=INTEGER},
+        course_id = #{courseId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -151,7 +145,8 @@
       item4 = #{item4,jdbcType=VARCHAR},
       ans = #{ans,jdbcType=VARCHAR},
       knowledge_id = #{knowledgeId,jdbcType=INTEGER},
-      chapter_id = #{chapterId,jdbcType=INTEGER},course_id = #{courseId,jdbcType=INTEGER}
+      chapter_id = #{chapterId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="findListByCourseIdAndChapterId" parameterType="java.lang.Integer"
@@ -162,5 +157,11 @@
     where course_id = #{courseId,jdbcType=INTEGER} and chapter_id = #{chapterId,jdbcType=INTEGER}
   </select>
 
+  <select id="getTestByTestIds" resultType="edu.dlut.ssdut.abilityfosterplatform.model.KnowledgeTest">
+    select * from knowledge_test where  id in
+    <foreach collection="testIds" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </select>
 
 </mapper>
