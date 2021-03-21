@@ -222,16 +222,19 @@ public class KnowledgeServiceImplTest {
             double[] c = queue.poll();
             res += (c[0] / c[1]);
         }
+        System.out.println(4544);
         System.out.println(res / n);
+        System.out.println(4545);
     }
 
     @Test
     public void testLeetCode() {
         /**
-         * 输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
+         * 输入：matrix = [[1,
+         * 1,1],[1,0,1],[1,1,1]]
          * 输出：[[1,0,1],[0,0,0],[1,0,1]]
          */
-
+        System.out.println(44);
 
 
     }
