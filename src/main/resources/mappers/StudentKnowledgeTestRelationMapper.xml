@@ -126,5 +126,25 @@
     WHERE student_knowledge_test_relation.student_id = #{studentId} AND knowledge_test.id = #{knowledgeTestId}
   </select>
 
+  <delete id="deleteByIds" parameterType="int">
+    delete
+    from student_knowledge_test_relation
+    where id in (
+        select a.id
+        from (select id
+              from student_knowledge_test_relation
+              where knowledge_test_id = #{knowledgeTestId}
+                and classroom_id = #{classroomId}) a)
+  </delete>
+
+  <select id="pieNums" parameterType="int" resultType="map">
+    select count(*)                                        as total,
+       sum(case when is_correct = 0 then 1 else 0 end) as noPassCount,
+       sum(case when is_correct = 1 then 1 else 0 end) as passCount
+    from student_knowledge_test_relation
+    where classroom_id = #{classroomId}
+      and knowledge_test_id = #{knowledgeTestId};
+  </select>
+
 
 </mapper>

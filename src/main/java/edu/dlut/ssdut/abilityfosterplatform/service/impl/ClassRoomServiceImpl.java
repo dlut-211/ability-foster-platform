@@ -1,9 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
-import edu.dlut.ssdut.abilityfosterplatform.mapper.ClassroomMapper;
-import edu.dlut.ssdut.abilityfosterplatform.mapper.ClassroomWorkMapper;
-import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeTestMapper;
-import edu.dlut.ssdut.abilityfosterplatform.mapper.VClassroomListMapper;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.*;
 import edu.dlut.ssdut.abilityfosterplatform.model.*;
 import edu.dlut.ssdut.abilityfosterplatform.repository.KnowledgeTestRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.ClassRoomService;
@@ -14,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +31,8 @@ public class ClassRoomServiceImpl implements ClassRoomService {
     private ClassroomWorkMapper classroomWorkMapper;
     @Autowired
     private KnowledgeTestRepository knowledgeTestRepository;
+    @Autowired
+    private ClassroomTestRelationMapper classroomTestRelationMapper;
 
 
 /**
@@ -146,16 +146,22 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         }
 
         List<KnowledgeTest> knowledgeTestIds = knowledgeTestRepository.findAllByCourseId(classroom.getCourseId());
-        ClassroomTestRelation classroomTestRelation = new ClassroomTestRelation();
+
+        List<ClassroomTestRelation> classroomTestRelationList = new ArrayList<>();
         for (int i = 0; i < knowledgeTestIds.size(); i++) {
+            ClassroomTestRelation classroomTestRelation = new ClassroomTestRelation();
             classroomTestRelation.setClassroomId(classRoomId);
-//            classroomTestRelation.setKnowledgeTestId(knowledgeTestIds.get(i).getId());
-
+            classroomTestRelation.setKnowledgeTestId(knowledgeTestIds.get(i).getId());
+            classroomTestRelation.setStatus(0);
+            classroomTestRelationList.add(classroomTestRelation);
+        }
+        if (!CollectionUtils.isEmpty(classroomTestRelationList)) {
+            classroomTestRelationMapper.insertClassroomRelationList(classroomTestRelationList);
         }
 
-        for (int i = 0; i <classroomWorkList.size() ; i++) {
-            System.out.println(classroomWorkList.get(i));
-        }
+//        for (int i = 0; i <classroomWorkList.size() ; i++) {
+//            System.out.println(classroomWorkList.get(i));
+//        }
         if(!CollectionUtils.isEmpty(classroomWorkList))
             classroomWorkMapper.insertClassroomWorkList(classroomWorkList);
         return classRoomId;

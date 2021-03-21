@@ -1,11 +1,11 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import edu.dlut.ssdut.abilityfosterplatform.dto.CourseAKDTO;
-import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeAbilityDTO;
-import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeDTO;
-import edu.dlut.ssdut.abilityfosterplatform.dto.TreeDTO;
+import edu.dlut.ssdut.abilityfosterplatform.dto.*;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.ClassroomTestRelationMapper;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeMapper;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeTestMapper;
+import edu.dlut.ssdut.abilityfosterplatform.mapper.StudentKnowledgeTestRelationMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.Course;
 import edu.dlut.ssdut.abilityfosterplatform.model.Knowledge;
 import edu.dlut.ssdut.abilityfosterplatform.repository.KnowledgeRepository;
@@ -34,6 +34,33 @@ public class KnowledgeServiceImplTest {
     private KnowledgeService knowledgeService;
     @Resource
     KnowledgeMapper knowledgeMapper;
+    @Resource
+    KnowledgeTestMapper knowledgeTestMapper;
+    @Resource
+    ClassroomTestRelationMapper classroomTestRelationMapper;
+    @Resource
+    StudentKnowledgeTestRelationMapper studentKnowledgeTestRelationMapper;
+
+
+    @Test
+    public void testDelect() {
+//        int i = studentKnowledgeTestRelationMapper.deleteByIds(2, 3);
+//        System.out.println(i);
+        Map<String, Integer> map = studentKnowledgeTestRelationMapper.pieNums(2, 133);
+        System.out.println(map);
+    }
+
+    @Test
+    public void testUpdate() {
+        int i = classroomTestRelationMapper.updateByClassIdAndkId(154, 10);
+        System.out.println(i);
+    }
+
+    @Test
+    public void testFindClassWork() {
+        List<ClassTestDTO> info = knowledgeTestMapper.findClassWorkInfo(154, 362);
+        info.forEach(System.out::println);
+    }
 
     @Test
     public void findKnowledgeDTOList() {
@@ -196,5 +223,16 @@ public class KnowledgeServiceImplTest {
             res += (c[0] / c[1]);
         }
         System.out.println(res / n);
+    }
+
+    @Test
+    public void testLeetCode() {
+        /**
+         * 输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
+         * 输出：[[1,0,1],[0,0,0],[1,0,1]]
+         */
+
+
+
     }
 }

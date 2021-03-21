@@ -81,4 +81,31 @@
   <select id="getTestByClassroomId" resultType="java.lang.Integer">
     select knowledge_test_id from classroom_test_relation where classroom_id = #{classroomId} and status = 1
   </select>
+  <insert id="insertClassroomRelationList">
+    insert into classroom_test_relation(classroom_id,knowledge_test_id,status) VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.classroomId},#{item.knowledgeTestId},#{item.status})
+    </foreach>
+  </insert>
+
+  <update id="updateByClassIdAndkId" parameterType="int">
+    update classroom_test_relation
+    set status = 1
+    where classroom_id = #{classroomId,jdbcType=INTEGER}
+      and knowledge_test_id = #{knowledgeTestId,jdbcType=INTEGER};
+  </update>
+
+  <update id="rollback" parameterType="int">
+    update classroom_test_relation
+    set status = 0
+    where classroom_id = #{classroomId,jdbcType=INTEGER}
+      and knowledge_test_id = #{knowledgeTestId,jdbcType=INTEGER};
+  </update>
+
+  <select id="getCountTestWork" parameterType="int" resultType="int">
+    select count(*) as count
+    from classroom_test_relation
+    where status = 1
+      and classroom_id = #{classroomId,jdbcType=INTEGER};
+  </select>
 </mapper>

@@ -18,4 +18,12 @@ public interface ClassroomTestRelationMapper {
     int updateByPrimaryKey(ClassroomTestRelation record);
 
     List<Integer> getTestByClassroomId(int classroomId, int i);
+
+    Integer insertClassroomRelationList(List<ClassroomTestRelation> classroomTestRelationList);
+
+    int updateByClassIdAndkId(int classroomId, int knowledgeTestId);
+
+    int rollback(int classroomId, int knowledgeTestId);
+
+    int getCountTestWork(int classroomId);
 }

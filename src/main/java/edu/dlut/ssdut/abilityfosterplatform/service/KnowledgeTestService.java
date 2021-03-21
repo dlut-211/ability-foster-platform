@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.ClassTestDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.KnowledgeTest;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface KnowledgeTestService {
     void delect(Long id);
 
     List<KnowledgeTest> findTreeInfo(Integer courseId, Integer knowledgeId);
+
+    List<ClassTestDTO> findClassWorkInfo(Integer classroomId, Integer chapterId);
 }

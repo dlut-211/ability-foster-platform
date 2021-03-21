@@ -1,5 +1,6 @@
 package edu.dlut.ssdut.abilityfosterplatform.service.impl;
 
+import edu.dlut.ssdut.abilityfosterplatform.dto.ClassTestDTO;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeTestMapper;
 import edu.dlut.ssdut.abilityfosterplatform.model.KnowledgeTest;
 import edu.dlut.ssdut.abilityfosterplatform.repository.KnowledgeTestRepository;
@@ -53,5 +54,10 @@ public class KnowledgeTestServiceImpl implements KnowledgeTestService {
     @Override
     public List<KnowledgeTest> findTreeInfo(Integer courseId, Integer knowledgeId) {
         return knowledgeTestRepository.findAllByCourseIdAndAndKnowledgeId(courseId, knowledgeId);
+    }
+
+    @Override
+    public List<ClassTestDTO> findClassWorkInfo(Integer classroomId, Integer chapterId) {
+        return knowledgeTestMapper.findClassWorkInfo(classroomId, chapterId);
     }
 }

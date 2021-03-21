@@ -64,7 +64,9 @@ public enum ResultEnum {
 
     CHAPTER_EXISTS(25, "章节已存在"),
 
-    CHAPTER_PARENT_NOT_EXIST(26, "父章节不存在")
+    CHAPTER_PARENT_NOT_EXIST(26, "父章节不存在"),
+
+    TEST_NOT_END(27,"上次测试题未结束")
 
     ;
     private Integer code;

@@ -5,6 +5,7 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.TestDetailDTO;
 import edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentKnowledgeTestRelationMapper {
     int deleteByPrimaryKey(Long id);
@@ -26,4 +27,8 @@ public interface StudentKnowledgeTestRelationMapper {
     List<StudentTestResultDto> getTestByClassroomAndStudent(int classroomId, int studentId);
 
     TestDetailDTO getTestDetali(int knowledgeTestId, int studentId);
+
+    int deleteByIds(int knowledgeTestId, int classroomId);
+
+    Map<String, Integer> pieNums(int knowledgeTestId, int classroomId);
 }

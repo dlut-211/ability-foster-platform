@@ -164,4 +164,14 @@
     </foreach>
   </select>
 
+  <select id="findClassWorkInfo" parameterType="java.lang.Integer" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.ClassTestDTO">
+    select kt.*,ctr.status,k.name as knowledgeName
+    from knowledge_test kt,
+         classroom_test_relation ctr,
+         knowledge k
+    where kt.id = ctr.knowledge_test_id and kt.knowledge_id = k.id
+      and kt.chapter_id = #{chapterId,jdbcType=INTEGER}
+      and ctr.classroom_id = #{classroomId,jdbcType=INTEGER};
+  </select>
+
 </mapper>

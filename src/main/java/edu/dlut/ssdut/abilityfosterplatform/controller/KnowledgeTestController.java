@@ -55,4 +55,10 @@ public class KnowledgeTestController {
         return ResultVOUtil.success(knowledgeTestService.findTreeInfo(courseId, knowledgeId));
     }
 
+    @ApiOperation("根据课堂classroomId和章节chapterId去获取课堂作业信息")
+    @GetMapping("/findClassInfo")
+    public ResultVO findClassWorkInfo(@RequestParam("classroomId") Integer classroomId, @RequestParam("chapterId") Integer chapterId) {
+        return ResultVOUtil.success(knowledgeTestService.findClassWorkInfo(classroomId, chapterId));
+    }
+
 }

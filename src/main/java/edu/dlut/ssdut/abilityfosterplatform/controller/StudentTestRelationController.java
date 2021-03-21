@@ -6,6 +6,7 @@ import edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation;
 import edu.dlut.ssdut.abilityfosterplatform.service.StudentTestRelationService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.web.servlet.ShiroHttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,18 @@ public class StudentTestRelationController {
     public ResultVO getTestDetail(int knowledgeTestId, int studentId) {
         TestDetailDTO testDetailDTO = studentTestRelationService.getTestDetail(knowledgeTestId, studentId);
         return ResultVOUtil.success(testDetailDTO);
+    }
+
+    @ApiOperation("教师撤销随堂测试")
+    @DeleteMapping("/revokeClassTest")
+    public ResultVO delectStudentTests(int knowledgeTestId, int classroomId) {
+        return ResultVOUtil.success(studentTestRelationService.delectStudentTests(knowledgeTestId, classroomId));
+    }
+
+    @ApiOperation("随堂作业通过情况饼图展示")
+    @GetMapping("/getPieNums")
+    public ResultVO getPieNums(int knowledgeTestId, int classroomId) {
+        return ResultVOUtil.success(studentTestRelationService.getPieNums(knowledgeTestId, classroomId));
     }
 
 }
