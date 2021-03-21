@@ -20,7 +20,7 @@ public interface StudentKnowledgeTestRelationMapper {
 
     int updateByPrimaryKey(StudentKnowledgeTestRelation record);
 
-    StudentKnowledgeTestRelation getByStudentId(Integer studentId);
+    StudentKnowledgeTestRelation getByStudentId(Integer id, Long knowledgeTestId, Integer studentId);
 
     int getCorrectRateByClassroom(int classroomId, int testId);
 

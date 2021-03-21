@@ -2,6 +2,7 @@ package edu.dlut.ssdut.abilityfosterplatform.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -15,5 +16,6 @@ public class TreeDTO {
     private Integer courseId;
     private Integer abilityId;
     private String name;
+    private  BigDecimal score = new BigDecimal(0);
     private List<TreeDTO> children;
 }

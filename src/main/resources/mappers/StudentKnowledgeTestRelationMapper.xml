@@ -105,20 +105,17 @@
 
   <select id="getByStudentId"
           resultType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
-    select * from student_knowledge_test_relation where student_id = #{studentId}
+    select * from student_knowledge_test_relation where student_id = #{studentId} and knowledge_test_id = #{knowledgeTestId} and student_id = #{studentId}
   </select>
+
   <select id="getCorrectRateByClassroom" resultType="java.lang.Integer">
     SELECT ROUND(SUM(case WHEN is_correct = 1 THEN 1 ELSE 0 END) * 100/ COUNT(*)) FROM student_knowledge_test_relation
     WHERE classroom_id = #{classroomId} AND knowledge_test_id = #{testId}
   </select>
+
   <select id="getTestByClassroomAndStudent"
           resultType="edu.dlut.ssdut.abilityfosterplatform.dto.StudentTestResultDto">
-    SELECT classroom_test_relation.classroom_id AS classroomId,knowledge_test.id AS knowledgeTestId, knowledge_test.`name` AS `name`,
-           CASE WHEN student_knowledge_test_relation.`is_correct` = 1 THEN '正确' else '失败' END status,
-           knowledge.`name` AS knowledgeName,CONCAT(classroom_test_rate.rate,'%') AS rate
-    FROM knowledge_test LEFT JOIN student_knowledge_test_relation ON knowledge_test.id = student_knowledge_test_relation.knowledge_test_id
-                        LEFT JOIN knowledge ON knowledge.id = knowledge_test.knowledge_id                                                                                                                                                                                                                                                                                     LEFT JOIN classroom_test_relation ON classroom_test_relation.knowledge_test_id = knowledge_test.id LEFT JOIN classroom_test_rate ON classroom_test_relation.classroom_id = classroom_test_rate.classroomId
-    WHERE student_knowledge_test_relation.classroom_id = #{classroomId} AND student_id = #{studentId}
+    SELECT * FROM v_student_test_info WHERE classroomId = #{classroomId} AND studentId = #{studentId}
   </select>
   <select id="getTestDetali" resultType="edu.dlut.ssdut.abilityfosterplatform.dto.TestDetailDTO">
     SELECT knowledge_test.*, student_knowledge_test_relation.ans as myAns

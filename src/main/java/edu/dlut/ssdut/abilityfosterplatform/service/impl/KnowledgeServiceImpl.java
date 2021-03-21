@@ -7,15 +7,14 @@ import edu.dlut.ssdut.abilityfosterplatform.dto.TreeDTO;
 import edu.dlut.ssdut.abilityfosterplatform.enums.ResultEnum;
 import edu.dlut.ssdut.abilityfosterplatform.exception.PlatformException;
 import edu.dlut.ssdut.abilityfosterplatform.mapper.KnowledgeMapper;
-import edu.dlut.ssdut.abilityfosterplatform.model.Ability;
-import edu.dlut.ssdut.abilityfosterplatform.model.Course;
-import edu.dlut.ssdut.abilityfosterplatform.model.Knowledge;
-import edu.dlut.ssdut.abilityfosterplatform.model.SystemOption;
+import edu.dlut.ssdut.abilityfosterplatform.model.*;
 import edu.dlut.ssdut.abilityfosterplatform.repository.AbilityRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.CourseRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.KnowledgeRepository;
 import edu.dlut.ssdut.abilityfosterplatform.repository.SystemOptionRepository;
 import edu.dlut.ssdut.abilityfosterplatform.service.KnowledgeService;
+import edu.dlut.ssdut.abilityfosterplatform.service.VStudentAbilityScoreService;
+import edu.dlut.ssdut.abilityfosterplatform.service.VStudentKnowledgeScoreService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,9 +26,11 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: raymond
@@ -55,6 +56,11 @@ public class KnowledgeServiceImpl implements KnowledgeService {
     @Resource
     KnowledgeMapper knowledgeMapper;
 
+    @Resource
+    VStudentKnowledgeScoreService vStudentKnowledgeScoreService;
+
+    @Resource
+    VStudentAbilityScoreService vStudentAbilityScoreService;
     /**
      * 查询课程下的知识点列表 - 不分页
      * @param courseId
@@ -233,6 +239,75 @@ public class KnowledgeServiceImpl implements KnowledgeService {
                     kRoot.setCourseId(akdto.getCourseId());
 //                    kRoot.setAbilityId(akdto.getAbilityId());
                     kRoot.setName(akdto.getName());
+                    children1.add(kRoot);
+                }
+            }
+        }
+        return root;
+    }
+
+    @Override
+    public TreeDTO studentAKTree(Integer courseId, Integer classroomId, Integer studentId) {
+        List<CourseAKDTO> courseAKDTOS = knowledgeMapper.courseAKTree(courseId);
+        List<VStudentKnowledgeScore> knowledgeScores = vStudentKnowledgeScoreService.getListByClassroomIdAndSId(classroomId, studentId);
+        Map<Integer, BigDecimal> knowledgeScoreMap = new HashMap<>();
+        knowledgeScores.forEach(entity->{
+            knowledgeScoreMap.put(entity.getKnowledgeid(), entity.getScore());
+        });
+        List<VStudentAbilityScore> abilityScores =  vStudentAbilityScoreService.getListByClassroomIdAndSId(classroomId, studentId);
+        TreeDTO root = new TreeDTO();
+        if (courseAKDTOS.size() == 0) {
+            Course course = courseRepository.findById(courseId).orElse(null);
+            root.setName(course.getName());
+            root.setId(course.getId());
+            return root;
+        }
+        root.setId(courseAKDTOS.get(0).getCourseId());
+        root.setName(courseAKDTOS.get(0).getPName());
+        root.setChildren(new ArrayList<>());
+        List<TreeDTO> children = root.getChildren();
+
+
+        HashMap<Integer, CourseAKDTO> map = new HashMap<>();
+        for (CourseAKDTO akdto : courseAKDTOS) {
+            map.put(akdto.getAbilityId(), akdto);
+        }
+        //添加能力点分数
+        for (int i = 0; i < abilityScores.size(); i++) {
+            if (map.containsKey(abilityScores.get(i).getAbilityid())) {
+                CourseAKDTO courseAKDTO = map.get(abilityScores.get(i).getAbilityid());
+                courseAKDTO.setAbilityScore(abilityScores.get(i).getAbilityscore());
+                map.put(abilityScores.get(i).getAbilityid(), courseAKDTO);
+            }
+        }
+
+
+        // 将能力点放入课程
+        map.forEach((k,v)->{
+            TreeDTO aRoot = new TreeDTO();
+            aRoot.setId(v.getAbilityId());
+//            aRoot.setCourseId(v.getCourseId());
+//            aRoot.setAbilityId(k);
+            aRoot.setName(v.getAName());
+            aRoot.setScore(v.getAbilityScore());
+            children.add(aRoot);
+        });
+
+        // 将知识点放入能力点
+        for (TreeDTO dto : children) {
+            dto.setChildren(new ArrayList<>());
+            List<TreeDTO> children1 = dto.getChildren();
+            for (CourseAKDTO akdto : courseAKDTOS) {
+                if (akdto.getAbilityId() == dto.getId()) {
+                    if (knowledgeScoreMap.containsKey(akdto.getId())) {
+                        akdto.setKnowledgeScore(knowledgeScoreMap.get(akdto.getId()));
+                    }
+                    TreeDTO kRoot = new TreeDTO();
+                    kRoot.setId(akdto.getId());
+                    kRoot.setCourseId(akdto.getCourseId());
+//                    kRoot.setAbilityId(akdto.getAbilityId());
+                    kRoot.setName(akdto.getName());
+                    kRoot.setScore(akdto.getKnowledgeScore());
                     children1.add(kRoot);
                 }
             }

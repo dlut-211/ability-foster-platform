@@ -24,4 +24,5 @@ public interface ClassroomMapper {
 
     Integer editStatus(String Id,String Status);
 
+    int getCourseId(Integer classroomId);
 }
