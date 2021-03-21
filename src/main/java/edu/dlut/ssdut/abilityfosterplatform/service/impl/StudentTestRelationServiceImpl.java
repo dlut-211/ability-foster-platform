@@ -17,7 +17,9 @@ public class StudentTestRelationServiceImpl implements StudentTestRelationServic
     @Override
     public void insert(StudentKnowledgeTestRelation studentKnowledgeTestRelation) {
         Integer studentId = studentKnowledgeTestRelation.getStudentId();
-        StudentKnowledgeTestRelation relation = studentKnowledgeTestRelationMapper.getByStudentId(studentId);
+        Long knowledgeTestId = studentKnowledgeTestRelation.getKnowledgeTestId();
+        Integer classroomId = studentKnowledgeTestRelation.getClassroomId();
+        StudentKnowledgeTestRelation relation = studentKnowledgeTestRelationMapper.getByStudentId(studentId, knowledgeTestId, classroomId);
         if (relation == null) {
             studentKnowledgeTestRelationMapper.insert(studentKnowledgeTestRelation);
         } else {

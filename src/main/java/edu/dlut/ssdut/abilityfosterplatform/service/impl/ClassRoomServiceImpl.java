@@ -161,4 +161,9 @@ public class ClassRoomServiceImpl implements ClassRoomService {
         return classRoomId;
     }
 
+    @Override
+    public int getCourseId(Integer classroomId) {
+        return classroomMapper.getCourseId(classroomId);
+    }
+
 }

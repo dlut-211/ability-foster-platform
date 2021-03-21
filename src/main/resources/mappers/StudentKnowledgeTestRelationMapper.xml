@@ -105,7 +105,7 @@
 
   <select id="getByStudentId"
           resultType="edu.dlut.ssdut.abilityfosterplatform.model.StudentKnowledgeTestRelation">
-    select * from student_knowledge_test_relation where student_id = #{studentId}
+    select * from student_knowledge_test_relation where student_id = #{studentId} and knowledge_test_id = #{knowledgeTestId} and student_id = #{studentId}
   </select>
 
   <select id="getCorrectRateByClassroom" resultType="java.lang.Integer">

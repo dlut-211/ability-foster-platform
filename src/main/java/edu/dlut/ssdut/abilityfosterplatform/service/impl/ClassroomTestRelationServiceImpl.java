@@ -17,6 +17,9 @@ public class ClassroomTestRelationServiceImpl implements ClassroomTestRelationSe
     @Override
     public List<KnowledgeTest> getALlTestById(int chapterId, int classroomId) {
         List<Integer> testIds = classroomTestRelationMapper.getTestByClassroomId(classroomId, 1);
+        if(testIds.isEmpty() || testIds.size() == 0) {
+            return null;
+        }
         List<KnowledgeTest> testList = knowledgeTestMapper.getTestByTestIds(testIds, chapterId);
         return testList;
     }

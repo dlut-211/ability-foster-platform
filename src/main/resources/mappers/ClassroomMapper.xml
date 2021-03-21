@@ -45,7 +45,10 @@
     from classroom
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="getCourseId" resultType="java.lang.Integer">
+      select course_id from classroom where id = #{classroomId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from classroom
     where id = #{id,jdbcType=INTEGER}
   </delete>

@@ -39,4 +39,5 @@ public interface ClassRoomService {
     int addClassRoom(Map<String, String> params, Integer teacherId) throws ParseException;
 
 
+    int getCourseId(Integer classroomId);
 }

@@ -3,6 +3,7 @@ package edu.dlut.ssdut.abilityfosterplatform.controller;
 import edu.dlut.ssdut.abilityfosterplatform.dto.CourseAKDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.KnowledgeAbilityDTO;
 import edu.dlut.ssdut.abilityfosterplatform.dto.TreeDTO;
+import edu.dlut.ssdut.abilityfosterplatform.service.ClassRoomService;
 import edu.dlut.ssdut.abilityfosterplatform.service.KnowledgeService;
 import edu.dlut.ssdut.abilityfosterplatform.utils.ResultVOUtil;
 import edu.dlut.ssdut.abilityfosterplatform.vo.ResultVO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,6 +28,8 @@ public class KnowledgeController {
 
     @Autowired
     private KnowledgeService knowledgeService;
+    @Resource
+    private ClassRoomService classRoomService;
 
     @ApiOperation("获取知识点列表 - 不分页")
     @GetMapping("/list")
@@ -65,6 +69,14 @@ public class KnowledgeController {
     @GetMapping("/courseAKTree")
     public ResultVO courseAKTree(@RequestParam("courseId") Integer courseId) {
         TreeDTO tree = knowledgeService.courseAKTree(courseId);
+        return ResultVOUtil.success(tree);
+    }
+
+    @ApiOperation("")
+    @GetMapping("/studentAKTree")
+    public ResultVO studentAKTree(Integer classroomId, Integer studentId) {
+        int courseId = classRoomService.getCourseId(classroomId);
+        TreeDTO tree = knowledgeService.studentAKTree(courseId, classroomId, studentId);
         return ResultVOUtil.success(tree);
     }
 }

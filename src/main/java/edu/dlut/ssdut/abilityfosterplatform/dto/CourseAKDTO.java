@@ -3,6 +3,7 @@ package edu.dlut.ssdut.abilityfosterplatform.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,9 @@ public class CourseAKDTO implements Serializable {
 
     private String aName;
 
+    private BigDecimal abilityScore;
+
+    private BigDecimal knowledgeScore;
 
     private Integer id;
 
