@@ -108,7 +108,7 @@ public class TeacherController {
         teacher.setEmail("");
         teacher.setToken("111");
         teacher.setStatus(1);
-        String s = teacher.getPassword();
+        String s = "123456";
         teacher.setPassword(DigestUtils.md5DigestAsHex(s.getBytes()));
         teacher.setCreatedBy(1);
         teacher.setCreatedOn(new Date());

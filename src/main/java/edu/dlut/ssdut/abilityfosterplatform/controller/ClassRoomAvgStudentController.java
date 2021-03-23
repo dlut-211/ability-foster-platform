@@ -163,9 +163,9 @@ public class ClassRoomAvgStudentController {
         @PostMapping("/add")
     public ResultVO addClassRoom(@RequestParam Map<String, String> params , HttpServletRequest request) throws ParseException {
             String token = request.getHeader("Authorization");
-            Integer teacherId = 0;
+            Integer teacherId = Integer.parseInt(params.get("createdBy"));
 
-            if(token!=null){ teacherId=teacherService.getTeacherIdByToken(token);}
+//            if(token!=null){ teacherId=teacherService.getTeacherIdByToken(token);}
 
             return ResultVOUtil.success(classRoomService.addClassRoom( params,teacherId));
         }

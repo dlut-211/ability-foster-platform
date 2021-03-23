@@ -143,7 +143,7 @@ public class CourseServiceImpl implements CourseService {
         BeanUtils.copyProperties(vCourse, course);
         course.setCreatedOn(createdOn);
         // TODO 需要修改为当前登录的用户
-        course.setCreatedBy(1000);
+//        course.setCreatedBy(1000);
         return courseRepository.save(course);
     }
 

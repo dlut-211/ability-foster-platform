@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
             if (teacher.getPassword().equals(DigestUtils.md5DigestAsHex(updatePasswordDTO.getOldPassword().getBytes()))) {
                 teacher.setPassword(DigestUtils.md5DigestAsHex(updatePasswordDTO.getNewPassword().getBytes()));
                 teacher.setModifiedOn(new Date());
-                i = teacherMapper.updateByPrimaryKey(teacher);
+                i = teacherMapper.updateByPrimaryKeySelective(teacher);
             }
             else
                 i=400;

@@ -243,6 +243,11 @@ public class KnowledgeServiceImpl implements KnowledgeService {
                 }
             }
         }
+        // 将能力点id去除
+        int index = 200000;
+        for (TreeDTO child : children) {
+            child.setId(index++);
+        }
         return root;
     }
 

@@ -142,7 +142,7 @@ public class KnowledgeServiceImplTest {
 
     @Test
     public void test() {
-        List<CourseAKDTO> courseAKDTOS = knowledgeMapper.courseAKTree(36);
+        List<CourseAKDTO> courseAKDTOS = knowledgeMapper.courseAKTree(1);
 
         TreeDTO root = new TreeDTO();
 //        if (courseAKDTOS.size() == 0) {
@@ -184,6 +184,10 @@ public class KnowledgeServiceImplTest {
                     children1.add(kRoot);
                 }
             }
+        }
+        // 将能力点id去除
+        for (TreeDTO child : children) {
+            child.setId(-1);
         }
         System.out.println(JSON.toJSONString(root));
     }
@@ -230,11 +234,14 @@ public class KnowledgeServiceImplTest {
     @Test
     public void testLeetCode() {
         /**
-         * 输入：matrix = [[1,
-         * 1,1],[1,0,1],[1,1,1]]
+         * 输入：matrix = [[1,1,1],[1,0,1],[1,1,1]]
          * 输出：[[1,0,1],[0,0,0],[1,0,1]]
+         * @SuppressWarnings（）
          */
-        System.out.println(44);
+        double d = 0.145121;
+        d = (double) Math.round(d * 100) / 100;
+        System.out.println(d);
+
 
 
     }
