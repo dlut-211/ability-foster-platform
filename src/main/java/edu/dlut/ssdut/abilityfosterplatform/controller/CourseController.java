@@ -44,7 +44,7 @@ public class CourseController {
     @ApiOperation("添加课程信息")
     @RequestMapping(value = "/insertCourse", method = RequestMethod.POST)
     public ResultVO insertCourse(Course course) {
-        course.setCreatedBy(1000);
+//        course.setCreatedBy(1000);
         course.setCreatedOn(new Date());
         return ResultVOUtil.success(courseRepository.save(course));
     }
